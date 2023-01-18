@@ -20,16 +20,15 @@ const navigation = {
     { name: 'Contact', href: '/contacto' },
   ],
   company: [
-    { name: 'Cases', href: '/casos' },
-    { name: 'Services', href: '/servicios' },
-    { name: 'About Us', href: '/nosotros' },
-    { name: 'Careers', href: '/carreras' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Condiciones de compra', href: '/' },
+    { name: 'Quejas y sugerencia', href: '/' },
+    { name: 'Politica de privacidad', href: '/' },
+    { name: 'Nueva normas de acceso al cine Dore', href: '/' },
   ],
   legal: [
-    { name: 'Claim', href: '#' },
-    { name: 'Privacy', href: '#' },
-    { name: 'Terms', href: '#' },
+    { name: 'Faq', href: '#' },
+    { name: 'Contacto', href: '#' },
+    { name: 'Recojida de entradas', href: '#' },
   ],
   social: [
     {
