@@ -21,28 +21,44 @@ function Admin() {
       docx4js.load(selectedFile).then(function (docx) {
 
         // Select only the text information
-        const text = docx.officeDocument.content("w\\:t")
-        console.log(docx.officeDocument.content("w\\:body"))
+        // console.log(docx.officeDocument.content("w\\:body")["0"].children)
         let output = ""
 
-        // Map over the text information and return the text
-        Object.keys(text).forEach(key => {
-          if (text[key].type === "tag") {
-            // console.log(text[key].attribs)
-
-            // If the text is a new line, add a new line
-            if (text[key].attribs["xml:space"] === "preserve") {
-              output = output + " "
+        // Map over the text information and return the text with paragraph information
+        const body = docx.officeDocument.content("w\\:body")["0"].children
+        Object.keys(body).forEach(key => {
+          body[key].children.forEach(child => {
+            if (child.name === "w:r"){
+              Object.keys(child.children).forEach(childKey => {
+                if (child.children[childKey].name === "w:t") {
+                  output = output + child.children[childKey].children[0].data
+                }
+              })
             }
+          })
+          output = output + "\n"
+        })
+        console.log(output);
 
-            text[key].children.forEach(child => {
-              output = output + child.data
-            })
-            // console.log("output", test);
-          }
-        } )
-        // console.log(output);
-        setOutputString(output)
+        // // Map over the text information and return the text without paragraph information
+        // const text = docx.officeDocument.content("w\\:t")
+        // Object.keys(text).forEach(key => {
+        //   if (text[key].type === "tag") {
+        //     // console.log(text[key].attribs)
+
+        //     // If the text is a new line, add a new line
+        //     if (text[key].attribs["xml:space"] === "preserve") {
+        //       output = output + " "
+        //     }
+
+        //     text[key].children.forEach(child => {
+        //       output = output + child.data
+        //     })
+        //     // console.log("output", test);
+        //   }
+        // } )
+        // // console.log(output);
+        // setOutputString(output)
       })
       // debugger
     }
