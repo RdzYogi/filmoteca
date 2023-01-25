@@ -22,14 +22,22 @@ function Admin() {
 
         // Select only the text information
         const text = docx.officeDocument.content("w\\:t")
+        console.log(docx.officeDocument.content("w\\:body"))
         let output = ""
 
         // Map over the text information and return the text
         Object.keys(text).forEach(key => {
           if (text[key].type === "tag") {
-            // console.log(text[key].children[0].data)
-            output = output + text[key].children[0].data
-            // setOutputString(outputString + text[key].children[0].data)
+            // console.log(text[key].attribs)
+
+            // If the text is a new line, add a new line
+            if (text[key].attribs["xml:space"] === "preserve") {
+              output = output + " "
+            }
+
+            text[key].children.forEach(child => {
+              output = output + child.data
+            })
             // console.log("output", test);
           }
         } )
