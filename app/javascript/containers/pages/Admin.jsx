@@ -59,7 +59,7 @@ function Admin() {
     if (isFileProcessed) {
       // Regex to split into days
       // console.log(outputString);
-      const daysRegex = /(\S*\s\d{1,2}\sde\s\w*)/
+      const daysRegex = /(\S*\s\d{1,2}\sde\s\w*\s)/
       const days = outputString.split(daysRegex)
       setDays(days)
 
