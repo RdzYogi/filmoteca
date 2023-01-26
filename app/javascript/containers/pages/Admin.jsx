@@ -12,6 +12,7 @@ function Admin() {
 	const [isFilePicked, setIsFilePicked] = useState(false);
   const [isFileProcessed, setIsFileProcessed] = useState(false);
   const [outputString, setOutputString] = useState("")
+  const [output, setOutput] = useState([])
 
   const [days, setDays] = useState([])
   window.Buffer = window.Buffer || Buffer;
@@ -62,9 +63,14 @@ function Admin() {
       const daysRegex = /(\S*\s\d{1,2}\sde\s\w*\s)/
       const days = outputString.split(daysRegex)
       setDays(days)
-
       console.log(days)
-
+      days.forEach((day,index) => {
+        if (index % 2 === 0) {
+          setOutput(output => [...output, <p className='max-w-7xl mx-auto' key={index}>{day}</p>]);
+        } else {
+          setOutput(output => [...output, <h2 className='text-4xl max-w-7xl mx-auto pt-10 pb-5' key={index}>{day}</h2>]);
+        }
+      })
     }
   }, [outputString])
 
@@ -83,6 +89,7 @@ function Admin() {
         <div>
           <button onClick={handleSubmission}>Submit</button>
         </div>
+        {output}
       </div>
       <Footer/>
     </Layout>
