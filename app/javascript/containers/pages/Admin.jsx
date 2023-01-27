@@ -59,8 +59,9 @@ function Admin() {
     const descRegex = /\r?\n/
     let outputDescription = []
     desc.split(descRegex).forEach((item, index) => {
+      item = item.trim()
       if (item !== "") {
-        // console.log(item);
+        console.log([item]);
         outputDescription = [...outputDescription,<div className='text-lg pt-2' key={index}>{item}</div>]
       }
     })
