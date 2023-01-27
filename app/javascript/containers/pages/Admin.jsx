@@ -13,6 +13,7 @@ function Admin() {
   const [isFileProcessed, setIsFileProcessed] = useState(false);
   const [outputString, setOutputString] = useState("")
   const [output, setOutput] = useState([])
+  const heightForTextArea = 80
 
   const [days, setDays] = useState([])
   window.Buffer = window.Buffer || Buffer;
@@ -64,7 +65,7 @@ function Admin() {
         // console.log([item]);
         outputDescription = [...outputDescription,
           <form className='text-lg pt-2 min-w-full'>
-              <textarea rows={item.length/100} className='min-w-full' defaultValue={item} key={index}></textarea>
+              <textarea rows={item.length/heightForTextArea} className='min-w-full' defaultValue={item} key={index}></textarea>
           </form>
       ]
       }
@@ -125,16 +126,18 @@ function Admin() {
 		setIsFilePicked(true);
 	};
 
-	const handleSubmission = () => {
-	};
+	// const handleSubmission = () => {
+	// };
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-20">
-        <input type="file" name="file" onChange={changeHandler} />
-        <div>
-          <button onClick={handleSubmission}>Submit</button>
+      <div className="pt-40 pb-20">
+        <div className='flex justify-center'>
+          <input type="file" name="file" onChange={changeHandler} />
         </div>
+        {/* <div>
+          <button onClick={handleSubmission}>Submit</button>
+        </div> */}
         {output}
       </div>
       <Footer/>
