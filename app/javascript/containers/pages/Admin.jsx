@@ -61,8 +61,12 @@ function Admin() {
     desc.split(descRegex).forEach((item, index) => {
       item = item.trim()
       if (item !== "") {
-        console.log([item]);
-        outputDescription = [...outputDescription,<div className='text-lg pt-2' key={index}>{item}</div>]
+        // console.log([item]);
+        outputDescription = [...outputDescription,
+          <form className='text-lg pt-2 min-w-full'>
+              <textarea rows={item.length/100} className='min-w-full' defaultValue={item} key={index}></textarea>
+          </form>
+      ]
       }
     })
     // console.log(outputDescription)
@@ -80,7 +84,11 @@ function Admin() {
           return <div key={index}>{splitMovieDescription(item)}</div>
         } else {
           // The hall and the time
-          return <div className='text-2xl pt-5 pb-2' key={index}>{item}</div>
+          return (
+            <form className='text-2xl pt-5 pb-2'>
+              <input defaultValue={item} key={index}></input>
+            </form>
+          )
         }
       })
     )
@@ -102,7 +110,11 @@ function Admin() {
           setOutput(output => [...output, <div className='max-w-7xl mx-auto' key={index}>{splitDayByCinema(day)}</div>]);
         } else {
           // The exact date
-          setOutput(output => [...output, <h2 className='text-4xl max-w-7xl mx-auto pt-10 pb-5' key={index}>{day}</h2>]);
+          setOutput(output => [...output,
+            <form className='text-4xl max-w-7xl mx-auto pt-10 pb-5'>
+              <input defaultValue={day} key={index}></input>
+            </form>
+        ]);
         }
       })
     }
