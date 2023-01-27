@@ -54,6 +54,37 @@ function Admin() {
     }
   }, [selectedFile])
 
+  // Separate each movie description
+  const splitMovieDescription = (desc) => {
+    const descRegex = /\r?\n/
+    let outputDescription = []
+    desc.split(descRegex).forEach((item, index) => {
+      if (item !== "") {
+        // console.log(item);
+        outputDescription = [...outputDescription,<div className='text-lg pt-2' key={index}>{item}</div>]
+      }
+    })
+    // console.log(outputDescription)
+    return outputDescription
+  }
+
+  // process each day
+  const splitDayByCinema = (day) => {
+    const hallRegex = /(\d{2}\S\d{2}\s\S\s\w*\s\d*\s\S)/
+    // console.log(day.split(hallRegex));
+    return(
+      day.split(hallRegex).map((item, index) => {
+        if (index % 2 === 0) {
+          // Description of the movie
+          return <div key={index}>{splitMovieDescription(item)}</div>
+        } else {
+          // The hall and the time
+          return <div className='text-2xl pt-5 pb-2' key={index}>{item}</div>
+        }
+      })
+    )
+  }
+
   // Triggered after the file is processed
   useEffect(() => {
     // Check is necessary to avoid triggering the effect on the first render
@@ -63,11 +94,13 @@ function Admin() {
       const daysRegex = /(\S*\s\d{1,2}\sde\s\w*\s)/
       const days = outputString.split(daysRegex)
       setDays(days)
-      console.log(days)
+      // console.log(days)
       days.forEach((day,index) => {
         if (index % 2 === 0) {
-          setOutput(output => [...output, <p className='max-w-7xl mx-auto' key={index}>{day}</p>]);
+          // The contents of the day
+          setOutput(output => [...output, <div className='max-w-7xl mx-auto' key={index}>{splitDayByCinema(day)}</div>]);
         } else {
+          // The exact date
           setOutput(output => [...output, <h2 className='text-4xl max-w-7xl mx-auto pt-10 pb-5' key={index}>{day}</h2>]);
         }
       })
