@@ -7,7 +7,7 @@ function Home() {
   return (
     <Layout>
       <Navbar/>
-      <div className="p-20">Home</div>
+      <div className="pt-40">Home</div>
       <Footer/>
     </Layout>
   )
