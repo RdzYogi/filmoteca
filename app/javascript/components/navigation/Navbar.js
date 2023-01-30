@@ -10,18 +10,19 @@ function Navbar() {
   library.add(faMagnifyingGlass);
   return (
     <nav id='navbar' className='w-full bg-black pt-4 transition duration-300 ease-in-out z-40 top-0 fixed'>
-      <div className=" px-4 sm:px-6">
-        <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2">
-          <Link to='/' className="ml-4 mt-2">
+      <div className="px-4 sm:px-6 mt-4 mb-2">
+        <div className="ml-40 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2 mb-4">
+          <Link to='/' className="ml-4">
             <img
             src={logo_blanco}
             alt="logo"
-            width={420}
-            height={380}
+            width={390}
+            height={350}
             className=""/>
           </Link>
+          <div className="bg-gray-500 h-10 w-10 rounded-full mr-40"></div>
         </div>
-        <div className="ml-4 mt-6 pb-1 flex justify-around">
+        <div className="max-w-7xl mx-auto mt-6 pb-1 flex justify-around">
           <NavLink to='/' >
             <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out mx-4">
               CALENDARIO
