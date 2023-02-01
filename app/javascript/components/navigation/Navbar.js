@@ -1,18 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 import logo_blanco from '../../assets/images/logo-blanco.png';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+// For fontawesome free-solid, free-regular, free-brands, fontawesome-free
+import { faMagnifyingGlass, faCalendarDays, faCoffee, faFilm, faTicket, faNewspaper, faBars} from '@fortawesome/free-solid-svg-icons'
 
 
 function Navbar() {
-  library.add(faMagnifyingGlass);
+  // TODO
+  // Figure out a better way to use fontawsome
+  library.add(faMagnifyingGlass, faCalendarDays);
   return (
     <nav id='navbar' className='w-full bg-black pt-4 transition duration-300 ease-in-out z-40 top-0 fixed'>
+      {/* Logo */}
       <div className="px-4 sm:px-6 mt-4 mb-2">
-        <div className="ml-40 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap md:px-12 px-2 mb-4">
-          <Link to='/' className="ml-4">
+        <div className="-mt-2 flex flex-wrap items-center justify-center md:justify-between sm:flex-nowrap md:px-12 px-2 mb-4">
+          <Link to='/' className="2xl:ml-40 xl:ml-4">
             <img
             src={logo_blanco}
             alt="logo"
@@ -20,42 +24,77 @@ function Navbar() {
             height={350}
             className=""/>
           </Link>
-          <div className="bg-gray-500 h-10 w-10 rounded-full mr-40"></div>
+          <div className="hidden md:flex bg-gray-500 h-10 w-10 rounded-full mr-40"></div>
         </div>
-        <div className="max-w-7xl mx-auto mt-6 pb-1 flex justify-around">
-          <NavLink to='/' >
-            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out mx-4">
+
+        {/* The Desktop navbar */}
+        <div className="max-w-7xl mx-auto mt-6 pb-1 hidden md:flex justify-around">
+          <NavLink to='/calendario' className='flex items-center'>
+            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white mx-4 b-20">
               CALENDARIO
             </p>
           </NavLink>
-          <NavLink to='/calendario'>
-            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out mx-4">
+          <div className='bg-white w-px h-6'></div>
+          <NavLink to='/ciclos' className='flex items-center'>
+            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white mx-4">
               CICLOS
             </p>
           </NavLink>
-          <NavLink to='/ciclos'>
-            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out mx-4">
+          <div className='bg-white w-px h-6'></div>
+          <NavLink to='/cartelera' className='flex items-center'>
+            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white mx-4">
               CARTELERA
             </p>
           </NavLink>
-          <NavLink to='/peliculas'>
-            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out mx-4">
+          <div className='bg-white w-px h-6'></div>
+          <NavLink to='/noticias' className='flex items-center'>
+            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white mx-4">
               NOTICIAS
             </p>
           </NavLink>
-          <NavLink to='/noticias'>
-            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out mx-4">
+          <div className='bg-white w-px h-6'></div>
+          <NavLink to='/abonos' className='flex items-center'>
+            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white mx-4">
               ABONOS
             </p>
           </NavLink>
-          <NavLink to='/'>
-            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out mx-4">
+          <div className='bg-white w-px h-6'></div>
+          <NavLink to='/contacto' className='flex items-center'>
+            <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white mx-4">
               CONTACTO
             </p>
           </NavLink>
-          <p className="text-lg inline-flex font-bold leading-6 text-white transition duration-300 ease-in-out mx-4">
-          <FontAwesomeIcon icon="magnifying-glass" />
+          <div className='bg-white w-px h-6'></div>
+          <p className="flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white mx-4">
+            <FontAwesomeIcon icon="magnifying-glass"/>
           </p>
+        </div>
+
+        {/* Mobile navbar */}
+        <div className="md:hidden flex max-w-full justify-around">
+          <NavLink to='/calendario' className='flex items-center text-lg font-bold leading-6 text-white '>
+            <FontAwesomeIcon icon="calendar-days"/>
+          </NavLink>
+          <NavLink to='/ciclos' className='flex items-center text-lg font-bold leading-6 text-white'>
+            <div className='grid grid-rows-2 grid-flow-col gap-1 text-xs scale-75'>
+              <FontAwesomeIcon icon={faFilm} />
+              <FontAwesomeIcon icon={faFilm} />
+              <FontAwesomeIcon icon={faFilm} />
+              <FontAwesomeIcon icon={faFilm} />
+            </div>
+          </NavLink>
+          <NavLink to='/cartelera' className='flex items-center text-lg font-bold leading-6 text-white'>
+            <FontAwesomeIcon icon={faFilm} />
+          </NavLink>
+          <NavLink to='/noticias' className='flex items-center text-lg font-bold leading-6 text-white'>
+            <FontAwesomeIcon icon={faNewspaper} />
+          </NavLink>
+          <NavLink to='/' className='flex items-center text-lg font-bold leading-6 text-white'>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </NavLink>
+          <NavLink to='/' className='flex items-center text-lg font-bold leading-6 text-white'>
+            <FontAwesomeIcon icon={faBars} />
+          </NavLink>
         </div>
       </div>
     </nav>
