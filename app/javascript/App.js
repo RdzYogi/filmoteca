@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Error404 from './containers/errors/Error404';
 import Admin from './containers/pages/Admin';
 import Home from './containers/pages/Home';
@@ -13,10 +13,9 @@ import Login from './containers/pages/Login';
 
 function App() {
 
-
   return (
-    <Router>
-      <Routes>
+    <Router >
+      <Routes >
         {/* This is the wrong path error route */}
         <Route exact path="*" element={<Error404 />} />
 
