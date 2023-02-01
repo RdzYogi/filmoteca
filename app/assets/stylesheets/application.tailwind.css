@@ -11,3 +11,6 @@
 }
 
 */
+.active{
+  @apply border-white;
+}
