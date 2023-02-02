@@ -17,8 +17,10 @@ const navigation = {
     { name: 'Insights', href: '#' },
   ],
   hours: [
-    { name: 'Servicio de cafeteria: 10:00 - 20:00'},
-    { name: 'Lunes a viernes'},
+    { name: 'Servicio de cafetería'},
+    { name: 'Martes a Domingo: 16:00 a 22:30'},
+    { name: 'Librería:'},
+    { name: 'Martes a Domingo: 11:30 A 14:30 H - 17:00 A 21:00H'},
   ],
   support: [
     { name: 'Contact', href: '/contacto' },
