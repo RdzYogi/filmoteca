@@ -1,5 +1,5 @@
 import React from 'react';
-import logo_film from '../../assets/images/logo_film.png';
+import logo_blanco from '../../assets/images/logo-blanco.png';
 
 const navigation = {
   address:[
@@ -16,6 +16,10 @@ const navigation = {
     { name: 'Commerce', href: '#' },
     { name: 'Insights', href: '#' },
   ],
+  hours: [
+    { name: 'Servicio de cafeteria: 10:00 - 20:00'},
+    { name: 'Lunes a viernes'},
+  ],
   support: [
     { name: 'Contact', href: '/contacto' },
   ],
@@ -28,7 +32,7 @@ const navigation = {
   legal: [
     { name: 'Faq', href: '#' },
     { name: 'Contacto', href: '#' },
-    { name: 'Recojida de entradas', href: '#' },
+    { name: 'Recogida de entradas', href: '#' },
   ],
   social: [
     {
@@ -71,12 +75,12 @@ const navigation = {
 
 function Footer() {
   return (
-    <footer className="bg-gray-50" aria-labelledby="footer-heading">
+    <footer className="bg-black" aria-labelledby="footer-heading">
         <div className="mx-auto max-w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="xl:col-span-1">
             <img
-              src={logo_film}
+              src={logo_blanco}
               alt="logo"
               width={420}
               height={360}
@@ -84,12 +88,18 @@ function Footer() {
               <div className='flex mt-5 justify-between'>
                 <div>
                   {navigation.address.map((item) =>(
-                    <p key={item.value} className="text-xs">
+                    <p key={item.value} className="text-xs text-gray-50">
                       {item.value}
                     </p>
                   ))}
                 </div>
-
+                <div>
+                    {navigation.hours.map((item) => (
+                      <p key={item.name} className="text-xs text-gray-50">
+                          {item.name}
+                        </p>
+                    ))}
+                </div>
                 <div className="flex space-x-3 ">
                   {navigation.social.map((item) => (
                     <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
@@ -103,7 +113,7 @@ function Footer() {
             <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
-                  <h3 className="text-base font-medium text-gray-900">Filmoteca espanola</h3>
+                  <h3 className="text-base font-medium text-gray-900">Filmoteca Española</h3>
                   <ul role="list" className="mt-4 space-y-4">
                     {navigation.company.map((item) => (
                       <li key={item.name}>
