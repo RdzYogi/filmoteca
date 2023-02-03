@@ -4,15 +4,18 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import MovieCard from '../../components/cycle-show/MovieCard'
 
-function Cycle() {
+function Cycle(props) {
   return (
     <Layout>
       <Navbar/>
       <div className="pt-40">
-        <h2>{cycle.name}</h2>
-        <p>{cycle.description}</p>
+        <h1>This is Cycle show</h1>
+        <h2>{props.name}</h2>
+        <p>{props.description}</p>
       </div>
-        {cycle.movies.filter(movie.cycle === cycle.id).forEach(movie => <MovieCard />)}
+        {props.movies.filter(movie.cycle === props.id).forEach(movie => {
+          <MovieCard {...movie}/>
+        })}
       <Footer/>
     </Layout>
   )

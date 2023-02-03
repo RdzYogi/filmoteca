@@ -1,16 +1,16 @@
 import React, { useState } from "react"
 import { Navigate } from "react-router-dom"
 
-function MovieCard(movie){
+function MovieCard(props){
   return (
     <div>
-      <p>{movie.title}</p>
-      <p>{movie.director} {movie.year}</p>
-      {movie.session.datetime.forEach(date =>{
-        <p>{date} - {movie.hall} - <button>comprar</button></p>
+      <p>{props.title}</p>
+      <p>{props.director} {props.year}</p>
+      {props.session.datetime.forEach(date =>{
+        <p>{date} - {props.hall} - <button>comprar</button></p>
       })}
-      <img src={movie.img_url} alt={movie.title}/>
-      <p>{movie.description}</p>
+      <img src={props.img_url} alt={props.title}/>
+      <p>{props.description}</p>
     </div>
   )
 }
