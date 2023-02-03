@@ -7,7 +7,8 @@ function Abonos() {
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40">Abonos</div>
+      <div className="pt-40">
+      </div>
       <Footer/>
     </Layout>
   )
