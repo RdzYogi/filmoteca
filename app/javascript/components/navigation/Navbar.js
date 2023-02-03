@@ -73,6 +73,7 @@ function Navbar() {
               <FontAwesomeIcon icon={faFilm} />
               <FontAwesomeIcon icon={faFilm} />
             </div>
+
           </NavLink>
           <NavLink to='/cartelera' className='flex items-center text-lg font-bold leading-6 text-white'>
             <FontAwesomeIcon icon={faFilm} />
