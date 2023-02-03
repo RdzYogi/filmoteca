@@ -23,11 +23,6 @@
     "chalk" "^2.0.0"
     "js-tokens" "^4.0.0"
 
-"@esbuild/linux-x64@0.17.2":
-  "integrity" "sha512-naygxkSmr6x9tuvpa8iGefnXo3Rc3Noz7c4+Dn0MSfSWJwLaN2YR686e7HkI09irfjDdU5UAq9wcxUwjkYQNUA=="
-  "resolved" "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.17.2.tgz"
-  "version" "0.17.2"
-
 "@fortawesome/fontawesome-common-types@6.2.1":
   "integrity" "sha512-Sz07mnQrTekFWLz5BMjOzHl/+NooTdW8F8kDQxjWwbpOJcnoSg4vUDng8d/WR1wOxM0O+CY9Zw0nR054riNYtQ=="
   "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.2.1.tgz"
