@@ -80,60 +80,60 @@ function Footer() {
   return (
     <footer className="bg-black" aria-labelledby="footer-heading">
         <div className="mx-auto max-w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-          <div className="xl:grid xl:grid-cols-3">
-            <div className="xl:col-span-1">
-            <img
-              src={logo_blanco}
-              alt="logo"
-              width={420}
-              height={360}
-              className=""/>
-              <div className='flex mt-5 justify-between'>
+          <div className="xl:grid-cols-3">
+            <div>{/* <div className="xl:col-span-1"> */}
+              <img
+                src={logo_blanco}
+                alt="logo"
+                width={420}
+                height={360}
+                className=""/>
+                <div className='flex mt-5 justify-between'>
+                  <div>
+                    {navigation.address.map((item) =>(
+                      <p key={item.value} className="text-xs text-gray-50">
+                        {item.value}
+                      </p>
+                    ))}
+            </div>
+          </div>
+        </div>
+        <div className="mt-12 grid grid-cols-3 gap-8 xl:col-1 xl:mt-0">
+            <div>
+              <h3 className="text-base font-medium text-gray-900">Filmoteca Española</h3>
+              <ul role="list" className="mt-4 space-y-4">
+                {navigation.company.map((item) => (
+                  <li key={item.name}>
+                    <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-12 grid grid-cols-2 xl:col-2 xl:mt-0">
                 <div>
-                  {navigation.address.map((item) =>(
-                    <p key={item.value} className="text-xs text-gray-50">
-                      {item.value}
-                    </p>
+                  {navigation.hours.map((item) => (
+                    <p key={item.name} className="text-xs text-gray-50">
+                        {item.name}
+                      </p>
                   ))}
                 </div>
-            </div>
-            <div className="mt-12 grid grid-cols-1 gap-8 xl:col-1 xl:mt-0">
-                <div>
-                  <h3 className="text-base font-medium text-gray-900">Filmoteca Española</h3>
-                  <ul role="list" className="mt-4 space-y-4">
-                    {navigation.company.map((item) => (
-                      <li key={item.name}>
-                        <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                          {item.name}
-                        </a>
-                      </li>
+                <div className="flex space-x-3 ">
+                    {navigation.social.map((item) => (
+                      <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
+                        <span className="sr-only">{item.name}</span>
+                        <item.icon className="h-8 w-8" aria-hidden="true" />
+                      </a>
                     ))}
-                  </ul>
-                </div>
-              <div className="md:mt-0">
-                  <div>
-                    {navigation.hours.map((item) => (
-                      <p key={item.name} className="text-xs text-gray-50">
-                          {item.name}
-                        </p>
-                    ))}
-                  </div>
-                  <div className="flex space-x-3 ">
-                      {navigation.social.map((item) => (
-                        <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
-                          <span className="sr-only">{item.name}</span>
-                          <item.icon className="h-8 w-8" aria-hidden="true" />
-                        </a>
-                      ))}
-                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="mt-12 border-t border-gray-200 pt-8">
-            <p className="text-base text-gray-400 xl:text-center">&copy; 2023 Code Rabbits, Inc. All rights reserved.</p>
-          </div>
         </div>
+          </div>
+            <div className="mt-12 border-t border-gray-200 pt-8">
+              <p className="text-base text-gray-400 xl:text-center">&copy; 2023 Code Rabbits, Inc. All rights reserved.</p>
+            </div>
       </footer>
   )
 }
