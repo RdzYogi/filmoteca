@@ -5,6 +5,8 @@ import CycleCard from '../../components/navigation/shared/CycleCard'
 import Layout from '../../hocs/layouts/Layout'
 
 function Ciclos() {
+  // We declare a state so we can store the data from the API
+  // and use it later in the component
   const [ciclos, setCiclos] = useState([])
   useEffect(() => {
     fetch('http://localhost:3000/api/v1/cycles')
@@ -12,8 +14,12 @@ function Ciclos() {
       .then((data) => {
         // console.log(data)
         data.map((cycle) => {
-          console.log(cycle)
+          // console.log(cycle)
+          // We use the state setter to store the data
+          // by using a spread operator [...] that works like a push
           setCiclos([...ciclos, cycle])
+          // After we store the data we can call ciclos to see the data
+          // ciclos will be an ARRAY OF OBJECTS
         })
       });
   }, [])
