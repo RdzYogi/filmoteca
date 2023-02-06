@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2023_02_06_102022) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +50,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_06_102022) do
     t.string "slug"
     t.index ["cycle_id"], name: "index_movies_on_cycle_id"
     t.index ["session_id"], name: "index_movies_on_session_id"
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "link"
+    t.string "img_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "seats", force: :cascade do |t|

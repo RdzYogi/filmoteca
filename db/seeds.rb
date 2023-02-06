@@ -98,3 +98,17 @@ Movie.create(title: "Movie 2",
               cycle_id: Cycle.all[0].id)
 
 puts "Movies created"
+
+# Define News placeholder
+
+News.create(title: "news1",
+            description: "amazing news for everybody 1",
+            link: "https://entradasfilmoteca.gob.es/",
+            img_url: "https://unsplash.com/photos/h7rOzTmGxWE")
+
+News.create(title: "news2",
+            description: "amazing news for everybody 2",
+            link: "https://entradasfilmoteca.gob.es/",
+            img_url: "https://unsplash.com/photos/h7rOzTmGxWE")
+
+puts "News created"
