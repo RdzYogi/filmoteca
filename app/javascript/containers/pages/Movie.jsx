@@ -17,6 +17,7 @@ function Movie() {
           </button>
       </div>
       <div className="pl-50">
+
           <h2 className="text-xl font-large text-black-900 text-align-center">
             EL PADRINO
           </h2>
