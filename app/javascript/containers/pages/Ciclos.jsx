@@ -1,10 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import CycleCard from '../../components/navigation/shared/CycleCard'
 import Layout from '../../hocs/layouts/Layout'
 
 function Ciclos() {
+  const [ciclos, setCiclos] = useState([])
+  useEffect(() => {
+    fetch('http://localhost:3000/api/v1/cycles')
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data)
+        data.map((cycle) => {
+          console.log(cycle)
+          setCiclos([...ciclos, cycle])
+        })
+      });
+  }, [])
+
   return (
     <Layout>
       <Navbar/>
