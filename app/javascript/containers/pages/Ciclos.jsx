@@ -7,7 +7,9 @@ function Ciclos() {
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40">Ciclos</div>
+      <div className="pt-40">
+        
+      </div>
       <Footer/>
     </Layout>
   )
