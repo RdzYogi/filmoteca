@@ -48,6 +48,8 @@ Cycle.create(name: "Ciclo 1",
              description: "Ciclo 1",
              quote: "Ciclo 1",
              img_url: "",
+             color: "green",
+             slug: "ciclo-1",
              start_date: "2021-01-01",
              end_date: "2021-01-31")
 
@@ -55,6 +57,8 @@ Cycle.create(name: "Ciclo 2",
               description: "Ciclo 2",
               quote: "Ciclo 2",
               img_url: "",
+              color: "green",
+              slug: "ciclo-2",
               start_date: "2021-02-01",
               end_date: "2021-02-28")
 
@@ -77,6 +81,7 @@ Movie.create(title: "Movie 1",
               description: "Movie 1",
               quote: "Movie 1",
               img_url: "",
+              slug: "movie-1",
               year: "2021",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[0].id)
@@ -86,9 +91,24 @@ Movie.create(title: "Movie 2",
               director: "Director 2",
               description: "Movie 2",
               quote: "Movie 2",
+              slug: "movie-2",
               img_url: "",
               year: "2021",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[0].id)
 
 puts "Movies created"
+
+# Define News placeholder
+
+News.create(title: "news1",
+            description: "amazing news for everybody 1",
+            link: "https://entradasfilmoteca.gob.es/",
+            img_url: "https://unsplash.com/photos/h7rOzTmGxWE")
+
+News.create(title: "news2",
+            description: "amazing news for everybody 2",
+            link: "https://entradasfilmoteca.gob.es/",
+            img_url: "https://unsplash.com/photos/h7rOzTmGxWE")
+
+puts "News created"
