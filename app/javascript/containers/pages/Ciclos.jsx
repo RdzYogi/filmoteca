@@ -8,7 +8,6 @@ function Ciclos() {
     <Layout>
       <Navbar/>
       <div className="pt-40">
-
       </div>
       <Footer/>
     </Layout>
