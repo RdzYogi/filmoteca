@@ -15,22 +15,22 @@ function Movie() {
         </div>
         <div className="container m-5">
           <div className="text-xl font-large text-black-900 m-2">
-            <div className="float-right h-80 w-80 bg-gray-400">
-              <h2 className="m-5 text-sm text-white underline font-bold">PASES</h2>
-                <ul className="list-disc m-5 text-sm text-white">
+            <div className="float-right h-80 w-80 bg-white">
+              <h2 className="m-5 text-sm text-black underline font-bold">PASES</h2>
+                <ul className="list-disc m-5 text-sm text-black">
                   <li>SALA 1</li>
                     <li>FECHA</li>
                     <li>HORA</li>
                   </ul>
-          <button className="inline-block px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-250 ease-in-out">
+          <button className="inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-250 ease-in-out">
             Comprar
           </button>
-          <ul className="list-disc m-5 text-sm text-white">
+          <ul className="list-disc m-5 text-sm text-black">
                   <li>SALA 1</li>
                     <li>FECHA</li>
                     <li>HORA</li>
                   </ul>
-          <button className="inline-block px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-250 ease-in-out">
+          <button className="inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-250 ease-in-out">
             Comprar
           </button>
           </div>
@@ -53,18 +53,18 @@ function Movie() {
           </p>
         </div>
         <div className="container px-50 color-green"></div>
-        <div className="m-5 col-start-1 max-w-2xl justify-left bg-green-600">
+        <div className="m-5 mt-auto col-start-4 max-w-2xl object-cover bg-green-600">
           "nombre del ciclo"
         </div>
       </div>
-      <div className="m-10 mt-auto max-w-2xl object-left aspect-video w-full object-cover">
+      <div className="m-10 mt-auto  object-left aspect-video w-flex object-cover">
         <img src="https://i1.wp.com/www.anim-arte.com/wp-content/uploads/2013/02/el-padrino.jpg?fit=1920%2C1080"
           className="aspect-video w-full object-cover" alt="Imagen El Padrino"/>
         <div className="m-5">
           <h2 className="pt-20 text-xl font-large font-bold text-black-900 m-2">
             MAS PELICULAS DEL CICLO
           </h2>
-          <div className="pt-25 grid grid-cols-3 gap-6 w-xl h-60">
+          <div className="pt-25 grid grid-cols-3 gap-6 w-2xl h-60">
             <div className="col-span-1  bg-gray-400">Pelicula 1</div>
             <div className="col-span-1  bg-gray-400">Pelicula 2</div>
             <div className="col-span-1  bg-gray-400">Pelicula 3</div>
