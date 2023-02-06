@@ -12,7 +12,7 @@ function Home() {
       <div className="pt-40 container">
         <div className="flex justify-between" >
           <div className="">
-            <h2 className="">Peliculas</h2>
+            <h2 className="p-2">Peliculas</h2>
             <div>Pelicula card</div>
           </div>
           <Noticias/>
