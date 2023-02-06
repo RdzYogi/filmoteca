@@ -80,15 +80,16 @@ function Footer() {
   return (
     <footer className="bg-black" aria-labelledby="footer-heading">
         <div className="mx-auto max-w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-          <div className="xl:grid-cols-3">
-            <div>{/* <div className="xl:col-span-1"> */}
-              <img
-                src={logo_blanco}
-                alt="logo"
-                width={420}
-                height={360}
-                className=""/>
-                <div className='flex mt-5 justify-between'>
+          <div>{/* <div className="xl:col-span-1"> */}
+            <img
+              src={logo_blanco}
+              alt="logo"
+              width={420}
+              height={360}
+              className=""/>
+          </div>
+        <div className="mt-8 grid grid-cols-1 gap-8 xl:grid-cols-2">
+            <div className='mt-5 justify-between'>
                   <div>
                     {navigation.address.map((item) =>(
                       <p key={item.value} className="text-xs text-gray-50">
@@ -96,7 +97,6 @@ function Footer() {
                       </p>
                     ))}
             </div>
-          </div>
         </div>
         <div className="mt-12 grid grid-cols-3 gap-8 xl:col-1 xl:mt-0">
             <div>
