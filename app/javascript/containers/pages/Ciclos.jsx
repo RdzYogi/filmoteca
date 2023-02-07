@@ -38,48 +38,10 @@ function Ciclos() {
         <h1 className='text-center font-bold text-xl'>CICLOS</h1>
         <div className='grid grid-cols-2 md:grid-cols-3 gap-4 place-items-center'>
 
-
           {/* First check if the data is loaded, then render */}
           {/* If the data is not yet loaded we can have a placeholder header or animation */}
           {loaded ? ciclos : <h1>Loading...</h1>}
 
-
-          {/* <CycleCard
-            name="douglas sirk la emocion inmediata"
-            start_date="enero"
-            end_date="abril 2023"
-            img_url="https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM="
-          />
-          <CycleCard
-            name="douglas sirk la emocion inmediata"
-            start_date="enero"
-            end_date="abril 2023"
-            img_url="https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM="
-          />
-          <CycleCard
-            name="douglas sirk la emocion inmediata"
-            start_date="enero"
-            end_date="abril 2023"
-            img_url="https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM="
-          />
-          <CycleCard
-            name="douglas sirk la emocion inmediata"
-            start_date="enero"
-            end_date="abril 2023"
-            img_url="https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM="
-          />
-          <CycleCard
-            name="douglas sirk la emocion inmediata"
-            start_date="enero"
-            end_date="abril 2023"
-            img_url="https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM="
-          />
-          <CycleCard
-            name="douglas sirk la emocion inmediata"
-            start_date="enero"
-            end_date="abril 2023"
-            img_url="https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM="
-          /> */}
         </div>
       </div>
       <Footer/>
