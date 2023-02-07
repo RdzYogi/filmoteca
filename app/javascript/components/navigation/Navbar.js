@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo_blanco from '../../assets/images/logo-blanco.png';
 import { library } from '@fortawesome/fontawesome-svg-core'
 // For fontawesome free-solid, free-regular, free-brands, fontawesome-free
-import { faMagnifyingGlass, faCalendarDays, faCoffee, faFilm, faTicket, faNewspaper, faBars} from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars} from '@fortawesome/free-solid-svg-icons'
 
 
 function Navbar() {

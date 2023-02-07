@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom";
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import MovieCard from '../../components/shared/MovieCard'
 
-function Cycle(props) {
+function Cycle() {
+    // Get the slug from the URL
+    let params = useParams()
+    const slug = params.slug;
+    // We declare a state so we can store the data from the API
+    const [cycle, setCycle] = useState([])
+    const [loaded, setLoaded] = useState(false)
+    useEffect(() => {
+      fetch(`http://localhost:3000/api/v1/cycles/${slug}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          // We set the state with the new array
+          // and we set loaded to true so we can render the data
+          setCycle(data)
+          setLoaded(true)
+        });
+    }, [])
   return (
     <Layout>
       <Navbar/>
