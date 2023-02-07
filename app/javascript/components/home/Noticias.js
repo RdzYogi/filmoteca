@@ -16,7 +16,7 @@ function Noticias() {
 
   return (
     <div className="w-1/3 pr-5 pb-5">
-      {/* Download button */}
+      {/* Download button TODO: implement download button shared component*/}
 
       <button className="bg-blue-500 text-white p-2">Descargar Programa</button>
 
