@@ -24,7 +24,7 @@ function CycleCard(cycleData) {
       </div>
       <h1 className='text-2xl font-bold'>{cycle.name}</h1>
       {/* If the year of the start is different from end we will display it */}
-      <p className='text-xl'>{startDateMonth} {startDateYear === endDateYear ? "" : startDateYear} - {endDateMonth} {endDateYear}</p>
+      <p className='text-xl'>{startDateMonth === endDateMonth ? "" : startDateMonth} {startDateYear === endDateYear ? "" : startDateYear} - {endDateMonth} {endDateYear}</p>
       <img className="h-32 w-48 mb-3 place-self-center"src={cycle.img_url} alt={cycle.name}/>
       {/* repeat */}
       <h1 className='text-2xl font-bold'>{cycle.name}</h1>
