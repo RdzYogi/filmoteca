@@ -11,14 +11,14 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        'cycle-green': '#369764',
-        'cycle-aqua': '#7FCCDC',
-        'cycle-blue': '#3C82B5',
-        'cycle-yellow': '#FABF41',
-        'cycle-purple': '#9A74AF',
-        'cycle-red': '#E54B27',
-        'cycle-gray': '#333333',
-        'cycle-gray': '#F5AEB8',
+        cycle_green: '#369764',
+        cycle_aqua: '#7FCCDC',
+        cycle_blue: '#3C82B5',
+        cycle_yellow: '#FABF41',
+        cycle_purple: '#9A74AF',
+        cycle_red: '#E54B27',
+        cycle_gray: '#333333',
+        cycle_gray: '#F5AEB8',
       },
       fontFamily: {
         // sans: ['Inter var', ...defaultTheme.fontFamily.sans],
