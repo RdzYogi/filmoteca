@@ -17,7 +17,7 @@ function CycleCard(cycle) {
   const endDateYear = new Intl.DateTimeFormat('es-ES',optionYear).format(endDate)
 
   return (
-    <div className='text-center relative flex flex-col bg-orange-500 h-5/6 w-80 p-5 pb-0'>
+    <div className={'text-center relative flex flex-col h-5/6 w-80 p-5 pb-0 ' + 'bg-'+cycle.cycle.color}>
       <div className='absolute right-36 top-44 -rotate-90'>
         <p className='w-80 text-xs'>CICLO CICLO CICLO CICLO CICLO CICLO CICLO</p>
       </div>
