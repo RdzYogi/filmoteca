@@ -51,7 +51,7 @@ Cycle.create(name: "Ciclo 1",
              color: "green",
              slug: "ciclo-1",
              start_date: "2021-01-01",
-             end_date: "2021-01-31")
+             end_date: "2021-03-31")
 
 Cycle.create(name: "Ciclo 2",
               description: "Ciclo 2",
@@ -60,7 +60,7 @@ Cycle.create(name: "Ciclo 2",
               color: "green",
               slug: "ciclo-2",
               start_date: "2021-02-01",
-              end_date: "2021-02-28")
+              end_date: "2021-03-28")
 
 puts "Cycles created"
 
