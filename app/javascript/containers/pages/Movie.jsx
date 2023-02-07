@@ -25,7 +25,6 @@ function Movie() {
           <button className="inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-250 ease-in-out">
             Comprar
           </button>
-<<<<<<< HEAD
           <ul className="list-disc m-5 text-sm text-black">
                   <li>SALA 1</li>
                     <li>FECHA</li>
@@ -36,12 +35,6 @@ function Movie() {
           </button>
           </div>
           <h2 className="m-5 pt-20 text-2xl font-bold text-black-900">
-=======
-      </div>
-      <div className="pl-50">
-
-          <h2 className="text-xl font-large text-black-900 text-align-center">
->>>>>>> cabb12795565e38661ef8d78d30eef8a617270ae
             EL PADRINO
           </h2>
           <h3 className="m-5 text-sm text-primary-500">
