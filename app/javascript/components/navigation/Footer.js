@@ -67,7 +67,7 @@ function Footer() {
         <div className="mt-12 grid grid-cols-3 gap-8 xl:col-1 xl:mt-0">
             <div>
               <h3 className="text-base font-medium text-gray-900">Filmoteca Española</h3>
-              <ul role="list" className="mt-4 space-y-4">
+              <ul role="list">
                 {navigation.company.map((item) => (
                   <li key={item.name}>
                     <a href={item.href} className="text-xs text-gray-50">
@@ -86,22 +86,22 @@ function Footer() {
                   ))}
                 </div>
                 <div className="flex space-x-3 ">
-                  <Link to="#" className='text-xl text-white' >
+                  <Link to="#" className='text-3xl text-white' >
                     <FontAwesomeIcon icon={faFacebookF}/>
                   </Link>
-                  <Link to="#" className='text-xl text-white' >
+                  <Link to="#" className='text-3xl text-white' >
                     <FontAwesomeIcon icon={faTwitter}/>
                   </Link>
-                  <Link to="#" className='text-xl text-white' >
+                  <Link to="#" className='text-3xl text-white' >
                     <FontAwesomeIcon icon={faTelegram}/>
                   </Link>
-                  <Link to="#" className='text-xl text-white' >
+                  <Link to="#" className='text-3xl text-white' >
                     <FontAwesomeIcon icon={faInstagram}/>
                   </Link>
-                  <Link to="#" className='text-xl text-white' >
+                  <Link to="#" className='text-3xl text-white' >
                     <FontAwesomeIcon icon={faVimeo}/>
                   </Link>
-                  <Link to="#" className='text-xl text-white' >
+                  <Link to="#" className='text-3xl text-white' >
                     <FontAwesomeIcon icon={faGlobe}/>
                   </Link>
                 </div>
