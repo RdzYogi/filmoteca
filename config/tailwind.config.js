@@ -11,7 +11,10 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        cycle_green: '#369764',
+        green:{
+          cycle: '#369764',
+        },
+        "green-cycle": '#369764',
         cycle_aqua: '#7FCCDC',
         cycle_blue: '#3C82B5',
         cycle_yellow: '#FABF41',
