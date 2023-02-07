@@ -15,8 +15,11 @@ module.exports = {
           cycle: '#369764',
         },
         "green-cycle": '#369764',
-        cycle_aqua: '#7FCCDC',
+        blue:{
+          cycle: '#3C82B5',
+        },
         cycle_blue: '#3C82B5',
+        cycle_aqua: '#7FCCDC',
         cycle_yellow: '#FABF41',
         cycle_purple: '#9A74AF',
         cycle_red: '#E54B27',
@@ -33,5 +36,9 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
+  ],
+  safelist: [{
+    pattern: /(bg|text|border)-(green|blue)-cycle/
+    }
   ]
 }
