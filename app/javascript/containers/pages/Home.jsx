@@ -3,6 +3,7 @@ import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import Noticias from '../../components/home/Noticias'
+import MovieCarousel from '../../components/home/MovieCarousel'
 
 function Home() {
 
@@ -12,9 +13,10 @@ function Home() {
       <div className="pt-40 container">
         <div className="flex justify-between" >
           <div className="">
-            <h2 className="p-2">Peliculas</h2>
-            <div>Pelicula card</div>
+            <h2 className="p-3 text-center font-bold text-xl">Peliculas</h2>
+            <MovieCarousel className="p-2"/>
           </div>
+
           <Noticias/>
         </div>
 

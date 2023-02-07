@@ -10,10 +10,6 @@ function Noticias() {
       });
   }, []);
 
-  useEffect(() => {
-    console.log(news);
-  }, [news]);
-
   return (
     <div className="w-1/3 pr-5 pb-5">
       {/* Download button TODO: implement download button shared component*/}
