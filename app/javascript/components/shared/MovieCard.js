@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import { Navigate } from "react-router-dom"
 
-function MovieCard(movie){
+function MovieCard(movieData){
+  console.log(movieData.movie)
+  const movie = movieData.movie
   return (
     <div className="border border-black">
       <p className="text-center font-bold text-xl">{movie.title}</p>
