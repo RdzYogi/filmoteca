@@ -55,7 +55,8 @@ function Footer() {
               height={360}
               className=""/>
           </div>
-        <div className="mt-8 grid grid-cols-1 gap-8 xl:grid-cols-2">
+        </div>
+        <div className="mt-8 grid grid-cols-3 gap-8 xl:grid-cols-3">
             <div className='mt-5 justify-between'>
                   <div>
                     {navigation.address.map((item) =>(
@@ -64,9 +65,9 @@ function Footer() {
                       </p>
                     ))}
             </div>
-        <div className="mt-12 grid grid-cols-3 gap-8 xl:col-1 xl:mt-0">
+        {/* <div className="mt-12 grid grid-cols-3 gap-8 xl:col-1 xl:mt-0"> */}
             <div>
-              <h3 className="text-base font-medium text-gray-900">Filmoteca Española</h3>
+              <h3 className="text-base font-medium text-white">Filmoteca Española</h3>
               <ul role="list">
                 {navigation.company.map((item) => (
                   <li key={item.name}>
@@ -77,7 +78,7 @@ function Footer() {
                 ))}
               </ul>
             </div>
-            <div className="mt-12 grid grid-cols-2 xl:col-2 xl:mt-0">
+            {/* <div className="mt-12 grid grid-cols-2 xl:col-2 xl:mt-0"> */}
                 <div>
                   {navigation.hours.map((item) => (
                     <p key={item.name} className="text-xs text-gray-50">
@@ -85,7 +86,7 @@ function Footer() {
                       </p>
                   ))}
                 </div>
-                <div className="flex space-x-3 ">
+                <div className="flex space-x-3">
                   <Link to="#" className='text-3xl text-white' >
                     <FontAwesomeIcon icon={faFacebookF}/>
                   </Link>
@@ -106,9 +107,8 @@ function Footer() {
                   </Link>
                 </div>
               </div>
-            </div>
-        </div>
-          </div>
+            {/* </div> */}
+          {/* </div> */}
       </div>
             <div className="mt-12 border-t border-gray-200 pt-8">
               <p className="text-base text-gray-400 xl:text-center">&copy; 2023 Code Rabbits, Inc. All rights reserved.</p>
