@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function DownloadButton() {
   return (
     <Link to="" className="">
-      <button type="button" class="px-6 pt-2.5 pb-2 bg-gray-200 text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-300 active:shadow-lg transition duration-150 ease-in-out flex align-center">
+      <button type="button" className="px-6 pt-2.5 pb-2 bg-gray-200 text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-300 active:shadow-lg transition duration-150 ease-in-out flex align-center">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="download"
           className="w-3 mr-2" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <path fill="currentColor"
