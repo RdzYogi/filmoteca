@@ -20,6 +20,16 @@ module.exports = {
         "gray-cycle": '#333333',
         "pink-cycle": '#F5AEB8',
       },
+      textColor:{
+        "green-cycle": '#369764',
+        "blue-cycle": '#3C82B5',
+        "aqua-cycle": '#7FCCDC',
+        "yellow-cycle": '#FABF41',
+        "purple-cycle": '#9A74AF',
+        "red-cycle": '#E54B27',
+        "gray-cycle": '#333333',
+        "pink-cycle": '#F5AEB8',
+      },
       fontFamily: {
         // sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         sans: ['Roboto', 'sans-serif'],
