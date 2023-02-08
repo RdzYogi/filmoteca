@@ -24,7 +24,7 @@ const navigation = {
     { name: 'Cafetería:'},
     { name: 'Martes a Domingo: 16:00 a 22:30'},
     { name: 'Librería:'},
-    { name: 'Martes a Domingo: 11:30 A 14:30 H - 17:00 A 21:00H'},
+    { name: 'Martes a Domingo: 11:30 a 14:30 - 17:00 a 21:00'},
   ],
   support: [
     { name: 'Contact', href: '/contacto' },
@@ -46,73 +46,69 @@ const navigation = {
 function Footer() {
   return (
     <footer className="bg-black" aria-labelledby="footer-heading">
-        <div className="mx-auto max-w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-          <div>{/* <div className="xl:col-span-1"> */}
-            <img
-              src={logo_blanco}
-              alt="logo"
-              width={420}
-              height={360}
-              className=""/>
+      <div className="p-4">
+        <img
+          src={logo_blanco}
+          alt="logo"
+          width={420}
+          height={360}
+          className=""/>
+      </div>
+      <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-8 p-4">
+        <div>
+          <div>
+                {navigation.address.map((item) =>(
+                  <p key={item.value} className="text-xs text-gray-50">
+                    {item.value}
+                  </p>
+                ))}
           </div>
         </div>
-        <div className="mt-8 grid grid-cols-3 gap-8 xl:grid-cols-3">
-            <div className='mt-5 justify-between'>
-                  <div>
-                    {navigation.address.map((item) =>(
-                      <p key={item.value} className="text-xs text-gray-50">
-                        {item.value}
-                      </p>
-                    ))}
-            </div>
-        {/* <div className="mt-12 grid grid-cols-3 gap-8 xl:col-1 xl:mt-0"> */}
-            <div>
-              <h3 className="text-base font-medium text-white">Filmoteca Española</h3>
-              <ul role="list">
-                {navigation.company.map((item) => (
-                  <li key={item.name}>
-                    <a href={item.href} className="text-xs text-gray-50">
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {/* <div className="mt-12 grid grid-cols-2 xl:col-2 xl:mt-0"> */}
-                <div>
-                  {navigation.hours.map((item) => (
-                    <p key={item.name} className="text-xs text-gray-50">
-                        {item.name}
-                      </p>
-                  ))}
-                </div>
-                <div className="flex space-x-3">
-                  <Link to="#" className='text-3xl text-white' >
-                    <FontAwesomeIcon icon={faFacebookF}/>
-                  </Link>
-                  <Link to="#" className='text-3xl text-white' >
-                    <FontAwesomeIcon icon={faTwitter}/>
-                  </Link>
-                  <Link to="#" className='text-3xl text-white' >
-                    <FontAwesomeIcon icon={faTelegram}/>
-                  </Link>
-                  <Link to="#" className='text-3xl text-white' >
-                    <FontAwesomeIcon icon={faInstagram}/>
-                  </Link>
-                  <Link to="#" className='text-3xl text-white' >
-                    <FontAwesomeIcon icon={faVimeo}/>
-                  </Link>
-                  <Link to="#" className='text-3xl text-white' >
-                    <FontAwesomeIcon icon={faGlobe}/>
-                  </Link>
-                </div>
-              </div>
-            {/* </div> */}
-          {/* </div> */}
+        <div>
+          <h3 className="text-base font-medium text-gray-50">Filmoteca Española</h3>
+            <ul role="list">
+              {navigation.company.map((item) => (
+                <li key={item.name}>
+                  <a href={item.href} className="text-xs text-gray-50">
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+        </div>
+        <div>
+          <div>
+            {navigation.hours.map((item) => (
+              <p key={item.name} className="text-xs text-gray-50">
+                  {item.name}
+                </p>
+            ))}
+          </div>
+          <div className="flex space-x-3">
+            <Link to="#" className='text-3xl text-gray-50' >
+              <FontAwesomeIcon icon={faFacebookF}/>
+            </Link>
+            <Link to="#" className='text-3xl text-gray-50' >
+              <FontAwesomeIcon icon={faTwitter}/>
+            </Link>
+            <Link to="#" className='text-3xl text-gray-50' >
+              <FontAwesomeIcon icon={faTelegram}/>
+            </Link>
+            <Link to="#" className='text-3xl text-gray-50' >
+              <FontAwesomeIcon icon={faInstagram}/>
+            </Link>
+            <Link to="#" className='text-3xl text-gray-50' >
+              <FontAwesomeIcon icon={faVimeo}/>
+            </Link>
+            <Link to="#" className='text-3xl text-gray-50' >
+              <FontAwesomeIcon icon={faGlobe}/>
+            </Link>
+          </div>
+        </div>
       </div>
-            <div className="mt-12 border-t border-gray-200 pt-8">
-              <p className="text-base text-gray-400 xl:text-center">&copy; 2023 Code Rabbits, Inc. All rights reserved.</p>
-            </div>
+        <div className="mt-12 border-t border-gray-200 pt-8">
+          <p className="text-base text-gray-400 xl:text-center">&copy; 2023 Code Rabbits, Inc. All rights reserved.</p>
+        </div>
       </footer>
   )
 }
