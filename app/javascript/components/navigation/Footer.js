@@ -94,21 +94,21 @@ function Footer() {
             ))}
           </div>
             <div className="flex space-x-3 mt-3">
-              <Link to="#" className='text-3xl text-gray-50' >
+              <Link to="facebook.com/FilmotecaES/" className='text-3xl text-gray-50' >
                 <FontAwesomeIcon icon={faFacebookF}/>
               </Link>
-              <Link to="#" className='text-3xl text-gray-50' >
+              <Link to="twitter.com/Filmoteca_es" className='text-3xl text-gray-50' >
                 <FontAwesomeIcon icon={faTwitter}/>
               </Link>
-              <Link to="#" className='text-3xl text-gray-50' >
+              <Link to="t.me/filmoteca_es" className='text-3xl text-gray-50' >
                 <FontAwesomeIcon icon={faTelegram}/>
               </Link>
             </div>
             <div className="flex space-x-3">
-              <Link to="#" className='text-3xl text-gray-50' >
+              <Link to="instagram.com/filmotecaes" className='text-3xl text-gray-50' >
                 <FontAwesomeIcon icon={faInstagram}/>
               </Link>
-              <Link to="#" className='text-3xl text-gray-50' >
+              <Link to="vimeo.com/filmotecaespanola" className='text-3xl text-gray-50' >
                 <FontAwesomeIcon icon={faVimeo}/>
               </Link>
               <Link to="#" className='text-3xl text-gray-50' >
