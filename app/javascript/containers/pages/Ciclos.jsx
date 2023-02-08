@@ -36,7 +36,7 @@ function Ciclos() {
       <Navbar/>
       <div className="pt-40 max-w-7xl mx-auto pb-1 my-6">
         <h1 className='text-center font-bold text-xl'>CICLOS</h1>
-        <div className='grid grid-cols-2 md:grid-cols-3 gap-4 place-items-center'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center'>
 
           {/* First check if the data is loaded, then render */}
           {/* If the data is not yet loaded we can have a placeholder header or animation */}
