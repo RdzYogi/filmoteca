@@ -13,8 +13,8 @@ function Home() {
       <div className="pt-40 container">
         <div className="flex justify-between" >
           <div className="">
-            <h2 className="p-3 text-center font-bold text-xl">Peliculas</h2>
-            <MovieCarousel className="p-2"/>
+            <h2 className="p-3 text-center font-bold text-2xl">Peliculas</h2>
+            <MovieCarousel />
           </div>
 
           <Noticias/>
