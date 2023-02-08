@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 
 function MovieCard(movie) {
+  console.log(movie);
+  const backgroundcolor = movie.movie.cycle.color;
+
   return (
     <div className="border border-black">
-      <p className="text-center font-bold text-xl">{movie.movie.title}</p>
-      <p className="text-center">
+      <p
+        className="text-center font-bold text-xl"
+        style={{ backgroundColor: backgroundcolor }}
+      >
+        {movie.movie.title}
+      </p>
+      <p className="text-center" style={{ backgroundColor: backgroundcolor }}>
         {movie.movie.director} ({movie.movie.year})
       </p>
       {/* {movie.session.datetime.forEach(date =>{ */}
