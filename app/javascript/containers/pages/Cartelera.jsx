@@ -35,12 +35,12 @@ function Cartelera() {
             </div>
           </div>
         </div>
-        <div className='flex justify-between'>
+        <div className='flex justify-between place-items-center p-2'>
           <div>Ciclos dropdown</div>
           <div>dd/mm/yyyy</div>
           <div>Buscar peliculas</div>
         </div>
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
           {loaded ? movies : <h1>Loading...</h1>}
         </div>
       </div>
