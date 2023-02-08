@@ -20,9 +20,11 @@ const navigation = {
     { name: 'Commerce', href: '#' },
     { name: 'Insights', href: '#' },
   ],
-  hours: [
+  cafeteria: [
     { name: 'Cafetería:'},
     { name: 'Martes a Domingo: 16:00 a 22:30'},
+  ],
+  libreria: [
     { name: 'Librería:'},
     { name: 'Martes a Domingo: 11:30 a 14:30 - 17:00 a 21:00'},
   ],
@@ -46,7 +48,7 @@ const navigation = {
 function Footer() {
   return (
     <footer className="bg-black" aria-labelledby="footer-heading">
-      <div className="p-4">
+      <div className="ml-4 px-12 py-4">
         <img
           src={logo_blanco}
           alt="logo"
@@ -56,9 +58,9 @@ function Footer() {
       </div>
       <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-8 p-4">
         <div>
-          <div>
+          <div className="xl:ml-12">
                 {navigation.address.map((item) =>(
-                  <p key={item.value} className="text-xs text-gray-50">
+                  <p key={item.value} className="text-xs text-gray-50 pt-2">
                     {item.value}
                   </p>
                 ))}
@@ -78,32 +80,41 @@ function Footer() {
         </div>
         <div>
           <div>
-            {navigation.hours.map((item) => (
+            {navigation.cafeteria.map((item) => (
               <p key={item.name} className="text-xs text-gray-50">
                   {item.name}
                 </p>
             ))}
           </div>
-          <div className="flex space-x-3">
-            <Link to="#" className='text-3xl text-gray-50' >
-              <FontAwesomeIcon icon={faFacebookF}/>
-            </Link>
-            <Link to="#" className='text-3xl text-gray-50' >
-              <FontAwesomeIcon icon={faTwitter}/>
-            </Link>
-            <Link to="#" className='text-3xl text-gray-50' >
-              <FontAwesomeIcon icon={faTelegram}/>
-            </Link>
-            <Link to="#" className='text-3xl text-gray-50' >
-              <FontAwesomeIcon icon={faInstagram}/>
-            </Link>
-            <Link to="#" className='text-3xl text-gray-50' >
-              <FontAwesomeIcon icon={faVimeo}/>
-            </Link>
-            <Link to="#" className='text-3xl text-gray-50' >
-              <FontAwesomeIcon icon={faGlobe}/>
-            </Link>
+          <div className="mt-5">
+            {navigation.libreria.map((item) => (
+              <p key={item.name} className="text-xs text-gray-50">
+                  {item.name}
+                </p>
+            ))}
           </div>
+            <div className="flex space-x-3 mt-3">
+              <Link to="#" className='text-3xl text-gray-50' >
+                <FontAwesomeIcon icon={faFacebookF}/>
+              </Link>
+              <Link to="#" className='text-3xl text-gray-50' >
+                <FontAwesomeIcon icon={faTwitter}/>
+              </Link>
+              <Link to="#" className='text-3xl text-gray-50' >
+                <FontAwesomeIcon icon={faTelegram}/>
+              </Link>
+            </div>
+            <div className="flex space-x-3">
+              <Link to="#" className='text-3xl text-gray-50' >
+                <FontAwesomeIcon icon={faInstagram}/>
+              </Link>
+              <Link to="#" className='text-3xl text-gray-50' >
+                <FontAwesomeIcon icon={faVimeo}/>
+              </Link>
+              <Link to="#" className='text-3xl text-gray-50' >
+                <FontAwesomeIcon icon={faGlobe}/>
+              </Link>
+            </div>
         </div>
       </div>
         <div className="mt-12 border-t border-gray-200 pt-8">
