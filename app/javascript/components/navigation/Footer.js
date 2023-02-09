@@ -105,8 +105,8 @@ function Footer() {
             </div>
         </div>
       </div>
-        <div className="mt-12 border-t border-gray-200 pt-8">
-          <p className="text-base text-gray-400 xl:text-center">&copy; 2023 Code Rabbits, Inc. All rights reserved.</p>
+        <div className="border-t border-gray-200 p-3">
+          <p className="text-base text-gray-400 text-center sm:text-xs">&copy; 2023 Code Rabbits, Inc. All rights reserved.</p>
         </div>
       </footer>
   )
