@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 
-function MovieCard(movie) {
-  console.log(movie);
-  const backgroundcolor = movie.movie.cycle.color;
-
 
 function MovieCard(movieData){
 
