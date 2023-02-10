@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
 import getDateObject from "../helpers/getDateObject";
 
 
@@ -12,10 +11,9 @@ function MovieCard(movieData){
   const hall = movieData.movie.include.hall
 
   const showDateString = movieData.movie.include.session.play_time
-  const showDate = new Date(showDateString)
 
   const options ={monthLong: true}
-  const showDateObject = getDateObject(showDate, options)
+  const showDateObject = getDateObject(showDateString, options)
 
   return (
     <div className="border border-black h-5/6 w-80">

@@ -10,7 +10,7 @@ function Cartelera() {
   const [movies, setMovies] = useState([])
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/movies")
+    fetch("api/v1/movies")
     .then((response) => response.json())
     .then((data) => {
       // console.log(data)
