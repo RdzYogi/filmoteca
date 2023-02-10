@@ -30,17 +30,15 @@ function Cartelera() {
         <div className="flex justify-center">
           <div className="">
             <h1 className="text-2xl font-bold text-center">Cartelera</h1>
-            <div className="absolute top-40 right-40">
+            <div className="lg:absolute lg:top-40 lg:right-40">
               <DownloadButton/>
             </div>
           </div>
         </div>
-        <div className='flex justify-between place-items-center p-2'>
-          <div>Ciclos dropdown</div>
-          <div>dd/mm/yyyy</div>
-          <div>Buscar peliculas</div>
+        <div className='pt-4'>
+          <form></form>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
           {loaded ? movies : <h1>Loading...</h1>}
         </div>
       </div>
