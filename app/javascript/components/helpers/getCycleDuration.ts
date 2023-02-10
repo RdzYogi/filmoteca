@@ -5,6 +5,9 @@ type DateObject = {
   hour: string,
   minutes: string,
 }
+
+//  This function returns a string with the duration of a cycle
+//  It takes two DateObjects as arguments and returns a string
 function getCycleDuration(startDate: DateObject, endDate: DateObject) {
   let result = ""
   if (startDate.month === endDate.month && startDate.year === endDate.year) {
