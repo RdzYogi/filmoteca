@@ -47,20 +47,38 @@ puts "Seats created"
 Cycle.create(name: "Ciclo 1",
              description: "Ciclo 1",
              quote: "Ciclo 1",
-             img_url: "",
-             color: "green",
+             img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
+             color: "blue-cycle",
              slug: "ciclo-1",
              start_date: "2021-01-01",
-             end_date: "2021-01-31")
+             end_date: "2021-03-31")
 
 Cycle.create(name: "Ciclo 2",
               description: "Ciclo 2",
               quote: "Ciclo 2",
-              img_url: "",
-              color: "green",
+              img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
+              color: "green-cycle",
               slug: "ciclo-2",
               start_date: "2021-02-01",
-              end_date: "2021-02-28")
+              end_date: "2021-03-28")
+
+Cycle.create(name: "Ciclo 3",
+             description: "Ciclo 3",
+              quote: "Ciclo 3",
+              img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
+              color: "red-cycle",
+              slug: "ciclo-3",
+              start_date: "2021-01-01",
+              end_date: "2021-01-27")
+
+Cycle.create(name: "Ciclo 4",
+              description: "Ciclo 4",
+              quote: "Ciclo 4",
+              img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
+              color: "yellow-cycle",
+              slug: "ciclo-4",
+              start_date: "2021-01-01",
+              end_date: "2021-01-27")
 
 puts "Cycles created"
 
