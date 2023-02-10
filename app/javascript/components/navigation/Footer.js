@@ -56,7 +56,7 @@ function Footer() {
           height={360}
           className=""/>
       </div>
-      <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-8 p-4">
+      <div className="grid grid-cols-2 xl:grid-cols-3 md:grid-cols-2 gap-8 p-4">
         <div>
           <div className="xl:ml-12">
                 {navigation.address.map((item) =>(

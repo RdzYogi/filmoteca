@@ -1,32 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import getCycleDuration from '../helpers/getCycleDuration';
+import getDateObject from '../helpers/getDateObject';
 
 function CycleCard(cycleData) {
   const cycle = cycleData.cycle
+
   // Convert string to date
   const startDate = new Date(cycle.start_date)
   const endDate = new Date(cycle.end_date)
 
-  // Extract month from date in spanish
-  const optionMonth = { month: 'long' };
-  // console.log(new Intl.DateTimeFormat('es-ES',optionMonth).format(startDate))
-  const startDateMonth = new Intl.DateTimeFormat('es-ES',optionMonth).format(startDate)
-  const endDateMonth = new Intl.DateTimeFormat('es-ES',optionMonth).format(endDate)
+  const dateOptions = {monthLong: true}
+  const startDateObject = getDateObject(startDate,dateOptions)
+  const endDateObject = getDateObject(endDate,dateOptions)
 
-  // Extract year from date
-  const optionYear = { year: 'numeric' };
-  const startDateYear = new Intl.DateTimeFormat('es-ES',optionYear).format(startDate)
-  const endDateYear = new Intl.DateTimeFormat('es-ES',optionYear).format(endDate)
+  const cycleDuration = getCycleDuration(startDateObject, endDateObject)
 
-  // Build the date string to display for the duration of the cycle
-  let cycleDuration = ""
-  if (startDateMonth === endDateMonth && startDateYear === endDateYear) {
-    cycleDuration = startDateMonth + " " + startDateYear
-  } else if (startDateYear === endDateYear) {
-    cycleDuration = startDateMonth + " - " + endDateMonth + " " + endDateYear
-  } else {
-    cycleDuration = startDateMonth + " " + startDateYear + " - " + endDateMonth + " " + endDateYear
-  }
 
   return (
     <Link to={"/ciclos/" + cycle.slug} className={'text-center relative flex flex-col h-5/6 w-80 p-5 pb-0 ' + 'bg-'+cycle.color}>
