@@ -20,6 +20,8 @@ module.exports = {
         "gray-cycle": '#333333',
         "pink-cycle": '#F5AEB8',
         "button-submit": "#009DBF",
+        "form-bg": "#F9FAFB",
+        "form-border": "#D1D5DB",
       },
       textColor:{
         "green-cycle": '#369764',
