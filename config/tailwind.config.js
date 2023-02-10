@@ -19,6 +19,7 @@ module.exports = {
         "red-cycle": '#E54B27',
         "gray-cycle": '#333333',
         "pink-cycle": '#F5AEB8',
+        "button-submit": "#009DBF",
       },
       textColor:{
         "green-cycle": '#369764',
