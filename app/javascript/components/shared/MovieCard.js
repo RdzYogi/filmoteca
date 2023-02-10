@@ -1,5 +1,10 @@
-import React, { useState } from "react"
-import { Navigate } from "react-router-dom"
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
+
+function MovieCard(movie) {
+  console.log(movie);
+  const backgroundcolor = movie.movie.cycle.color;
+
 
 function MovieCard(movieData){
 
@@ -26,7 +31,7 @@ function MovieCard(movieData){
       </div>
       {/* <p className="text-center">{movieDirector} {movieYear}</p> */}
       {/* {movie.session.datetime.forEach(date =>{ */}
-        {/*
+      {/*
         <div className="flex text-xs bg-black text-white pl-2 pr-2 pt-1 pb-1 justify-between items-center">
         <p>{date}</p>
         <p>{movie.hall}</p>
@@ -34,6 +39,7 @@ function MovieCard(movieData){
         */}
       {/* })} */}
       {/* <img src="movie.img_url" alt={movie.title}> */}
+
       <div className={"bg-black pl-2 pr-2 pt-1 pb-1"}>
         <div className={"flex justify-between place-items-center text-"+cycleColor}>
           <p className="">{showDateDay} de {showDateMonth}</p>
@@ -44,8 +50,9 @@ function MovieCard(movieData){
       </div>
       <img className="object-cover w-screen" src="https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM="/>  {/*delete later*/}
       <p className="text-justify p-2">{movieDescription}</p>
+
     </div>
-  )
+  );
 }
 
-export default MovieCard
+export default MovieCard;

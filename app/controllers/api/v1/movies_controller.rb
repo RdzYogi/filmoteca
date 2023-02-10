@@ -6,14 +6,7 @@ class Api::V1::MoviesController < ApplicationController
       cycle = Cycle.find(movie.cycle_id)
       session = Session.find(movie.session_id)
       hall = Hall.find(session.hall_id)
-      {
-        movie:,
-        include: {
-          cycle:,
-          session:,
-          hall:
-        }
-      }
+      { movie:, include: { cycle:, session:, hall: } }
     end
 
     render json: result
@@ -25,14 +18,8 @@ class Api::V1::MoviesController < ApplicationController
       cycle = Cycle.find(movie.cycle_id)
       session = Session.find(movie.session_id)
       hall = Hall.find(session.hall_id)
-      result = {
-        movie:,
-        include: {
-          cycle:,
-          session:,
-          hall:
-        }
-      }
+      result = { movie:, include: { cycle:, session:, hall: } }
+
       render json: result
     else
       render json: { error: 'Movie not found' }, status: :not_found
