@@ -215,8 +215,6 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.6)
-
-PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
