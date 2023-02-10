@@ -10,7 +10,7 @@ function Ciclos() {
   const [ciclos, setCiclos] = useState([])
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {
-    fetch('http://localhost:3000/api/v1/cycles')
+    fetch('api/v1/cycles')
       .then((response) => response.json())
       .then((data) => {
         let newCiclos = []

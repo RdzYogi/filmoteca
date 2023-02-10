@@ -7,8 +7,8 @@ function CycleCard(cycleData) {
   const cycle = cycleData.cycle
 
   // Convert string to date
-  const startDate = new Date(cycle.start_date)
-  const endDate = new Date(cycle.end_date)
+  const startDate = cycle.start_date
+  const endDate = cycle.end_date
 
   const dateOptions = {monthLong: true}
   const startDateObject = getDateObject(startDate,dateOptions)

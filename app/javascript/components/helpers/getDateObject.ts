@@ -13,10 +13,11 @@ type DateObject = {
 // dayLong: boolean that returns the day as a string if set to true
 // monthLong: boolean that returns the month as a string if set to true
 
-function getDateObject(date: Date,
+function getDateObject(dateString: string,
                        {dayLong = false,
                        monthLong = false}: {dayLong?: boolean, monthLong?: boolean} = {}) {
 
+  const date = new Date(dateString)
 
   const optionMonth: Intl.DateTimeFormatOptions = monthLong ? { month: "long" } : { month: "2-digit" };
   const optionYear: Intl.DateTimeFormatOptions = { year: "numeric" };
