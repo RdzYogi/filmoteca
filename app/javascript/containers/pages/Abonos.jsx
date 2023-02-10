@@ -8,22 +8,22 @@ function Abonos() {
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40 max-w-7xl mx-auto pb-1 my-6 md:px-12 text-justify">
+      <div className="pt-40 max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
         <h1 className='text-center text-2xl font-bold'>ABONOS Y TARIFAS</h1>
         <h2 className='font-bold text-lg mt-4'>Abono 10</h2>
         <p>Caduca en un año a partir de la fecha de compra y se podrá usar en un máximo de 6 entradas por sesión hasta finalizar las 10 entradas de las que dispone el abono.</p>
         <h2 className='font-bold text-lg mt-4'>Abono anual</h2>
         <p>Caduca en un año a partir de la fecha de compra y se podrá usar en sesiones ilimitadas con la restricción de un entrada por sesión.<br></br>La mala praxis del abono, mediante la reserva indiscriminada de butacas en diferentes sesiones sin hacer uso finalmente de ellas, podrá conllevar sanciones. A partir de la quinta ausencia de una butaca reservada por el mismo abono, Filmoteca Española se reserva el derecho de alertar al abonado y, en caso de reincidencia, podrá retirar su abono.<br></br>Se ruega un uso responsable del abono anual, es decir, ser consciente de que aquella entrada de la que no se haga uso podría ser la plaza de otro espectador que se ha quedado fuera. Gracias.</p>
 
-        <div className='flex my-4 '>
-          <div id='tickets-normal' className='bg-slate-300 w-1/3 p-4 mr-2'>
+        <div className='flex mt-4 mb-8 flex-col lg:flex-row'>
+          <div id='tickets-normal' className='bg-slate-300 w-full lg:w-1/3 p-4 lg:mr-2 mb-5 lg:mb-0'>
             <Ticket name="ABONO 10" price="20€"/>
             <Ticket name="ABONO ANUAL" price="40€"/>
             <Ticket name="ENTRADA SENCILLA" price="3€"/>
           </div>
-          <div id='tickets-discount' className='flex bg-slate-300 w-2/3 p-4 ml-2'>
-            <p className='basis-1/2 w-1/3 pr-4 m-auto text-left'>Estudiantes, miembros de familias numerosas, grupos culturales y educativos vinculados a instituciones, mayores de 65 años y personas en situación legal de desempleo:</p>
-            <div className='w-2/3'>
+          <div id='tickets-discount' className='flex flex-col lg:flex-row bg-slate-300 w-full lg:w-2/3 p-4 lg:ml-2'>
+            <p className='basis-1/2 lg:w-1/3 pr-4 m-auto text-left'>Estudiantes, miembros de familias numerosas, grupos culturales y educativos vinculados a instituciones, mayores de 65 años y personas en situación legal de desempleo:</p>
+            <div className='lg:w-2/3'>
               <Ticket name="ABONO 10" price="15€"/>
               <Ticket name="ABONO ANUAL" price="30€"/>
               <Ticket name="ENTRADA SENCILLA" price="2€"/>
