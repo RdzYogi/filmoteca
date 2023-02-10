@@ -35,7 +35,7 @@ const navigation = {
     { name: 'Condiciones de compra', href: '/' },
     { name: 'Quejas y sugerencias', href: '/' },
     { name: 'Politica de privacidad', href: '/' },
-    { name: 'Nueva normas de acceso al cine Dore', href: '/' },
+    { name: 'Normas de acceso cine Doré', href: '/' },
     { name: 'Recogida de entradas', href: '#' },
   ],
   legal: [
@@ -48,7 +48,7 @@ const navigation = {
 function Footer() {
   return (
     <footer className="bg-black" aria-labelledby="footer-heading">
-      <div className="ml-4 px-12 py-4">
+      <div className="xl:ml-4 px-12 py-4">
         <img
           src={logo_blanco}
           alt="logo"
@@ -56,7 +56,7 @@ function Footer() {
           height={360}
           className=""/>
       </div>
-      <div className="grid grid-cols-2 xl:grid-cols-3 md:grid-cols-2 gap-8 p-4">
+      <div className="grid xl:grid-cols-3 md:grid-cols-3 gap-4 p-4 grid-cols-2">
         <div>
           <div className="xl:ml-12">
                 {navigation.address.map((item) =>(
@@ -93,32 +93,23 @@ function Footer() {
                 </p>
             ))}
           </div>
-            <div className="flex space-x-3 mt-3">
-              <Link to="facebook.com/FilmotecaES/" className='text-3xl text-gray-50' >
-                <FontAwesomeIcon icon={faFacebookF}/>
-              </Link>
-              <Link to="twitter.com/Filmoteca_es" className='text-3xl text-gray-50' >
-                <FontAwesomeIcon icon={faTwitter}/>
-              </Link>
-              <Link to="t.me/filmoteca_es" className='text-3xl text-gray-50' >
-                <FontAwesomeIcon icon={faTelegram}/>
-              </Link>
-            </div>
-            <div className="flex space-x-3">
-              <Link to="instagram.com/filmotecaes" className='text-3xl text-gray-50' >
-                <FontAwesomeIcon icon={faInstagram}/>
-              </Link>
-              <Link to="vimeo.com/filmotecaespanola" className='text-3xl text-gray-50' >
-                <FontAwesomeIcon icon={faVimeo}/>
-              </Link>
-              <Link to="#" className='text-3xl text-gray-50' >
-                <FontAwesomeIcon icon={faGlobe}/>
-              </Link>
-            </div>
+          <div className="mt-3">
+            <div className="grid grid-cols-3 w-1/2">
+              {/* <div className="grid grid-cols-3 gap-y-0 gap-x-0"> */}
+                <a href="https://www.facebook.com/FilmotecaES" className=' text-3xl text-gray-50' ><FontAwesomeIcon icon={faFacebookF}/></a>
+                <a href="https://twitter.com/Filmoteca_es" className='text-3xl text-gray-50' ><FontAwesomeIcon icon={faTwitter}/></a>
+                <a href="https://t.me/filmoteca_es" className='text-3xl text-gray-50' ><FontAwesomeIcon icon={faTelegram}/></a>
+              {/* </div>
+              <div className="flex-auto "> */}
+                <a href="https://www.instagram.com/filmotecaes" className='text-3xl text-gray-50' ><FontAwesomeIcon icon={faInstagram}/></a>
+                <a href="https://vimeo.com/filmotecaespanola" className='text-3xl text-gray-50' ><FontAwesomeIcon icon={faVimeo}/></a>
+                <a href="#" className='text-3xl text-gray-50' ><FontAwesomeIcon icon={faGlobe}/></a>
+              </div>
+          </div>
         </div>
       </div>
-        <div className="mt-12 border-t border-gray-200 pt-8">
-          <p className="text-base text-gray-400 xl:text-center">&copy; 2023 Code Rabbits, Inc. All rights reserved.</p>
+        <div className="border-t border-gray-200 p-3">
+          <p className="sm:text-xs xl:text-base text-gray-400 text-center">&copy; 2023 Code Rabbits, Inc. All rights reserved.</p>
         </div>
       </footer>
   )
