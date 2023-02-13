@@ -12,6 +12,7 @@ import Contacto from './containers/pages/Contacto';
 import Login from './containers/pages/Login';
 import Cycle from './containers/pages/Cycle';
 import Movie from './containers/pages/Movie';
+import AdminDB from './containers/pages/AdminDB';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 
         {/* This can only be accessed with a admin user */}
         <Route exact path="/admin" element={<Admin />} />
+        <Route exact path="/admin/db" element={<AdminDB />} />
 
       </Routes>
     </Router>
