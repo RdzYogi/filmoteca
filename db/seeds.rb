@@ -78,6 +78,24 @@ Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
 
+Cycle.create(name: "Ciclo 3",
+             description: "Ciclo 3",
+              quote: "Ciclo 3",
+              img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
+              color: "red-cycle",
+              slug: "ciclo-3",
+              start_date: "2021-01-01",
+              end_date: "2021-01-27")
+
+Cycle.create(name: "Ciclo 4",
+              description: "Ciclo 4",
+              quote: "Ciclo 4",
+              img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
+              color: "yellow-cycle",
+              slug: "ciclo-4",
+              start_date: "2021-01-01",
+              end_date: "2021-01-27")
+
 puts "Cycles created"
 
 # Define placeholder sessions

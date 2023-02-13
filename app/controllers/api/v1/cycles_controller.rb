@@ -13,7 +13,14 @@ class Api::V1::CyclesController < ApplicationController
   def show
     cycle = Cycle.find_by(slug: params[:slug])
     if cycle
-      render json: cycle, include: %i[movies sessions]
+      movies = Movie.where(cycle_id: cycle.id)
+      include = movies.map do |movie|
+        session = Session.find(movie.session_id)
+        hall = Hall.find(session.hall_id)
+        { movie:, include: { session:, hall: } }
+      end
+      result = { cycle:, movies: include }
+      render json: result
     else
       render json: { error: 'Cycle not found' }, status: :not_found
     end
