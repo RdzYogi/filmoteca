@@ -54,7 +54,7 @@ Cycle.create(name: "DOUGLAS SIRK. LA EMOCIÓN INMEDIATA",
              intenta combatir con una sonrisa- que cuando
              se estrenaron.",
              quote: "Ciclo 1",
-             img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
+             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1254/v1676290893/Filmoteca/Embrujo_esj69j.jpg",
              color: "green-cycle",
              slug: "ciclo-1",
              start_date: "2023-01-01",
@@ -72,8 +72,8 @@ Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
             franquismo, y de la muy democrática Medalla
             de Oro al Mérito en el trabajo?",
             quote: "Ciclo 2",
-            img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
-            color: "blue-cycle",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1254/v1676290893/Filmoteca/Embrujo_esj69j.jpg",
+            color: "purple-cycle",
             slug: "ciclo-2",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
@@ -81,7 +81,7 @@ Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
 Cycle.create(name: "FILMOTECA JUNIOR",
             description: "Pelis para los junior de la casa",
             quote: "Ciclo 3",
-            img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_534,w_1258/v1676290394/Filmoteca/Bella_y_bestia_fyiffr.jpg",
             color: "blue-cycle",
             slug: "ciclo-3",
             start_date: "2023-02-01",
@@ -93,27 +93,27 @@ puts "Cycles created"
 Session.create(name: "Movie 1",
               description: "Movie 1",
               quote: "Movie 1",
-              play_time: "2021-01-01 12:00:00",
+              play_time: "2023-01-01 12:00:00",
               cycle_id: Cycle.all[0].id,
               hall_id: Hall.all[0].id)
 
+Session.create(name: "Movie 2",
+                description: "Movie 2",
+                quote: "Movie 2",
+                play_time: "2023-01-01 12:00:00",
+                cycle_id: Cycle.all[0].id,
+                hall_id: Hall.all[0].id)
+
 # Define placeholder movies
 # Add Douglas Sirk Movies
-Movie.create(title: "April, Apri!",
-              runtime: "82'",
+Movie.create(title: "Hitler's Madman",
+              runtime: "84'",
               director: "Douglas Sirk",
-              description: "Un panadero que se ha hecho rico monta una fábrica
-              de pasta. Un amigo, harto de su superficialidad, decide
-              gastarle una broma y le cuenta que un príncipe va a ir
-              a visitarla. Debut en el largometraje de Detlef Sierck/
-              Douglas Sirk, siguiendo el sistema de dobles versiones
-              tan común en la época fue rodada también en holandés,
-              aunque esa versión se ha perdido.",
-              quote: "«El primer intento de hacer una comedia alemana con el
-              estilo americano». (Douglas Sirk)",
-              img_url: "",
+              description: "Un comandante de las SS es asesinado por unos partisanos tras una brutal represalia nazi en un pueblo checo.",
+              quote: "«Me ofrecieron esta película, que debía rodarse con bastante rapidez: me dieron una semana de rodaje. Me la presentaron específicamente como una película de muy bajo presupuesto, ni siquiera una serie B, sino una serie C o D. Me di cuenta de que representaba a la vez una oportunidad y un peligro. Podía ser útil y podía lanzarme. O podía encasillarme como un director de serie B. Y cuando te sucede esto, da lo mismo lo bueno que seas, puedes quedarte definitivamente encasillado. Ulmer, por ejemplo, creo que es un buen director, pero quedó encasillado en la serie B mientras estuvo en Hollywood». (Douglas Sirk)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676289327/Filmoteca/Hitlers_Madman_xwaozw.jpg",
               slug: "movie-1",
-              year: "1935",
+              year: "1943",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[0].id)
 puts "Movie-1 created"
@@ -157,7 +157,7 @@ Movie.create(title: "La golondrina cautiva",
             teatro, y que procuré mantener también en el melodrama,
             el indeciso, el ambiguo, el inseguro». (Douglas Sirk)",
             slug: "movie-3",
-            img_url: "",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676291459/Filmoteca/Mas-fuerte-que-la-ley_kgutup.jpg",
             year: "1937",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[0].id)
@@ -173,7 +173,7 @@ Movie.create(title: "La Habanera",
             tra de lo que he llamado crítica social. […] Era una película
             anticapitalista, cosa que caía bien en Alemania en aquel
             momento». (Douglas Sirk)",
-            img_url: "",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1258/v1676291665/Filmoteca/la-habanera-douglas-sirk_xwjtcy.jpg",
             slug: "movie-4",
             year: "1937",
             session_id: Session.all[0].id,
@@ -196,7 +196,7 @@ Movie.create(title: "La novena sinfonía",
             Empecé a comprender que aquí la cámara es lo impor-
             tante […] El movimiento es emoción, en un modo en el
             que nunca puede serlo en el teatro». (Douglas Sirk)",
-            img_url: "",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1258/v1676291665/Filmoteca/la-habanera-douglas-sirk_xwjtcy.jpg",
             slug: "movie-5",
             year: "1936",
             session_id: Session.all[0].id,
@@ -220,7 +220,7 @@ Movie.create(title: "Embrujo",
             Flores sabe que Embrujo no fue un camelo, aunque bien
             pudiera parecerlo tal y como la presentaron al público
             productores y exhibidores». (Carlos Serrano de Osma)",
-            img_url: "",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1254/v1676290893/Filmoteca/Embrujo_esj69j.jpg",
             slug: "movie-6",
             year: "1947",
             session_id: Session.all[0].id,
@@ -272,7 +272,7 @@ Movie.create(title: "El último unicornio",
             estaba compuesto por Hayao Miyazaki, Toshio Suzuki e
             Isao Takahata; el nuevo proyecto era el Estudio Ghibli».
             (Alex McLevy)",
-            img_url: "",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1254/v1676290706/Filmoteca/El_ultimo_unicornio_acan0x.jpg",
             slug: "movie-8",
             year: "1982",
             session_id: Session.all[0].id,
@@ -297,12 +297,11 @@ Movie.create(title: "La bella y la bestia",
               way tiene aquí tanto peso en la puesta en escena y la
               construcción de personajes como en las propias can-
               ciones». (Janet Maslin)",
-              img_url: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_534,w_1258/v1676290394/Filmoteca/Bella_y_bestia_fyiffr.jpg",
               slug: "movie-9",
               year: "1991",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[2].id)
-
 puts "Movie-9 created"
 puts "Movies created"
 

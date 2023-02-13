@@ -35,6 +35,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/ciclos/:slug" element={<Cycle />} />
         <Route exact path="/movie" element={<Movie />} />
+        <Route exact path="/signup" element={<Signup />} />
 
         {/* User routes */}
         <Route exact path="/sign_up" element={<SignUp />} />
