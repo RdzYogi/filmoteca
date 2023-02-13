@@ -12,7 +12,7 @@ import Contacto from './containers/pages/Contacto';
 import Login from './containers/pages/Login';
 import Cycle from './containers/pages/Cycle';
 import Movie from './containers/pages/Movie';
-import SignUp from './containers/pages/SignUp';
+import SignUp from './containers/pages/SignUpLogic';
 
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/ciclos/:slug" element={<Cycle />} />
         <Route exact path="/movie" element={<Movie />} />
-        <Route exact path="/signup" element={<Signup />} />
+        {/* <Route exact path="/signup" element={<Signup />} /> */}
 
         {/* User routes */}
         <Route exact path="/sign_up" element={<SignUp />} />
