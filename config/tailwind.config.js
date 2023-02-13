@@ -19,6 +19,9 @@ module.exports = {
         "red-cycle": '#E54B27',
         "gray-cycle": '#333333',
         "pink-cycle": '#F5AEB8',
+        "button-submit": "#009DBF",
+        "form-bg": "#F9FAFB",
+        "form-border": "#D1D5DB",
       },
       textColor:{
         "green-cycle": '#369764',
@@ -42,7 +45,7 @@ module.exports = {
     require('@tailwindcss/typography'),
   ],
   safelist: [{
-    pattern: /(bg|text|border)-(green|blue)-cycle/
+    pattern: /(bg|text|border)-(green|blue|yellow|aqua|purple|red|gray|pink)-cycle/
     }
   ]
 }

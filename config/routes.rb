@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :cycles, only: %w[index show], param: :slug
       resources :movies, only: %w[index show], param: :slug
+      resources :news, only: %w[index show], param: :slug
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -32,7 +32,7 @@ function App() {
         <Route exact path="/noticias" element={<Noticias />} />
         <Route exact path="/contacto" element={<Contacto />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/ciclos/cycle" element={<Cycle />} />
+        <Route exact path="/ciclos/:slug" element={<Cycle />} />
         <Route exact path="/movie" element={<Movie />} />
 
         {/* This can only be accessed with a admin user */}
