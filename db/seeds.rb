@@ -245,31 +245,56 @@ Movie.create(title: "Una señora estupenda",
 puts "Movie-7 created"
 # Add Filmoteca Junior movies
 Movie.create(title: "El último unicornio",
-  runtime: "70'",
+            runtime: "92'",
+            director: "Arthur Rankin",
+            description: "Negándose a creer que sea la última de su especie, una
+            unicornia parte en busca de otros como ella, aunque le
+            suponga enfrentarse a un malvado rey obsesionado con
+            capturarla.",
+            quote: "«Vista con ojos contemporáneos, la animación es uno
+            de los puntos fuertes de El último unicornio. […] Posee
+            una gracia lírica y unos arranques de sofisticado su-
+            rrealismo que la diferencian de muchas otras produc-
+            ciones animadas. La gente de Rankin/Bass era capaz de
+            reconocer el talento, así que trabajaron con el estudio
+            Topcraft hasta que este tuvo que cerrar por dificultades
+            económicas. En ese momento, un grupo de animado-
+            res compró el estudio para empezar un nuevo proyecto,
+            manteniendo buena parte de sus empleados. Ese grupo
+            estaba compuesto por Hayao Miyazaki, Toshio Suzuki e
+            Isao Takahata; el nuevo proyecto era el Estudio Ghibli».
+            (Alex McLevy)",
+            img_url: "",
+            slug: "movie-8",
+            year: "1982",
+            session_id: Session.all[0].id,
+            cycle_id: Cycle.all[2].id)
+puts "Movie-8 created"
+Movie.create(title: "La bella y la bestia",
+  runtime: "84'",
   director: "Arthur Rankin",
-  description: "Negándose a creer que sea la última de su especie, una
-  unicornia parte en busca de otros como ella, aunque le
-  suponga enfrentarse a un malvado rey obsesionado con
-  capturarla.",
-  quote: "«Combina sin inquietud los ingredientes de un prota-
-  gonismo de Lola Flores en la época con rasgos melo-
-  sos típicamente mexicanos y el estilo de comicidad del
-  cine español coetáneo, no en vano intervienen José Luis
-  López Vázquez, José Sazatornil, Gracita Morales, Rafaela
-  Aparicio… amén de un Miguel Gila cuyas escenas se di-
-  rían autónomas. Con todo, resulta inolvidable la escena
-  en que la estrella canta Qué barbaridad, chispeante y
-  arrolladora […] La guitarra corre a cargo del marido de
-  Lola Flores, o sea Antonio González El Pescaílla, e inter-
-  vienen también un apreciable número de artistas flamen-
-  cos: Rafael Romero, Pepe Montoyita, Beni de Jerez, Paco
-  Aguilera, Juana la del Pipa…». (Carlos Aguilar y Anita Haas)",
+  description: "Una joven acepta convertirse en prisionera de un
+  temible monstruo para salvar a su padre. Sin embargo, la
+  convivencia va derribando las barreras entre ambos.",
+  quote: "«Con La bella y la bestia, una película aún más tierna,
+  constante y ambiciosa que La sirenita, Disney ha logra-
+  do algo que nadie había conseguido antes: combinar
+  las últimas técnicas de animación por ordenador con lo
+  mejor de Broadway. Aquí, bajo la apariencia de una fá-
+  bula infantil se esconde el tipo de partitura ingeniosa e
+  inspiradora que ya no existe en los escenarios. La sireni-
+  ta ya era una demostración del talento para componer
+  canciones de Howard Ashman y Alan Menken, pero en
+  este caso la música es incluso más importante. Broad-
+  way tiene aquí tanto peso en la puesta en escena y la
+  construcción de personajes como en las propias can-
+  ciones». (Janet Maslin)",
   img_url: "",
-  slug: "movie-7",
-  year: "1947",
+  slug: "movie-9",
+  year: "1991,
   session_id: Session.all[0].id,
-  cycle_id: Cycle.all[1].id)
-puts "Movie-7 created"
+  cycle_id: Cycle.all[2].id)
+puts "Movie-9 created"
 puts "Movies created"
 
 # Define News placeholder
