@@ -78,6 +78,14 @@ Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
 
+Cycle.create(name: "FILMOTECA JUNIOR",
+            description: "Pelis para los junior de la casa",
+            quote: "Ciclo 3",
+            img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
+            color: "blue-cycle",
+            slug: "ciclo-3",
+            start_date: "2023-02-01",
+            end_date: "2023-12-28")
 puts "Cycles created"
 
 # Define placeholder sessions
@@ -271,29 +279,30 @@ Movie.create(title: "El último unicornio",
             cycle_id: Cycle.all[2].id)
 puts "Movie-8 created"
 Movie.create(title: "La bella y la bestia",
-  runtime: "84'",
-  director: "Arthur Rankin",
-  description: "Una joven acepta convertirse en prisionera de un
-  temible monstruo para salvar a su padre. Sin embargo, la
-  convivencia va derribando las barreras entre ambos.",
-  quote: "«Con La bella y la bestia, una película aún más tierna,
-  constante y ambiciosa que La sirenita, Disney ha logra-
-  do algo que nadie había conseguido antes: combinar
-  las últimas técnicas de animación por ordenador con lo
-  mejor de Broadway. Aquí, bajo la apariencia de una fá-
-  bula infantil se esconde el tipo de partitura ingeniosa e
-  inspiradora que ya no existe en los escenarios. La sireni-
-  ta ya era una demostración del talento para componer
-  canciones de Howard Ashman y Alan Menken, pero en
-  este caso la música es incluso más importante. Broad-
-  way tiene aquí tanto peso en la puesta en escena y la
-  construcción de personajes como en las propias can-
-  ciones». (Janet Maslin)",
-  img_url: "",
-  slug: "movie-9",
-  year: "1991,
-  session_id: Session.all[0].id,
-  cycle_id: Cycle.all[2].id)
+              runtime: "84'",
+              director: "Arthur Rankin",
+              description: "Una joven acepta convertirse en prisionera de un
+              temible monstruo para salvar a su padre. Sin embargo, la
+              convivencia va derribando las barreras entre ambos.",
+              quote: "«Con La bella y la bestia, una película aún más tierna,
+              constante y ambiciosa que La sirenita, Disney ha logra-
+              do algo que nadie había conseguido antes: combinar
+              las últimas técnicas de animación por ordenador con lo
+              mejor de Broadway. Aquí, bajo la apariencia de una fá-
+              bula infantil se esconde el tipo de partitura ingeniosa e
+              inspiradora que ya no existe en los escenarios. La sireni-
+              ta ya era una demostración del talento para componer
+              canciones de Howard Ashman y Alan Menken, pero en
+              este caso la música es incluso más importante. Broad-
+              way tiene aquí tanto peso en la puesta en escena y la
+              construcción de personajes como en las propias can-
+              ciones». (Janet Maslin)",
+              img_url: "",
+              slug: "movie-9",
+              year: "1991",
+              session_id: Session.all[0].id,
+              cycle_id: Cycle.all[2].id)
+
 puts "Movie-9 created"
 puts "Movies created"
 
