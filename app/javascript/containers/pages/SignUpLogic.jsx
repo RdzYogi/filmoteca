@@ -42,9 +42,9 @@ function SignUp() {
     })
     .then(json => {
       console.log(json)
-      const authenticityToken = json.authenticity_token;
-      localStorage.setItem('authenticityToken', authenticityToken);
-      console.log(authenticityToken)
+      // const authenticityToken = json.authenticity_token;
+      // localStorage.setItem('authenticityToken', authenticityToken);
+      // console.log(authenticityToken)
     })
     .catch(error => {
       // Handle error
