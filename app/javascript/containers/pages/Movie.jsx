@@ -72,7 +72,6 @@ function Movie() {
         </div>
       </div>
       </div>
-
       <Footer />
     </Layout>
   );
