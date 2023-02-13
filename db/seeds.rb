@@ -78,24 +78,6 @@ Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
 
-Cycle.create(name: "Ciclo 3",
-             description: "Ciclo 3",
-              quote: "Ciclo 3",
-              img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
-              color: "red-cycle",
-              slug: "ciclo-3",
-              start_date: "2021-01-01",
-              end_date: "2021-01-27")
-
-Cycle.create(name: "Ciclo 4",
-              description: "Ciclo 4",
-              quote: "Ciclo 4",
-              img_url: "https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM=",
-              color: "yellow-cycle",
-              slug: "ciclo-4",
-              start_date: "2021-01-01",
-              end_date: "2021-01-27")
-
 puts "Cycles created"
 
 # Define placeholder sessions
@@ -108,7 +90,7 @@ Session.create(name: "Movie 1",
               hall_id: Hall.all[0].id)
 
 # Define placeholder movies
-# Douglas Sirk Movies
+# Add Douglas Sirk Movies
 Movie.create(title: "April, Apri!",
               runtime: "82'",
               director: "Douglas Sirk",
@@ -212,36 +194,63 @@ Movie.create(title: "La novena sinfonía",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[0].id)
 puts "Movie-5 created"
-# Lola Flores movies
+# Add Lola Flores movies
 Movie.create(title: "Embrujo",
-  runtime: "82'",
-  director: "Carlos Serrano de Osma",
-  description: "La exitosa pareja artística que forman una bailaora y un
-  cantaor se quiebra cuando él se enamora de ella.",
-  quote: "«Embrujo fue un intento honrado y Lola Flores lo sabe.
-  Un experimento que ha dado, artísticamente –no así en
-  lo comercial- un resultado negativo. Pero era un experi-
-  mento necesario. Me decía Jesús Leoz, a raíz del mal am-
-  biente que se hizo en torno a la película: “Ahora te cen-
-  suran, pero un día veremos cosas de Embrujo en el cine
-  español”. Hemos visto influencias directísimas de Em-
-  brujo en Noche sin cielo, de Iquino; Brindis a Manolete,
-  de Florián Rey; El amor brujo, de Tony Román […] No, Lola
-  Flores sabe que Embrujo no fue un camelo, aunque bien
-  pudiera parecerlo tal y como la presentaron al público
-  productores y exhibidores». (Carlos Serrano de Osma)",
-  img_url: "",
-  slug: "movie-6",
-  year: "1947",
-  session_id: Session.all[0].id,
-  cycle_id: Cycle.all[1].id)
+            runtime: "82'",
+            director: "Carlos Serrano de Osma",
+            description: "La exitosa pareja artística que forman una bailaora y un
+            cantaor se quiebra cuando él se enamora de ella.",
+            quote: "«Embrujo fue un intento honrado y Lola Flores lo sabe.
+            Un experimento que ha dado, artísticamente –no así en
+            lo comercial- un resultado negativo. Pero era un experi-
+            mento necesario. Me decía Jesús Leoz, a raíz del mal am-
+            biente que se hizo en torno a la película: “Ahora te cen-
+            suran, pero un día veremos cosas de Embrujo en el cine
+            español”. Hemos visto influencias directísimas de Em-
+            brujo en Noche sin cielo, de Iquino; Brindis a Manolete,
+            de Florián Rey; El amor brujo, de Tony Román […] No, Lola
+            Flores sabe que Embrujo no fue un camelo, aunque bien
+            pudiera parecerlo tal y como la presentaron al público
+            productores y exhibidores». (Carlos Serrano de Osma)",
+            img_url: "",
+            slug: "movie-6",
+            year: "1947",
+            session_id: Session.all[0].id,
+            cycle_id: Cycle.all[1].id)
 puts "Movie-6 created"
 Movie.create(title: "Una señora estupenda",
+            runtime: "70'",
+            director: "Eugenio Martin",
+            description: "Una cantante española que ha hecho fortuna en México
+            regresa a España tras la boda de su hijo. Al llegar descubre
+            que no todo el mundo está contento con su vuelta.",
+            quote: "«Combina sin inquietud los ingredientes de un prota-
+            gonismo de Lola Flores en la época con rasgos melo-
+            sos típicamente mexicanos y el estilo de comicidad del
+            cine español coetáneo, no en vano intervienen José Luis
+            López Vázquez, José Sazatornil, Gracita Morales, Rafaela
+            Aparicio… amén de un Miguel Gila cuyas escenas se di-
+            rían autónomas. Con todo, resulta inolvidable la escena
+            en que la estrella canta Qué barbaridad, chispeante y
+            arrolladora […] La guitarra corre a cargo del marido de
+            Lola Flores, o sea Antonio González El Pescaílla, e inter-
+            vienen también un apreciable número de artistas flamen-
+            cos: Rafael Romero, Pepe Montoyita, Beni de Jerez, Paco
+            Aguilera, Juana la del Pipa…». (Carlos Aguilar y Anita Haas)",
+            img_url: "",
+            slug: "movie-7",
+            year: "1947",
+            session_id: Session.all[0].id,
+            cycle_id: Cycle.all[1].id)
+puts "Movie-7 created"
+# Add Filmoteca Junior movies
+Movie.create(title: "El último unicornio",
   runtime: "70'",
-  director: "Eugenio Martin",
-  description: "Una cantante española que ha hecho fortuna en México
-  regresa a España tras la boda de su hijo. Al llegar descubre
-  que no todo el mundo está contento con su vuelta.",
+  director: "Arthur Rankin",
+  description: "Negándose a creer que sea la última de su especie, una
+  unicornia parte en busca de otros como ella, aunque le
+  suponga enfrentarse a un malvado rey obsesionado con
+  capturarla.",
   quote: "«Combina sin inquietud los ingredientes de un prota-
   gonismo de Lola Flores en la época con rasgos melo-
   sos típicamente mexicanos y el estilo de comicidad del
@@ -256,11 +265,11 @@ Movie.create(title: "Una señora estupenda",
   cos: Rafael Romero, Pepe Montoyita, Beni de Jerez, Paco
   Aguilera, Juana la del Pipa…». (Carlos Aguilar y Anita Haas)",
   img_url: "",
-  slug: "movie-6",
+  slug: "movie-7",
   year: "1947",
   session_id: Session.all[0].id,
   cycle_id: Cycle.all[1].id)
-puts "Movie-6 created"
+puts "Movie-7 created"
 puts "Movies created"
 
 # Define News placeholder
