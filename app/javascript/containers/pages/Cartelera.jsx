@@ -13,11 +13,9 @@ function Cartelera() {
     fetch("api/v1/movies")
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data)
       let newMovies = []
       data.map((movie,index) => {
-        // console.log(movie)
-        newMovies = [...newMovies, <MovieCard key={index} movie={movie}/>]
+        newMovies = [...newMovies, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>]
       })
       setMovies(newMovies)
       setLoaded(true)
@@ -35,7 +33,7 @@ function Cartelera() {
             </div>
           </div>
         </div>
-        <div className='pt-4'>
+        <div className="pt-4">
           <form></form>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
