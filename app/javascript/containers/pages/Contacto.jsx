@@ -4,7 +4,7 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import SubmitButton from '../shared/SubmitButton';
+import SubmitButton from '../../components/shared/SubmitButton';
 
 function Contacto() {
   return (
