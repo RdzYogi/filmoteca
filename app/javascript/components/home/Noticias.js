@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import DownloadButton from "../shared/DownloadButton";
 
 function Noticias() {
   const [news, setNews] = useState([]);
@@ -18,7 +19,8 @@ function Noticias() {
     <div className="w-1/3 p-3">
       {/* Download button TODO: implement download button shared component*/}
 
-      <button className="bg-blue-500 text-white p-2">Descargar Programa</button>
+      {/* <button className="bg-blue-500 text-white p-2">Descargar Programa</button> */}
+      <DownloadButton className="p-2 m-auto" />
 
       {/* Noticias section */}
 
