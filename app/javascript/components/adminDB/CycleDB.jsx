@@ -15,7 +15,7 @@ function CycleDB() {
           <Input
             type="text"
             id="name"
-            defaultValue="name"
+            defaultValue="Nombre"
             placeholder=""
           />
         </div>
@@ -26,18 +26,18 @@ function CycleDB() {
           <Input
             type="text"
             id="description"
-            defaultValue="description"
+            defaultValue="Descripción"
             placeholder=""
           />
         </div>
         <div className='flex items-center'> {/* Quote */}
           <Label
-            for="quote" label="quote"
+            for="quote" label="Quote"
           />
           <Input
             type="text"
             id="quote"
-            defaultValue="quote"
+            defaultValue="Quote"
             placeholder=""
           />
         </div>

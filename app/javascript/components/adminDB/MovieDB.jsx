@@ -15,7 +15,7 @@ function MovieDB() {
           <Input
             type="text"
             id="title"
-            defaultValue="title"
+            defaultValue="Título"
             placeholder=""
           />
         </div>
@@ -26,7 +26,7 @@ function MovieDB() {
           <Input
             type="text"
             id="runtime"
-            defaultValue="runtime"
+            defaultValue="Duración"
             placeholder=""
           />
         </div>
@@ -37,7 +37,7 @@ function MovieDB() {
           <Input
             type="text"
             id="director"
-            defaultValue="director"
+            defaultValue="Director"
             placeholder=""
           />
         </div>
@@ -48,18 +48,18 @@ function MovieDB() {
           <Input
             type="text"
             id="description"
-            defaultValue="description"
+            defaultValue="Descripción"
             placeholder=""
           />
         </div>
         <div className='flex items-center'> {/* Quote */}
           <Label
-            for="quote" label="quote"
+            for="quote" label="Quote"
           />
           <Input
             type="text"
             id="quote"
-            defaultValue="quote"
+            defaultValue="Quote"
             placeholder=""
           />
         </div>
@@ -80,7 +80,7 @@ function MovieDB() {
           <Input
             type="text"
             id="year"
-            defaultValue="year"
+            defaultValue="Año"
             placeholder=""
           />
         </div>
