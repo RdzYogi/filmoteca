@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Day = ({ day }) => {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [Movies, SetMovies] = useState([]);
 
-  const handleClick = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
+  useEffect(() => {
+    fetch("")
+    .then(response => response.json())
+    .then(data => SetMovies(data))
+    .catch(error => console.error(error));
+  }, []);
 
   return (
     <div onClick={handleClick}>
