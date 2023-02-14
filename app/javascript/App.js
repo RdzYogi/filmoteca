@@ -10,6 +10,9 @@ import Ciclos from './containers/pages/Ciclos';
 import Noticias from './containers/pages/Noticias';
 import Contacto from './containers/pages/Contacto';
 import Login from './containers/pages/Login';
+import Cycle from './containers/pages/Cycle';
+import Movie from './containers/pages/Movie';
+
 
 function App() {
 
@@ -29,6 +32,8 @@ function App() {
         <Route exact path="/noticias" element={<Noticias />} />
         <Route exact path="/contacto" element={<Contacto />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/ciclos/:slug" element={<Cycle />} />
+        <Route exact path="/movie" element={<Movie />} />
 
         {/* This can only be accessed with a admin user */}
         <Route exact path="/admin" element={<Admin />} />
