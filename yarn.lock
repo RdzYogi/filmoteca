@@ -23,6 +23,11 @@
     "chalk" "^2.0.0"
     "js-tokens" "^4.0.0"
 
+"@esbuild/linux-x64@0.17.2":
+  "integrity" "sha512-naygxkSmr6x9tuvpa8iGefnXo3Rc3Noz7c4+Dn0MSfSWJwLaN2YR686e7HkI09irfjDdU5UAq9wcxUwjkYQNUA=="
+  "resolved" "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.17.2.tgz"
+  "version" "0.17.2"
+
 "@fortawesome/fontawesome-common-types@6.2.1":
   "integrity" "sha512-Sz07mnQrTekFWLz5BMjOzHl/+NooTdW8F8kDQxjWwbpOJcnoSg4vUDng8d/WR1wOxM0O+CY9Zw0nR054riNYtQ=="
   "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.2.1.tgz"
@@ -678,6 +683,11 @@
   "integrity" "sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg=="
   "resolved" "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
   "version" "0.0.1"
+
+"core-js@^3.8.1":
+  "integrity" "sha512-GiZn9D4Z/rSYvTeg1ljAIsEqFm0LaN9gVtwDCrKL80zHtS31p9BAjmTxVqTQDMpwlMolJZOFntUG2uwyj7DAqw=="
+  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.28.0.tgz"
+  "version" "3.28.0"
 
 "cosmiconfig@^7.0.1":
   "integrity" "sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA=="
@@ -1544,7 +1554,7 @@
   dependencies:
     "safe-buffer" "^5.1.0"
 
-"react-dom@^18.2.0", "react-dom@>=16.8":
+"react-dom@^16.8 || ^17 || ^18", "react-dom@^18.2.0", "react-dom@>=16.8":
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -1572,7 +1582,14 @@
   dependencies:
     "@remix-run/router" "1.2.1"
 
-"react@^18.2.0", "react@>=16.3", "react@>=16.8":
+"react-simply-carousel@^8.4.6":
+  "integrity" "sha512-ouKCuaas3t0SZ1tO/TTEPGPe7/VwLG2zZjpbMbmODPv+vIfiaAMXTqiaSFw086gDPXq7wh/dSp2zPjEPpC9KOg=="
+  "resolved" "https://registry.npmjs.org/react-simply-carousel/-/react-simply-carousel-8.4.6.tgz"
+  "version" "8.4.6"
+  dependencies:
+    "core-js" "^3.8.1"
+
+"react@^16.8 || ^17 || ^18", "react@^18.2.0", "react@>=16.3", "react@>=16.8":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

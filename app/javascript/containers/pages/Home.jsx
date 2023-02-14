@@ -1,9 +1,10 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import Noticias from '../../components/home/Noticias'
 import MovieCard from '../../components/shared/MovieCard'
+import MovieCarousel from '../../components/home/MovieCarousel'
 
 function Home() {
   const [movies, setMovies] = useState([])
@@ -22,6 +23,7 @@ function Home() {
       });
   }, [])
 
+
   return (
     <Layout>
       <Navbar/>
@@ -29,8 +31,9 @@ function Home() {
         <div className="flex justify-between" >
           <div className="">
             <h2 className="p-3 text-center font-bold text-2xl">Peliculas</h2>
-            <div>
-            {loaded ? movies : <h1>Loading...</h1>}
+            <div className='w-2/3'>
+            {/* {loaded ? movies : <h1>Loading...</h1>} */}
+            <MovieCarousel />
             </div>
           </div>
 
