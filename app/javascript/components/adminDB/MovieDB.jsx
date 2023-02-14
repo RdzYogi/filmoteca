@@ -10,7 +10,7 @@ function MovieDB() {
       <div className='justify-items-start'>
         <div className='flex items-center'> {/* title */}
           <Label
-            for="title" label="Título"
+            htmlFor="title" label="Título"
           />
           <Input
             type="text"
@@ -21,7 +21,7 @@ function MovieDB() {
         </div>
         <div className='flex items-center'> {/* runtime */}
           <Label
-            for="runtime" label="Duración"
+            htmlFor="runtime" label="Duración"
           />
           <Input
             type="text"
@@ -32,7 +32,7 @@ function MovieDB() {
         </div>
         <div className='flex items-center'> {/* director */}
           <Label
-            for="director" label="Director"
+            htmlFor="director" label="Director"
           />
           <Input
             type="text"
@@ -43,7 +43,7 @@ function MovieDB() {
         </div>
         <div className='flex items-center'> {/* Description */}
           <Label
-            for="description" label="Descripción"
+            htmlFor="description" label="Descripción"
           />
           <Input
             type="text"
@@ -54,28 +54,28 @@ function MovieDB() {
         </div>
         <div className='flex items-center'> {/* Quote */}
           <Label
-            for="quote" label="Quote"
+            htmlFor="quote" label="Cita"
           />
           <Input
             type="text"
             id="quote"
-            defaultValue="Quote"
+            defaultValue="Cita"
             placeholder=""
           />
         </div>
         <div className='flex items-center'> {/* img url */}
           <Label
-            for="imgUrl" label="Subir archivo"
+            htmlFor="img_url" label="Subir archivo"
           />
           <Input
             type="file"
-            id="imgUrl"
+            id="img_url"
             defaultValue=""
           />
         </div>
         <div className='flex items-center'> {/* year */}
           <Label
-            for="year" label="Año de lanzamiento"
+            htmlFor="year" label="Año de lanzamiento"
           />
           <Input
             type="text"
