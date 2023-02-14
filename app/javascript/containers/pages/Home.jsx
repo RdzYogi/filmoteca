@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import Noticias from '../../components/home/Noticias'
-import MovieCarousel from '../../components/home/MovieCarousel'
+import MovieCard from '../../components/shared/MovieCard'
 
 function Home() {
+  const [movies, setMovies] = useState([])
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    fetch("/api/v1/movies")
+    .then((response) => response.json())
+    .then((data) => {
+      let newMovies = []
+      data.map((movie,index) => {
+        newMovies = [...newMovies, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>]
+      })
+      setMovies(newMovies)
+      setLoaded(true)
+      });
+  }, [])
 
   return (
     <Layout>
@@ -14,7 +29,9 @@ function Home() {
         <div className="flex justify-between" >
           <div className="">
             <h2 className="p-3 text-center font-bold text-2xl">Peliculas</h2>
-            <MovieCarousel />
+            <div>
+            {loaded ? movies : <h1>Loading...</h1>}
+            </div>
           </div>
 
           <Noticias/>

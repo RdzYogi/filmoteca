@@ -3,16 +3,16 @@ import React, { useState, useEffect } from "react";
 function Noticias() {
   const [news, setNews] = useState([]);
   useEffect(() => {
-    fetch("http://127.0.0.1:3000/api/v1/news")
+    fetch("/api/v1/news")
       .then((response) => response.json())
       .then((data) => {
         setNews(data.slice(0, 3));
       });
   }, []);
 
-  useEffect(() => {
-    console.log(news);
-  }, [news]);
+  // useEffect(() => {
+  //   console.log(news);
+  // }, [news]);
 
   return (
     <div className="w-1/3 p-3">

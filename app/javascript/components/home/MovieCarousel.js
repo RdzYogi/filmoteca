@@ -10,7 +10,6 @@ function MovieCarousel() {
     fetch("http://127.0.0.1:3000/api/v1/movies")
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
         setMovies(data);
       });
   }, []);
@@ -23,7 +22,7 @@ function MovieCarousel() {
     <div className="p-3">
       {/* Movie Carousel section. TODO: create carrousel add moviecards  */}
       {movies.map((movie) => (
-        <MovieCard className="w-2/3 p-2 h-500" movie={movie} />
+        <MovieCard movie={movie} />
       ))}
     </div>
   );
