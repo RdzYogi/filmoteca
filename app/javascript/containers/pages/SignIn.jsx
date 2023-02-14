@@ -3,7 +3,7 @@ import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserAuth, setCurrentUser } from "../../redux/slices/userSlice"
+import { setUserAuth, setCurrentUser, resetLocalStorage } from "../../redux/slices/userSlice"
 
 
 function SignIn() {
@@ -12,7 +12,6 @@ function SignIn() {
   const [authToken, setAuthToken] = useState("")
   // const [currentUser, setCurrentUser] = useState({})
 
-  const authTokenStore = useSelector(state => state.userManager.authToken)
   const currentUserStore = useSelector(state => state.userManager.currentUser)
   const dispatch = useDispatch()
 
@@ -29,7 +28,6 @@ function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const csrfToken = document.querySelector("[name='csrf-token']").content
     const data = {user: user}
     // console.log(data)
     fetch('/users/sign_in', {
@@ -49,43 +47,26 @@ function SignIn() {
       }
     })
     .then(json => {
-      console.log(json.user)
-      // setCurrentUser(json.user)
       dispatch(setCurrentUser(json.user))
     })
     .catch(error => {
-      // Handle error
     });
   }
 
-  // console.log(authTokenStore)
-  // console.log("auth:",authToken)
-  // console.log("user:",currentUser)
-
   const handleSignOut = (e) => {
     e.preventDefault()
-    const csrfToken = document.querySelector("[name='csrf-token']").content
-    const data = {user: user}
-    // console.log(data)
     fetch('/users/sign_out', {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json', "Authorization": authToken},
-      // body: JSON.stringify(data)
     })
     .then(response => {
-      // console.log(response)
       if (response.ok) {
+        dispatch(resetLocalStorage())
         return response.json();
       } else {
         throw new Error('Something went wrong');
       }
     })
-    .then(json => {
-      console.log(json)
-    })
-    .catch(error => {
-      // Handle error
-    });
   }
 
 

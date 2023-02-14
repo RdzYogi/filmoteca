@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userAuth: "",
+  userAuth: localStorage.getItem("auth_token") || "",
   currentUser: {
-    id: "",
-    email: ""
+    id: localStorage.getItem("current_user") ? JSON.parse(localStorage.getItem("current_user")).id : "",
+    email: localStorage.getItem("current_user") ? JSON.parse(localStorage.getItem("current_user")).email : ""
   }
 }
 
@@ -29,7 +29,9 @@ export const userSlice = createSlice({
     getCurrentUser: (state) => {
       state.currentUser = JSON.parse(localStorage.getItem("current_user"))
     },
-    resetLocalStorage: () => {
+    resetLocalStorage: (state) => {
+      state.userAuth = ""
+      state.currentUser = {id: "", email: ""}
       localStorage.setItem("auth_token", "")
       localStorage.setItem("current_user", "")
     }
@@ -40,7 +42,8 @@ export const userSlice = createSlice({
 export const { setUserAuth,
   setCurrentUser,
   getUserAuth,
-  getCurrentUser
+  getCurrentUser,
+  resetLocalStorage
  } = userSlice.actions
 
 export default userSlice.reducer
