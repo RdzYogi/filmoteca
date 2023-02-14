@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserAuth } from "../../redux/slices/userSlice"
 
 
 function SignIn() {
@@ -9,6 +11,9 @@ function SignIn() {
   const [user, setUser] = useState({email:"", password:""})
   const [authToken, setAuthToken] = useState("")
   const [currentUser, setCurrentUser] = useState({})
+
+  const authTokenStore = useSelector(state => state.userManager.authToken)
+  const dispatch = useDispatch()
 
   const handleEmail = (e) => {
     e.preventDefault()
@@ -36,6 +41,7 @@ function SignIn() {
       if (response.ok) {
         // console.log(response.headers.get('Authorization').split(' ')[1])
         setAuthToken(response.headers.get('Authorization'))
+        dispatch(setUserAuth(response.headers.get('Authorization')))
         return response.json();
       } else {
         throw new Error('Something went wrong');
@@ -50,6 +56,7 @@ function SignIn() {
     });
   }
 
+  console.log(authTokenStore)
   // console.log("auth:",authToken)
   // console.log("user:",currentUser)
 
