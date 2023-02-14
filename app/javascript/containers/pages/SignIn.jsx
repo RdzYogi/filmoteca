@@ -3,16 +3,17 @@ import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserAuth } from "../../redux/slices/userSlice"
+import { setUserAuth, setCurrentUser } from "../../redux/slices/userSlice"
 
 
 function SignIn() {
 
   const [user, setUser] = useState({email:"", password:""})
   const [authToken, setAuthToken] = useState("")
-  const [currentUser, setCurrentUser] = useState({})
+  // const [currentUser, setCurrentUser] = useState({})
 
   const authTokenStore = useSelector(state => state.userManager.authToken)
+  const currentUserStore = useSelector(state => state.userManager.currentUser)
   const dispatch = useDispatch()
 
   const handleEmail = (e) => {
@@ -48,15 +49,16 @@ function SignIn() {
       }
     })
     .then(json => {
-      console.log(json)
-      setCurrentUser(json.user)
+      console.log(json.user)
+      // setCurrentUser(json.user)
+      dispatch(setCurrentUser(json.user))
     })
     .catch(error => {
       // Handle error
     });
   }
 
-  console.log(authTokenStore)
+  // console.log(authTokenStore)
   // console.log("auth:",authToken)
   // console.log("user:",currentUser)
 
@@ -91,13 +93,18 @@ function SignIn() {
     <Layout>
       <Navbar/>
       <div className="pt-40 container">
-        <form onSubmit={handleSubmit}>
-          <input type="text" onChange={handleEmail} placeholder="Correo" />
-          <input type="password" onChange={handlePassword} placeholder="Contraseña" />
-          <button type="submit" >Entrar</button>
-          <button onClick={handleSignOut} >Sign Out</button>
-
-        </form>
+        <div>
+          <div>
+            <h1>Current user</h1>
+            <p>{currentUserStore.email || "none"}</p>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <input type="text" onChange={handleEmail} placeholder="Correo" />
+            <input type="password" onChange={handlePassword} placeholder="Contraseña" />
+            <button type="submit" >Entrar</button>
+            <button onClick={handleSignOut} >Sign Out</button>
+          </form>
+        </div>
 
       </div>
       <Footer/>
