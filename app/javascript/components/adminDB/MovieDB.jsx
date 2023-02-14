@@ -3,7 +3,8 @@ import Label from './label'
 import Input from './input'
 import SubmitButton from '../shared/SubmitButton';
 
-function MovieDB() {
+function MovieDB(props) {
+  const movie = props.movie
   return (
     <div>
       <h2 className='text-2xl'>Movie</h2>
@@ -65,10 +66,10 @@ function MovieDB() {
         </div>
         <div className='flex items-center'> {/* img url */}
           <Label
-            htmlFor="img_url" label="Subir archivo"
+            htmlFor="img_url" label="Ingrese la URL de la portada"
           />
           <Input
-            type="file"
+            type="text"
             id="img_url"
             defaultValue=""
           />

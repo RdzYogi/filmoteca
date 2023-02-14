@@ -15,6 +15,7 @@ function AdminDB() {
         return response.json()
       })
       .then((data) => {
+        console.log(data)
         let newCyclesDB = []
         data.map((cycle, index) => {
           newCyclesDB = [...newCyclesDB, <CycleDB key={index} cycle={cycle}/>]
@@ -45,9 +46,6 @@ function AdminDB() {
         <h2 className="text-center text-2xl font-bold">Admin Database</h2>
         {ciclos}
         {movies}
-        {/* <CycleDB />
-        <MovieDB /> */}
-
       </div>
       <Footer/>
     </Layout>
