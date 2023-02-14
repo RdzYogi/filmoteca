@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import getDateObject from "../helpers/getDateObject";
 
 
-function MovieCard(movieData){
+function MovieCard(props){
 
-  const movie = movieData.movie.movie
+  const movie = props.movie.movie
 
-  const cycle = movieData.movie.include.cycle
+  const cycle = props.cycle
 
-  const hall = movieData.movie.include.hall
+  const hall = props.movie.include.hall
 
-  const showDateString = movieData.movie.include.session.play_time
+  const showDateString = props.movie.include.session.play_time
 
   const options ={monthLong: true}
   const showDateObject = getDateObject(showDateString, options)
@@ -27,7 +27,7 @@ function MovieCard(movieData){
           <div className='h-px w-1/4 bg-white self-center'></div>
           <p className="">{showDateObject.hour+":"+showDateObject.minutes}h</p>
           <p className="">{hall.name}</p>
-          <p className={"text-black font-bold p-1 bg-"+cycle.color}>Comprar</p> {/*delete later*/}
+          <p className={"text-black font-bold p-1 bg-"+cycle.color}>Comprar</p>
         </div>
       </div>
       <img className="object-cover w-screen" src="https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM="/>  {/*delete later*/}
