@@ -12,6 +12,9 @@ import Contacto from './containers/pages/Contacto';
 import Login from './containers/pages/Login';
 import Cycle from './containers/pages/Cycle';
 import Movie from './containers/pages/Movie';
+import AdminDB from './containers/pages/AdminDB';
+import SignUp from './containers/pages/SignUpLogic';
+import SignIn from './containers/pages/SignIn';
 
 
 function App() {
@@ -34,9 +37,15 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/ciclos/:slug" element={<Cycle />} />
         <Route exact path="/movie" element={<Movie />} />
+        {/* <Route exact path="/signup" element={<Signup />} /> */}
+
+        {/* User routes */}
+        <Route exact path="/sign_up" element={<SignUp />} />
+        <Route exact path="/sign_in" element={<SignIn />} />
 
         {/* This can only be accessed with a admin user */}
         <Route exact path="/admin" element={<Admin />} />
+        <Route exact path="/admin/db" element={<AdminDB />} />
 
       </Routes>
     </Router>
