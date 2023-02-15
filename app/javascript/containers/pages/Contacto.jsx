@@ -4,6 +4,7 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import SubmitButton from '../../components/shared/SubmitButton';
 
 function Contacto() {
   return (
@@ -43,7 +44,7 @@ function Contacto() {
                   <label for="message" className="block mb-2 font-medium text-black">Your message</label>
                   <textarea id="message" rows="6" className="block p-2.5 w-full text-black bg-form-bg rounded-sm shadow-sm border border-form-border focus:ring-black focus:border-black" placeholder="Mensaje" required ></textarea>
               </div>
-              <button type="submit" className="py-3 px-5 w-32 flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-button-submit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-button-submit">Enviar</button>
+              <SubmitButton label="Enviar"/>
           </form>
         </section>
         <div className='flex items-center mt-6'>
