@@ -72,7 +72,7 @@ function App() {
         <Route exact path="/contacto" element={<Contacto />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/ciclos/:slug" element={<Cycle />} />
-        <Route exact path="/movie" element={<Movie />} />
+        <Route exact path="/movies/:slug" element={<Movie />} />
         {/* <Route exact path="/signup" element={<Signup />} /> */}
 
         {/* User routes */}
