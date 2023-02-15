@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   root "pages#home"
   # You have to route all pages to the front controller with react
   # So that we don't get the rails red page
-  get '*path', to: 'pages#home', via: :all
-  
+  Ç*¨^PÑet '*path', to: 'pages#home', via: :all
+
 end
