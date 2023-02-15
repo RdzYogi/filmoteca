@@ -25,4 +25,26 @@ class Api::V1::CyclesController < ApplicationController
       render json: { error: 'Cycle not found' }, status: :not_found
     end
   end
+
+  # create, destory, update
+  def create
+    cycle = Cycle.create(cycle_params)
+    render json: cycle
+  end
+
+  def destroy
+    Cycle.destroy(params[:id])
+  end
+
+  def update
+    cycle = Cycle.find(params["id"])
+    cycle.update_attributes(cycle_params)
+    render json: cycle
+  end
+
+  private
+
+  def cycle_params
+    params.require(:cycle).permit(:id, :name, :description, :quote, :img_url, :start_date, :end_date, :color)
+  end
 end
