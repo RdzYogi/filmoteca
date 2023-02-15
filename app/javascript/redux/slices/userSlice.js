@@ -4,7 +4,9 @@ const initialState = {
   userAuth: localStorage.getItem("auth_token") || "",
   currentUser: {
     id: localStorage.getItem("current_user") ? JSON.parse(localStorage.getItem("current_user")).id : "",
-    email: localStorage.getItem("current_user") ? JSON.parse(localStorage.getItem("current_user")).email : ""
+    email: localStorage.getItem("current_user") ? JSON.parse(localStorage.getItem("current_user")).email : "",
+    admin: false,
+    logged_in: false
   }
 }
 
@@ -34,6 +36,12 @@ export const userSlice = createSlice({
       state.currentUser = {id: "", email: ""}
       localStorage.setItem("auth_token", "")
       localStorage.setItem("current_user", "")
+    },
+    isLogged: (state) => {
+      state.currentUser.logged_in = true
+    },
+    isAdmin: (state) => {
+      state.currentUser.admin = true
     }
 
   }
@@ -43,7 +51,9 @@ export const { setUserAuth,
   setCurrentUser,
   getUserAuth,
   getCurrentUser,
-  resetLocalStorage
+  resetLocalStorage,
+  isLogged,
+  isAdmin
  } = userSlice.actions
 
 export default userSlice.reducer

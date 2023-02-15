@@ -33,7 +33,6 @@
 "@esbuild/linux-x64@0.17.2":
   "integrity" "sha512-naygxkSmr6x9tuvpa8iGefnXo3Rc3Noz7c4+Dn0MSfSWJwLaN2YR686e7HkI09irfjDdU5UAq9wcxUwjkYQNUA=="
   "resolved" "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.17.2.tgz"
-
   "version" "0.17.2"
 
 "@fortawesome/fontawesome-common-types@6.2.1":
