@@ -28,7 +28,7 @@ function Noticias() {
         <div className="flex justify-center">
             <h1 className="text-xl font-bold text-center">NOTICIAS</h1>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-4 mx-10">
           {loaded ? news : <div className="text-center">Cargando...</div>}
         </div>
       </div>

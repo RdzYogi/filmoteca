@@ -13,12 +13,12 @@ function NewsCard(props) {
   return (
     <div className="flex bg-gray-300">
       <div>
-        <img className="object-cover w-60 h-40 pr-1" src="https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/Embrujo_hre7a8.jpg"/>  {/*delete later*/}
+        <img className="object-cover w-60 h-40 pr-2" src="https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/Embrujo_hre7a8.jpg"/>  {/*delete later*/}
       </div>
       <div>
         <p className="text-base">{showDateObject.day}/{showDateObject.month}/{showDateObject.year}</p>
         <p className="text-base font-bold">{noticia.title}</p>
-        <p>{noticia.description}</p>
+        <p className="text-base truncate">{noticia.description}</p>
       </div>
     </div>
   );
