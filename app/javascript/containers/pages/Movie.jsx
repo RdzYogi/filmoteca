@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "../../components/navigation/Footer";
 import Navbar from "../../components/navigation/Navbar";
 import Layout from "../../hocs/layouts/Layout";
+import DownloadButton from '../../components/shared/DownloadButton';
 
 function Movie() {
   return (
@@ -12,6 +13,9 @@ function Movie() {
         <button className="inline-block px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-black-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-250 ease-in-out">
             Atras
         </button>
+        </div>
+        <div className="lg:absolute lg:top-40 lg:right-40">
+          <DownloadButton/>
         </div>
         <div className="container m-5">
           <div className="text-xl font-large text-black-900 m-2">
