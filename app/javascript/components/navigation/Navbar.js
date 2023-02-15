@@ -35,15 +35,7 @@ function Navbar() {
 
   // Logic for the dropdown menu
   const [isOpen, setIsOpen] = useState(false);
-  function handleDropdownClick() {
-    const dropdown = document.getElementById('drop_down_menu');;
-    if (dropdown.classList.value.includes('hidden')){
-      setIsOpen(true);
 
-    } else {
-      setIsOpen(false);
-    }
-  }
   return (
     <Fragment>
       <nav id='navbar' className='w-full bg-black pt-4 transition duration-300 ease-in-out z-40 top-0 fixed'>
@@ -118,7 +110,7 @@ function Navbar() {
             <NavLink to='/' className='flex items-center text-lg font-bold leading-6 text-white'>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </NavLink>
-            <button id="drop_down_button" onClick={handleDropdownClick} className='flex items-center text-lg font-bold leading-6 text-white cursor-pointer'>
+            <button id="drop_down_button" onClick={() => setIsOpen(prev => !prev)} className='flex items-center text-lg font-bold leading-6 text-white cursor-pointer'>
               {isOpen ? <FontAwesomeIcon icon={faRectangleXmark} /> : <FontAwesomeIcon icon={faBars} />}
             </button>
           </div>
