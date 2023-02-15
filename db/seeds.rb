@@ -106,16 +106,18 @@ Session.create(name: "Movie 2",
 
 # Define placeholder movies
 # Add Douglas Sirk Movies
-Movie.create(title: "April, April",
+m = Movie.new(title: "April, April",
               runtime: "84'",
               director: "Douglas Sirk",
               description: "Un panadero que se ha hecho rico monta una fábrica de pasta. Un amigo, harto de su superficialidad, decide gastarle una broma y le cuenta que un príncipe va a ir a visitarla. Debut en el largometraje de Detlef Sierck / Douglas Sirk, siguiendo el sistema de dobles versiones tan común en la época fue rodada también en holandés, aunque esa versión se ha perdido.",
               quote: "«El primer intento de hacer una comedia alemana con el estilo americano». (Douglas Sirk)",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
-              slug: "movie-1",
+              slug: "",
               year: "1943",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[0].id)
+m.slug = m.title.to_slug
+m.save
 puts "Movie-1 created"
 Movie.create(title: "Concierto en la corte",
               runtime: "85'",
