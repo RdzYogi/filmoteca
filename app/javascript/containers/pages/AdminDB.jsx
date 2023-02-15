@@ -39,6 +39,7 @@ function AdminDB() {
   }, [])
 
 
+
   return (
     <Layout>
       <Navbar/>
@@ -46,6 +47,7 @@ function AdminDB() {
         <h2 className="text-center text-2xl font-bold">Admin Database</h2>
         {ciclos}
         {movies}
+        {/* previous and next buttons */}
       </div>
       <Footer/>
     </Layout>
