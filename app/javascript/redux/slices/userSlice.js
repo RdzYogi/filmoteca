@@ -23,6 +23,7 @@ export const userSlice = createSlice({
     setCurrentUser: (state, action) => {
       state.currentUser.id = action.payload.id
       state.currentUser.email = action.payload.email
+      state.currentUser.logged_in = true
       localStorage.setItem("current_user", JSON.stringify(action.payload));
     },
     getUserAuth: (state) => {

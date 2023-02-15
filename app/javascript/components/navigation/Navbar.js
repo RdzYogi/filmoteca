@@ -2,16 +2,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Fragment, useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 import logo_blanco from '../../assets/images/logo-blanco.png';
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { useSelector } from 'react-redux'
 // For fontawesome free-solid, free-regular, free-brands, fontawesome-free
 import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRectangleXmark} from '@fortawesome/free-solid-svg-icons'
 
 
 
 function Navbar() {
-  // TODO
-  // Figure out a better way to use fontawsome
-  library.add(faMagnifyingGlass, faCalendarDays);
+
+  // Logic for checking if the user is signed in
+  const isSignedIn = useSelector(state => state.userManager.currentUser.logged_in);
+
+  // Logic for the dropdown menu
   const [isOpen, setIsOpen] = useState(false);
   function handleDropdownClick() {
     const barsIcon = <FontAwesomeIcon icon={faBars} />
@@ -45,7 +47,7 @@ function Navbar() {
               height={350}
               className=""/>
             </Link>
-            <div className="hidden md:flex bg-gray-500 h-10 w-10 rounded-full mr-40"></div>
+            <div className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></div>
           </div>
 
           {/* NavLink is going to add the active class to the link that we will define */}
@@ -78,14 +80,14 @@ function Navbar() {
             </NavLink>
             <div className='bg-white w-px h-6'></div>
             <p className="flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white">
-              <FontAwesomeIcon icon="magnifying-glass"/>
+              <FontAwesomeIcon icon={faMagnifyingGlass}/>
             </p>
           </div>
 
           {/* Mobile navbar */}
           <div className="md:hidden flex max-w-full justify-around">
             <NavLink to='/calendario' className='flex items-center text-lg font-bold leading-6 text-white '>
-              <FontAwesomeIcon icon="calendar-days"/>
+              <FontAwesomeIcon icon={faCalendarDays}/>
             </NavLink>
             <NavLink to='/ciclos' className='flex items-center text-lg font-bold leading-6 text-white'>
               <div className='grid grid-rows-2 grid-flow-col gap-1 text-xs scale-75'>
@@ -120,7 +122,7 @@ function Navbar() {
           </Link>
           <div className='h-px w-3/4 bg-white self-center'></div>
           <Link to="#" className='text-lg py-2 w-fit font-bold self-center leading-6 text-white'>
-              INGRESAR
+              {isSignedIn ? "DESCONECTAR" : "INGRESAR"}
           </Link>
         </div>
       </nav>
