@@ -24,9 +24,9 @@ function MovieCard(props){
       <div className={"bg-black pl-2 pr-2 pt-1 pb-1"}>
         <div className={"flex justify-between place-items-center text-xs text-"+cycle.color}>
           <p className="">{showDateObject.day} de {showDateObject.month}</p>
-          <div className='h-px w-1/12 bg-white self-center'></div>
+          <div className={"h-px w-1/12 self-center bg-"+cycle.color}></div>
           <p className="">{showDateObject.hour+":"+showDateObject.minutes}h</p>
-          <div className='h-px w-1/12 bg-white self-center'></div>
+          <div className={"h-px w-1/12 self-center bg-"+cycle.color}></div>
           <p className="">{hall.name}</p>
           <p className={"text-black font-bold p-1 bg-"+cycle.color}>Comprar</p>
         </div>
