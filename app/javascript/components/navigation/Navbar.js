@@ -2,35 +2,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Fragment, useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 import logo_blanco from '../../assets/images/logo-blanco.png';
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { useSelector } from 'react-redux'
 // For fontawesome free-solid, free-regular, free-brands, fontawesome-free
 import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRectangleXmark} from '@fortawesome/free-solid-svg-icons'
 
 
 
 function Navbar() {
-  // TODO
-  // Figure out a better way to use fontawsome
-  library.add(faMagnifyingGlass, faCalendarDays);
-  const [isOpen, setIsOpen] = useState(false);
-  function handleDropdownClick() {
-    const barsIcon = <FontAwesomeIcon icon={faBars} />
-    const closeIcon = <FontAwesomeIcon icon={faRectangleXmark} />
-    const dropdown = document.getElementById('drop_down_menu');
-    // console.log(dropdown.classList.value);
-    if (dropdown.classList.value.includes('hidden')){
-      dropdown.classList.remove('hidden');
-      dropdown.classList.add('flex');
-      dropdown.classList.add('flex-col');
-      setIsOpen(true);
-
-    } else {
-      dropdown.classList.remove('flex');
-      dropdown.classList.remove('flex-col');
-      dropdown.classList.add('hidden');
+  // Logic for assigning listeners to the window to hide the dropdown menu
+  window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    if (width > 768) {
       setIsOpen(false);
     }
-  }
+  })
+  document.body.addEventListener('click', (e) => {
+    if (e.target.id !== 'drop_down_menu' && e.target.parentElement.id !== 'drop_down_button') {
+      setIsOpen(false);
+    }
+  });
+
+
+  // Logic for checking if the user is signed in
+  const isSignedIn = useSelector(state => state.userManager.currentUser.logged_in);
+
+  // Logic for the dropdown menu
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Fragment>
       <nav id='navbar' className='w-full bg-black pt-4 transition duration-300 ease-in-out z-40 top-0 fixed'>
@@ -45,7 +43,7 @@ function Navbar() {
               height={350}
               className=""/>
             </Link>
-            <div className="hidden md:flex bg-gray-500 h-10 w-10 rounded-full mr-40"></div>
+            <div className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></div>
           </div>
 
           {/* NavLink is going to add the active class to the link that we will define */}
@@ -78,14 +76,14 @@ function Navbar() {
             </NavLink>
             <div className='bg-white w-px h-6'></div>
             <p className="flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white">
-              <FontAwesomeIcon icon="magnifying-glass"/>
+              <FontAwesomeIcon icon={faMagnifyingGlass}/>
             </p>
           </div>
 
           {/* Mobile navbar */}
           <div className="md:hidden flex max-w-full justify-around">
             <NavLink to='/calendario' className='flex items-center text-lg font-bold leading-6 text-white '>
-              <FontAwesomeIcon icon="calendar-days"/>
+              <FontAwesomeIcon icon={faCalendarDays}/>
             </NavLink>
             <NavLink to='/ciclos' className='flex items-center text-lg font-bold leading-6 text-white'>
               <div className='grid grid-rows-2 grid-flow-col gap-1 text-xs scale-75'>
@@ -105,12 +103,12 @@ function Navbar() {
             <NavLink to='/' className='flex items-center text-lg font-bold leading-6 text-white'>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </NavLink>
-            <div id="drop_down_button" onClick={handleDropdownClick} className='flex items-center text-lg font-bold leading-6 text-white cursor-pointer'>
+            <button id="drop_down_button" onClick={() => setIsOpen(prev => !prev)} className='flex items-center text-lg font-bold leading-6 text-white cursor-pointer'>
               {isOpen ? <FontAwesomeIcon icon={faRectangleXmark} /> : <FontAwesomeIcon icon={faBars} />}
-            </div>
+            </button>
           </div>
         </div>
-        <div id="drop_down_menu" className={'bg-black w-full border-t-2 hidden border-gray-500 transition duration-300 ease-in-out'}>
+        <div id="drop_down_menu" className={isOpen ? "flex flex-col ": "hidden " + 'bg-black w-full border-t-2 border-gray-500 transition duration-300 ease-in-out'}>
           <Link to="/abonos" className='text-lg py-2 w-fit font-bold self-center leading-6 text-white'>
               ABONOS
           </Link>
@@ -120,7 +118,7 @@ function Navbar() {
           </Link>
           <div className='h-px w-3/4 bg-white self-center'></div>
           <Link to="#" className='text-lg py-2 w-fit font-bold self-center leading-6 text-white'>
-              INGRESAR
+              {isSignedIn ? "DESCONECTAR" : "INGRESAR"}
           </Link>
         </div>
       </nav>
