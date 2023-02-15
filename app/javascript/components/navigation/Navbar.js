@@ -11,21 +11,14 @@ import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRecta
 function Navbar() {
   // Logic for assigning listeners to the window to hide the dropdown menu
   window.addEventListener('resize', () => {
-    const dropdown = document.getElementById('drop_down_menu');
     const width = window.innerWidth;
     if (width > 768) {
-      dropdown.classList.remove('flex');
-      dropdown.classList.remove('flex-col');
-      dropdown.classList.add('hidden');
       setIsOpen(false);
     }
   })
   document.body.addEventListener('click', (e) => {
-    const width = window.innerWidth;
-    if (width < 768) {
-      if (e.target.id !== 'drop_down_menu' && e.target.parentElement.id !== 'drop_down_button') {
-        setIsOpen(false);
-      }
+    if (e.target.id !== 'drop_down_menu' && e.target.parentElement.id !== 'drop_down_button') {
+      setIsOpen(false);
     }
   });
 
