@@ -3,16 +3,16 @@ import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserAuth, setCurrentUser, resetLocalStorage } from "../../redux/slices/userSlice"
+import { setUserAuth, setCurrentUser, resetLocalStorage, isLogged, isAdmin } from "../../redux/slices/userSlice"
 
 
 function SignIn() {
 
   const [user, setUser] = useState({email:"", password:""})
-  const [authToken, setAuthToken] = useState("")
   // const [currentUser, setCurrentUser] = useState({})
 
   const currentUserStore = useSelector(state => state.userManager.currentUser)
+  const authToken = useSelector(state => state.userManager.authToken)
   const dispatch = useDispatch()
 
   const handleEmail = (e) => {
@@ -39,7 +39,6 @@ function SignIn() {
       // console.log(response)
       if (response.ok) {
         // console.log(response.headers.get('Authorization').split(' ')[1])
-        setAuthToken(response.headers.get('Authorization'))
         dispatch(setUserAuth(response.headers.get('Authorization')))
         return response.json();
       } else {
@@ -47,7 +46,12 @@ function SignIn() {
       }
     })
     .then(json => {
+      // console.log(json)
       dispatch(setCurrentUser(json.user))
+      dispatch(isLogged)
+      if (json.user.admin === true) {
+        dispatch(isAdmin())
+      }
     })
     .catch(error => {
     });
