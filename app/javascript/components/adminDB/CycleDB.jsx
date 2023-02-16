@@ -54,7 +54,6 @@ function CycleDB(props) {
               type="text"
               name="name"
               defaultValue={cycle.name}
-              placeholder=""
               onChange={handleChange}
             />
           </div>
@@ -66,7 +65,6 @@ function CycleDB(props) {
               type="text"
               name="description"
               defaultValue={cycle.description}
-              placeholder=""
               onChange={handleChange}
             />
           </div>
@@ -78,7 +76,6 @@ function CycleDB(props) {
               type="text"
               name="quote"
               defaultValue={cycle.quote}
-              placeholder=""
               onChange={handleChange}
             />
           </div>
