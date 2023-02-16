@@ -1,10 +1,35 @@
-import React from "react";
+import React, {Fragment, useEffect, useState } from 'react'
+import { useParams } from "react-router-dom";
 import Footer from "../../components/navigation/Footer";
 import Navbar from "../../components/navigation/Navbar";
 import Layout from "../../hocs/layouts/Layout";
 import DownloadButton from '../../components/shared/DownloadButton';
+import MovieCard from '../../components/shared/MovieCard';
 
 function Movie() {
+
+  let params = useParams()
+  const slug = params.slug;
+  // We declare a state so we can store the data from the API
+  const [cycleData, setCycleData] = useState([])
+  const [loaded, setLoaded] = useState(false)
+  const [movies, setMovies] = useState([])
+  useEffect(() => {
+    let moviesData = []
+    fetch(`http://localhost:3000/api/v1/cartelera/${slug}`)
+      .then((response) => response.json())
+      .then((data) => {
+        data.movies.map((movie,index) => {
+          moviesData = [...moviesData, <MovieCard key={index} movie={movie} cycle={data.cycle}/>]
+        })
+        setMovies(moviesData)
+        // We set the state with the new array
+        // and we set loaded to true so we can render the data
+        setCycleData(data)
+        setLoaded(true)
+      });
+  }, [])
+
   return (
     <Layout>
       <Navbar />
@@ -50,8 +75,8 @@ function Movie() {
         <img src="https://i1.wp.com/www.anim-arte.com/wp-content/uploads/2013/02/el-padrino.jpg?fit=1920%2C1080"
           className="aspect-video w-full object-cover" alt="Imagen El Padrino"/>
         <div className="container px-50 color-green"></div>
-        <div className="m-5 col-start-4 max-w-2xl object-cover bg-green-cycle">
-          "nombre del ciclo"
+        <div className="m-5 col-start-4 max-w-2xl object-cover">
+        {cycleData.cycle.description}
         </div>
           <p className="m-5 max-w-2xl text-black-500 text-justify">
             América, años 40. Don Vito Corleone (Marlon Brando) es el respetado
