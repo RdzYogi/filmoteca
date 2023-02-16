@@ -10,27 +10,31 @@ import userSignOut from "../../components/helpers/userQueries/userSignOut"
 
 function SignIn() {
 
-  const [user, setUser] = useState({email:"", password:""})
+  // Save the info that the user types in the form
+  const [userFormData, setUserFormData] = useState({email:"", password:""})
 
-
+  // Get info about the current user from redux to display
   const currentUserStore = useSelector(state => state.userManager.currentUser)
+  // Get the auth token for sign out
   const authToken = useSelector(state => state.userManager.authToken)
+
+  // dispatch will allow us to call redux reducers
   const dispatch = useDispatch()
 
   const handleEmail = (e) => {
     e.preventDefault()
-    setUser({...user, email: e.target.value})
+    setUserFormData({...userFormData, email: e.target.value})
   }
 
   const handlePassword = (e) => {
     e.preventDefault()
-    setUser({...user, password: e.target.value})
+    setUserFormData({...userFormData, password: e.target.value})
   }
 
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    userSignIn(user)
+    userSignIn(userFormData)
     .then(response => {
       if (response.isLogged) {
         dispatch(setUserAuth(response.authToken))
