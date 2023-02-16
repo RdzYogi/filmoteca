@@ -10,21 +10,18 @@ function Movie() {
 
   let params = useParams()
   const slug = params.slug;
-  // We declare a state so we can store the data from the API
   const [cycleData, setCycleData] = useState([])
   const [loaded, setLoaded] = useState(false)
   const [movies, setMovies] = useState([])
   useEffect(() => {
     let moviesData = []
-    fetch(`http://localhost:3000/api/v1/cartelera/${slug}`)
+    fetch(`api/v1/cartelera/${slug}`)
       .then((response) => response.json())
       .then((data) => {
         data.movies.map((movie,index) => {
           moviesData = [...moviesData, <MovieCard key={index} movie={movie} cycle={data.cycle}/>]
         })
         setMovies(moviesData)
-        // We set the state with the new array
-        // and we set loaded to true so we can render the data
         setCycleData(data)
         setLoaded(true)
       });

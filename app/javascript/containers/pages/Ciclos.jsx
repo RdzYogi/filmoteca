@@ -10,7 +10,7 @@ function Ciclos() {
   const [ciclos, setCiclos] = useState([])
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {
-    fetch('api/v1/cycles')
+    fetch('/api/v1/cycles')
       .then((response) => response.json())
       .then((data) => {
         data.map((cycle,index) => {
