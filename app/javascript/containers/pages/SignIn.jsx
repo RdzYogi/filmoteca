@@ -37,10 +37,21 @@ function SignIn() {
     userSignIn(userFormData)
     .then(response => {
       if (response.isLogged) {
-        dispatch(setUserAuth(response.authToken))
-        dispatch(setCurrentUser(response.user))
-        dispatch(isLogged())
-        response.isAdmin && dispatch(isAdmin())
+        // If another account is logged in, we must log out that one and log in the new one
+        if (isLogged) {
+          userSignOut(authToken)
+          .then(()=>{
+            dispatch(setUserAuth(response.authToken))
+            dispatch(setCurrentUser(response.user))
+            dispatch(isLogged())
+            response.isAdmin && dispatch(isAdmin())
+          })
+        } else {
+          dispatch(setUserAuth(response.authToken))
+          dispatch(setCurrentUser(response.user))
+          dispatch(isLogged())
+          response.isAdmin && dispatch(isAdmin())
+        }
       }
     })
   }
