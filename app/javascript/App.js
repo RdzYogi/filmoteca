@@ -17,41 +17,31 @@ import SignUp from './containers/pages/SignUpLogic';
 import SignIn from './containers/pages/SignIn';
 import { useSelector, useDispatch } from 'react-redux'
 import { resetLocalStorage, isLogged, isAdmin } from "./redux/slices/userSlice"
+import userCheckToken from './components/helpers/userQueries/userCheckToken';
 
 
 function App() {
   const dispatch = useDispatch()
-  const token = useSelector(state => state.userManager.userAuth)
-  // console.log(token)
+  const authToken = useSelector(state => state.userManager.userAuth)
+  // console.log(authToken)
   useEffect(() => {
-    // Check validity of token on page load
-    if (token === "" || token === null) {
-      // no user info in local storage
-      // reset local storage just in case
+    // Check validity of authToken on page load
+    if (authToken === "" || authToken === null) {
       dispatch(resetLocalStorage())
 
     } else {
-      fetch('/users/sign_in', {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json', "Authorization": token},
-      })
-      .then(response => {
-        if (response.ok) {
-          // flag a user as logged in
+      userCheckToken(authToken)
+      .then(result => {
+        // console.log(result)
+        if (result.isLogged === true) {
           dispatch(isLogged())
-          return response.json();
-        } else {
-          // reset local storage
-          dispatch(resetLocalStorage())
-        }
-      })
-      .then(json => {
-        // check if user is admin
-        if (json.user.admin === true) {
-          dispatch(isAdmin())
-        }
-        // console.log(json)
-      })
+          if (result.isAdmin === true) {
+            dispatch(isAdmin())
+          }
+          } else {
+            dispatch(resetLocalStorage())
+          }
+        })
     }
   }, [])
 
