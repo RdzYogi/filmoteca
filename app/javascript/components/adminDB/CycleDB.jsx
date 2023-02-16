@@ -6,35 +6,40 @@ import getDateObject from '../helpers/getDateObject';
 
 function CycleDB(props) {
   const cycle = props.cycle
-  // console.log(Object.keys(cycle))
 
-  const [inputs, setInputs] = useState({})
-  const handleChange = (event) => {
-    console.log(event)
-    const name = event.target.name;
-    console.log(e)
-    const value = event.target.value;
-    setInputs(values => ({...values, [name]: value}))
+  const [cycleValues, setCycleValues] = useState({
+    id: cycle.id,
+    name: cycle.name,
+    description: cycle.description,
+    quote: cycle.quote,
+    img_url: cycle.img_url,
+    start_date: cycle.start_date,
+    end_date: cycle.end_date,
+    color: cycle.color,
+    slug: cycle.slug
+  })
+
+  const handleChange = (e) => {
+    setCycleValues({...cycleValues,
+      [e.target.name]: e.target.value
+    })
+    console.log(cycleValues) // one change behind but when submit its entire input
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/api/v1/cycles/:slug', {
+    console.log(e)
+    fetch(`/api/v1/cycles/${cycleValues.slug}`, {
       method: 'PATCH',
       headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        'X-CSRF-Token': token
       },
-      body: JSON.stringify({
-        name: cycle.name,
-        description: cycle.description,
-        quote: cycle.quote,
-        img_url: cycle.img_url,
-        start_date: cycle.start_date,
-        end_date: cycle.end_date,
-        color: cycle.color
-      })
+      body: JSON.stringify(cycleValues)
     })
+    console.log(cycleValues)
   }
+
 
   return (
     <div>
@@ -47,7 +52,7 @@ function CycleDB(props) {
             />
             <Input
               type="text"
-              id="name"
+              name="name"
               defaultValue={cycle.name}
               placeholder=""
               onChange={handleChange}
@@ -59,7 +64,7 @@ function CycleDB(props) {
             />
             <Input
               type="text"
-              id="description"
+              name="description"
               defaultValue={cycle.description}
               placeholder=""
               onChange={handleChange}
@@ -71,7 +76,7 @@ function CycleDB(props) {
             />
             <Input
               type="text"
-              id="quote"
+              name="quote"
               defaultValue={cycle.quote}
               placeholder=""
               onChange={handleChange}
@@ -83,7 +88,7 @@ function CycleDB(props) {
             />
             <Input
               type="text"
-              id="img_url"
+              name="img_url"
               defaultValue={cycle.img_url}
               onChange={handleChange}
             />
@@ -94,7 +99,7 @@ function CycleDB(props) {
             />
             <Input
               type="text"
-              id="start_date"
+              name="start_date"
               defaultValue={getDateObject(cycle.start_date).day + "-" + getDateObject(cycle.start_date).month + "-" + getDateObject(cycle.start_date).year}
               onChange={handleChange}
             />
@@ -105,7 +110,7 @@ function CycleDB(props) {
             />
             <Input
               type="text"
-              id="end_date"
+              name="end_date"
               defaultValue={getDateObject(cycle.end_date).day + "-" + getDateObject(cycle.end_date).month + "-" + getDateObject(cycle.end_date).year}
               onChange={handleChange}
             />
@@ -114,7 +119,7 @@ function CycleDB(props) {
             <Label
               htmlFor="color" label="Elige un color"
             />
-            <select id="color" className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
+            <select name="color" className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
               {/* may need to put color in tailwind in spanish */}
               {/* <option selected value={cycle.color}>{cycle.color.split("-")[0]}</option> */}
               {/* otherwise choose here option on row 84 */}
@@ -133,10 +138,7 @@ function CycleDB(props) {
           <div> {/* slug */} </div>
           <div> {/* movies */} </div>
           <div> {/* sessions */} </div>
-          {/* <SubmitButton label="guardar"/> */}
-          <button type="submit" className="py-3 px-5 w-32 flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-black hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-button-submit">
-            Submit
-          </button>
+          <SubmitButton label="guardar"/>
         </form>
       </div>
     </div>
@@ -144,33 +146,3 @@ function CycleDB(props) {
 }
 
 export default CycleDB
-
-
-
-// const handleChange = (e) => {
-//   e.preventDefault();
-// }
-
-// const handleSubmit = (e) => {
-//   e.preventDefault();
-// }
-
-// const updateCycle = (e) => {
-//   e.preventDefault();
-//   return fetch(`/api/v1/cycles/${cycle.slug}`, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-type": "application/json"
-//     },
-//     body: JSON.stringify({cycle: cycle})
-//    })
-//   .then(response => {
-//     return response.json();
-//   })
-//   .then((key, value) => {
-//     setCycle((prevCycle) => ({ ...prevCycle, [key]: value }))
-//   })
-//   .catch((err) => {
-//     console.log(err.message)
-//   })
-// }
