@@ -26,15 +26,9 @@ export const userSlice = createSlice({
       state.currentUser.logged_in = true
       localStorage.setItem("current_user", JSON.stringify(action.payload));
     },
-    getUserAuth: (state) => {
-      state.userAuth = localStorage.getItem("auth_token")
-    },
-    getCurrentUser: (state) => {
-      state.currentUser = JSON.parse(localStorage.getItem("current_user"))
-    },
     resetLocalStorage: (state) => {
       state.userAuth = ""
-      state.currentUser = {id: "", email: ""}
+      state.currentUser = {id: "", email: "", admin: false, logged_in: false}
       localStorage.setItem("auth_token", "")
       localStorage.setItem("current_user", "")
     },
@@ -48,10 +42,9 @@ export const userSlice = createSlice({
   }
 })
 
-export const { setUserAuth,
+export const {
+  setUserAuth,
   setCurrentUser,
-  getUserAuth,
-  getCurrentUser,
   resetLocalStorage,
   isLogged,
   isAdmin

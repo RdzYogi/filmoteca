@@ -4,56 +4,58 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserAuth, setCurrentUser } from "../../redux/slices/userSlice"
+import userSignUp from "../../components/helpers/userQueries/userSignUp"
+import userSignOut from "../../components/helpers/userQueries/userSignOut"
 
 
 function SignUp() {
 
-  const [user, setUser] = useState({email:"", password:"", password_confirmation:""})
+  const [userFormData, setUserFormData] = useState({email:"", password:"", password_confirmation:""})
   const dispatch = useDispatch()
   const currentUserStore = useSelector(state => state.userManager.currentUser)
+  const isLogged = useSelector(state => state.userManager.isLogged )
+  const authToken = useSelector(state => state.userManager.authToken)
 
   const handleEmail = (e) => {
     e.preventDefault()
-    setUser({...user, email: e.target.value})
+    setUserFormData({...userFormData, email: e.target.value})
   }
 
   const handlePassword = (e) => {
     e.preventDefault()
-    setUser({...user, password: e.target.value})
+    setUserFormData({...userFormData, password: e.target.value})
   }
   const handlePasswordConfirmation = (e) => {
     e.preventDefault()
-    setUser({...user, password_confirmation: e.target.value})
+    setUserFormData({...userFormData, password_confirmation: e.target.value})
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const data = {user: user}
-    console.log(data)
-    fetch('/users', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data)
-    })
+    // TODO basic validations
+    userSignUp(userFormData)
     .then(response => {
-      console.log(response.headers.get('Authorization'))
-      dispatch(setUserAuth(response.headers.get('Authorization')))
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Something went wrong');
+      if (response.isLogged) {
+        // If another account is logged in, we must log out that one and log in the new one
+        if (isLogged) {
+          userSignOut(authToken)
+          .then(()=>{
+            dispatch(setUserAuth(response.authToken))
+            dispatch(setCurrentUser(response.user))
+            dispatch(isLogged())
+            response.isAdmin && dispatch(isAdmin())
+          })
+        } else {
+          dispatch(setUserAuth(response.authToken))
+          dispatch(setCurrentUser(response.user))
+          dispatch(isLogged())
+          response.isAdmin && dispatch(isAdmin())
+        }
       }
     })
-    .then(json => {
-      console.log(json.user)
-      dispatch(setCurrentUser(json.user))
-    })
-    .catch(error => {
-      // Handle error
-    });
   }
 
-  // console.log(user)
+
 
   return (
     <Layout>
