@@ -3,6 +3,7 @@ Movie.destroy_all unless Movie.all.empty?
 Session.destroy_all unless Session.all.empty?
 Hall.destroy_all unless Hall.all.empty?
 Cycle.destroy_all unless Cycle.all.empty?
+News.destroy_all
 
 
 # Define the halls
@@ -56,7 +57,6 @@ Cycle.create(name: "DOUGLAS SIRK. LA EMOCIÓN INMEDIATA",
              quote: "Ciclo 1",
              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
              color: "green-cycle",
-             slug: "ciclo-1",
              start_date: "2023-01-01",
              end_date: "2023-03-31")
 
@@ -74,7 +74,6 @@ Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
             quote: "Ciclo 2",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/Embrujo_hre7a8.jpg",
             color: "purple-cycle",
-            slug: "ciclo-2",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
 
@@ -83,7 +82,6 @@ Cycle.create(name: "FILMOTECA JUNIOR",
             quote: "Ciclo 3",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
             color: "blue-cycle",
-            slug: "ciclo-3",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
 puts "Cycles created"
@@ -112,11 +110,10 @@ Movie.create(title: "April, April",
               description: "Un panadero que se ha hecho rico monta una fábrica de pasta. Un amigo, harto de su superficialidad, decide gastarle una broma y le cuenta que un príncipe va a ir a visitarla. Debut en el largometraje de Detlef Sierck / Douglas Sirk, siguiendo el sistema de dobles versiones tan común en la época fue rodada también en holandés, aunque esa versión se ha perdido.",
               quote: "«El primer intento de hacer una comedia alemana con el estilo americano». (Douglas Sirk)",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
-              slug: "movie-1",
               year: "1943",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[0].id)
-puts "Movie-1 created"
+
 Movie.create(title: "Concierto en la corte",
               runtime: "85'",
               director: "Douglas Sirk",
@@ -132,7 +129,6 @@ Movie.create(title: "Concierto en la corte",
               y la cámara. Tenía un operador muy bueno; Weihmayr
               hizo aquí un magnífico trabajo y lo mantuve para el resto
               de mis películas alemanas». (Douglas Sirk)",
-              slug: "movie-2",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Concierto-en-la-corte_cvfxwv.jpg",
               year: "2021",
               session_id: Session.all[0].id,
@@ -156,7 +152,6 @@ Movie.create(title: "La golondrina cautiva",
             siempre me había interesado, tanto en el cine como en el
             teatro, y que procuré mantener también en el melodrama,
             el indeciso, el ambiguo, el inseguro». (Douglas Sirk)",
-            slug: "movie-3",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676291459/Filmoteca/Mas-fuerte-que-la-ley_kgutup.jpg",
             year: "1937",
             session_id: Session.all[0].id,
@@ -174,7 +169,6 @@ Movie.create(title: "La Habanera",
             anticapitalista, cosa que caía bien en Alemania en aquel
             momento». (Douglas Sirk)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301247/Filmoteca/La-Habanera_v0tmk8.jpg",
-            slug: "movie-4",
             year: "1937",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[0].id)
@@ -197,7 +191,6 @@ Movie.create(title: "La novena sinfonía",
             tante […] El movimiento es emoción, en un modo en el
             que nunca puede serlo en el teatro». (Douglas Sirk)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301243/Filmoteca/La-novena-sinfon%C3%ADa_ifwrdb.jpg",
-            slug: "movie-5",
             year: "1936",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[0].id)
@@ -221,7 +214,6 @@ Movie.create(title: "Embrujo",
             pudiera parecerlo tal y como la presentaron al público
             productores y exhibidores». (Carlos Serrano de Osma)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/Embrujo_hre7a8.jpg",
-            slug: "movie-6",
             year: "1947",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[1].id)
@@ -246,7 +238,6 @@ Movie.create(title: "Una señora estupenda",
             cos: Rafael Romero, Pepe Montoyita, Beni de Jerez, Paco
             Aguilera, Juana la del Pipa…». (Carlos Aguilar y Anita Haas)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301269/Filmoteca/Una-se%C3%B1ora-estupenda_x6ymci.jpg",
-            slug: "movie-7",
             year: "1947",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[1].id)
@@ -273,7 +264,6 @@ Movie.create(title: "El último unicornio",
             Isao Takahata; el nuevo proyecto era el Estudio Ghibli».
             (Alex McLevy)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/El-%C3%BAltimo-unicornio_mxtekq.jpg",
-            slug: "movie-8",
             year: "1982",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[2].id)
@@ -298,7 +288,6 @@ Movie.create(title: "La bella y la bestia",
               construcción de personajes como en las propias can-
               ciones». (Janet Maslin)",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
-              slug: "movie-9",
               year: "1991",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[2].id)

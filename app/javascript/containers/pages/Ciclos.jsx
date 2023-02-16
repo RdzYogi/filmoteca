@@ -13,20 +13,9 @@ function Ciclos() {
     fetch('api/v1/cycles')
       .then((response) => response.json())
       .then((data) => {
-        let newCiclos = []
         data.map((cycle,index) => {
-          // We use an array to store the data
-          // by using a spread operator [...] that works like a push
-          newCiclos = [...newCiclos, <CycleCard key={index} cycle={cycle}/>]
-          // newCiclos will be an ARRAY OF COMPONENTS
-
-          // Trying to spread over the array in useState will not work
-          // because useState will only accept a single value
-          // and if we try to spread over the state we will get only the last value from the map
+          setCiclos(ciclos => [...ciclos, <CycleCard key={index} cycle={cycle}/>])
         })
-        // We set the state with the new array
-        // and we set loaded to true so we can render the data
-        setCiclos(newCiclos)
         setLoaded(true)
       });
   }, [])
