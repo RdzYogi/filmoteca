@@ -62,11 +62,9 @@ function Home() {
           <Noticias/>
         </div> */}
         <h2 className='text-center font-bold text-2xl pb-4'>Ciclos</h2>
-        <div className="mx-auto mb-32 max-w-7xl">
-          <Carousel responsive={responsive} >
-            {ciclos}
-          </Carousel>
-        </div>
+        <Carousel responsive={responsive} className="mx-auto mb-32 max-w-7xl" >
+          {ciclos}
+        </Carousel>
         <h2 className='text-center font-bold text-2xl pb-4'>Peliculas</h2>
         <div className="mx-auto mb-32 max-w-7xl">
           <Carousel responsive={responsive} >
