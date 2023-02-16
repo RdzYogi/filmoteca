@@ -19,11 +19,11 @@ const responsive = {
     items: 3
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 1024, min: 768 },
     items: 2
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 768, min: 0 },
     items: 1
   }
 };
@@ -62,7 +62,7 @@ function Home() {
           <Noticias/>
         </div> */}
         <h2 className='text-center font-bold text-2xl pb-4'>Ciclos</h2>
-        <Carousel responsive={responsive} className="mx-auto mb-32 max-w-7xl" >
+        <Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-32 max-w-7xl" >
           {ciclos}
         </Carousel>
         <h2 className='text-center font-bold text-2xl pb-4'>Peliculas</h2>
