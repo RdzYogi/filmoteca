@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ticket_price_normal: 1
+  ticket_price_discount: 1
+  abono_price_normal: 1
+  abono10_price_normal: 1
+  abono_price_discount: 1
+  abono10_price_discount: 1
+
+two:
+  ticket_price_normal: 1
+  ticket_price_discount: 1
+  abono_price_normal: 1
+  abono10_price_normal: 1
+  abono_price_discount: 1
+  abono10_price_discount: 1

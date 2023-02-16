@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_15_120254) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_16_162039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_120254) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "prices", force: :cascade do |t|
+    t.integer "ticket_price_normal"
+    t.integer "ticket_price_discount"
+    t.integer "abono_price_normal"
+    t.integer "abono10_price_normal"
+    t.integer "abono_price_discount"
+    t.integer "abono10_price_discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.boolean "ticket"
+    t.bigint "session_id", null: false
+    t.bigint "seat_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "subscription_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seat_id"], name: "index_reservations_on_seat_id"
+    t.index ["session_id"], name: "index_reservations_on_session_id"
+    t.index ["subscription_id"], name: "index_reservations_on_subscription_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "seats", force: :cascade do |t|
     t.string "row"
     t.string "column"
@@ -89,6 +114,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_120254) do
     t.index ["hall_id"], name: "index_sessions_on_hall_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer "remaining_uses"
+    t.string "type"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -104,7 +140,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_120254) do
 
   add_foreign_key "movies", "cycles"
   add_foreign_key "movies", "sessions"
+  add_foreign_key "reservations", "seats"
+  add_foreign_key "reservations", "sessions"
+  add_foreign_key "reservations", "subscriptions"
+  add_foreign_key "reservations", "users"
   add_foreign_key "seats", "halls"
   add_foreign_key "sessions", "cycles"
   add_foreign_key "sessions", "halls"
+  add_foreign_key "subscriptions", "users"
 end
