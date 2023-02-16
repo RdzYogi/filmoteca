@@ -10,6 +10,7 @@ function CycleDB(props) {
 
   const [inputs, setInputs] = useState({})
   const handleChange = (event) => {
+    console.log(event)
     const name = event.target.name;
     console.log(e)
     const value = event.target.value;
@@ -18,7 +19,21 @@ function CycleDB(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(cycle.name);
+    fetch('/api/v1/cycles/:slug', {
+      method: 'PATCH',
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        name: cycle.name,
+        description: cycle.description,
+        quote: cycle.quote,
+        img_url: cycle.img_url,
+        start_date: cycle.start_date,
+        end_date: cycle.end_date,
+        color: cycle.color
+      })
+    })
   }
 
   return (
