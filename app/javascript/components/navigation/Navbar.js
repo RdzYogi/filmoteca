@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 import logo_blanco from '../../assets/images/logo-blanco.png';
 import { useSelector } from 'react-redux'
@@ -9,18 +9,25 @@ import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRecta
 
 
 function Navbar() {
-  // Logic for assigning listeners to the window to hide the dropdown menu
-  window.addEventListener('resize', () => {
-    const width = window.innerWidth;
-    if (width > 768) {
-      setIsOpen(false);
+  useEffect(() => {
+    const onWindowResize = () => {
+      const width = window.innerWidth;
+      if (width > 768) {
+        setIsOpen(false);
+      }
     }
-  })
-  document.body.addEventListener('click', (e) => {
-    if (e.target.id !== 'drop_down_menu' && e.target.parentElement.id !== 'drop_down_button') {
-      setIsOpen(false);
+    const onOutsideClick = (e) => {
+      if (e.target.id !== 'drop_down_menu' && e.target.parentElement.id !== 'drop_down_button') {
+        setIsOpen(false);
+      }
     }
-  });
+    window.addEventListener('resize', onWindowResize);
+    document.body.addEventListener('click',onOutsideClick);
+    return () => {
+      window.removeEventListener('resize', onWindowResize),
+      document.body.removeEventListener('click', onOutsideClick)
+    }
+  }, [])
 
 
   // Logic for checking if the user is signed in
