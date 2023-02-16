@@ -5,6 +5,7 @@ import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserAuth, setCurrentUser, resetLocalStorage, isLogged, isAdmin } from "../../redux/slices/userSlice"
 import userSignIn from "../../components/helpers/userQueries/userSignIn"
+import userSignOut from "../../components/helpers/userQueries/userSignOut"
 
 
 function SignIn() {
@@ -38,47 +39,14 @@ function SignIn() {
         response.isAdmin && dispatch(isAdmin())
       }
     })
-
-    // console.log(data)
-    // fetch('/users/sign_in', {
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify(data)
-    // })
-    // .then(response => {
-    //   // console.log(response)
-    //   if (response.ok) {
-    //     // console.log(response.headers.get('Authorization').split(' ')[1])
-    //     dispatch(setUserAuth(response.headers.get('Authorization')))
-    //     return response.json();
-    //   } else {
-    //     throw new Error('Something went wrong');
-    //   }
-    // })
-    // .then(json => {
-    //   // console.log(json)
-    //   dispatch(setCurrentUser(json.user))
-    //   dispatch(isLogged())
-    //   if (json.user.admin === true) {
-    //     dispatch(isAdmin())
-    //   }
-    // })
-    // .catch(error => {
-    // });
   }
 
   const handleSignOut = (e) => {
     e.preventDefault()
-    fetch('/users/sign_out', {
-      method: 'DELETE',
-      headers: {'Content-Type': 'application/json', "Authorization": authToken},
-    })
-    .then(response => {
-      if (response.ok) {
+    userSignOut(authToken)
+    .then(response =>{
+      if (response){
         dispatch(resetLocalStorage())
-        return response.json();
-      } else {
-        throw new Error('Something went wrong');
       }
     })
   }
