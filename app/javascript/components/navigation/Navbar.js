@@ -17,7 +17,10 @@ function Navbar() {
       }
     }
     const onOutsideClick = (e) => {
-      if (e.target.id || e.target.id !== 'drop_down_menu' && e.target.parentElement.id !== 'drop_down_button') {
+      console.log(e.target.id, e)
+      if (e.target.id !== 'drop_down_menu' &&
+          e.target.parentElement.parentElement.id !== 'drop_down_button' &&
+          e.target.parentElement.id !== 'drop_down_button') {
         setIsOpen(false);
       }
     }
