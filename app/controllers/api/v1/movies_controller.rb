@@ -38,14 +38,16 @@ class Api::V1::MoviesController < ApplicationController
   end
 
   def update
-    movie = Movie.find(params[:id])
+    movie = Movie.find_by(slug: params[:slug])
     movie.update(movie_params)
+    puts movie.title
+    puts movie_params
     render json: movie
   end
 
   private
 
   def movie_params
-    params.require(:movie).permit(:id, :title, :runtime, :director, :description, :quote, :img_url, :year)
+    params.require(:movie).permit(:id, :title, :runtime, :director, :description, :quote, :img_url, :year, :slug)
   end
 end

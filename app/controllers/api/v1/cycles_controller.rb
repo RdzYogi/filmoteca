@@ -38,7 +38,7 @@ class Api::V1::CyclesController < ApplicationController
   end
 
   def update
-    cycle = Cycle.find(params[:id])
+    cycle = Cycle.find_by(slug: params[:slug])
     cycle.update(cycle_params)
     render json: cycle
   end
@@ -46,6 +46,6 @@ class Api::V1::CyclesController < ApplicationController
   private
 
   def cycle_params
-    params.require(:cycle).permit(:id, :name, :description, :quote, :img_url, :start_date, :end_date, :color)
+    params.require(:cycle).permit(:id, :name, :description, :quote, :img_url, :start_date, :end_date, :color, :slug)
   end
 end

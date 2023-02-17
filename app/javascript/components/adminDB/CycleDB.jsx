@@ -24,12 +24,11 @@ function CycleDB(props) {
     setCycleValues({...cycleValues,
       [e.target.name]: e.target.value
     })
-    console.log(cycleValues) // one change behind but when submit its entire input
+    // console.log(cycleValues) // one change behind but when submit its entire input
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
     fetch(`/api/v1/cycles/${cycleValues.slug}`, {
       method: 'PATCH',
       headers: {
@@ -46,7 +45,7 @@ function CycleDB(props) {
     <div>
       <h2 className='text-2xl'>Cycle</h2>
       <div className='justify-items-start mb-8'>
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <div className='flex items-center'> {/* Name */}
             <Label
               htmlFor="name" label="Nombre"

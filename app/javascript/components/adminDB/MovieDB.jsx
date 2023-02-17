@@ -8,7 +8,6 @@ function MovieDB(props) {
   const csrfToken = document.querySelector("[name='csrf-token']").content
 
   const [movieValues, setMovieValues] = useState({
-    id: movie.id,
     title: movie.title,
     runtime: movie.runtime,
     director: movie.director,
@@ -28,8 +27,7 @@ function MovieDB(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
-    fetch(`/api/v1/cycles/${movieValues.slug}`, {
+    fetch(`/api/v1/movies/${movieValues.slug}`, {
       method: 'PATCH',
       headers: {
         "Content-type": "application/json",
@@ -51,8 +49,8 @@ function MovieDB(props) {
             />
             <Input
               type="text"
-              id="title"
-              defaultValue="Título"
+              name="title"
+              defaultValue={movie.title}
               onChange={handleChange}
             />
           </div>
@@ -62,8 +60,8 @@ function MovieDB(props) {
             />
             <Input
               type="text"
-              id="runtime"
-              defaultValue="Duración"
+              name="runtime"
+              defaultValue={movie.runtime}
               onChange={handleChange}
             />
           </div>
@@ -73,8 +71,8 @@ function MovieDB(props) {
             />
             <Input
               type="text"
-              id="director"
-              defaultValue="Director"
+              name="director"
+              defaultValue={movie.director}
               onChange={handleChange}
             />
           </div>
@@ -84,8 +82,8 @@ function MovieDB(props) {
             />
             <Input
               type="text"
-              id="description"
-              defaultValue="Descripción"
+              name="description"
+              defaultValue={movie.description}
               onChange={handleChange}
             />
           </div>
@@ -95,8 +93,8 @@ function MovieDB(props) {
             />
             <Input
               type="text"
-              id="quote"
-              defaultValue="Cita"
+              name="quote"
+              defaultValue={movie.quote}
               onChange={handleChange}
             />
           </div>
@@ -106,8 +104,8 @@ function MovieDB(props) {
             />
             <Input
               type="text"
-              id="img_url"
-              defaultValue=""
+              name="img_url"
+              defaultValue={movie.img_url}
               onChange={handleChange}
             />
           </div>
@@ -117,16 +115,16 @@ function MovieDB(props) {
             />
             <Input
               type="text"
-              id="year"
-              defaultValue="Año"
+              name="year"
+              defaultValue={movie.year}
               onChange={handleChange}
             />
           </div>
 
           <div> {/* slug */} </div>
-          <div> {/* cycle_id */} </div>
-          <div> {/* session_id */} </div>
-          <div> {/* hall_id */} </div>
+          <div> {/* cycle_name */} </div>
+          <div> {/* session_name */} </div>
+          <div> {/* hall_name */} </div>
           <SubmitButton label="Guardar"/>
         </form>
       </div>
