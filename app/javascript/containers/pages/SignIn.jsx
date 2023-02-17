@@ -3,9 +3,9 @@ import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserAuth, setCurrentUser, resetLocalStorage, isLogged, isAdmin } from "../../redux/slices/userSlice"
+import { setUserAuth, setCurrentUser, resetLocalStorage, isLogged, isAdmin, userSignOut } from "../../redux/slices/userSlice"
 import userSignIn from "../../components/helpers/userQueries/userSignIn"
-import userSignOut from "../../components/helpers/userQueries/userSignOut"
+// import userSignOut from "../../components/helpers/userQueries/userSignOut"
 
 
 function SignIn() {
@@ -39,7 +39,7 @@ function SignIn() {
       if (response.isLogged) {
         // If another account is logged in, we must log out that one and log in the new one
         if (isLogged) {
-          userSignOut(authToken)
+          dispatch(userSignOut())
           .then(()=>{
             dispatch(setUserAuth(response.authToken))
             dispatch(setCurrentUser(response.user))
@@ -58,12 +58,13 @@ function SignIn() {
 
   const handleSignOut = (e) => {
     e.preventDefault()
-    userSignOut(authToken)
-    .then(response =>{
-      if (response){
-        dispatch(resetLocalStorage())
-      }
-    })
+    dispatch(userSignOut())
+    // userSignOut(authToken)
+    // .then(response =>{
+    //   if (response){
+    //     dispatch(resetLocalStorage())
+    //   }
+    // })
   }
 
 

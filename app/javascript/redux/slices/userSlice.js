@@ -13,7 +13,7 @@ const initialState = {
 export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",async ()=>{
   const result = {isLogged: false, isAdmin: false}
   const state = store.getState()
-  console.log("before fetch:", state)
+  // console.log("before fetch:", state)
   await fetch('/users/sign_in', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', "Authorization": state.userManager.userAuth},
@@ -28,6 +28,24 @@ export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",as
     // check if user is admin
     if (json.user.admin === true) {
       result.isAdmin = true
+    }
+  })
+  return result
+})
+
+export const userSignOut = createAsyncThunk("userManager/userSignOut",async ()=>{
+  const state = store.getState()
+  const csrfToken = document.querySelector("[name='csrf-token']").content
+  let result = false
+  await fetch('/users/sign_out', {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json',"X-CSRF-Token": csrfToken, "Authorization": state.userManager.userAuth},
+  })
+  .then(response => {
+    if (response.ok) {
+      result = true
+    } else {
+      throw new Error('Something went wrong');
     }
   })
   return result
@@ -70,6 +88,11 @@ export const userSlice = createSlice({
         console.log(action.payload)
         if (action.payload.isLogged === true) {
           state.currentUser.logged_in = true
+        } else{
+          state.userAuth = ""
+          state.currentUser = {id: "", email: "", admin: false, logged_in: false}
+          localStorage.setItem("auth_token", "")
+          localStorage.setItem("current_user", "")
         }
         if (action.payload.isAdmin === true) {
           state.currentUser.admin = true
@@ -77,6 +100,16 @@ export const userSlice = createSlice({
       })
       .addCase(verifyUserToken.rejected, (state, action) => {
       })
+      .addCase(userSignOut.pending, (state, action) => {})
+      .addCase(userSignOut.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.userAuth = ""
+          state.currentUser = {id: "", email: "", admin: false, logged_in: false}
+          localStorage.setItem("auth_token", "")
+          localStorage.setItem("current_user", "")
+        }
+      })
+      .addCase(userSignOut.rejected, (state, action) => {})
   }
 })
 

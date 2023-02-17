@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def respond_to_on_destroy
-    log_out_success && return if current_user.nil?
+    log_out_success && return if current_user
 
     log_out_failed
   end
@@ -23,6 +23,7 @@ class Users::SessionsController < Devise::SessionsController
   def log_out_success
     render json: {
       message: 'Signed out successfully',
+      user: current_user
     }, status: :ok
   end
 
