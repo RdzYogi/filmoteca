@@ -43,89 +43,91 @@ function MovieDB(props) {
     <div>
       <h2 className='text-2xl'>Movie</h2>
       <div className='justify-items-start'>
-        <div className='flex items-center'> {/* title */}
-          <Label
-            htmlFor="title" label="Título"
-          />
-          <Input
-            type="text"
-            id="title"
-            defaultValue="Título"
-            onChange={handleChange}
-          />
-        </div>
-        <div className='flex items-center'> {/* runtime */}
-          <Label
-            htmlFor="runtime" label="Duración"
-          />
-          <Input
-            type="text"
-            id="runtime"
-            defaultValue="Duración"
-            onChange={handleChange}
-          />
-        </div>
-        <div className='flex items-center'> {/* director */}
-          <Label
-            htmlFor="director" label="Director"
-          />
-          <Input
-            type="text"
-            id="director"
-            defaultValue="Director"
-            onChange={handleChange}
-          />
-        </div>
-        <div className='flex items-center'> {/* Description */}
-          <Label
-            htmlFor="description" label="Descripción"
-          />
-          <Input
-            type="text"
-            id="description"
-            defaultValue="Descripción"
-            onChange={handleChange}
-          />
-        </div>
-        <div className='flex items-center'> {/* Quote */}
-          <Label
-            htmlFor="quote" label="Cita"
-          />
-          <Input
-            type="text"
-            id="quote"
-            defaultValue="Cita"
-            onChange={handleChange}
-          />
-        </div>
-        <div className='flex items-center'> {/* img url */}
-          <Label
-            htmlFor="img_url" label="Ingrese la URL de la portada"
-          />
-          <Input
-            type="text"
-            id="img_url"
-            defaultValue=""
-            onChange={handleChange}
-          />
-        </div>
-        <div className='flex items-center'> {/* year */}
-          <Label
-            htmlFor="year" label="Año de lanzamiento"
-          />
-          <Input
-            type="text"
-            id="year"
-            defaultValue="Año"
-            onChange={handleChange}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className='flex items-center'> {/* title */}
+            <Label
+              htmlFor="title" label="Título"
+            />
+            <Input
+              type="text"
+              id="title"
+              defaultValue="Título"
+              onChange={handleChange}
+            />
+          </div>
+          <div className='flex items-center'> {/* runtime */}
+            <Label
+              htmlFor="runtime" label="Duración"
+            />
+            <Input
+              type="text"
+              id="runtime"
+              defaultValue="Duración"
+              onChange={handleChange}
+            />
+          </div>
+          <div className='flex items-center'> {/* director */}
+            <Label
+              htmlFor="director" label="Director"
+            />
+            <Input
+              type="text"
+              id="director"
+              defaultValue="Director"
+              onChange={handleChange}
+            />
+          </div>
+          <div className='flex items-center'> {/* Description */}
+            <Label
+              htmlFor="description" label="Descripción"
+            />
+            <Input
+              type="text"
+              id="description"
+              defaultValue="Descripción"
+              onChange={handleChange}
+            />
+          </div>
+          <div className='flex items-center'> {/* Quote */}
+            <Label
+              htmlFor="quote" label="Cita"
+            />
+            <Input
+              type="text"
+              id="quote"
+              defaultValue="Cita"
+              onChange={handleChange}
+            />
+          </div>
+          <div className='flex items-center'> {/* img url */}
+            <Label
+              htmlFor="img_url" label="Ingrese la URL de la portada"
+            />
+            <Input
+              type="text"
+              id="img_url"
+              defaultValue=""
+              onChange={handleChange}
+            />
+          </div>
+          <div className='flex items-center'> {/* year */}
+            <Label
+              htmlFor="year" label="Año de lanzamiento"
+            />
+            <Input
+              type="text"
+              id="year"
+              defaultValue="Año"
+              onChange={handleChange}
+            />
+          </div>
 
-        <div> {/* slug */} </div>
-        <div> {/* cycle_id */} </div>
-        <div> {/* session_id */} </div>
-        <div> {/* hall_id */} </div>
-        <SubmitButton label="Guardar"/>
+          <div> {/* slug */} </div>
+          <div> {/* cycle_id */} </div>
+          <div> {/* session_id */} </div>
+          <div> {/* hall_id */} </div>
+          <SubmitButton label="Guardar"/>
+        </form>
       </div>
     </div>
   )
