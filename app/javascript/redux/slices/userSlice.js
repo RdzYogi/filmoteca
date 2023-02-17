@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   userAuth: localStorage.getItem("auth_token") || "",
@@ -10,6 +10,28 @@ const initialState = {
   }
 }
 
+export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",async ()=>{
+  const result = {isLogged: false, isAdmin: false}
+  const state = store.getState()
+  console.log("before fetch:", state)
+  await fetch('/users/sign_in', {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json', "Authorization": state.userManager.userAuth},
+  })
+  .then(response => {
+    if (response.ok) {
+      result.isLogged = true
+      return response.json();
+    }
+  })
+  .then(json => {
+    // check if user is admin
+    if (json.user.admin === true) {
+      result.isAdmin = true
+    }
+  })
+  return result
+})
 
 // Todo refactor this
 export const userSlice = createSlice({
@@ -38,7 +60,23 @@ export const userSlice = createSlice({
     isAdmin: (state) => {
       state.currentUser.admin = true
     }
-
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(verifyUserToken.pending, (state, action) => {
+      })
+      .addCase(verifyUserToken.fulfilled, (state, action) => {
+        console.log("fulfilled")
+        console.log(action.payload)
+        if (action.payload.isLogged === true) {
+          state.currentUser.logged_in = true
+        }
+        if (action.payload.isAdmin === true) {
+          state.currentUser.admin = true
+        }
+      })
+      .addCase(verifyUserToken.rejected, (state, action) => {
+      })
   }
 })
 

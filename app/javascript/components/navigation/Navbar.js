@@ -17,7 +17,7 @@ function Navbar() {
       }
     }
     const onOutsideClick = (e) => {
-      console.log(e.target.id, e)
+      // console.log(e.target.id, e)
       if (e.target.id !== 'drop_down_menu' &&
           e.target.parentElement.parentElement.id !== 'drop_down_button' &&
           e.target.parentElement.id !== 'drop_down_button') {
