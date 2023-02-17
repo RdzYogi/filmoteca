@@ -3,9 +3,7 @@ import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserAuth, setCurrentUser, resetLocalStorage, isLogged, isAdmin } from "../../redux/slices/userSlice"
-import userSignIn from "../../components/helpers/userQueries/userSignIn"
-import userSignOut from "../../components/helpers/userQueries/userSignOut"
+import { userSignOut, userSignIn } from "../../redux/slices/userSlice"
 
 
 function SignIn() {
@@ -15,8 +13,6 @@ function SignIn() {
 
   // Get info about the current user from redux to display
   const currentUserStore = useSelector(state => state.userManager.currentUser)
-  // Get the auth token for sign out
-  const authToken = useSelector(state => state.userManager.authToken)
 
   // dispatch will allow us to call redux reducers
   const dispatch = useDispatch()
@@ -31,39 +27,14 @@ function SignIn() {
     setUserFormData({...userFormData, password: e.target.value})
   }
 
-
   const handleSubmit = (e) => {
     e.preventDefault()
-    userSignIn(userFormData)
-    .then(response => {
-      if (response.isLogged) {
-        // If another account is logged in, we must log out that one and log in the new one
-        if (isLogged) {
-          userSignOut(authToken)
-          .then(()=>{
-            dispatch(setUserAuth(response.authToken))
-            dispatch(setCurrentUser(response.user))
-            dispatch(isLogged())
-            response.isAdmin && dispatch(isAdmin())
-          })
-        } else {
-          dispatch(setUserAuth(response.authToken))
-          dispatch(setCurrentUser(response.user))
-          dispatch(isLogged())
-          response.isAdmin && dispatch(isAdmin())
-        }
-      }
-    })
+    dispatch(userSignIn(userFormData))
   }
 
   const handleSignOut = (e) => {
     e.preventDefault()
-    userSignOut(authToken)
-    .then(response =>{
-      if (response){
-        dispatch(resetLocalStorage())
-      }
-    })
+    dispatch(userSignOut())
   }
 
 
