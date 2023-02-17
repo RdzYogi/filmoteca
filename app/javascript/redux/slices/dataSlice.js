@@ -2,22 +2,28 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   movies: [],
+  moviesStatus: "idle",
   cycles: [],
+  cyclesStatus: "idle"
 }
-export const fetchMovieData = createAsyncThunk("dataManager/fetchMovieData",async ()=>{
+export const fetchMoviesData = createAsyncThunk("dataManager/fetchMovieData",async ()=>{
+  let movies = []
   await fetch('api/v1/movies')
       .then((response) => response.json())
       .then((data) => {
-        return data
+        movies = data
       });
+  return movies
 })
 
-export const fetchCycleData = createAsyncThunk("dataManager/fetchCycleData",async ()=>{
+export const fetchCyclesData = createAsyncThunk("dataManager/fetchCycleData",async ()=>{
+  let cycles = []
   await fetch('api/v1/cycles')
       .then((response) => response.json())
       .then((data) => {
-        return data
+        cycles = data
       });
+  return cycles
 })
 
 export const dataSlice = createSlice({
@@ -25,10 +31,11 @@ export const dataSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(fetchMovieData.fulfilled, (state, action) => {
+      .addCase(fetchMoviesData.fulfilled, (state, action) => {
         state.movies = action.payload
+        state.moviesStatus = "succeeded"
       })
-      .addCase(fetchCycleData.fulfilled, (state, action) => {
+      .addCase(fetchCyclesData.fulfilled, (state, action) => {
         state.cycles = action.payload
       })
   }
