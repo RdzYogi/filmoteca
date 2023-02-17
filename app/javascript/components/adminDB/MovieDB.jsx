@@ -1,11 +1,13 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Label from './label'
 import Input from './input'
 import SubmitButton from '../shared/SubmitButton';
 
 function MovieDB(props) {
   const movie = props.movie.movie
+  const cycle = props.movie.include.cycle
   const csrfToken = document.querySelector("[name='csrf-token']").content
+  const [availableCycles, setAvailableCycles] = useState([])
 
   const [movieValues, setMovieValues] = useState({
     id: movie.id,
@@ -16,14 +18,16 @@ function MovieDB(props) {
     quote: movie.quote,
     img_url: movie.img_url,
     year: movie.year,
-    slug: movie.slug
+    slug: movie.slug,
+    cycle: movie.cycle_id,
+    session: movie.session_id
   })
 
   const handleChange = (e) => {
     setMovieValues({...movieValues,
       [e.target.name]: e.target.value
     })
-    console.log(movieValues) // one change behind but when submit its entire input
+    // console.log(movieValues) // one change behind but when submit its entire input
   }
 
   const handleSubmit = (e) => {
@@ -36,8 +40,25 @@ function MovieDB(props) {
       },
       body: JSON.stringify(movieValues)
     })
-    console.log(movieValues)
   }
+
+  // get all cycles to select to which cycle a movie belongs to (asnyc + useEffect)
+  async function fetchCycles() {
+    const response = await fetch('/api/v1/cycles');
+    if (!response.ok){
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message)
+    }
+    const cycles = await response.json();
+    return cycles;
+  }
+
+  useEffect(() => {
+    fetchCycles()
+    .then((res) => setAvailableCycles(res))
+    .catch((error) => console.log(error.message))
+  }, [])
+
 
   return (
     <div>
@@ -120,6 +141,19 @@ function MovieDB(props) {
               defaultValue={movie.year}
               onChange={handleChange}
             />
+          </div>
+{/* cycle make a select */}
+          <div className='flex items-center'> {/* year */}
+            <Label
+              htmlFor="cycle" label="Cycle"
+            />
+            <select name="cycle" onChange={handleChange} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
+              <option defaultValue={cycle.name}>{cycle.name}</option> {/* default option twice rn */}
+              {availableCycles.map((cycle, index) => {
+                return <option key={index} value={cycle.id}>{cycle.name}</option>
+              })}
+
+            </select>
           </div>
 
           <div> {/* cycle_name */} </div>

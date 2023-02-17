@@ -46,8 +46,8 @@ function AdminDB() {
         <button type="submit" className="py-3 px-5 w-full flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-black hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-button-submit">
           ADD new here
         </button>
-        {ciclos}
         {movies}
+        {/* {ciclos} */}
         {/* previous and next buttons */}
       </div>
       <Footer/>
