@@ -15,15 +15,18 @@ import Movie from './containers/pages/Movie';
 import AdminDB from './containers/pages/AdminDB';
 import SignUp from './containers/pages/SignUpLogic';
 import SignIn from './containers/pages/SignIn';
-import { useSelector, useDispatch } from 'react-redux'
-import { resetLocalStorage, isLogged, isAdmin, verifyUserToken } from "./redux/slices/userSlice"
-import userCheckToken from './components/helpers/userQueries/userCheckToken';
+import { useDispatch, useSelector } from 'react-redux'
+import { verifyUserToken } from "./redux/slices/userSlice"
+
 
 
 function App() {
   const dispatch = useDispatch()
+  const auth_token = useSelector(state => state.userManager.userAuth)
   useEffect(() => {
-    dispatch(verifyUserToken())
+    if (auth_token) {
+      dispatch(verifyUserToken())
+    }
   }, [])
 
   return (
