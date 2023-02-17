@@ -53,7 +53,7 @@ function Navbar() {
               height={350}
               className=""/>
             </Link>
-            <div className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></div>
+            <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link>
           </div>
 
           {/* NavLink is going to add the active class to the link that we will define */}
