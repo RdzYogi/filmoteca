@@ -122,7 +122,6 @@ function MovieDB(props) {
             />
           </div>
 
-          <div> {/* slug */} </div>
           <div> {/* cycle_name */} </div>
           <div> {/* session_name */} </div>
           <div> {/* hall_name */} </div>

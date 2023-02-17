@@ -37,7 +37,7 @@ function CycleDB(props) {
       },
       body: JSON.stringify(cycleValues)
     })
-    console.log(cycleValues)
+    // console.log(cycleValues)
   }
 
 
@@ -116,7 +116,7 @@ function CycleDB(props) {
             <Label
               htmlFor="color" label="Elige un color"
             />
-            <select name="color" className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
+            <select name="color" onChange={handleChange} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
               {/* may need to put color in tailwind in spanish */}
               {/* <option selected value={cycle.color}>{cycle.color.split("-")[0]}</option> */}
               {/* otherwise choose here option on row 84 */}
@@ -132,7 +132,6 @@ function CycleDB(props) {
             </select>
           </div>
 
-          <div> {/* slug */} </div>
           <div> {/* movies */} </div>
           <div> {/* sessions */} </div>
           <SubmitButton label="guardar"/>
