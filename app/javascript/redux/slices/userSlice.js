@@ -51,7 +51,47 @@ export const userSignOut = createAsyncThunk("userManager/userSignOut",async ()=>
   return result
 })
 
-// Todo refactor this
+export const userSignIn = createAsyncThunk("userManager/userSignIn", async (user)=>{
+  const data = {user: user}
+  const state = store.getState()
+  if (state.userManager.currentUser.logged_in === true) {
+    await store.dispatch(userSignOut())
+  }
+  const result = {
+    user: {},
+    authToken: '',
+    isLogged: false,
+    isAdmin: false
+  }
+
+  await fetch('/users/sign_in', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    // console.log(response)
+    if (response.ok) {
+      // console.log(response.headers.get('Authorization').split(' ')[1])
+      result.authToken = response.headers.get('Authorization')
+      return response.json();
+    } else {
+      throw new Error('Something went wrong');
+    }
+  })
+  .then(json => {
+    // console.log(json)
+    result.user = json.user
+    result.user ? result.isLogged = true : result.isLogged = false
+    if (json.user.admin === true) {
+      result.isAdmin = true
+    }
+  })
+  .catch(error => {
+  });
+  return result
+})
+
 export const userSlice = createSlice({
   name : "userManager",
   initialState,
@@ -110,6 +150,18 @@ export const userSlice = createSlice({
         }
       })
       .addCase(userSignOut.rejected, (state, action) => {})
+      .addCase(userSignIn.pending, (state, action) => {})
+      .addCase(userSignIn.fulfilled, (state, action) => {
+        if (action.payload.isLogged === true) {
+          state.userAuth = action.payload.authToken
+          state.currentUser.id = action.payload.user.id
+          state.currentUser.email = action.payload.user.email
+          state.currentUser.logged_in = true
+          localStorage.setItem("auth_token", action.payload.authToken);
+          localStorage.setItem("current_user", JSON.stringify(action.payload.user));
+        }
+      })
+      .addCase(userSignIn.rejected, (state, action) => {})
   }
 })
 
