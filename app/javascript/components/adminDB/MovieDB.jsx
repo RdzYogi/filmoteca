@@ -5,6 +5,7 @@ import SubmitButton from '../shared/SubmitButton';
 
 function MovieDB(props) {
   const movie = props.movie.movie
+  const csrfToken = document.querySelector("[name='csrf-token']").content
 
   const [movieValues, setMovieValues] = useState({
     id: movie.id,
@@ -32,7 +33,7 @@ function MovieDB(props) {
       method: 'PATCH',
       headers: {
         "Content-type": "application/json",
-        'X-CSRF-Token': token
+        'X-CSRF-Token': csrfToken
       },
       body: JSON.stringify(movieValues)
     })

@@ -25,4 +25,27 @@ class Api::V1::MoviesController < ApplicationController
       render json: { error: 'Movie not found' }, status: :not_found
     end
   end
+
+  # create, destory, update
+  # need to add that only admin can do these three
+  def create
+    movie = Movie.create(movie_params)
+    render json: movie
+  end
+
+  def destroy
+    Movie.destroy(params[:id])
+  end
+
+  def update
+    movie = Movie.find(params[:id])
+    movie.update(movie_params)
+    render json: movie
+  end
+
+  private
+
+  def movie_params
+    params.require(:movie).permit(:id, :title, :runtime, :director, :description, :quote, :img_url, :year)
+  end
 end

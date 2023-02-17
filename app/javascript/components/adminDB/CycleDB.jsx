@@ -6,6 +6,7 @@ import getDateObject from '../helpers/getDateObject';
 
 function CycleDB(props) {
   const cycle = props.cycle
+  const csrfToken = document.querySelector("[name='csrf-token']").content
 
   const [cycleValues, setCycleValues] = useState({
     id: cycle.id,
@@ -33,7 +34,7 @@ function CycleDB(props) {
       method: 'PATCH',
       headers: {
         "Content-type": "application/json",
-        'X-CSRF-Token': token
+        'X-CSRF-Token': csrfToken
       },
       body: JSON.stringify(cycleValues)
     })

@@ -27,6 +27,7 @@ class Api::V1::CyclesController < ApplicationController
   end
 
   # create, destory, update
+  # need to add that only admin can do these three
   def create
     cycle = Cycle.create(cycle_params)
     render json: cycle
@@ -37,8 +38,8 @@ class Api::V1::CyclesController < ApplicationController
   end
 
   def update
-    cycle = Cycle.find(params["id"])
-    cycle.update_attributes(cycle_params)
+    cycle = Cycle.find(params[:id])
+    cycle.update(cycle_params)
     render json: cycle
   end
 

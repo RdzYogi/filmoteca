@@ -56,26 +56,3 @@ function AdminDB() {
 }
 
 export default AdminDB
-
-
-
-  // const handleCreate = (event) => {
-  //   event.preventDefault();
-  //   fetch('/api/v1/cycles',{
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       description: description,
-  //       quote: quote
-  //     }),
-  //     headers:{
-  //       'Content-type': 'application/json'
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then((newCycle) => {
-  //     setCiclos((ciclos) => [newCycle, ...ciclos])
-  //   })
-  //   .catch((err) => {
-  //     console.log(err.message)
-  //   })
-  // }
