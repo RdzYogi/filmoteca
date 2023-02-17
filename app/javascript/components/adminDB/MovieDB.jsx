@@ -8,6 +8,7 @@ function MovieDB(props) {
   const csrfToken = document.querySelector("[name='csrf-token']").content
 
   const [movieValues, setMovieValues] = useState({
+    id: movie.id,
     title: movie.title,
     runtime: movie.runtime,
     director: movie.director,
