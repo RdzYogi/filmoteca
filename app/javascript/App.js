@@ -16,33 +16,14 @@ import AdminDB from './containers/pages/AdminDB';
 import SignUp from './containers/pages/SignUpLogic';
 import SignIn from './containers/pages/SignIn';
 import { useSelector, useDispatch } from 'react-redux'
-import { resetLocalStorage, isLogged, isAdmin } from "./redux/slices/userSlice"
+import { resetLocalStorage, isLogged, isAdmin, verifyUserToken } from "./redux/slices/userSlice"
 import userCheckToken from './components/helpers/userQueries/userCheckToken';
 
 
 function App() {
   const dispatch = useDispatch()
-  const authToken = useSelector(state => state.userManager.userAuth)
-  // console.log(authToken)
   useEffect(() => {
-    // Check validity of authToken on page load
-    if (authToken === "" || authToken === null) {
-      dispatch(resetLocalStorage())
-
-    } else {
-      userCheckToken(authToken)
-      .then(result => {
-        // console.log(result)
-        if (result.isLogged === true) {
-          dispatch(isLogged())
-          if (result.isAdmin === true) {
-            dispatch(isAdmin())
-          }
-          } else {
-            dispatch(resetLocalStorage())
-          }
-        })
-    }
+    dispatch(verifyUserToken())
   }, [])
 
   return (
