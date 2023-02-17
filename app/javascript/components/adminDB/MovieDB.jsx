@@ -19,19 +19,21 @@ function MovieDB(props) {
     img_url: movie.img_url,
     year: movie.year,
     slug: movie.slug,
-    cycle: movie.cycle_id,
+    cycle: cycle.id,
     session: movie.session_id
   })
+  // console.log(movieValues)
 
   const handleChange = (e) => {
     setMovieValues({...movieValues,
       [e.target.name]: e.target.value
+      // need to get value as a number for cycle id
     })
-    // console.log(movieValues) // one change behind but when submit its entire input
+    console.log(movieValues)
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault(); need to reload to updte more than 1 if click everytime one input
     fetch(`/api/v1/movies/${movieValues.slug}`, {
       method: 'PATCH',
       headers: {
@@ -142,13 +144,13 @@ function MovieDB(props) {
               onChange={handleChange}
             />
           </div>
-{/* cycle make a select */}
+{/* cycle select defautl option twice, doesnt change rn*/}
           <div className='flex items-center'> {/* year */}
             <Label
               htmlFor="cycle" label="Cycle"
             />
             <select name="cycle" onChange={handleChange} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
-              <option defaultValue={cycle.name}>{cycle.name}</option> {/* default option twice rn */}
+              <option defaultValue={cycle.id}>{cycle.name}</option> {/* default option twice rn */}
               {availableCycles.map((cycle, index) => {
                 return <option key={index} value={cycle.id}>{cycle.name}</option>
               })}
@@ -156,7 +158,6 @@ function MovieDB(props) {
             </select>
           </div>
 
-          <div> {/* cycle_name */} </div>
           <div> {/* session_name */} </div>
           <div> {/* hall_name */} </div>
           <SubmitButton label="Guardar"/>
