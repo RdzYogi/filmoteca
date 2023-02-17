@@ -7,8 +7,6 @@ import MovieCard from '../../components/shared/MovieCard'
 // For carousel documentation see react multi carousel git repo
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchMoviesData, fetchCyclesData } from "../../redux/slices/dataSlice"
 
 const responsive = {
   superLargeDesktop: {
@@ -31,39 +29,30 @@ const responsive = {
 };
 
 function Home() {
-  const dispatch = useDispatch()
+
 
 
   const [ciclos, setCiclos] = useState([])
   const [movies, setMovies] = useState([])
-  const moviesObject = useSelector(state => state.dataManager.movies)
-  const moviesStatus = useSelector(state => state.dataManager.state)
+
 
   useEffect(() => {
-    dispatch(fetchCyclesData())
-    dispatch(fetchMoviesData())
-    setMovies(moviesObject)
-    console.log("first")
-    // moviesObject.map((movie,index) => {
-    //   setMovies(movies => [...movies,<MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>])
-    // })
-
-    // fetch('api/v1/cycles')
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     data.map((cycle,index) => {
-    //       setCiclos(ciclos => [...ciclos, <CycleCard key={index} cycle={cycle}/>])
-    //     })
-    //   });
-    // fetch("api/v1/movies")
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   let newMovies = []
-    //   data.map((movie,index) => {
-    //     newMovies = [...newMovies, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>]
-    //   })
-    //   setMovies(newMovies)
-    //   });
+    fetch('api/v1/cycles')
+      .then((response) => response.json())
+      .then((data) => {
+        data.map((cycle,index) => {
+          setCiclos(ciclos => [...ciclos, <CycleCard key={index} cycle={cycle}/>])
+        })
+      });
+    fetch("api/v1/movies")
+    .then((response) => response.json())
+    .then((data) => {
+      let newMovies = []
+      data.map((movie,index) => {
+        newMovies = [...newMovies, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>]
+      })
+      setMovies(newMovies)
+      });
   }, [])
 
 
@@ -81,16 +70,13 @@ function Home() {
           <Noticias/>
         </div> */}
         <h2 className='text-center font-bold text-2xl pb-4'>Ciclos</h2>
-        <p>{moviesStatus}</p>
         <Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-32 max-w-7xl" >
           {ciclos}
         </Carousel>
         <h2 className='text-center font-bold text-2xl pb-4'>Peliculas</h2>
         <div className="mx-auto mb-32 max-w-7xl">
           <Carousel responsive={responsive} >
-            {moviesObject.map((movie,index)=>{
-              <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>
-            })}
+            {movies}
           </Carousel>
         </div>
       </div>
