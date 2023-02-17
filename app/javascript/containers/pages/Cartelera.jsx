@@ -52,7 +52,7 @@ function Cartelera() {
         <div className="flex justify-center max-w-7xl mx-auto my-4">
           <input onChange={handleChange} type="search" className="border-solid border-gray-300 focus:ring-gray-300 focus:border-gray-100 w-6/12 md:w-5/12 lg:w-4/12" placeholder="Buscar por Titulo o Director" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-y-4">
           {loaded ?
           <Fragment>
             {searchQuery === "" ? movies : searchResults}
