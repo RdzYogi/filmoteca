@@ -33,6 +33,7 @@ function Cycle() {
           <Fragment>
             <h2 className={"text-center font-bold text-2xl	pt-2 pb-2 bg-" + cycleData.cycle.color}>{cycleData.cycle.name}</h2>
             <p className="text-justify mt-3 mb-7">{cycleData.cycle.description}</p>
+            <p className="text-justify mt-3 mb-7">{cycleData.cycle.quote}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {movies}
             </div>
