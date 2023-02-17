@@ -2,13 +2,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Fragment, useEffect, useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 import logo_blanco from '../../assets/images/logo-blanco.png';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { userSignOut } from "../../redux/slices/userSlice"
 // For fontawesome free-solid, free-regular, free-brands, fontawesome-free
 import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRectangleXmark} from '@fortawesome/free-solid-svg-icons'
 
 
 
 function Navbar() {
+  const dispatch = useDispatch()
   useEffect(() => {
     const onWindowResize = () => {
       const width = window.innerWidth;
@@ -31,6 +33,11 @@ function Navbar() {
       document.body.removeEventListener('click', onOutsideClick)
     }
   }, [])
+
+  const handleOnClickSignOut = (e) => {
+    e.preventDefault();
+    dispatch(userSignOut())
+  }
 
 
   // Logic for checking if the user is signed in
@@ -127,9 +134,11 @@ function Navbar() {
               CONTACTO
           </Link>
           <div className='h-px w-3/4 bg-white self-center'></div>
-          <Link to="#" className='text-lg py-2 w-fit font-bold self-center leading-6 text-white'>
-              {isSignedIn ? "DESCONECTAR" : "INGRESAR"}
-          </Link>
+          <div to="#" className='text-lg py-2 w-fit font-bold self-center leading-6 text-white'>
+              {isSignedIn ?
+              <button onClick={handleOnClickSignOut}>DESCONECTAR</button>:
+              <Link to="/sign_in">INGRESAR</Link>}
+          </div>
         </div>
       </nav>
     </Fragment>
