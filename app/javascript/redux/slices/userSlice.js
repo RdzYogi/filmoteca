@@ -53,13 +53,13 @@ export const userSignOut = createAsyncThunk("userManager/userSignOut",async ()=>
 
 export const userSignIn = createAsyncThunk("userManager/userSignIn", async (user)=>{
   const data = {user: user}
-  const state = store.getState()
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const result = {
     user: {},
     authToken: '',
     isLogged: false,
-    isAdmin: false
+    isAdmin: false,
+    error: ''
   }
   await fetch('/users/sign_in', {
     method: 'POST',
@@ -69,24 +69,29 @@ export const userSignIn = createAsyncThunk("userManager/userSignIn", async (user
   .then(response => {
     // console.log(response)
     if (response.ok) {
-      // console.log(response.headers.get('Authorization').split(' ')[1])
+      // console.log(response.headers.get('Authorization'))
       result.authToken = response.headers.get('Authorization')
-      return response.json();
+      result.isLogged = true
     } else {
-      throw new Error('Something went wrong');
+      return response.json().then(json=> {throw new Error(json.error)})
     }
+    return response.json();
   })
   .then(json => {
-    // console.log(json)
-    result.user = json.user
-    result.user ? result.isLogged = true : result.isLogged = false
-    if (json.user.admin === true) {
-      result.isAdmin = true
+    console.log(result)
+    if (result.isLogged) {
+      result.user = json
+      if (json.admin === true) {
+        result.isAdmin = true
+      }
+    } else {
+      console.log(json)
+      result.error = json
     }
+  }).catch(error => {
+    alert(error)
+    // result.error = error
   })
-  .catch(error => {
-  });
-
   return result
 })
 
@@ -172,7 +177,9 @@ export const userSlice = createSlice({
           localStorage.setItem("current_user", JSON.stringify(action.payload.user));
         }
       })
-      .addCase(userSignIn.rejected, (state, action) => {})
+      .addCase(userSignIn.rejected, (state, action) => {
+        console.log(action.payload)
+      })
       .addCase(userSignUp.pending, (state, action) => {})
       .addCase(userSignUp.fulfilled, (state, action) => {
         if (action.payload.isLogged === true) {
