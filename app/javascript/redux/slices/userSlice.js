@@ -106,9 +106,9 @@ export const userSignUp = createAsyncThunk("userManager/userSignUp", async (user
     isLogged: false,
     isAdmin: false
   }
-  if (state.userManager.currentUser.logged_in === true) {
-    await store.dispatch(userSignOut())
-  }
+  // if (state.userManager.currentUser.logged_in === true) {
+  //   await store.dispatch(userSignOut())
+  // }
   await fetch('/users', {
     method: 'POST',
     headers: {'Content-Type': 'application/json',"X-CSRF-Token": csrfToken},
@@ -121,15 +121,24 @@ export const userSignUp = createAsyncThunk("userManager/userSignUp", async (user
       result.authToken = response.headers.get('Authorization')
       return response.json();
     } else {
-      throw new Error('Something went wrong');
+      return response.json().then(json=> {
+        console.log(json)
+        throw (json.errors)
+      })
     }
   })
   .then(json => {
     // console.log(json)
-    result.user = json.user
-    result.user ? result.isLogged = true : result.isLogged = false
-    if (json.user.admin === true) {
+    result.user = json
+    if (json.admin === true) {
       result.isAdmin = true
+    }
+  }).catch(errors => {
+    console.log(errors)
+    if(errors.email){
+      alert(`Email ${errors.email}`)
+    } else if (errors.password) {
+      alert(`Password ${errors.password}`)
     }
   })
   return result
