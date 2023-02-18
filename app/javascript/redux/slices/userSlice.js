@@ -19,6 +19,7 @@ export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",as
     headers: {'Content-Type': 'application/json', "Authorization": state.userManager.userAuth},
   })
   .then(response => {
+    // console.log(response)
     if (response.ok) {
       result.isLogged = true
       return response.json();
@@ -26,7 +27,7 @@ export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",as
   })
   .then(json => {
     // check if user is admin
-    if (json.user.admin === true) {
+    if (json.admin === true) {
       result.isAdmin = true
     }
   })
@@ -137,6 +138,7 @@ export const userSlice = createSlice({
       .addCase(verifyUserToken.pending, (state, action) => {
       })
       .addCase(verifyUserToken.fulfilled, (state, action) => {
+        // console.log(action.payload)
         if (action.payload.isLogged === true) {
           state.currentUser.logged_in = true
         } else{
