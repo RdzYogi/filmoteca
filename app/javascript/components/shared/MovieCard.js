@@ -4,7 +4,6 @@ import getDateObject from "../helpers/getDateObject";
 
 
 function MovieCard(props){
-
   const movie = props.movie.movie
 
   const cycle = props.cycle

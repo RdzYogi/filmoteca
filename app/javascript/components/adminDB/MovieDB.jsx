@@ -25,15 +25,16 @@ function MovieDB(props) {
   // console.log(movieValues)
 
   const handleChange = (e) => {
+    const cycleIdToNumber = parseInt(e.target.value)
+    // console.log(cycleIdToNumber, typeof(cycleIdToNumber))
     setMovieValues({...movieValues,
-      [e.target.name]: e.target.value
-      // need to get value as a number for cycle id
+      [e.target.name]: (e.target.name === "cycle" ? cycleIdToNumber : e.target.value)
     })
-    console.log(movieValues)
   }
+  console.log(movieValues)
 
   const handleSubmit = (e) => {
-    // e.preventDefault(); need to reload to updte more than 1 if click everytime one input
+    e.preventDefault(); 
     fetch(`/api/v1/movies/${movieValues.slug}`, {
       method: 'PATCH',
       headers: {
@@ -42,6 +43,7 @@ function MovieDB(props) {
       },
       body: JSON.stringify(movieValues)
     })
+    console.log(movieValues)
   }
 
   // get all cycles to select to which cycle a movie belongs to (asnyc + useEffect)
@@ -150,7 +152,7 @@ function MovieDB(props) {
               htmlFor="cycle" label="Cycle"
             />
             <select name="cycle" onChange={handleChange} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
-              <option defaultValue={cycle.id}>{cycle.name}</option> {/* default option twice rn */}
+              {/* <option defaultValue={cycle.id}>{cycle.name}</option> default option twice rn */}
               {availableCycles.map((cycle, index) => {
                 return <option key={index} value={cycle.id}>{cycle.name}</option>
               })}
