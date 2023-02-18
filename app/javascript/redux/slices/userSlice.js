@@ -134,11 +134,13 @@ export const userSignUp = createAsyncThunk("userManager/userSignUp", async (user
       result.isAdmin = true
     }
   }).catch(errors => {
-    console.log(errors)
+    // console.log(errors)
     if(errors.email){
       alert(`Email ${errors.email}`)
     } else if (errors.password) {
       alert(`Password ${errors.password}`)
+    } else if (errors.password_confirmation) {
+      alert(`Password confirmation ${errors.password_confirmation}`)
     }
   })
   return result
