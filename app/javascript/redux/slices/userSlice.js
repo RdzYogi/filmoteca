@@ -11,22 +11,28 @@ const initialState = {
 }
 
 export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",async ()=>{
-  const result = {isLogged: false, isAdmin: false}
+  const result = {user: {},
+  authToken: '',
+  isLogged: false,
+  isAdmin: false,
+  error: ''}
   const state = store.getState()
   // console.log("before fetch:", state)
-  await fetch('/users/sign_in', {
+  await fetch('/member-data', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', "Authorization": state.userManager.userAuth},
   })
   .then(response => {
+    // console.log(response)
     if (response.ok) {
       result.isLogged = true
       return response.json();
     }
   })
   .then(json => {
-    // check if user is admin
-    if (json.user.admin === true) {
+    // console.log(json)
+    result.user = json.user
+    if (json.admin === true) {
       result.isAdmin = true
     }
   })
@@ -53,13 +59,13 @@ export const userSignOut = createAsyncThunk("userManager/userSignOut",async ()=>
 
 export const userSignIn = createAsyncThunk("userManager/userSignIn", async (user)=>{
   const data = {user: user}
-  const state = store.getState()
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const result = {
     user: {},
     authToken: '',
     isLogged: false,
-    isAdmin: false
+    isAdmin: false,
+    error: ''
   }
   await fetch('/users/sign_in', {
     method: 'POST',
@@ -69,24 +75,24 @@ export const userSignIn = createAsyncThunk("userManager/userSignIn", async (user
   .then(response => {
     // console.log(response)
     if (response.ok) {
-      // console.log(response.headers.get('Authorization').split(' ')[1])
+      // console.log(response.headers.get('Authorization'))
       result.authToken = response.headers.get('Authorization')
-      return response.json();
+      result.isLogged = true
     } else {
-      throw new Error('Something went wrong');
+      return response.json().then(json=> {throw new Error(json.error)})
     }
+    return response.json();
   })
   .then(json => {
-    // console.log(json)
-    result.user = json.user
-    result.user ? result.isLogged = true : result.isLogged = false
-    if (json.user.admin === true) {
-      result.isAdmin = true
+    if (result.isLogged) {
+      result.user = json
+      if (json.admin === true) {
+        result.isAdmin = true
+      }
     }
+  }).catch(error => {
+    alert(error)
   })
-  .catch(error => {
-  });
-
   return result
 })
 
@@ -100,9 +106,9 @@ export const userSignUp = createAsyncThunk("userManager/userSignUp", async (user
     isLogged: false,
     isAdmin: false
   }
-  if (state.userManager.currentUser.logged_in === true) {
-    await store.dispatch(userSignOut())
-  }
+  // if (state.userManager.currentUser.logged_in === true) {
+  //   await store.dispatch(userSignOut())
+  // }
   await fetch('/users', {
     method: 'POST',
     headers: {'Content-Type': 'application/json',"X-CSRF-Token": csrfToken},
@@ -115,15 +121,26 @@ export const userSignUp = createAsyncThunk("userManager/userSignUp", async (user
       result.authToken = response.headers.get('Authorization')
       return response.json();
     } else {
-      throw new Error('Something went wrong');
+      return response.json().then(json=> {
+        console.log(json)
+        throw (json.errors)
+      })
     }
   })
   .then(json => {
     // console.log(json)
-    result.user = json.user
-    result.user ? result.isLogged = true : result.isLogged = false
-    if (json.user.admin === true) {
+    result.user = json
+    if (json.admin === true) {
       result.isAdmin = true
+    }
+  }).catch(errors => {
+    // console.log(errors)
+    if(errors.email){
+      alert(`Email ${errors.email}`)
+    } else if (errors.password) {
+      alert(`Password ${errors.password}`)
+    } else if (errors.password_confirmation) {
+      alert(`Password confirmation ${errors.password_confirmation}`)
     }
   })
   return result
@@ -137,8 +154,12 @@ export const userSlice = createSlice({
       .addCase(verifyUserToken.pending, (state, action) => {
       })
       .addCase(verifyUserToken.fulfilled, (state, action) => {
+        // console.log(action.payload.user)
         if (action.payload.isLogged === true) {
           state.currentUser.logged_in = true
+          state.currentUser.id = action.payload.user.id
+          state.currentUser.email = action.payload.user.email
+          localStorage.setItem("current_user", JSON.stringify({id: action.payload.user.id, email: action.payload.user.email}))
         } else{
           state.userAuth = ""
           state.currentUser = {id: "", email: "", admin: false, logged_in: false}
@@ -172,7 +193,9 @@ export const userSlice = createSlice({
           localStorage.setItem("current_user", JSON.stringify(action.payload.user));
         }
       })
-      .addCase(userSignIn.rejected, (state, action) => {})
+      .addCase(userSignIn.rejected, (state, action) => {
+        console.log(action.payload)
+      })
       .addCase(userSignUp.pending, (state, action) => {})
       .addCase(userSignUp.fulfilled, (state, action) => {
         if (action.payload.isLogged === true) {
