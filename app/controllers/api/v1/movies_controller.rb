@@ -34,7 +34,7 @@ class Api::V1::MoviesController < ApplicationController
   end
 
   def destroy
-    Movie.destroy(params[:id])
+    Movie.find_by(slug: params[:slug]).destroy
   end
 
   def update

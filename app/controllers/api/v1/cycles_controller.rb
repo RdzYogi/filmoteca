@@ -34,7 +34,7 @@ class Api::V1::CyclesController < ApplicationController
   end
 
   def destroy
-    Cycle.destroy(params[:id])
+    Cycle.find_by(slug: params[:slug]).destroy
   end
 
   def update

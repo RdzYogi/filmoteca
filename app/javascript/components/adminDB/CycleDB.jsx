@@ -40,6 +40,16 @@ function CycleDB(props) {
     // console.log(cycleValues)
   }
 
+  const handleDelete = (e) => {
+    fetch(`/api/v1/cycles/${cycleValues.slug}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-type": "application/json",
+        'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify(cycleValues)
+    })
+  }
 
   return (
     <div>
@@ -134,8 +144,9 @@ function CycleDB(props) {
 
           <div> {/* movies */} </div>
           <div> {/* sessions */} </div>
-          <SubmitButton label="guardar"/>
+          <SubmitButton label="Actualizar"/>
         </form>
+        <button type="submit" onClick={handleDelete} className="py-3 px-5 w-32 flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-red-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-red-600">Eliminar</button>
       </div>
     </div>
   )

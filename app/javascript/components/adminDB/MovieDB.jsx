@@ -34,7 +34,7 @@ function MovieDB(props) {
   console.log(movieValues)
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     fetch(`/api/v1/movies/${movieValues.slug}`, {
       method: 'PATCH',
       headers: {
@@ -63,6 +63,17 @@ function MovieDB(props) {
     .catch((error) => console.log(error.message))
   }, [])
 
+
+  const handleDelete = (e) => {
+    fetch(`/api/v1/movies/${movieValues.slug}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-type": "application/json",
+        'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify(movieValues)
+    })
+  }
 
   return (
     <div>
@@ -162,8 +173,9 @@ function MovieDB(props) {
 
           <div> {/* session_name */} </div>
           <div> {/* hall_name */} </div>
-          <SubmitButton label="Guardar"/>
+          <SubmitButton label="Actualizar"/>
         </form>
+        <button type="submit" onClick={handleDelete} className='py-3 px-5 w-32 flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-red-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-red-600'>Eliminar</button>
       </div>
     </div>
   )
