@@ -11,10 +11,14 @@ const initialState = {
 }
 
 export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",async ()=>{
-  const result = {isLogged: false, isAdmin: false}
+  const result = {user: {},
+  authToken: '',
+  isLogged: false,
+  isAdmin: false,
+  error: ''}
   const state = store.getState()
   // console.log("before fetch:", state)
-  await fetch('/users/sign_in', {
+  await fetch('/member-data', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', "Authorization": state.userManager.userAuth},
   })
@@ -26,7 +30,8 @@ export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",as
     }
   })
   .then(json => {
-    // check if user is admin
+    // console.log(json)
+    result.user = json.user
     if (json.admin === true) {
       result.isAdmin = true
     }
@@ -138,9 +143,12 @@ export const userSlice = createSlice({
       .addCase(verifyUserToken.pending, (state, action) => {
       })
       .addCase(verifyUserToken.fulfilled, (state, action) => {
-        // console.log(action.payload)
+        // console.log(action.payload.user)
         if (action.payload.isLogged === true) {
           state.currentUser.logged_in = true
+          state.currentUser.id = action.payload.user.id
+          state.currentUser.email = action.payload.user.email
+          localStorage.setItem("current_user", JSON.stringify({id: action.payload.user.id, email: action.payload.user.email}))
         } else{
           state.userAuth = ""
           state.currentUser = {id: "", email: "", admin: false, logged_in: false}
