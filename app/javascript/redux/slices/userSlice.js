@@ -78,19 +78,14 @@ export const userSignIn = createAsyncThunk("userManager/userSignIn", async (user
     return response.json();
   })
   .then(json => {
-    console.log(result)
     if (result.isLogged) {
       result.user = json
       if (json.admin === true) {
         result.isAdmin = true
       }
-    } else {
-      console.log(json)
-      result.error = json
     }
   }).catch(error => {
     alert(error)
-    // result.error = error
   })
   return result
 })
