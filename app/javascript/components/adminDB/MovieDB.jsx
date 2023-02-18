@@ -75,8 +75,20 @@ function MovieDB(props) {
     })
   }
 
+  const handleCreate = (e) => {
+    fetch(`/api/v1/movies/`, {
+      method: 'POST',
+      headers: {
+        "Content-type": "application/json",
+        'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify(movieValues)
+    })
+  }
+
   return (
     <div>
+      <button type="submit" onClick={handleCreate} className="py-3 px-5 w-32 flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-green-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-red-600">Crear nueva</button>
       <h2 className='text-2xl'>Movie</h2>
       <div className='justify-items-start'>
         <form onSubmit={handleSubmit}>
