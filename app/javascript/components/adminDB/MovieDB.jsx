@@ -2,12 +2,14 @@ import React, {useEffect, useState} from 'react'
 import Label from './label'
 import Input from './input'
 import SubmitButton from '../shared/SubmitButton';
+// import CreateModal from './CreateModal';
 
 function MovieDB(props) {
   const movie = props.movie.movie
   const cycle = props.movie.include.cycle
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const [availableCycles, setAvailableCycles] = useState([])
+  const [isOpen, setIsOpen] = useState(false);
 
   const [movieValues, setMovieValues] = useState({
     id: movie.id,
@@ -31,7 +33,7 @@ function MovieDB(props) {
       [e.target.name]: (e.target.name === "cycle" ? cycleIdToNumber : e.target.value)
     })
   }
-  console.log(movieValues)
+  // console.log(movieValues)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,7 +45,7 @@ function MovieDB(props) {
       },
       body: JSON.stringify(movieValues)
     })
-    console.log(movieValues)
+    alert("Movie was updated")
   }
 
   // get all cycles to select to which cycle a movie belongs to (asnyc + useEffect)
@@ -73,9 +75,11 @@ function MovieDB(props) {
       },
       body: JSON.stringify(movieValues)
     })
+    alert("Movie was deleted")
   }
 
   const handleCreate = (e) => {
+    e.preventDefault();
     fetch(`/api/v1/movies/`, {
       method: 'POST',
       headers: {
@@ -84,11 +88,121 @@ function MovieDB(props) {
       },
       body: JSON.stringify(movieValues)
     })
+    .then(()=>{
+      console.log("movie added", movieValues)
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
   }
 
   return (
     <div>
-      <button type="submit" onClick={handleCreate} className="py-3 px-5 w-32 flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-green-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-red-600">Crear nueva</button>
+ {/* add new */}
+      <button onClick={() => setIsOpen(true)}>
+        Crear nueva película
+      </button>
+      {/* {isOpen && <CreateModal onSubmit={handleCreate} setIsOpen={setIsOpen} />} */}
+      {isOpen &&
+        <>
+          <button type="button" onClick={() => setIsOpen(false)}>Cerrar</button>
+          <form onSubmit={handleCreate} setIsOpen={setIsOpen}>
+            <div className='flex items-center'>
+              <Label
+                htmlFor="title" label="Título"
+              />
+              <Input
+                type="text"
+                name="title"
+                value={movie.title}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='flex items-center'> {/* runtime */}
+              <Label
+                htmlFor="runtime" label="Duración"
+              />
+              <Input
+                type="text"
+                name="runtime"
+                defaultValue={movie.runtime}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='flex items-center'> {/* director */}
+              <Label
+                htmlFor="director" label="Director"
+              />
+              <Input
+                type="text"
+                name="director"
+                defaultValue={movie.director}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='flex items-center'> {/* Description */}
+              <Label
+                htmlFor="description" label="Descripción"
+              />
+              <Input
+                type="text"
+                name="description"
+                defaultValue={movie.description}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='flex items-center'> {/* Quote */}
+              <Label
+                htmlFor="quote" label="Cita"
+              />
+              <Input
+                type="text"
+                name="quote"
+                defaultValue={movie.quote}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='flex items-center'> {/* img url */}
+              <Label
+                htmlFor="img_url" label="Ingrese la URL de la portada"
+              />
+              <Input
+                type="text"
+                name="img_url"
+                defaultValue={movie.img_url}
+                onChange={handleChange}
+              />
+            </div>
+            <div className='flex items-center'> {/* year */}
+              <Label
+                htmlFor="year" label="Año de lanzamiento"
+              />
+              <Input
+                type="text"
+                name="year"
+                defaultValue={movie.year}
+                onChange={handleChange}
+              />
+            </div>
+  {/* cycle select defautl option twice, doesnt change rn*/}
+            <div className='flex items-center'> {/* year */}
+              <Label
+                htmlFor="cycle" label="Cycle"
+              />
+              <select name="cycle" onChange={handleChange} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
+                {/* <option defaultValue={cycle.id}>{cycle.name}</option> default option twice rn */}
+                {availableCycles.map((cycle, index) => {
+                  return <option key={index} value={cycle.id}>{cycle.name}</option>
+                })}
+
+              </select>
+            </div>
+            <SubmitButton label="Crear ahora"/>
+          </form>
+        </>
+      }
+
+{/* update */}
       <h2 className='text-2xl'>Movie</h2>
       <div className='justify-items-start'>
         <form onSubmit={handleSubmit}>
