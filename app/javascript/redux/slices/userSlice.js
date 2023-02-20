@@ -76,6 +76,7 @@ export const userSlice = createSlice({
         }
       })
       .addCase(verifyUserToken.rejected, (state, action) => {
+        resetLocalStorage()
       })
   }
 })
