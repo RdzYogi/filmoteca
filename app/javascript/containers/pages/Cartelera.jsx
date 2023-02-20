@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import DownloadButton from '../../components/shared/DownloadButton'
@@ -9,6 +9,22 @@ import MovieCard from '../../components/shared/MovieCard'
 function Cartelera() {
   const [movies, setMovies] = useState([])
   const [loaded, setLoaded] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [searchResults, setSearchResults] = useState([])
+
+  const handleChange = (e) => {
+    e.preventDefault()
+    setSearchQuery(e.target.value)
+    // console.log(e.target.value)
+    let newMovies = []
+    movies.map((movie) => {
+      // console.log(movie.props)
+      if (movie.props.movie.movie.title.toLowerCase().includes(searchQuery.toLowerCase()) || movie.props.movie.movie.director.toLowerCase().includes(searchQuery.toLowerCase())) {
+        newMovies = [...newMovies, movie]
+      }
+    })
+    setSearchResults(newMovies)
+  }
   useEffect(() => {
     fetch("api/v1/movies")
     .then((response) => response.json())
@@ -24,20 +40,24 @@ function Cartelera() {
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40 mx-40">
+      <div className="pt-40 max-w-7xl mx-auto pb-1 my-6">
         <div className="flex justify-center">
-          <div className="">
-            <h1 className="text-2xl font-bold text-center">Cartelera</h1>
+          <div>
+            <h1 className="text-center font-bold text-xl">CARTELERA</h1>
             <div className="lg:absolute lg:top-40 lg:right-40">
               <DownloadButton/>
             </div>
           </div>
         </div>
-        <div className="pt-4">
-          <form></form>
+        <div className="flex justify-center max-w-7xl mx-auto my-4">
+          <input onChange={handleChange} type="search" className="border-solid border-gray-300 focus:ring-gray-300 focus:border-gray-100 w-6/12 md:w-5/12 lg:w-4/12" placeholder="Buscar por Titulo o Director" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
-          {loaded ? movies : <h1>Loading...</h1>}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-10">
+          {loaded ?
+          <>
+            {searchQuery === "" ? movies : searchResults}
+          </>
+          : <h1>Loading...</h1>}
         </div>
       </div>
       <Footer/>

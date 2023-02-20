@@ -3,6 +3,7 @@ Movie.destroy_all unless Movie.all.empty?
 Session.destroy_all unless Session.all.empty?
 Hall.destroy_all unless Hall.all.empty?
 Cycle.destroy_all unless Cycle.all.empty?
+News.destroy_all
 
 
 # Define the halls
@@ -54,9 +55,8 @@ Cycle.create(name: "DOUGLAS SIRK. LA EMOCIÓN INMEDIATA",
              intenta combatir con una sonrisa- que cuando
              se estrenaron.",
              quote: "Ciclo 1",
-             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1254/v1676290893/Filmoteca/Embrujo_esj69j.jpg",
+             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
              color: "green-cycle",
-             slug: "ciclo-1",
              start_date: "2023-01-01",
              end_date: "2023-03-31")
 
@@ -72,18 +72,16 @@ Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
             franquismo, y de la muy democrática Medalla
             de Oro al Mérito en el trabajo?",
             quote: "Ciclo 2",
-            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1254/v1676290893/Filmoteca/Embrujo_esj69j.jpg",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/Embrujo_hre7a8.jpg",
             color: "purple-cycle",
-            slug: "ciclo-2",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
 
 Cycle.create(name: "FILMOTECA JUNIOR",
             description: "Pelis para los junior de la casa",
             quote: "Ciclo 3",
-            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_534,w_1258/v1676290394/Filmoteca/Bella_y_bestia_fyiffr.jpg",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
             color: "blue-cycle",
-            slug: "ciclo-3",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
 puts "Cycles created"
@@ -93,30 +91,29 @@ puts "Cycles created"
 Session.create(name: "Movie 1",
               description: "Movie 1",
               quote: "Movie 1",
-              play_time: "2023-01-01 12:00:00",
+              play_time: "2023-01-01 17:00:00",
               cycle_id: Cycle.all[0].id,
               hall_id: Hall.all[0].id)
 
 Session.create(name: "Movie 2",
                 description: "Movie 2",
                 quote: "Movie 2",
-                play_time: "2023-01-01 12:00:00",
+                play_time: "2023-01-01 18:00:00",
                 cycle_id: Cycle.all[0].id,
                 hall_id: Hall.all[0].id)
 
 # Define placeholder movies
 # Add Douglas Sirk Movies
-Movie.create(title: "Hitler's Madman",
+Movie.create(title: "April, April",
               runtime: "84'",
               director: "Douglas Sirk",
-              description: "Un comandante de las SS es asesinado por unos partisanos tras una brutal represalia nazi en un pueblo checo.",
-              quote: "«Me ofrecieron esta película, que debía rodarse con bastante rapidez: me dieron una semana de rodaje. Me la presentaron específicamente como una película de muy bajo presupuesto, ni siquiera una serie B, sino una serie C o D. Me di cuenta de que representaba a la vez una oportunidad y un peligro. Podía ser útil y podía lanzarme. O podía encasillarme como un director de serie B. Y cuando te sucede esto, da lo mismo lo bueno que seas, puedes quedarte definitivamente encasillado. Ulmer, por ejemplo, creo que es un buen director, pero quedó encasillado en la serie B mientras estuvo en Hollywood». (Douglas Sirk)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676289327/Filmoteca/Hitlers_Madman_xwaozw.jpg",
-              slug: "movie-1",
+              description: "Un panadero que se ha hecho rico monta una fábrica de pasta. Un amigo, harto de su superficialidad, decide gastarle una broma y le cuenta que un príncipe va a ir a visitarla. Debut en el largometraje de Detlef Sierck / Douglas Sirk, siguiendo el sistema de dobles versiones tan común en la época fue rodada también en holandés, aunque esa versión se ha perdido.",
+              quote: "«El primer intento de hacer una comedia alemana con el estilo americano». (Douglas Sirk)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               year: "1943",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[0].id)
-puts "Movie-1 created"
+
 Movie.create(title: "Concierto en la corte",
               runtime: "85'",
               director: "Douglas Sirk",
@@ -125,15 +122,14 @@ Movie.create(title: "Concierto en la corte",
               quote: "«Es una obra de pastelería vienesa. Tras la gravedad de
               La novena sinfonía, sentí la necesidad de hacer algo lige-
               ro y por eso la hice: requería un tono ligero. La rodé en
-              Würzburg en el verano de 1936. Por las fotos puedes ver
+              Würzburg en el verano de 1936. Por las fotos puedes veremb
               que era una película de gran presupuesto. Tenía en ella a
               Martha Eggerth, que era una famosa soprano de la épo-
               ca. Pude hacer algunos experimentos con la iluminación
               y la cámara. Tenía un operador muy bueno; Weihmayr
               hizo aquí un magnífico trabajo y lo mantuve para el resto
               de mis películas alemanas». (Douglas Sirk)",
-              slug: "movie-2",
-              img_url: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Concierto-en-la-corte_cvfxwv.jpg",
               year: "2021",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[0].id)
@@ -156,7 +152,6 @@ Movie.create(title: "La golondrina cautiva",
             siempre me había interesado, tanto en el cine como en el
             teatro, y que procuré mantener también en el melodrama,
             el indeciso, el ambiguo, el inseguro». (Douglas Sirk)",
-            slug: "movie-3",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676291459/Filmoteca/Mas-fuerte-que-la-ley_kgutup.jpg",
             year: "1937",
             session_id: Session.all[0].id,
@@ -173,8 +168,7 @@ Movie.create(title: "La Habanera",
             tra de lo que he llamado crítica social. […] Era una película
             anticapitalista, cosa que caía bien en Alemania en aquel
             momento». (Douglas Sirk)",
-            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1258/v1676291665/Filmoteca/la-habanera-douglas-sirk_xwjtcy.jpg",
-            slug: "movie-4",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301247/Filmoteca/La-Habanera_v0tmk8.jpg",
             year: "1937",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[0].id)
@@ -196,8 +190,7 @@ Movie.create(title: "La novena sinfonía",
             Empecé a comprender que aquí la cámara es lo impor-
             tante […] El movimiento es emoción, en un modo en el
             que nunca puede serlo en el teatro». (Douglas Sirk)",
-            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1258/v1676291665/Filmoteca/la-habanera-douglas-sirk_xwjtcy.jpg",
-            slug: "movie-5",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301243/Filmoteca/La-novena-sinfon%C3%ADa_ifwrdb.jpg",
             year: "1936",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[0].id)
@@ -220,8 +213,7 @@ Movie.create(title: "Embrujo",
             Flores sabe que Embrujo no fue un camelo, aunque bien
             pudiera parecerlo tal y como la presentaron al público
             productores y exhibidores». (Carlos Serrano de Osma)",
-            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1254/v1676290893/Filmoteca/Embrujo_esj69j.jpg",
-            slug: "movie-6",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/Embrujo_hre7a8.jpg",
             year: "1947",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[1].id)
@@ -245,8 +237,7 @@ Movie.create(title: "Una señora estupenda",
             vienen también un apreciable número de artistas flamen-
             cos: Rafael Romero, Pepe Montoyita, Beni de Jerez, Paco
             Aguilera, Juana la del Pipa…». (Carlos Aguilar y Anita Haas)",
-            img_url: "",
-            slug: "movie-7",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301269/Filmoteca/Una-se%C3%B1ora-estupenda_x6ymci.jpg",
             year: "1947",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[1].id)
@@ -272,15 +263,14 @@ Movie.create(title: "El último unicornio",
             estaba compuesto por Hayao Miyazaki, Toshio Suzuki e
             Isao Takahata; el nuevo proyecto era el Estudio Ghibli».
             (Alex McLevy)",
-            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_538,w_1254/v1676290706/Filmoteca/El_ultimo_unicornio_acan0x.jpg",
-            slug: "movie-8",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/El-%C3%BAltimo-unicornio_mxtekq.jpg",
             year: "1982",
             session_id: Session.all[0].id,
             cycle_id: Cycle.all[2].id)
 puts "Movie-8 created"
 Movie.create(title: "La bella y la bestia",
               runtime: "84'",
-              director: "Arthur Rankin",
+              director: " Gary Trousdale y Kirk Wise",
               description: "Una joven acepta convertirse en prisionera de un
               temible monstruo para salvar a su padre. Sin embargo, la
               convivencia va derribando las barreras entre ambos.",
@@ -297,8 +287,7 @@ Movie.create(title: "La bella y la bestia",
               way tiene aquí tanto peso en la puesta en escena y la
               construcción de personajes como en las propias can-
               ciones». (Janet Maslin)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/c_crop,h_534,w_1258/v1676290394/Filmoteca/Bella_y_bestia_fyiffr.jpg",
-              slug: "movie-9",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
               year: "1991",
               session_id: Session.all[0].id,
               cycle_id: Cycle.all[2].id)

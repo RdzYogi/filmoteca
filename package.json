@@ -10,27 +10,29 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.2.4",
+    "@reduxjs/toolkit": "^1.9.2",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "autoprefixer": "^9",
     "buffer": "^6.0.3",
     "docx4js": "^3.2.20",
     "esbuild": "^0.17.2",
     "font-awesome": "^4.7.0",
+    "postcss": "^7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-multi-carousel": "^2.8.2",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
+    "redux": "^4.2.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "url-loader": "^4.1.1"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx --loader:.png=file"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx --loader:.png=file --loader:.eot=file --loader:.woff=file --loader:.ttf=file"
   },
   "browser": {
     "fs": false,
     "path": false,
     "os": false
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.2.17",
-    "autoprefixer": "^9",
-    "postcss": "^7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
