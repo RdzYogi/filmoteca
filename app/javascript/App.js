@@ -9,11 +9,7 @@ import Cartelera from './containers/pages/Cartelera';
 import Ciclos from './containers/pages/Ciclos';
 import Noticias from './containers/pages/Noticias';
 import Contacto from './containers/pages/Contacto';
-<<<<<<< HEAD
-import Login from './containers/pages/Login';
 import UserDetails from './containers/pages/UserDetails';
-=======
->>>>>>> master
 import Cycle from './containers/pages/Cycle';
 import Movie from './containers/pages/Movie';
 import AdminDB from './containers/pages/AdminDB';

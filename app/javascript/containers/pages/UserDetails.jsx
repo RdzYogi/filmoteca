@@ -7,6 +7,8 @@ import Layout from '../../hocs/layouts/Layout'
 function UserDetails() {
   const currentUserStore = useSelector(state => state.userManager.currentUser)
   const authToken = useSelector(state => state.userManager.userAuth)
+  const [subscriptions, setSubscriptions] = useState([])
+  const [reservations, setReservations] = useState([])
   useEffect(() => {
     fetch('/api/v1/user_details', {
       method: 'GET',
@@ -14,12 +16,12 @@ function UserDetails() {
     })
     .then((response) => {
       if (response.ok) {
-
         return response.json()
       }
     })
     .then((data) => {
-      console.log(data)
+      setSubscriptions(data.subscriptions)
+      setReservations(data.reservations)
     });
   }, [])
 
