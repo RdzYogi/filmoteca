@@ -25,7 +25,7 @@ function Calendar() {
 
   return (
     <Layout>
-      {/* <Navbar/> */}
+      <Navbar/>
       <div className="pt-40">Calendar</div>
      <div>
       <h2>{month} {year}</h2>
