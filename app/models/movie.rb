@@ -5,4 +5,8 @@ class Movie < ApplicationRecord
   before_create do |movie|
     movie.slug = movie.title.to_slug
   end
+
+  before_update do |movie|
+    movie.slug = movie.title.to_slug
+  end
 end

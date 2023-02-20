@@ -9,21 +9,23 @@ import Cartelera from './containers/pages/Cartelera';
 import Ciclos from './containers/pages/Ciclos';
 import Noticias from './containers/pages/Noticias';
 import Contacto from './containers/pages/Contacto';
-import Login from './containers/pages/Login';
 import Cycle from './containers/pages/Cycle';
 import Movie from './containers/pages/Movie';
 import AdminDB from './containers/pages/AdminDB';
 import SignUp from './containers/pages/SignUpLogic';
 import SignIn from './containers/pages/SignIn';
-import { useSelector, useDispatch } from 'react-redux'
-import { resetLocalStorage, isLogged, isAdmin, verifyUserToken } from "./redux/slices/userSlice"
-import userCheckToken from './components/helpers/userQueries/userCheckToken';
+import { useDispatch, useSelector } from 'react-redux'
+import { verifyUserToken } from "./redux/slices/userSlice"
+
 
 
 function App() {
   const dispatch = useDispatch()
+  const auth_token = useSelector(state => state.userManager.userAuth)
   useEffect(() => {
-    dispatch(verifyUserToken())
+    if (auth_token) {
+      dispatch(verifyUserToken())
+    }
   }, [])
 
   return (
@@ -41,7 +43,6 @@ function App() {
         <Route exact path="/ciclos" element={<Ciclos />} />
         <Route exact path="/noticias" element={<Noticias />} />
         <Route exact path="/contacto" element={<Contacto />} />
-        <Route exact path="/login" element={<Login />} />
         <Route exact path="/ciclos/:slug" element={<Cycle />} />
         <Route exact path="/movies/:slug" element={<Movie />} />
         {/* <Route exact path="/signup" element={<Signup />} /> */}

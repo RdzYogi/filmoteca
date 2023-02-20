@@ -29,8 +29,13 @@ const responsive = {
 };
 
 function Home() {
+
+
+
   const [ciclos, setCiclos] = useState([])
   const [movies, setMovies] = useState([])
+
+
   useEffect(() => {
     fetch('api/v1/cycles')
       .then((response) => response.json())
@@ -49,6 +54,9 @@ function Home() {
       setMovies(newMovies)
       });
   }, [])
+
+
+
   return (
     <Layout>
       <Navbar/>
