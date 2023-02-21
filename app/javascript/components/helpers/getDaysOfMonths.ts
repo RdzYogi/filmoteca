@@ -15,7 +15,7 @@ function getDaysOfMonths() {
     11: [],
   }
   const year = new Date().getFullYear()
-  for (let month = 0; month < 11; month++) {
+  for (let month = 0; month < 12; month++) {
     let date = new Date(Date.UTC(year, month, 1));
     while (date.getMonth() === month) {
       // Object.defineProperty(result, month, {
