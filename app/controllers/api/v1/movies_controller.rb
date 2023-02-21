@@ -1,10 +1,13 @@
 class Api::V1::MoviesController < ApplicationController
   def index
     movies = Movie.includes(:cycle, :session).references(:cycles, :sessions)
-
+    # Changing controller with new seeds data
+    # projections = Projection.includes(:movie, :session).references(:movies, :sessions)
     result = movies.map do |movie|
       cycle = Cycle.find(movie.cycle_id)
+      # take out session from movie because it is not in the model
       session = Session.find(movie.session_id)
+      # take out hall from session movie because cant reach it
       hall = Hall.find(session.hall_id)
       { movie:, include: { cycle:, session:, hall: } }
     end
