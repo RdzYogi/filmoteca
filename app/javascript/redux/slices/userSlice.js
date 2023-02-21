@@ -171,7 +171,10 @@ export const userSlice = createSlice({
         }
       })
       .addCase(verifyUserToken.rejected, (state, action) => {
-        resetLocalStorage()
+        state.userAuth = ""
+        state.currentUser = {id: "", email: "", admin: false, logged_in: false}
+        localStorage.setItem("auth_token", "")
+        localStorage.setItem("current_user", "")
       })
       .addCase(userSignOut.pending, (state, action) => {})
       .addCase(userSignOut.fulfilled, (state, action) => {
