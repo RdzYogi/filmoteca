@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import getDateObject from "../helpers/getDateObject";
 
+const DESCRIPTIONMAX = 200
 
 function MovieCard(props){
 
@@ -17,7 +18,7 @@ function MovieCard(props){
   const showDateObject = getDateObject(showDateString, options)
 
   return (
-    <div className="box-border border border-black h-96 w-4/5">
+    <div className="box-border border border-black h-96 w-4/5 overflow-hidden">
       <Link to={"/movies/" + movie.slug}>
         <div className={"p-1 bg-"+cycle.color}>
           <p className="text-center font-bold text-xl">{movie.title}</p>
@@ -35,7 +36,9 @@ function MovieCard(props){
         </div>
       </div>
       <img className="object-cover w-screen" src={movie.img_url} alt={movie.title}/>
-      <p className="text-justify p-2">{movie.description}</p>
+      <p className="text-justify p-2">{
+        movie.description.length > DESCRIPTIONMAX ? movie.description.slice(0, DESCRIPTIONMAX) + "..." : movie.description}
+      </p>
     </div>
   );
 }
