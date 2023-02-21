@@ -5,6 +5,17 @@ import Layout from '../../hocs/layouts/Layout';
 import CycleDB from '../../components/adminDB/CycleDB';
 import MovieDB from '../../components/adminDB/MovieDB';
 
+
+
+import Label from '../../components/adminDB/label'
+import Input from '../../components/adminDB/input'
+import SubmitButton from '../../components/shared/SubmitButton';
+import axios from "axios";
+
+const client = axios.create({
+  baseURL: `/api/v1/movies/`
+});
+
 function AdminDB() {
   const [ciclos, setCiclos] = useState([])
   const [movies, setMovies] = useState([])
@@ -29,11 +40,11 @@ function AdminDB() {
         return response.json()
       })
       .then((data) => {
-        let newMoviesDB = []
+        let moviesDB = []
         data.map((movie, index) => {
-          newMoviesDB = [...newMoviesDB, <MovieDB key={index} movie={movie}/>]
+          moviesDB = [...moviesDB, <MovieDB key={index} movie={movie}/>]
         })
-        setMovies(newMoviesDB)
+        setMovies(moviesDB)
       });
   }, [])
 

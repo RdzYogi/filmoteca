@@ -9,7 +9,6 @@ function MovieDB(props) {
   const cycle = props.movie.include.cycle
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const [availableCycles, setAvailableCycles] = useState([])
-  const [isOpen, setIsOpen] = useState(false);
 
   const [movieValues, setMovieValues] = useState({
     id: movie.id,
@@ -78,131 +77,9 @@ function MovieDB(props) {
     alert("Movie was deleted")
   }
 
-  const handleCreate = (e) => {
-    e.preventDefault();
-    fetch(`/api/v1/movies/`, {
-      method: 'POST',
-      headers: {
-        "Content-type": "application/json",
-        'X-CSRF-Token': csrfToken
-      },
-      body: JSON.stringify(movieValues)
-    })
-    .then(()=>{
-      console.log("movie added", movieValues)
-    })
-    .catch((err) => {
-      console.log(err.message)
-    })
-  }
-
   return (
     <div>
- {/* add new */}
-      <button onClick={() => setIsOpen(true)}>
-        Crear nueva película
-      </button>
-      {/* {isOpen && <CreateModal onSubmit={handleCreate} setIsOpen={setIsOpen} />} */}
-      {isOpen &&
-        <>
-          <button type="button" onClick={() => setIsOpen(false)}>Cerrar</button>
-          <form onSubmit={handleCreate} setIsOpen={setIsOpen}>
-            <div className='flex items-center'>
-              <Label
-                htmlFor="title" label="Título"
-              />
-              <Input
-                type="text"
-                name="title"
-                value={movie.title}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='flex items-center'> {/* runtime */}
-              <Label
-                htmlFor="runtime" label="Duración"
-              />
-              <Input
-                type="text"
-                name="runtime"
-                defaultValue={movie.runtime}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='flex items-center'> {/* director */}
-              <Label
-                htmlFor="director" label="Director"
-              />
-              <Input
-                type="text"
-                name="director"
-                defaultValue={movie.director}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='flex items-center'> {/* Description */}
-              <Label
-                htmlFor="description" label="Descripción"
-              />
-              <Input
-                type="text"
-                name="description"
-                defaultValue={movie.description}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='flex items-center'> {/* Quote */}
-              <Label
-                htmlFor="quote" label="Cita"
-              />
-              <Input
-                type="text"
-                name="quote"
-                defaultValue={movie.quote}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='flex items-center'> {/* img url */}
-              <Label
-                htmlFor="img_url" label="Ingrese la URL de la portada"
-              />
-              <Input
-                type="text"
-                name="img_url"
-                defaultValue={movie.img_url}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='flex items-center'> {/* year */}
-              <Label
-                htmlFor="year" label="Año de lanzamiento"
-              />
-              <Input
-                type="text"
-                name="year"
-                defaultValue={movie.year}
-                onChange={handleChange}
-              />
-            </div>
-  {/* cycle select defautl option twice, doesnt change rn*/}
-            <div className='flex items-center'> {/* year */}
-              <Label
-                htmlFor="cycle" label="Cycle"
-              />
-              <select name="cycle" onChange={handleChange} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
-                {/* <option defaultValue={cycle.id}>{cycle.name}</option> default option twice rn */}
-                {availableCycles.map((cycle, index) => {
-                  return <option key={index} value={cycle.id}>{cycle.name}</option>
-                })}
-
-              </select>
-            </div>
-            <SubmitButton label="Crear ahora"/>
-          </form>
-        </>
-      }
-
-{/* update */}
+    {/* update */}
       <h2 className='text-2xl'>Movie</h2>
       <div className='justify-items-start'>
         <form onSubmit={handleSubmit}>

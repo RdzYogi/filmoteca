@@ -40,8 +40,6 @@ class Api::V1::MoviesController < ApplicationController
   def update
     movie = Movie.find_by(slug: params[:slug])
     movie.update(movie_params)
-    puts movie.title
-    puts movie_params
     render json: movie
   end
 
