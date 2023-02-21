@@ -56,7 +56,7 @@ function AdminDB() {
         <h2 className="text-center text-2xl font-bold">Admin Database</h2>
 
         <p>TODOS LOS CICLOS</p>
-        {/* {ciclos} */}
+        {ciclos}
 
         <p>TODAS LOS PELICULAS</p>
         {movies}

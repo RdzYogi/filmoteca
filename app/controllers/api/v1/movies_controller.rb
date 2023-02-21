@@ -38,7 +38,7 @@ class Api::V1::MoviesController < ApplicationController
   end
 
   def update
-    movie = Movie.find_by(slug: params[:slug])
+    movie = Movie.includes(:cycle, :session).find_by(slug: params[:slug])
     movie.update(movie_params)
     render json: movie
   end

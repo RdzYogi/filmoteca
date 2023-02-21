@@ -38,7 +38,7 @@ class Api::V1::CyclesController < ApplicationController
   end
 
   def update
-    cycle = Cycle.find_by(slug: params[:slug])
+    cycle = Cycle.includes(:movies, :sessions).find_by(slug: params[:slug])
     cycle.update(cycle_params)
     render json: cycle
   end
