@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import Label from './label'
 import Input from './input'
 import SubmitButton from '../shared/SubmitButton';
-// import CreateModal from './CreateModal';
 
 function MovieDB(props) {
   const movie = props.movie.movie

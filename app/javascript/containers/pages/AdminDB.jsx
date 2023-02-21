@@ -7,14 +7,9 @@ import MovieDB from '../../components/adminDB/MovieDB';
 
 
 
-import Label from '../../components/adminDB/label'
-import Input from '../../components/adminDB/input'
-import SubmitButton from '../../components/shared/SubmitButton';
-import axios from "axios";
+import CycleCreate from '../../components/adminDB/CycleCreate';
+import MovieCreate from '../../components/adminDB/MovieCreate';
 
-const client = axios.create({
-  baseURL: `/api/v1/movies/`
-});
 
 function AdminDB() {
   const [ciclos, setCiclos] = useState([])
@@ -56,10 +51,12 @@ function AdminDB() {
         <h2 className="text-center text-2xl font-bold">Admin Database</h2>
 
         <p>TODOS LOS CICLOS</p>
+        <CycleCreate />
         {ciclos}
 
         <p>TODAS LOS PELICULAS</p>
         {movies}
+        <MovieCreate />
 
         {/* previous and next buttons */}
       </div>

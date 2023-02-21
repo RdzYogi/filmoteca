@@ -52,69 +52,11 @@ function CycleDB(props) {
     alert("Cycle was deleted")
   }
 
-  let [newCycle, setNewCycle] = useState({
-    name: "",
-    description: "",
-    quote: "e",
-    img_url: "e",
-    start_date: "23-02-2023",
-    end_date: "24-02-2023",
-    color: "e"
-  })
 
-  const handleChangeNew = (e) => {
-    e.preventDefault()
-    setNewCycle({...newCycle,
-      [e.target.name]: e.target.value
-    })
-    console.log(newCycle) // one change behind but when submit its entire input
-  }
-  
-  const handleCreate = () => {
-    fetch(`/api/v1/cycles/`, {
-      method: 'POST',
-      headers: {
-        "Content-type": "application/json",
-        'X-CSRF-Token': csrfToken
-      },
-      body: JSON.stringify(newCycle)
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data)
-    })
-    .catch((err) => {
-      console.log(err.message)
-    })
-  }
 
   return (
     <div>
-      <form onSubmit={handleCreate}>
-        <div className='flex items-center'> {/* Name */}
-            <Label
-              htmlFor="name" label="Nombre"
-            />
-            <Input
-              type="text"
-              name="name"
-              value={newCycle.name}
-              onChange={handleChangeNew}
-            />
-          </div>
-          <div className='flex items-center'> {/* Description */}
-            <Label
-              htmlFor="description" label="Descripción"
-            />
-            <Input
-              type="text"
-              name="description"
-              value={newCycle.description}
-              onChange={handleChangeNew}
-            />
-          </div>
-        <button type="submit">Create new now</button>
-      </form>
+      
       {/* <button type="submit" data-toggle="modal" onClick={handleCreate} className="py-3 px-5 w-32 flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-green-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-red-600">Crear nuevo</button> */}
       <h2 className='text-2xl'>Cycle</h2>
       <div className='justify-items-start mb-8'>
