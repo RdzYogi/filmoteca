@@ -1,4 +1,5 @@
 Seat.destroy_all unless Seat.all.empty?
+Projection.destroy_all unless Projection.all.empty?
 Movie.destroy_all unless Movie.all.empty?
 Session.destroy_all unless Session.all.empty?
 Hall.destroy_all unless Hall.all.empty?
@@ -295,10 +296,29 @@ Projection.create(movie_id: Movie.all[0].id,
                   session_id: Session.all[1].id)
 puts "Projection-2 created"
 
-Projection.create(movie_id: Movie.all[2].id,
+Projection.create(movie_id: Movie.all[1].id,
                   session_id: Session.all[0].id)
 puts "Projection-3 created"
 
+Projection.create(movie_id: Movie.all[2].id,
+                  session_id: Session.all[1].id)
+puts "Projection-4 created"
+
+Projection.create(movie_id: Movie.all[3].id,
+                  session_id: Session.all[0].id)
+puts "Projection-5 created"
+
+Projection.create(movie_id: Movie.all[4].id,
+                  session_id: Session.all[1].id)
+puts "Projection-6 created"
+
+Projection.create(movie_id: Movie.all[5].id,
+                  session_id: Session.all[0].id)
+puts "Projection-7 created"
+
+Projection.create(movie_id: Movie.all[5].id,
+                  session_id: Session.all[1].id)
+puts "Projection-8 created"
 
 # Define News placeholder
 
@@ -314,4 +334,16 @@ News.create(title: "news2",
 
 puts "News created"
 
+# Creating users
+
+
 # Creating subscriptions for users
+
+Subscription.create(user_id: User.all[0].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 10)
+puts "Subscription-1 created"
+Subscription.create(user_id: User.all[1].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 8)
+puts "Subscription-2 created"
