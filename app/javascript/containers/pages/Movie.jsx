@@ -11,18 +11,31 @@ function Movie() {
   let params = useParams();
   const slug = params.slug;
   const [cycleData, setCycleData] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  const [isMovieLoaded, setIsMovieLoaded] = useState(false);
   const [movie, setMovie] = useState([]);
+  const [cycleSlug, setCycleSlug] = useState("");
   useEffect(() => {
     fetch(`/api/v1/movies/${slug}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data.include.cycle.slug);
         // setCycleData(data)
+        setCycleSlug(data.include.cycle.slug)
         setMovie(data);
-        setLoaded(true);
+        setIsMovieLoaded(true);
       });
   }, []);
+
+  useEffect(() => {
+    if (cycleSlug === "") return
+    fetch(`/api/v1/cycles/${cycleSlug}`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+
+
+    });
+  },[cycleSlug])
   // console.log(movie.movie.description)
   return (
     <Layout>
@@ -36,33 +49,36 @@ function Movie() {
         <div className="lg:absolute lg:top-40 lg:right-40">
           <DownloadButton />
         </div>
-        {loaded ?
-        <div className="m-5">
-          <h1 className="pt-20 text-2xl font-roboto text-black-900 text-left font-bold">{movie.movie.title}</h1>
-          <h2 className="text-1xl font-roboto text-black-900 text-left">{movie.movie.director}</h2>
-          <h3 className="text-1xl font-roboto text-black-900 text-left">{movie.movie.year}</h3>
-        </div> : "loading ..."}
-        {loaded ?
-        <div id="aqui es donde meto todo mi CODIGO">
-          <img
-            src= {movie.movie.img_url}
-            className="m-5 w-2/3"
-            alt="película"
-            />
-        </div> : "loading..."}
-        <div className="m-5 w-2/3 text-black-500 text-justify">
-          {loaded ? movie.movie.description : "loading.."}
-        </div>
+        {isMovieLoaded &&
+        <>
+          <div className="m-5">
+            <h1 className="pt-20 text-2xl font-roboto text-black-900 text-left font-bold">
+              {movie.movie.title}
+            </h1>
+            <h2 className="text-1xl font-roboto text-black-900 text-left">
+              {movie.movie.director}
+            </h2>
+            <h3 className="text-1xl font-roboto text-black-900 text-left">
+              {movie.movie.year}
+            </h3>
+          </div>
+            <img src={movie.movie.img_url} className="m-5 w-2/3" alt="película" />
+          <div className="m-5 w-2/3 text-black-500 text-justify">
+            {movie.movie.description}
+          </div>
+        </>
+        }
+
         <h2 className="pt-20 text-xl font-large font-bold text-black-900 m-2">
           MAS PELICULAS DEL CICLO
         </h2>
         <div className="m-5">
-              <div className="pt-25 grid grid-cols-3 gap-6 w-2xl h-60 ">
-                <div className="col-span-1  bg-gray-400"></div>
-                <div className="col-span-1  bg-gray-400"></div>
-                <div className="col-span-1  bg-gray-400"></div>
-              </div>
-      </div>
+          <div className="pt-25 grid grid-cols-3 gap-6 w-2xl h-60 ">
+            <div className="col-span-1  bg-gray-400"></div>
+            <div className="col-span-1  bg-gray-400"></div>
+            <div className="col-span-1  bg-gray-400"></div>
+          </div>
+        </div>
       </div>
       <Footer />
     </Layout>
