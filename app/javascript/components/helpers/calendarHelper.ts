@@ -2,15 +2,18 @@
 type ResultObject = {
   decemberYearBefore: Date[],
   januaryYearAfter: Date[],
-  0: Date[], 1: Date[], 2: Date[], 3: Date[], 4: Date[],5: Date[], 6: Date[], 7: Date[], 8: Date[], 9: Date[], 10: Date[], 11: Date[]
+  0: Date[], 1: Date[], 2: Date[], 3: Date[], 4: Date[],5: Date[], 6: Date[], 7: Date[], 8: Date[], 9: Date[], 10: Date[], 11: Date[],
+  spanishWeekdays: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
 }
 
-function getDaysOfMonths() {
+function calendarHelper() {
   const result : ResultObject= {
     decemberYearBefore:[],
     januaryYearAfter:[],
     0: [], 1: [], 2: [], 3: [], 4: [],5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [],
+    spanishWeekdays: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
   }
+
   const year = new Date().getFullYear()
 
   // Fill december of last year key
@@ -34,8 +37,8 @@ function getDaysOfMonths() {
       date.setUTCDate(date.getDate() + 1);
     }
   }
-  console.log("result:",result)
+  // console.log("result:",result)
   return result
 }
 
-export default getDaysOfMonths
+export default calendarHelper
