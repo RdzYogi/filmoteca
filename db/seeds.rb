@@ -86,6 +86,7 @@ Cycle.create(name: "FILMOTECA JUNIOR",
             slug: "ciclo-3",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
+
 puts "Cycles created"
 
 # Define placeholder sessions
