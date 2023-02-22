@@ -21,12 +21,20 @@ const lastDayOfMonthHelper = {
   'domingo': 0,
 }
 
-function Calendar() {
+function Calendar({movies}) {
+  const [movieCards, setMovieCards] = useState({})
+
   const [currentMonth, setCurrentMonth] = useState('')
   const [calendarGrid, setCalendarGrid] = useState([])
   useEffect(() => {
+    if (movies.length === 0) return
+    movies.map((movie, index) => {
+      const day = getDateObject(movie.props.movie.include.session.play_time)
+      console.log(day)
+      setMovieCards(prevState => ({...prevState, [index]: <div key={index+"movie"}></div>}))
+    })
     const calendarHelperInfo = calendarHelper()
-    console.log(calendarHelperInfo)
+    // console.log(calendarHelperInfo)
 
     // Get current month
     const dateToday = new Date()
@@ -56,7 +64,11 @@ function Calendar() {
     // Fill the calendar grid with the days of the current month
     const daysOfCurrentMonth = calendarHelperInfo[monthIndex].length
     for (let i = 0; i < daysOfCurrentMonth; i++) {
-      setCalendarGrid(prevState => [...prevState, <div key={i+"currMonth"}>{i+1}</div>])
+      setCalendarGrid(prevState => [...prevState,
+        <div key={i+"currMonth"}>
+          <div>{i+1}</div>
+        </div>
+      ])
     }
 
     // Fill the calendar grid with the days of the next month
@@ -67,7 +79,7 @@ function Calendar() {
     }
 
 
-  }, [])
+  }, [movies])
   return (
     <div className='max-w-2xl m-auto'>
       {/* Calendar month */}
