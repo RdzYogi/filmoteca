@@ -15,8 +15,9 @@ function MovieCreate() {
     quote: "",
     img_url: "",
     year: "",
-    cycle: "",
-    session: ""
+    cycle_id: 0,
+    session_id: 9,
+    slug: ""
   })
 
   // get all cycles to select to which cycle a movie belongs to (asnyc + useEffect)
@@ -38,8 +39,9 @@ function MovieCreate() {
 
   const handleChangeNew = (e) => {
     e.preventDefault()
+    const cycleIdToNumber = parseInt(e.target.value)
     setNewMovie({...newMovie,
-      [e.target.name]: e.target.value
+      [e.target.name]: (e.target.name === "cycle_id" ? cycleIdToNumber : e.target.value)
     })
     console.log(newMovie) // one change behind but when submit its entire input
   }
@@ -145,14 +147,13 @@ function MovieCreate() {
 {/* cycle select defautl option twice, doesnt change rn*/}
           <div className='flex items-center'> {/* year */}
             <Label
-              htmlFor="cycle" label="Cycle"
+              htmlFor="cycle_id" label="Cycle"
             />
-            <select name="cycle" onChange={handleChangeNew} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
-              {/* <option defaultValue={cycle.id}>{cycle.name}</option> default option twice rn */}
+            <select name="cycle_id" onChange={handleChangeNew} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
+              <option value="" selected disabled hidden>Elige aqui</option>
               {availableCycles.map((cycle, index) => {
                 return <option key={index} value={cycle.id}>{cycle.name}</option>
               })}
-
             </select>
           </div>
 

@@ -5,8 +5,6 @@ import Layout from '../../hocs/layouts/Layout';
 import CycleDB from '../../components/adminDB/CycleDB';
 import MovieDB from '../../components/adminDB/MovieDB';
 
-
-
 import CycleCreate from '../../components/adminDB/CycleCreate';
 import MovieCreate from '../../components/adminDB/MovieCreate';
 
