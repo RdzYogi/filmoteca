@@ -9,7 +9,8 @@ function Cycle() {
     // Get the slug from the URL
     let params = useParams()
     const slug = params.slug;
-    // We declare a state so we can store the data from the API
+    // We declare a state so we can store the data from the APIç
+
     const [cycleData, setCycleData] = useState([])
     const [loaded, setLoaded] = useState(false)
     const [movies, setMovies] = useState([])
