@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Label from './label';
 import Input from './input';
 import SubmitButton from '../shared/SubmitButton';
@@ -15,10 +15,26 @@ function MovieCreate() {
     quote: "",
     img_url: "",
     year: "",
-    slug: "",
     cycle: "",
     session: ""
   })
+
+  // get all cycles to select to which cycle a movie belongs to (asnyc + useEffect)
+  async function fetchCycles() {
+    const response = await fetch('/api/v1/cycles');
+    if (!response.ok){
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message)
+    }
+    const cycles = await response.json();
+    return cycles;
+  }
+
+  useEffect(() => {
+    fetchCycles()
+    .then((res) => setAvailableCycles(res))
+    .catch((error) => console.log(error.message))
+  }, [])
 
   const handleChangeNew = (e) => {
     e.preventDefault()

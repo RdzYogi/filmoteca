@@ -10,11 +10,11 @@ function CycleCreate() {
   let [newCycle, setNewCycle] = useState({
     name: "",
     description: "",
-    quote: "e",
-    img_url: "e",
-    start_date: "2023-05-01T00:00:00.000Z",
-    end_date: "2023-05-02T00:00:00.000Z",
-    color: "green-cycle"
+    quote: "",
+    img_url: "",
+    start_date: new Date(),
+    end_date: new Date(),
+    color: ""
   })
 
   const handleChangeNew = (e) => {
@@ -42,7 +42,7 @@ function CycleCreate() {
       console.log(err.message)
     })
   }
-  
+
   return (
     <div>
       <form onSubmit={handleCreate}>
@@ -120,7 +120,7 @@ function CycleCreate() {
               {/* may need to put color in tailwind in spanish */}
               {/* <option selected value={newCycle.color}>{newCycle.color.split("-")[0]}</option> */}
               {/* otherwise choose here option on row 84 */}
-              {/* <option value="" selected disabled hidden>Elige aqui</option> */}
+              <option value="" selected disabled hidden>Elige aqui</option>
               <option value="green-cycle">Verde</option>
               <option value="blue-cycle">Azul</option>
               <option value="aqua-cycle">Turquesa</option>
