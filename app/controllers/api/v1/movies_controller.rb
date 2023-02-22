@@ -1,6 +1,6 @@
 class Api::V1::MoviesController < ApplicationController
   def index
-    projections = Projection.includes(:movie, :session, :session [:hall], :movie [:cycle]).references(:movies, :sessions, :sessions [:halls], :movies [:cycles])
+    projections = Projection.includes(:movie, :session, :session => :hall, :movie => :cycle).references(:movies, :sessions, :sessions => :halls, :movies => :cycles)
     result = projections.map do |projection|
       cycle = Cycle.find(projection.movie.cycle_id)
       session = Session.find(projection.session_id)
