@@ -3,74 +3,38 @@ import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserAuth, setCurrentUser, resetLocalStorage, isLogged, isAdmin } from "../../redux/slices/userSlice"
+import { userSignOut, userSignIn } from "../../redux/slices/userSlice"
 
 
 function SignIn() {
 
-  const [user, setUser] = useState({email:"", password:""})
-  // const [currentUser, setCurrentUser] = useState({})
+  // Save the info that the user types in the form
+  const [userFormData, setUserFormData] = useState({email:"", password:""})
 
+  // Get info about the current user from redux to display
   const currentUserStore = useSelector(state => state.userManager.currentUser)
-  const authToken = useSelector(state => state.userManager.authToken)
+
+  // dispatch will allow us to call redux reducers
   const dispatch = useDispatch()
 
   const handleEmail = (e) => {
     e.preventDefault()
-    setUser({...user, email: e.target.value})
+    setUserFormData({...userFormData, email: e.target.value})
   }
 
   const handlePassword = (e) => {
     e.preventDefault()
-    setUser({...user, password: e.target.value})
+    setUserFormData({...userFormData, password: e.target.value})
   }
-
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const data = {user: user}
-    // console.log(data)
-    fetch('/users/sign_in', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(data)
-    })
-    .then(response => {
-      // console.log(response)
-      if (response.ok) {
-        // console.log(response.headers.get('Authorization').split(' ')[1])
-        dispatch(setUserAuth(response.headers.get('Authorization')))
-        return response.json();
-      } else {
-        throw new Error('Something went wrong');
-      }
-    })
-    .then(json => {
-      // console.log(json)
-      dispatch(setCurrentUser(json.user))
-      dispatch(isLogged)
-      if (json.user.admin === true) {
-        dispatch(isAdmin())
-      }
-    })
-    .catch(error => {
-    });
+    dispatch(userSignIn(userFormData))
   }
 
   const handleSignOut = (e) => {
     e.preventDefault()
-    fetch('/users/sign_out', {
-      method: 'DELETE',
-      headers: {'Content-Type': 'application/json', "Authorization": authToken},
-    })
-    .then(response => {
-      if (response.ok) {
-        dispatch(resetLocalStorage())
-        return response.json();
-      } else {
-        throw new Error('Something went wrong');
-      }
-    })
+    dispatch(userSignOut())
   }
 
 

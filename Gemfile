@@ -52,6 +52,7 @@ gem 'devise-jwt'
 gem 'rack-cors'
 
 gem 'to_slug', '~> 1.0', '>= 1.0.8'
+# gem "responders"
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
