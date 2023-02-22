@@ -1,50 +1,24 @@
-import React, {useEffect, useState} from 'react'
-import Label from './label'
-import Input from './input'
+import React, {useState, useEffect} from 'react'
+import Label from './label';
+import Input from './input';
 import SubmitButton from '../shared/SubmitButton';
 
-function MovieDB(props) {
-  const movie = props.movie.movie
-  const cycle = props.movie.include.cycle
+function MovieCreate() {
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const [availableCycles, setAvailableCycles] = useState([])
 
-  const [movieValues, setMovieValues] = useState({
-    id: movie.id,
-    title: movie.title,
-    runtime: movie.runtime,
-    director: movie.director,
-    description: movie.description,
-    quote: movie.quote,
-    img_url: movie.img_url,
-    year: movie.year,
-    slug: movie.slug,
-    cycle: cycle.id,
-    session: movie.session_id
+  let [newMovie, setNewMovie] = useState({
+    title: "",
+    runtime: "",
+    director: "",
+    description: "",
+    quote: "",
+    img_url: "",
+    year: "",
+    cycle_id: 0,
+    session_id: 9,
+    slug: ""
   })
-  // console.log(movieValues)
-
-  const handleChange = (e) => {
-    const cycleIdToNumber = parseInt(e.target.value)
-    // console.log(cycleIdToNumber, typeof(cycleIdToNumber))
-    setMovieValues({...movieValues,
-      [e.target.name]: (e.target.name === "cycle" ? cycleIdToNumber : e.target.value)
-    })
-  }
-  // console.log(movieValues)
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch(`/api/v1/movies/${movieValues.slug}`, {
-      method: 'PATCH',
-      headers: {
-        "Content-type": "application/json",
-        'X-CSRF-Token': csrfToken
-      },
-      body: JSON.stringify(movieValues)
-    })
-    alert("Movie was updated")
-  }
 
   // get all cycles to select to which cycle a movie belongs to (asnyc + useEffect)
   async function fetchCycles() {
@@ -63,25 +37,36 @@ function MovieDB(props) {
     .catch((error) => console.log(error.message))
   }, [])
 
+  const handleChangeNew = (e) => {
+    e.preventDefault()
+    const cycleIdToNumber = parseInt(e.target.value)
+    setNewMovie({...newMovie,
+      [e.target.name]: (e.target.name === "cycle_id" ? cycleIdToNumber : e.target.value)
+    })
+    console.log(newMovie) // one change behind but when submit its entire input
+  }
 
-  const handleDelete = (e) => {
-    fetch(`/api/v1/movies/${movieValues.slug}`, {
-      method: 'DELETE',
+  const handleCreate = () => {
+    fetch(`/api/v1/movies/`, {
+      method: 'POST',
       headers: {
         "Content-type": "application/json",
         'X-CSRF-Token': csrfToken
       },
-      body: JSON.stringify(movieValues)
+      body: JSON.stringify(newMovie)
     })
-    alert("Movie was deleted")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
   }
 
   return (
     <div>
-    {/* update */}
-      <h2 className='text-2xl'>Movie</h2>
-      <div className='justify-items-start'>
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleCreate}>
           <div className='flex items-center'> {/* title */}
             <Label
               htmlFor="title" label="Título"
@@ -89,8 +74,8 @@ function MovieDB(props) {
             <Input
               type="text"
               name="title"
-              defaultValue={movie.title}
-              onChange={handleChange}
+              defaultValue={newMovie.title}
+              onChange={handleChangeNew}
             />
           </div>
           <div className='flex items-center'> {/* runtime */}
@@ -100,8 +85,8 @@ function MovieDB(props) {
             <Input
               type="text"
               name="runtime"
-              defaultValue={movie.runtime}
-              onChange={handleChange}
+              defaultValue={newMovie.runtime}
+              onChange={handleChangeNew}
             />
           </div>
           <div className='flex items-center'> {/* director */}
@@ -111,8 +96,8 @@ function MovieDB(props) {
             <Input
               type="text"
               name="director"
-              defaultValue={movie.director}
-              onChange={handleChange}
+              defaultValue={newMovie.director}
+              onChange={handleChangeNew}
             />
           </div>
           <div className='flex items-center'> {/* Description */}
@@ -122,8 +107,8 @@ function MovieDB(props) {
             <Input
               type="text"
               name="description"
-              defaultValue={movie.description}
-              onChange={handleChange}
+              defaultValue={newMovie.description}
+              onChange={handleChangeNew}
             />
           </div>
           <div className='flex items-center'> {/* Quote */}
@@ -133,8 +118,8 @@ function MovieDB(props) {
             <Input
               type="text"
               name="quote"
-              defaultValue={movie.quote}
-              onChange={handleChange}
+              defaultValue={newMovie.quote}
+              onChange={handleChangeNew}
             />
           </div>
           <div className='flex items-center'> {/* img url */}
@@ -144,8 +129,8 @@ function MovieDB(props) {
             <Input
               type="text"
               name="img_url"
-              defaultValue={movie.img_url}
-              onChange={handleChange}
+              defaultValue={newMovie.img_url}
+              onChange={handleChangeNew}
             />
           </div>
           <div className='flex items-center'> {/* year */}
@@ -155,32 +140,29 @@ function MovieDB(props) {
             <Input
               type="text"
               name="year"
-              defaultValue={movie.year}
-              onChange={handleChange}
+              defaultValue={newMovie.year}
+              onChange={handleChangeNew}
             />
           </div>
 {/* cycle select defautl option twice, doesnt change rn*/}
           <div className='flex items-center'> {/* year */}
             <Label
-              htmlFor="cycle" label="Cycle"
+              htmlFor="cycle_id" label="Cycle"
             />
-            <select name="cycle" onChange={handleChange} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
-              {/* <option defaultValue={cycle.id}>{cycle.name}</option> default option twice rn */}
+            <select name="cycle_id" onChange={handleChangeNew} className="shadow-sm bg-htmlForm-bg border border-htmlForm-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full m-2.5 p-2.5">
+              <option value="" selected disabled hidden>Elige aqui</option>
               {availableCycles.map((cycle, index) => {
                 return <option key={index} value={cycle.id}>{cycle.name}</option>
               })}
-
             </select>
           </div>
 
           <div> {/* session_name */} </div>
           <div> {/* hall_name */} </div>
-          <SubmitButton label="Actualizar"/>
+          <SubmitButton label="Create now"/>
         </form>
-        <button type="submit" onClick={handleDelete} className='py-3 px-5 w-32 flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-red-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-red-600'>Eliminar</button>
-      </div>
     </div>
   )
 }
 
-export default MovieDB
+export default MovieCreate

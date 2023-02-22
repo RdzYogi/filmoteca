@@ -4,7 +4,6 @@ import getDateObject from "../helpers/getDateObject";
 
 
 function MovieCard(props){
-
   const movie = props.movie.movie
 
   const cycle = props.cycle
@@ -21,6 +20,7 @@ function MovieCard(props){
       <div className="box-border border border-black md:box-content">
         <div className={"p-1 bg-"+cycle.color}>
           <p className="text-center font-bold text-xl">{movie.title}</p>
+          <p className="text-center font-bold text-xl">{cycle.name}</p>
           <div className="text-center font-bold text-l">{movie.director} ({movie.year})</div>
         </div>
         <div className={"bg-black pl-2 pr-2 pt-1 pb-1"}>
