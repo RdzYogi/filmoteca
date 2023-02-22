@@ -75,7 +75,7 @@ function Home() {
           {ciclos}
         </Carousel>
         <h2 className='text-center font-bold text-2xl pb-4'>Calendario de este mes</h2>
-        <Calendar/>
+        <Calendar movies={movies}/>
         {/* <div className="mx-auto mb-32 max-w-7xl">
           <Carousel responsive={responsive} >
             {movies}
