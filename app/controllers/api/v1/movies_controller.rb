@@ -3,10 +3,15 @@ class Api::V1::MoviesController < ApplicationController
     # Need fix this because is working but with lot of queries
     projections = Projection.includes(:movie, :session, :session => :hall, :movie => :cycle).references(:movies, :sessions, :sessions => :halls, :movies => :cycles)
     result = projections.map do |projection|
-      cycle = Cycle.find(projection.movie.cycle_id)
-      session = Session.find(projection.session_id)
-      movie = Movie.find(projection.movie_id)
-      hall = Hall.find(projection.session.hall_id)
+      # cycle = Cycle.find(projection.movie.cycle_id)
+      # session = Session.find(projection.session_id)
+      # movie = Movie.find(projection.movie_id)
+      # hall = Hall.find(projection.session.hall_id)
+      # { projection:, include: { cycle:, session:, movie:, hall: } }
+      cycle = projection.movie.cycle
+      session = projection.session
+      movie = projection.movie
+      hall = projection.session.hall
       { projection:, include: { cycle:, session:, movie:, hall: } }
     end
 
