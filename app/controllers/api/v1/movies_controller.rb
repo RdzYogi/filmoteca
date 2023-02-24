@@ -1,32 +1,28 @@
 class Api::V1::MoviesController < ApplicationController
   def index
-    # Need fix this because is working but with lot of queries
-    projections = Projection.includes(:movie, :session, :session => :hall, :movie => :cycle).references(:movies, :sessions, :sessions => :halls, :movies => :cycles)
-    result = projections.map do |projection|
-      # cycle = Cycle.find(projection.movie.cycle_id)
-      # session = Session.find(projection.session_id)
-      # movie = Movie.find(projection.movie_id)
-      # hall = Hall.find(projection.session.hall_id)
-      # { projection:, include: { cycle:, session:, movie:, hall: } }
-      cycle = projection.movie.cycle
-      session = projection.session
-      movie = projection.movie
-      hall = projection.session.hall
-      { projection:, include: { cycle:, session:, movie:, hall: } }
+    movies = Movie.includes(:cycle, :projections, projections: [:session, session: :hall]).references(:cycles, :projections, :sessions, :halls)
+    result = movies.map do |movie|
+      cycle = movie.cycle
+      projections = movie.projections.map do |projection|
+        session = projection.session
+        hall = session.hall
+        { projection:, include: { session:, hall: } }
+      end
+      { movie:, include: { cycle:, projections: } }
     end
-
     render json: result
   end
 
-  # index is ok, have to update show with new seeds data
   def show
-    movie = Movie.find_by(slug: params[:slug])
+    movie = Movie.includes(:cycle, :projections, projections: [:session, session: :hall]).references(:cycles, :projections, :sessions, :halls).find_by(slug: params[:slug])
     if movie
-      cycle = Cycle.find(movie.cycle_id)
-      session = Session.find(movie.session_id)
-      hall = Hall.find(session.hall_id)
-      result = { movie:, include: { cycle:, session:, hall: } }
-
+      cycle = movie.cycle
+      projections = movie.projections.map do |projection|
+        session = projection.session
+        hall = session.hall
+        { projection:, include: { session:, hall: } }
+      end
+      result = { movie:, include: { cycle:, projections: } }
       render json: result
     else
       render json: { error: 'Movie not found' }, status: :not_found
