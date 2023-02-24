@@ -40,22 +40,10 @@ function MovieCard(props){
           <p className="text-center font-bold text-xl">{cycle.name}</p>
           <div className="text-center font-bold text-l">{movie.director} ({movie.year})</div>
         </div>
-<<<<<<< HEAD
       </Link>
-      <div className={"bg-black pl-2 pr-2 pt-1 pb-1"}>
-        <div className={"flex justify-between place-items-center text-xs text-"+cycle.color}>
-          <p className="">{showDateObject.day} de {showDateObject.month}</p>
-          <div className={"h-px w-1/12 self-center bg-"+cycle.color}></div>
-          <p className="">{showDateObject.hour+":"+showDateObject.minutes}h</p>
-          <div className={"h-px w-1/12 self-center bg-"+cycle.color}></div>
-          <p className="">{hall.name}</p>
-          <p className={"text-black font-bold p-1 bg-"+cycle.color}>Comprar</p>
-=======
         <div className={"bg-black pl-2 pr-2 pt-1 pb-1"}>
           {showDates}
->>>>>>> master
         </div>
-      </div>
       <img className="object-cover w-screen" src={movie.img_url} alt={movie.title}/>
       <Link to={"/movies/" + movie.slug}>
         <p className="text-justify p-2">{
