@@ -29,8 +29,8 @@ function Calendar({movies}) {
   useEffect(() => {
     if (movies.length === 0) return
     movies.map((movie, index) => {
-      const day = getDateObject(movie.props.movie.include.session.play_time)
-      console.log(day)
+      // const day = getDateObject(movie.props.movie.include.session.play_time)
+      // console.log(day)
       setMovieCards(prevState => ({...prevState, [index]: <div key={index+"movie"}></div>}))
     })
     const calendarHelperInfo = calendarHelper()
