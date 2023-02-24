@@ -5,6 +5,7 @@ Session.destroy_all unless Session.all.empty?
 Hall.destroy_all unless Hall.all.empty?
 Cycle.destroy_all unless Cycle.all.empty?
 Subscription.destroy_all unless Subscription.all.empty?
+User.destroy_all unless User.all.empty?
 News.destroy_all
 
 
@@ -336,6 +337,25 @@ puts "News created"
 
 # Creating users
 
+User.create(email: "fran@gmail.com",
+            password: "123456")
+puts "Fran created"
+
+User.create(email: "vito@gmail.com",
+            password: "123456")
+puts "Vito created"
+
+User.create(email: "silviu@gmail.com",
+            password: "123456")
+puts "Silviu created"
+
+User.create(email: "alberto@gmail.com",
+            password: "123456")
+puts "Alberto created"
+
+User.create(email: "laura@gmail.com",
+            password: "123456")
+puts "Laura created"
 
 # Creating subscriptions for users
 
@@ -343,7 +363,24 @@ Subscription.create(user_id: User.all[0].id,
                     tipo: "Abono 10",
                     remaining_uses: 10)
 puts "Subscription-1 created"
+
 Subscription.create(user_id: User.all[1].id,
                     tipo: "Abono 10",
                     remaining_uses: 8)
 puts "Subscription-2 created"
+
+Subscription.create(user_id: User.all[2].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 6)
+puts "Subscription-3 created"
+
+Subscription.create(user_id: User.all[3].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 4)
+puts "Subscription-4 created"
+
+Subscription.create(user_id: User.all[4].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 5)
+puts "Subscription-5 created"
+
