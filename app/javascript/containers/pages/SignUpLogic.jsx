@@ -3,9 +3,8 @@ import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserAuth, setCurrentUser } from "../../redux/slices/userSlice"
-import userSignUp from "../../components/helpers/userQueries/userSignUp"
-import userSignOut from "../../components/helpers/userQueries/userSignOut"
+import { userSignUp } from "../../redux/slices/userSlice"
+
 
 
 function SignUp() {
@@ -13,8 +12,7 @@ function SignUp() {
   const [userFormData, setUserFormData] = useState({email:"", password:"", password_confirmation:""})
   const dispatch = useDispatch()
   const currentUserStore = useSelector(state => state.userManager.currentUser)
-  const isLogged = useSelector(state => state.userManager.isLogged )
-  const authToken = useSelector(state => state.userManager.authToken)
+
 
   const handleEmail = (e) => {
     e.preventDefault()
@@ -33,26 +31,7 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault()
     // TODO basic validations
-    userSignUp(userFormData)
-    .then(response => {
-      if (response.isLogged) {
-        // If another account is logged in, we must log out that one and log in the new one
-        if (isLogged) {
-          userSignOut(authToken)
-          .then(()=>{
-            dispatch(setUserAuth(response.authToken))
-            dispatch(setCurrentUser(response.user))
-            dispatch(isLogged())
-            response.isAdmin && dispatch(isAdmin())
-          })
-        } else {
-          dispatch(setUserAuth(response.authToken))
-          dispatch(setCurrentUser(response.user))
-          dispatch(isLogged())
-          response.isAdmin && dispatch(isAdmin())
-        }
-      }
-    })
+    dispatch(userSignUp(userFormData))
   }
 
 

@@ -5,7 +5,6 @@ import getDateObject from "../helpers/getDateObject";
 const DESCRIPTIONMAX = 250
 
 function MovieCard(props){
-
   const movie = props.movie.movie
 
   const cycle = props.cycle
@@ -22,6 +21,7 @@ function MovieCard(props){
       <Link to={"/movies/" + movie.slug}>
         <div className={"p-1 bg-"+cycle.color}>
           <p className="text-center font-bold text-xl">{movie.title}</p>
+          <p className="text-center font-bold text-xl">{cycle.name}</p>
           <div className="text-center font-bold text-l">{movie.director} ({movie.year})</div>
         </div>
       </Link>

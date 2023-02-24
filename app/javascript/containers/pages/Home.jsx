@@ -7,6 +7,7 @@ import MovieCard from '../../components/shared/MovieCard'
 // For carousel documentation see react multi carousel git repo
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Calendar from '../../components/home/Calendar'
 
 const responsive = {
   superLargeDesktop: {
@@ -29,8 +30,13 @@ const responsive = {
 };
 
 function Home() {
+
+
+
   const [ciclos, setCiclos] = useState([])
   const [movies, setMovies] = useState([])
+
+
   useEffect(() => {
     fetch('api/v1/cycles')
       .then((response) => response.json())
@@ -49,6 +55,9 @@ function Home() {
       setMovies(newMovies)
       });
   }, [])
+
+
+
   return (
     <Layout>
       <Navbar/>
@@ -65,12 +74,19 @@ function Home() {
         <Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-32 max-w-7xl" >
           {ciclos}
         </Carousel>
+<<<<<<< HEAD
         <h2 className='text-center font-bold text-2xl pb-4'>Peliculas</h2>
         <div className="mx-auto mb-32 max-w-7xl">
           <Carousel itemClass='flex justify-center' responsive={responsive} >
+=======
+        <h2 className='text-center font-bold text-2xl pb-4'>Calendario de este mes</h2>
+        <Calendar movies={movies}/>
+        {/* <div className="mx-auto mb-32 max-w-7xl">
+          <Carousel responsive={responsive} >
+>>>>>>> master
             {movies}
           </Carousel>
-        </div>
+        </div> */}
       </div>
       <Footer/>
     </Layout>

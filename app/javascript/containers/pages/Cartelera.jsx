@@ -18,7 +18,7 @@ function Cartelera() {
     // console.log(e.target.value)
     let newMovies = []
     movies.map((movie) => {
-      // console.log(movie)
+      // console.log(movie.props)
       if (movie.props.movie.movie.title.toLowerCase().includes(searchQuery.toLowerCase()) || movie.props.movie.movie.director.toLowerCase().includes(searchQuery.toLowerCase())) {
         newMovies = [...newMovies, movie]
       }
@@ -54,9 +54,9 @@ function Cartelera() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-y-4">
           {loaded ?
-          <Fragment>
+          <>
             {searchQuery === "" ? movies : searchResults}
-          </Fragment>
+          </>
           : <h1>Loading...</h1>}
         </div>
       </div>
