@@ -8,7 +8,11 @@ function Hall() {
   let params = useParams()
   const id = params.id;
 
-  const [hallData, setHallData] = useState({})
+  const [hallData, setHallData] = useState({
+    hall: {},
+    seats: {},
+    sessions: {}
+  })
 
   useEffect(() => {
     fetch(`/api/v1/halls/${id}`)
@@ -19,7 +23,7 @@ function Hall() {
       setHallData(data)
     })
   }, [])
-console.log(hallData.seats)
+console.log(hallData)
 
   return (
     <Layout>
@@ -27,10 +31,10 @@ console.log(hallData.seats)
       <div className="pt-40 max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
-        <p>{hallData.name}</p>
-        {/* {hallData.seats.map(seat => {
-          <p>{seat.row}</p>
-        })} */}
+        <p>{hallData.hall.name}</p>
+
+
+        {/* <p>{hallData.seats[0].row}</p> */}
         {/* {hallData.sessions} */}
 
         {/* <p>La Sala 1 NO es accesible para público en silla de ruedas.</p>
