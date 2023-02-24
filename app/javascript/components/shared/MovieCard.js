@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import getDateObject from "../helpers/getDateObject";
 
-const DESCRIPTIONMAX = 200
+const DESCRIPTIONMAX = 250
 
 function MovieCard(props){
 
@@ -36,9 +36,11 @@ function MovieCard(props){
         </div>
       </div>
       <img className="object-cover w-screen" src={movie.img_url} alt={movie.title}/>
-      <p className="text-justify p-2">{
-        movie.description.length > DESCRIPTIONMAX ? movie.description.slice(0, DESCRIPTIONMAX) + "..." : movie.description}
-      </p>
+      <Link to={"/movies/" + movie.slug}>
+        <p className="text-justify p-2">{
+          movie.description.length > DESCRIPTIONMAX ? movie.description.slice(0, DESCRIPTIONMAX) + "..." : movie.description}
+        </p>
+      </Link>
     </div>
   );
 }
