@@ -22,14 +22,10 @@ function UserDetails() {
       }
     })
     .then((data) => {
-      console.log(data)
-      let newSubscriptions = []
-      data.map((subscription, index) => {
+      data.subscriptions.map((subscription, index) => {
         console.log(subscription)
-        newSubscriptions = [...newSubscriptions, <SubscriptionCard key={index} subscription={subscription}/>]
+        setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
       })
-      setSubscriptions(data.subscriptions)
-      // setReservations(data.reservations)
       setLoaded(true)
     });
   }, [])
@@ -37,8 +33,8 @@ function UserDetails() {
   return (
   <Layout>
     <Navbar/>
-    <div className="pt-40">{currentUserStore.id}</div>
-    <div className="pt-20">{currentUserStore.email}</div>
+    <div className="pt-40">SUBSCRIPTIONS</div>
+    {/* <div className="pt-20">{currentUserStore.email}</div> */}
     <div className="pt-20">
       {loaded ? subscriptions : <div className="text-center">Cargando...</div>}
     </div>
