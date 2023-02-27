@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import getDateObject from "../helpers/getDateObject";
 
-const DESCRIPTIONMAX = 250
+const DESCRIPTIONMAX = 160;
 
 function MovieCard(props){
   // console.log(props)
@@ -16,7 +16,7 @@ function MovieCard(props){
 
   useEffect(() => {
     props.movie.include.projections.map((projection,index) => {
-      // console.log(projection.include.session.play_time)
+      // console.log(projection)
       const hall = projection.include.hall.name
       const showDateObject = getDateObject(projection.include.session.play_time, options)
       setShowDates(showDates => [...showDates,
@@ -33,20 +33,19 @@ function MovieCard(props){
   }, [])
 
   return (
-    <div className="box-border border border-black h-96 w-4/5 overflow-hidden">
+    <div className="box-border border border-black h-96 w-96 overflow-hidden lg:w-80">
       <Link to={"/movies/" + movie.slug}>
-        <div className={"p-1 bg-"+cycle.color}>
+        <div className={"p-1 h-16 bg-"+cycle.color}>
           <p className="text-center font-bold text-xl">{movie.title}</p>
-          <p className="text-center font-bold text-xl">{cycle.name}</p>
           <div className="text-center font-bold text-l">{movie.director} ({movie.year})</div>
         </div>
       </Link>
-        <div className={"bg-black pl-2 pr-2 pt-1 pb-1"}>
+        <div className={"bg-black pl-2 pr-2 pt-1 pb-1 h-16 flex-col flex justify-around gap-y-2"}>
           {showDates}
         </div>
       <img className="object-cover w-screen" src={movie.img_url} alt={movie.title}/>
       <Link to={"/movies/" + movie.slug}>
-        <p className="text-justify p-2">{
+        <p className="text-justify p-2 h-24">{
           movie.description.length > DESCRIPTIONMAX ? movie.description.slice(0, DESCRIPTIONMAX) + "..." : movie.description}
         </p>
       </Link>
