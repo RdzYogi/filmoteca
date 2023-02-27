@@ -11,13 +11,9 @@ function Noticias() {
     fetch("api/v1/news")
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data)
-      let newNews = []
       data.map((noticia, index) => {
-        // console.log(noticia)
-        newNews = [...newNews, <NewsCard key={index} noticia={noticia}/>]
+        setNews(news => [...news, <NewsCard key={index} noticia={noticia}/>])
       })
-      setNews(newNews)
       setLoaded(true)
     });
   }, [])
