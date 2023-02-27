@@ -2,16 +2,24 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
+// import { CardCalendar } from './calendar/CardCalendar';
 
 function Calendar() {
   const [date, setDate] = useState(new Date());
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch('api/v1/movies')
-      .then(response => response.json())
-      .then(data => setMovies(data));
-  }, []);
+    fetch("api/v1/movies")
+    .then((response) => response.json())
+    .then((data) => {
+      let newMovies = []
+      data.map((movie,index) => {
+        newMovies = [...newMovies, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>]
+      })
+      setMovies(newMovies)
+      setLoaded(true)
+      });
+  }, [])
 
   const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   const monthStart = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
@@ -55,6 +63,7 @@ function Calendar() {
         <div className="day-name font-bold text-sm text-gray-500 text-center">Thu</div>
         <div className="day-name font-bold text-sm text-gray-500 text-center">Fri</div>
         <div className="day-name font-bold text-sm text-gray-500 text-center">Sat</div>
+        {/* < CardCalendar /> */}
         {renderDays()}
       </div>
     </div>
