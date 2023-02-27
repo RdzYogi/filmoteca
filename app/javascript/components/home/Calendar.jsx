@@ -42,9 +42,7 @@ function Calendar({movies}) {
     smallCalendarGrid = createSmallCalendar(movies={movies})
     setCurrentMonth(smallCalendarGrid.currentMonth)
     setWeekdays(smallCalendarGrid.weekdays)
-    // setCalendarGrid(smallCalendarGrid.calendarGrid)
 
-    // console.log(smallCalendarGrid.calendarGrid)
     // Group week days and attach listener
     for (let i = 0; i < smallCalendarGrid.calendarGrid.length; i+=7) {
       setCalendarGrid(prev => [...prev,
@@ -61,7 +59,7 @@ function Calendar({movies}) {
     const children = firstWeek.children
     for (let i = 0; i < children.length; i++) {
       setWeekDetailsButtons(prev => [...prev,
-        <div id={children[i].innerText+"dayName"} key={i+"dayName"} className="flex justify-center items-center bg-white">
+        <div id={children[i].innerText+"dayName"} key={i+"dayName"} data-other-month={children[i].id ? children[i].id:""} className="flex justify-center items-center bg-white">
           <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 " >
             {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
           </button>
@@ -72,20 +70,58 @@ function Calendar({movies}) {
 
   useEffect(() => {
     // The logic for the initial position on the weekday
-    const startDay = "1"
+
+    // Reset all the colors to white
+    resetButtonColors()
+
+    let result = []
     if (weekDetailsButtons.length === 0) return
-    weekDetailsButtons.forEach((button) => {
-      if (button.props.children.props.children.split(" ")[1] === startDay) {
-        const button = document.getElementById(startDay+"dayName")
+    weekDetailsButtons.forEach((button,index) => {
+      if (result.length > 0) return
+      const dayToFilter = button.props.children.props.children.split(" ")[1]
+      if (button.props['data-other-month'] === "") result = filterMoviesByDay({movies:movies,day:dayToFilter})
+      if (result.length > 0) {
+        const button = document.getElementById(dayToFilter+"dayName")
         button.classList.remove('bg-white')
         button.classList.add('bg-gray-100')
+        setMoviesToDisplay(result)
+      }
+      if (result.length === 0 && index === weekDetailsButtons.length - 1) {
+        const firstButton = document.getElementById(weekDetailsButtons[0].props.children.props.children.split(" ")[1]+"dayName")
+        firstButton.classList.remove('bg-white')
+        firstButton.classList.add('bg-gray-100')
+        setMoviesToDisplay([])
       }
     })
-    setMoviesToDisplay(filterMoviesByDay({movies:movies,day:startDay}))
   }, [weekDetailsButtons])
 
-  const handleDayChange = (e) => {
-    console.log(e.currentTarget.innerText.split(" ")[1])
+  function resetButtonColors () {
+    weekDetailsButtons.forEach((button) => {
+      const idHelper = button.props.children.props.children.split(" ")[1]
+      // console.log("from color resetter:",idHelper)
+      const buttonToReset = document.getElementById(idHelper+"dayName")
+      buttonToReset.classList.remove('bg-gray-100')
+      buttonToReset.classList.remove('bg-white')
+      buttonToReset.classList.add('bg-white')
+    })
+  }
+
+  function handleDayChange (e) {
+    e.preventDefault()
+    let result = []
+    const allButtons = e.currentTarget.parentElement.parentElement.children
+    for (let i = 0; i < allButtons.length; i++) {
+      allButtons[i].classList.remove('bg-gray-100')
+      allButtons[i].classList.remove('bg-white')
+      allButtons[i].classList.add('bg-white')
+    }
+    e.currentTarget.parentElement.classList.remove('bg-white')
+    e.currentTarget.parentElement.classList.add('bg-gray-100')
+
+    const dayToFilter = e.currentTarget.parentElement.id.split("dayName")[0]
+    if (e.currentTarget.parentElement.dataset.otherMonth === "") result = filterMoviesByDay({movies:movies,day:dayToFilter})
+    console.log(e.currentTarget.parentElement.dataset.otherMonth)
+    setMoviesToDisplay(result)
   }
   const handleWeekChange = (e) => {
     e.preventDefault()
@@ -97,8 +133,8 @@ function Calendar({movies}) {
         setWeekDetailsButtons([])
         for (let i = 0; i < children.length; i++) {
           setWeekDetailsButtons(prev => [...prev,
-            <div id={children[i].innerText+"dayName"} key={i+"dayName"} className="flex justify-center items-center bg-white">
-              <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 " >
+            <div id={children[i].innerText+"dayName"} data-other-month={children[i].id ? children[i].id:""} key={i+"dayName"} className="flex justify-center items-center bg-white">
+              <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 ">
                 {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
               </button>
             </div>
