@@ -72,13 +72,7 @@ function Calendar({movies}) {
     // The logic for the initial position on the weekday
 
     // Reset all the colors to white
-    weekDetailsButtons.forEach((button) => {
-      const idHelper = button.props.children.props.children.split(" ")[1]
-      const buttonToReset = document.getElementById(idHelper+"dayName")
-      buttonToReset.classList.remove('bg-gray-100')
-      buttonToReset.classList.remove('bg-white')
-      buttonToReset.classList.add('bg-white')
-    })
+    resetButtonColors()
 
     let result = []
     if (weekDetailsButtons.length === 0) return
@@ -101,8 +95,33 @@ function Calendar({movies}) {
     })
   }, [weekDetailsButtons])
 
-  const handleDayChange = (e) => {
-    // console.log(e.currentTarget.innerText.split(" ")[1])
+  function resetButtonColors () {
+    weekDetailsButtons.forEach((button) => {
+      const idHelper = button.props.children.props.children.split(" ")[1]
+      // console.log("from color resetter:",idHelper)
+      const buttonToReset = document.getElementById(idHelper+"dayName")
+      buttonToReset.classList.remove('bg-gray-100')
+      buttonToReset.classList.remove('bg-white')
+      buttonToReset.classList.add('bg-white')
+    })
+  }
+
+  function handleDayChange (e) {
+    e.preventDefault()
+    let result = []
+    const allButtons = e.currentTarget.parentElement.parentElement.children
+    for (let i = 0; i < allButtons.length; i++) {
+      allButtons[i].classList.remove('bg-gray-100')
+      allButtons[i].classList.remove('bg-white')
+      allButtons[i].classList.add('bg-white')
+    }
+    e.currentTarget.parentElement.classList.remove('bg-white')
+    e.currentTarget.parentElement.classList.add('bg-gray-100')
+
+    const dayToFilter = e.currentTarget.parentElement.id.split("dayName")[0]
+    if (e.currentTarget.parentElement.dataset.otherMonth === "") result = filterMoviesByDay({movies:movies,day:dayToFilter})
+    console.log(e.currentTarget.parentElement.dataset.otherMonth)
+    setMoviesToDisplay(result)
   }
   const handleWeekChange = (e) => {
     e.preventDefault()
