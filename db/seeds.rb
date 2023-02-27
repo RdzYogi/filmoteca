@@ -20,15 +20,15 @@ puts "Halls created"
 # For each hall, create 10 rows and 10 columns
 
 # Hall 1
-19.times do |row|
-  18.times do |column|
+20.times do |row|
+  17.times do |column|
     Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
   end
 end
 
 # Hall 2
 11.times do |row|
-  10.times do |column|
+  13.times do |column|
     Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
   end
 end
