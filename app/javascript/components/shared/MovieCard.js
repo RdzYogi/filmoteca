@@ -16,7 +16,7 @@ function MovieCard(props){
 
   useEffect(() => {
     props.movie.include.projections.map((projection,index) => {
-      console.log(projection.include.session.play_time)
+      // console.log(projection.include.session.play_time)
       const hall = projection.include.hall.name
       const showDateObject = getDateObject(projection.include.session.play_time, options)
       setShowDates(showDates => [...showDates,
