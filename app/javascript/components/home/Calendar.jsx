@@ -3,6 +3,7 @@ import getDateObject from '../helpers/getDateObject'
 import calendarHelper from '../helpers/calendarHelper'
 import createSmallCalendar from '../helpers/createSmallCalendar'
 import Carousel from 'react-multi-carousel'
+import filterMoviesByDay from '../helpers/filterMoviesByDay'
 
 let smallCalendarGrid = {}
 const responsive = {
@@ -13,7 +14,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3
+    items: 2
   },
   tablet: {
     breakpoint: { max: 1024, min: 768 },
@@ -35,7 +36,6 @@ function Calendar({movies}) {
   const [weekDetailsButtons, setWeekDetailsButtons] = useState([])
   const [moviesToDisplay, setMoviesToDisplay] = useState([])
 
-  const [currentWeek, setCurrentWeek] = useState("week-0")
 
   useEffect(() => {
     if (movies.length === 0) return
@@ -61,13 +61,32 @@ function Calendar({movies}) {
     const children = firstWeek.children
     for (let i = 0; i < children.length; i++) {
       setWeekDetailsButtons(prev => [...prev,
-        <button key={i+"dayName"} className="text-white self-center justify-self-center bg-black h-fit w-fit px-3 " >
-          {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
-        </button>
+        <div id={children[i].innerText+"dayName"} key={i+"dayName"} className="flex justify-center items-center bg-white">
+          <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 " >
+            {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
+          </button>
+        </div>
       ])
     }
   }, [calendarGrid])
 
+  useEffect(() => {
+    // The logic for the initial position on the weekday
+    const startDay = "1"
+    if (weekDetailsButtons.length === 0) return
+    weekDetailsButtons.forEach((button) => {
+      if (button.props.children.props.children.split(" ")[1] === startDay) {
+        const button = document.getElementById(startDay+"dayName")
+        button.classList.remove('bg-white')
+        button.classList.add('bg-gray-100')
+      }
+    })
+    setMoviesToDisplay(filterMoviesByDay({movies:movies,day:startDay}))
+  }, [weekDetailsButtons])
+
+  const handleDayChange = (e) => {
+    console.log(e.currentTarget.innerText.split(" ")[1])
+  }
   const handleWeekChange = (e) => {
     e.preventDefault()
     const weeks = [document.getElementById('week-0'),document.getElementById('week-1'),document.getElementById('week-2'),document.getElementById('week-3'),document.getElementById('week-4')]
@@ -78,25 +97,26 @@ function Calendar({movies}) {
         setWeekDetailsButtons([])
         for (let i = 0; i < children.length; i++) {
           setWeekDetailsButtons(prev => [...prev,
-            <button key={i+"dayName"} className="text-white self-center justify-self-center bg-black h-fit w-fit px-3 " >
-              {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
-            </button>
+            <div id={children[i].innerText+"dayName"} key={i+"dayName"} className="flex justify-center items-center bg-white">
+              <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 " >
+                {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
+              </button>
+            </div>
           ])
         }
-        setCurrentWeek(week.id)
       } else {
         week.classList.remove('bg-gray-100')
       }
     })
   }
   return (
-    <div className='flex justify-between max-w-7xl mx-auto pb-10 h-[32rem]'>
-      <div className='w-3/4 bg-gray-200'>
+    <div className='flex justify-between max-w-7xl mx-auto pb-10 h-[40rem]'>
+      <div className='w-3/4 bg-gray-100'>
         <div className='w-full h-14 grid grid-cols-7'>
           {weekDetailsButtons}
         </div>
         <div>
-          <Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-32 max-w-7xl" >
+          <Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-32 max-w-7xl pt-5" >
             {moviesToDisplay}
           </Carousel>
         </div>
