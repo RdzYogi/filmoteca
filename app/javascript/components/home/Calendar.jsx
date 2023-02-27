@@ -2,8 +2,28 @@ import React, { useEffect, useState } from 'react'
 import getDateObject from '../helpers/getDateObject'
 import calendarHelper from '../helpers/calendarHelper'
 import createSmallCalendar from '../helpers/createSmallCalendar'
+import Carousel from 'react-multi-carousel'
 
 let smallCalendarGrid = {}
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 768 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 768, min: 0 },
+    items: 1
+  }
+};
 
 function Calendar({movies}) {
 
@@ -13,6 +33,7 @@ function Calendar({movies}) {
   const [weekdays, setWeekdays] = useState([])
 
   const [weekDetailsButtons, setWeekDetailsButtons] = useState([])
+  const [moviesToDisplay, setMoviesToDisplay] = useState([])
 
   const [currentWeek, setCurrentWeek] = useState("week-0")
 
@@ -71,11 +92,13 @@ function Calendar({movies}) {
   return (
     <div className='flex justify-between max-w-7xl mx-auto pb-10 h-[32rem]'>
       <div className='w-3/4 bg-gray-200'>
-        <div className='w-full h-14 bg-gray-400 grid grid-cols-7'>
+        <div className='w-full h-14 grid grid-cols-7'>
           {weekDetailsButtons}
         </div>
         <div>
-
+          <Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-32 max-w-7xl" >
+            {moviesToDisplay}
+          </Carousel>
         </div>
 
       </div>
