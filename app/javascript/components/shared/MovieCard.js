@@ -33,7 +33,7 @@ function MovieCard(props){
   }, [])
 
   return (
-    <div className="box-border border border-black h-96 w-96 overflow-hidden lg:w-80">
+    <div className="box-border border border-black h-96 w-80 overflow-hidden">
       <Link to={"/movies/" + movie.slug}>
         <div className={"p-1 h-16 bg-"+cycle.color}>
           <p className="text-center font-bold text-xl">{movie.title}</p>
