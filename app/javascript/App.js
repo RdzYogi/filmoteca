@@ -9,6 +9,7 @@ import Cartelera from './containers/pages/Cartelera';
 import Ciclos from './containers/pages/Ciclos';
 import Noticias from './containers/pages/Noticias';
 import Contacto from './containers/pages/Contacto';
+import UserDetails from './containers/pages/UserDetails';
 import Cycle from './containers/pages/Cycle';
 import Movie from './containers/pages/Movie';
 import AdminDB from './containers/pages/AdminDB';
@@ -43,6 +44,7 @@ function App() {
         <Route exact path="/ciclos" element={<Ciclos />} />
         <Route exact path="/noticias" element={<Noticias />} />
         <Route exact path="/contacto" element={<Contacto />} />
+        <Route exact path="/user_details" element={<UserDetails />} />
         <Route exact path="/ciclos/:slug" element={<Cycle />} />
         <Route exact path="/movies/:slug" element={<Movie />} />
         <Route exact path="/halls/:id" element={<Hall />} />

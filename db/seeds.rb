@@ -1,8 +1,11 @@
 Seat.destroy_all unless Seat.all.empty?
+Projection.destroy_all unless Projection.all.empty?
 Movie.destroy_all unless Movie.all.empty?
 Session.destroy_all unless Session.all.empty?
 Hall.destroy_all unless Hall.all.empty?
 Cycle.destroy_all unless Cycle.all.empty?
+Subscription.destroy_all unless Subscription.all.empty?
+User.destroy_all unless User.all.empty?
 News.destroy_all
 
 
@@ -46,19 +49,19 @@ puts "Seats created"
 # TODO: Fill in the correct data for each cycle
 
 Cycle.create(name: "DOUGLAS SIRK. LA EMOCIÓN INMEDIATA",
-             description: "Douglas Sirk, el maestro del melodrama: el
-             título es incontestable. Hoy en día seguimos
-             viendo Obsesión (1954), Su gran deseo (1953),
-             Solo el cielo lo sabe (1955), Escrito sobre el
-             viento (1956) e Imitación a la vida (1959) con
-             la misma fascinación y emoción -que, a veces,
-             intenta combatir con una sonrisa- que cuando
-             se estrenaron.",
-             quote: "Ciclo 1",
-             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
-             color: "green-cycle",
-             start_date: "2023-01-01",
-             end_date: "2023-03-31")
+              description: "Douglas Sirk, el maestro del melodrama: el
+              título es incontestable. Hoy en día seguimos
+              viendo Obsesión (1954), Su gran deseo (1953),
+              Solo el cielo lo sabe (1955), Escrito sobre el
+              viento (1956) e Imitación a la vida (1959) con
+              la misma fascinación y emoción -que, a veces,
+              intenta combatir con una sonrisa- que cuando
+              se estrenaron.",
+              quote: "Ciclo 1",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              color: "green-cycle",
+              start_date: "2023-01-01",
+              end_date: "2023-03-31")
 
 Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
             description: "¿Se puede decir algo nuevo sobre esta gran
@@ -91,14 +94,14 @@ puts "Cycles created"
 Session.create(name: "Movie 1",
               description: "Movie 1",
               quote: "Movie 1",
-              play_time: "2023-01-01 17:00:00",
+              play_time: "2023-02-01 17:00:00",
               cycle_id: Cycle.all[0].id,
               hall_id: Hall.all[0].id)
 
 Session.create(name: "Movie 2",
                 description: "Movie 2",
                 quote: "Movie 2",
-                play_time: "2023-01-01 18:00:00",
+                play_time: "2023-02-02 19:00:00",
                 cycle_id: Cycle.all[0].id,
                 hall_id: Hall.all[0].id)
 
@@ -111,7 +114,6 @@ Movie.create(title: "April, April",
               quote: "«El primer intento de hacer una comedia alemana con el estilo americano». (Douglas Sirk)",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               year: "1943",
-              session_id: Session.all[0].id,
               cycle_id: Cycle.all[0].id)
 
 Movie.create(title: "Concierto en la corte",
@@ -131,7 +133,6 @@ Movie.create(title: "Concierto en la corte",
               de mis películas alemanas». (Douglas Sirk)",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Concierto-en-la-corte_cvfxwv.jpg",
               year: "2021",
-              session_id: Session.all[0].id,
               cycle_id: Cycle.all[0].id)
 puts "Movie-2 created"
 Movie.create(title: "La golondrina cautiva",
@@ -154,7 +155,6 @@ Movie.create(title: "La golondrina cautiva",
             el indeciso, el ambiguo, el inseguro». (Douglas Sirk)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676291459/Filmoteca/Mas-fuerte-que-la-ley_kgutup.jpg",
             year: "1937",
-            session_id: Session.all[0].id,
             cycle_id: Cycle.all[0].id)
 puts "Movie-3 created"
 Movie.create(title: "La Habanera",
@@ -170,7 +170,6 @@ Movie.create(title: "La Habanera",
             momento». (Douglas Sirk)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301247/Filmoteca/La-Habanera_v0tmk8.jpg",
             year: "1937",
-            session_id: Session.all[0].id,
             cycle_id: Cycle.all[0].id)
 puts "Movie-4 created"
 Movie.create(title: "La novena sinfonía",
@@ -192,7 +191,6 @@ Movie.create(title: "La novena sinfonía",
             que nunca puede serlo en el teatro». (Douglas Sirk)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301243/Filmoteca/La-novena-sinfon%C3%ADa_ifwrdb.jpg",
             year: "1936",
-            session_id: Session.all[0].id,
             cycle_id: Cycle.all[0].id)
 puts "Movie-5 created"
 # Add Lola Flores movies
@@ -215,7 +213,6 @@ Movie.create(title: "Embrujo",
             productores y exhibidores». (Carlos Serrano de Osma)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/Embrujo_hre7a8.jpg",
             year: "1947",
-            session_id: Session.all[0].id,
             cycle_id: Cycle.all[1].id)
 puts "Movie-6 created"
 Movie.create(title: "Una señora estupenda",
@@ -239,7 +236,6 @@ Movie.create(title: "Una señora estupenda",
             Aguilera, Juana la del Pipa…». (Carlos Aguilar y Anita Haas)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301269/Filmoteca/Una-se%C3%B1ora-estupenda_x6ymci.jpg",
             year: "1947",
-            session_id: Session.all[0].id,
             cycle_id: Cycle.all[1].id)
 puts "Movie-7 created"
 # Add Filmoteca Junior movies
@@ -265,7 +261,6 @@ Movie.create(title: "El último unicornio",
             (Alex McLevy)",
             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/El-%C3%BAltimo-unicornio_mxtekq.jpg",
             year: "1982",
-            session_id: Session.all[0].id,
             cycle_id: Cycle.all[2].id)
 puts "Movie-8 created"
 Movie.create(title: "La bella y la bestia",
@@ -289,10 +284,42 @@ Movie.create(title: "La bella y la bestia",
               ciones». (Janet Maslin)",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
               year: "1991",
-              session_id: Session.all[0].id,
               cycle_id: Cycle.all[2].id)
 puts "Movie-9 created"
 puts "Movies created"
+
+# Creating Projections
+Projection.create(movie_id: Movie.all[0].id,
+                  session_id: Session.all[0].id)
+puts "Projection-1 created"
+
+Projection.create(movie_id: Movie.all[0].id,
+                  session_id: Session.all[1].id)
+puts "Projection-2 created"
+
+Projection.create(movie_id: Movie.all[1].id,
+                  session_id: Session.all[0].id)
+puts "Projection-3 created"
+
+Projection.create(movie_id: Movie.all[2].id,
+                  session_id: Session.all[1].id)
+puts "Projection-4 created"
+
+Projection.create(movie_id: Movie.all[3].id,
+                  session_id: Session.all[0].id)
+puts "Projection-5 created"
+
+Projection.create(movie_id: Movie.all[4].id,
+                  session_id: Session.all[1].id)
+puts "Projection-6 created"
+
+Projection.create(movie_id: Movie.all[5].id,
+                  session_id: Session.all[0].id)
+puts "Projection-7 created"
+
+Projection.create(movie_id: Movie.all[5].id,
+                  session_id: Session.all[1].id)
+puts "Projection-8 created"
 
 # Define News placeholder
 
@@ -307,3 +334,53 @@ News.create(title: "news2",
             img_url: "https://unsplash.com/photos/h7rOzTmGxWE")
 
 puts "News created"
+
+# Creating users
+
+User.create(email: "fran@gmail.com",
+            password: "123456")
+puts "Fran created"
+
+User.create(email: "vito@gmail.com",
+            password: "123456")
+puts "Vito created"
+
+User.create(email: "silviu@gmail.com",
+            password: "123456")
+puts "Silviu created"
+
+User.create(email: "alberto@gmail.com",
+            password: "123456")
+puts "Alberto created"
+
+User.create(email: "laura@gmail.com",
+            password: "123456")
+puts "Laura created"
+
+# Creating subscriptions for users
+
+Subscription.create(user_id: User.all[0].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 10)
+puts "Subscription-1 created"
+
+Subscription.create(user_id: User.all[1].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 8)
+puts "Subscription-2 created"
+
+Subscription.create(user_id: User.all[2].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 6)
+puts "Subscription-3 created"
+
+Subscription.create(user_id: User.all[3].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 4)
+puts "Subscription-4 created"
+
+Subscription.create(user_id: User.all[4].id,
+                    tipo: "Abono 10",
+                    remaining_uses: 5)
+puts "Subscription-5 created"
+

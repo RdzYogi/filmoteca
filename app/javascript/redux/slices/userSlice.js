@@ -3,8 +3,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   userAuth: localStorage.getItem("auth_token") || "",
   currentUser: {
-    id: localStorage.getItem("current_user") ? JSON.parse(localStorage.getItem("current_user")).id : "",
-    email: localStorage.getItem("current_user") ? JSON.parse(localStorage.getItem("current_user")).email : "",
     admin: false,
     logged_in: false
   }
@@ -61,7 +59,6 @@ export const userSignIn = createAsyncThunk("userManager/userSignIn", async (user
   const data = {user: user}
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const result = {
-    user: {},
     authToken: '',
     isLogged: false,
     isAdmin: false,
@@ -101,7 +98,6 @@ export const userSignUp = createAsyncThunk("userManager/userSignUp", async (user
   const state = store.getState()
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const result = {
-    user: {},
     authToken: '',
     isLogged: false,
     isAdmin: false
@@ -157,14 +153,11 @@ export const userSlice = createSlice({
         // console.log(action.payload.user)
         if (action.payload.isLogged === true) {
           state.currentUser.logged_in = true
-          state.currentUser.id = action.payload.user.id
-          state.currentUser.email = action.payload.user.email
-          localStorage.setItem("current_user", JSON.stringify({id: action.payload.user.id, email: action.payload.user.email}))
         } else{
           state.userAuth = ""
-          state.currentUser = {id: "", email: "", admin: false, logged_in: false}
+          state.currentUser = {admin: false, logged_in: false}
           localStorage.setItem("auth_token", "")
-          localStorage.setItem("current_user", "")
+
         }
         if (action.payload.isAdmin === true) {
           state.currentUser.admin = true
@@ -172,17 +165,15 @@ export const userSlice = createSlice({
       })
       .addCase(verifyUserToken.rejected, (state, action) => {
         state.userAuth = ""
-        state.currentUser = {id: "", email: "", admin: false, logged_in: false}
+        state.currentUser = {admin: false, logged_in: false}
         localStorage.setItem("auth_token", "")
-        localStorage.setItem("current_user", "")
       })
       .addCase(userSignOut.pending, (state, action) => {})
       .addCase(userSignOut.fulfilled, (state, action) => {
         if (action.payload) {
           state.userAuth = ""
-          state.currentUser = {id: "", email: "", admin: false, logged_in: false}
+          state.currentUser = {admin: false, logged_in: false}
           localStorage.setItem("auth_token", "")
-          localStorage.setItem("current_user", "")
         }
       })
       .addCase(userSignOut.rejected, (state, action) => {})
@@ -190,11 +181,11 @@ export const userSlice = createSlice({
       .addCase(userSignIn.fulfilled, (state, action) => {
         if (action.payload.isLogged === true) {
           state.userAuth = action.payload.authToken
-          state.currentUser.id = action.payload.user.id
-          state.currentUser.email = action.payload.user.email
           state.currentUser.logged_in = true
           localStorage.setItem("auth_token", action.payload.authToken);
-          localStorage.setItem("current_user", JSON.stringify(action.payload.user));
+          if (action.payload.isAdmin === true) {
+            state.currentUser.admin = true
+          }
         }
       })
       .addCase(userSignIn.rejected, (state, action) => {
@@ -204,11 +195,8 @@ export const userSlice = createSlice({
       .addCase(userSignUp.fulfilled, (state, action) => {
         if (action.payload.isLogged === true) {
           state.userAuth = action.payload.authToken
-          state.currentUser.id = action.payload.user.id
-          state.currentUser.email = action.payload.user.email
           state.currentUser.logged_in = true
           localStorage.setItem("auth_token", action.payload.authToken);
-          localStorage.setItem("current_user", JSON.stringify(action.payload.user));
         }
       })
       .addCase(userSignUp.rejected, (state, action) => {})
