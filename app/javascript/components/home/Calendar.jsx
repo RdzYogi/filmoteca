@@ -61,7 +61,7 @@ function Calendar({movies}) {
     const children = firstWeek.children
     for (let i = 0; i < children.length; i++) {
       setWeekDetailsButtons(prev => [...prev,
-        <div key={i+"dayName"} className="flex justify-center items-center bg-white">
+        <div id={children[i].innerText+"dayName"} key={i+"dayName"} className="flex justify-center items-center bg-white">
           <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 " >
             {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
           </button>
@@ -75,9 +75,10 @@ function Calendar({movies}) {
     const startDay = "1"
     if (weekDetailsButtons.length === 0) return
     weekDetailsButtons.forEach((button) => {
-      console.log(button.props)
       if (button.props.children.props.children.split(" ")[1] === startDay) {
-        button.props.className += "bg-gray-100"
+        const button = document.getElementById(startDay+"dayName")
+        button.classList.remove('bg-white')
+        button.classList.add('bg-gray-100')
       }
     })
     setMoviesToDisplay(filterMoviesByDay({movies:movies,day:startDay}))
@@ -96,7 +97,7 @@ function Calendar({movies}) {
         setWeekDetailsButtons([])
         for (let i = 0; i < children.length; i++) {
           setWeekDetailsButtons(prev => [...prev,
-            <div key={i+"dayName"} className="flex justify-center items-center bg-white">
+            <div id={children[i].innerText+"dayName"} key={i+"dayName"} className="flex justify-center items-center bg-white">
               <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 " >
                 {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
               </button>
@@ -115,7 +116,7 @@ function Calendar({movies}) {
           {weekDetailsButtons}
         </div>
         <div>
-          <Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-32 max-w-7xl" >
+          <Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-32 max-w-7xl pt-5" >
             {moviesToDisplay}
           </Carousel>
         </div>
