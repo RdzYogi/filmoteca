@@ -3,24 +3,6 @@ import getDateObject from '../helpers/getDateObject'
 import calendarHelper from '../helpers/calendarHelper'
 import createSmallCalendar from '../helpers/createSmallCalendar'
 
-const firstDayOfMonthHelper = {
-  'lunes': 0,
-  'martes': 1,
-  'miércoles': 2,
-  'jueves': 3,
-  'viernes': 4,
-  'sábado': 5,
-  'domingo': 6,
-}
-const lastDayOfMonthHelper = {
-  'lunes': 6,
-  'martes': 5,
-  'miércoles': 4,
-  'jueves': 3,
-  'viernes': 2,
-  'sábado': 1,
-  'domingo': 0,
-}
 let smallCalendarGrid = {}
 
 function Calendar({movies}) {
@@ -28,15 +10,37 @@ function Calendar({movies}) {
   const [currentMonth, setCurrentMonth] = useState('')
   const [calendarGrid, setCalendarGrid] = useState([])
   const [weekdays, setWeekdays] = useState([])
+
   useEffect(() => {
     if (movies.length === 0) return
     smallCalendarGrid = createSmallCalendar(movies={movies})
-    console.log(smallCalendarGrid)
     setCurrentMonth(smallCalendarGrid.currentMonth)
-    setCalendarGrid(smallCalendarGrid.calendarGrid)
     setWeekdays(smallCalendarGrid.weekdays)
+    // setCalendarGrid(smallCalendarGrid.calendarGrid)
 
+    // console.log(smallCalendarGrid.calendarGrid)
+    // Group week days and attach listener
+    for (let i = 0; i < smallCalendarGrid.calendarGrid.length; i+=7) {
+      setCalendarGrid(prev => [...prev,
+        <button onClick={handleWeekChange} id={"week-"+(i%34/7)} key={i%7+i%34+"week"} className='grid grid-cols-7 w-full'>
+          {smallCalendarGrid.calendarGrid.slice(i, i+7)}
+        </button>
+      ])
+    }
   }, [movies])
+
+  const handleWeekChange = (e) => {
+    e.preventDefault()
+    const weeks = [document.getElementById('week-0'),document.getElementById('week-1'),document.getElementById('week-2'),document.getElementById('week-3'),document.getElementById('week-4')]
+    console.log(e.currentTarget.id)
+    weeks.map(week => {
+      if (week.id === e.currentTarget.id) {
+        week.classList.add('bg-gray-100')
+      } else {
+        week.classList.remove('bg-gray-100')
+      }
+    })
+  }
   return (
     <div className='w-72 m-auto'>
       {/* Calendar month */}
@@ -45,8 +49,8 @@ function Calendar({movies}) {
       </div>
       <div className='grid grid-cols-7'>
         {weekdays}
-        {calendarGrid}
       </div>
+        {calendarGrid}
 
     </div>
   )

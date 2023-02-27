@@ -34,8 +34,12 @@ const lastDayOfMonthHelper = {
 // This function creates the calendar grid for the small calendar
 // Filling the days of the previous month, the current month and the next month
 // It also fills the days with the projections of the movies
-// It returns an object with the current month, the weekdays and the calendar grid
 // It receives an array of rendered movie cards
+// It returns an object with the current month, the weekdays and the calendar grid
+
+// The calendar grid is an array of JSX elements
+// That can be iterated in the small calendar component
+// To attach listeners to each day or week
 
 function createSmallCalendar( {movies} : Props) {
   // console.log("smallCalendar",typeof movies,movies)
