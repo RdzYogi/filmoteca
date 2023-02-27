@@ -9,7 +9,6 @@ class Api::V1::HallsController < ApplicationController
     if hall
       seats = Seat.where(hall_id: hall.id)
       sessions = Session.where(hall_id: hall.id)
-
       result = {hall:, seats:, sessions:}
       render json: result
     else
