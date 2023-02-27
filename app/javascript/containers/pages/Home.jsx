@@ -50,6 +50,7 @@ function Home() {
     .then((data) => {
       let newMovies = []
       data.map((movie,index) => {
+        // console.log(data)
         newMovies = [...newMovies, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>]
       })
       setMovies(newMovies)
