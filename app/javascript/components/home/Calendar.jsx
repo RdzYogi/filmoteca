@@ -42,9 +42,7 @@ function Calendar({movies}) {
     smallCalendarGrid = createSmallCalendar(movies={movies})
     setCurrentMonth(smallCalendarGrid.currentMonth)
     setWeekdays(smallCalendarGrid.weekdays)
-    // setCalendarGrid(smallCalendarGrid.calendarGrid)
 
-    // console.log(smallCalendarGrid.calendarGrid)
     // Group week days and attach listener
     for (let i = 0; i < smallCalendarGrid.calendarGrid.length; i+=7) {
       setCalendarGrid(prev => [...prev,
@@ -61,7 +59,7 @@ function Calendar({movies}) {
     const children = firstWeek.children
     for (let i = 0; i < children.length; i++) {
       setWeekDetailsButtons(prev => [...prev,
-        <div id={children[i].innerText+"dayName"} key={i+"dayName"} className="flex justify-center items-center bg-white">
+        <div id={children[i].innerText+"dayName"} key={i+"dayName"} data-other-month={children[i].id ? children[i].id:""} className="flex justify-center items-center bg-white">
           <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 " >
             {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
           </button>
@@ -72,20 +70,39 @@ function Calendar({movies}) {
 
   useEffect(() => {
     // The logic for the initial position on the weekday
-    const startDay = "1"
-    if (weekDetailsButtons.length === 0) return
+
+    // Reset all the colors to white
     weekDetailsButtons.forEach((button) => {
-      if (button.props.children.props.children.split(" ")[1] === startDay) {
-        const button = document.getElementById(startDay+"dayName")
+      const idHelper = button.props.children.props.children.split(" ")[1]
+      const buttonToReset = document.getElementById(idHelper+"dayName")
+      buttonToReset.classList.remove('bg-gray-100')
+      buttonToReset.classList.remove('bg-white')
+      buttonToReset.classList.add('bg-white')
+    })
+
+    let result = []
+    if (weekDetailsButtons.length === 0) return
+    weekDetailsButtons.forEach((button,index) => {
+      if (result.length > 0) return
+      const dayToFilter = button.props.children.props.children.split(" ")[1]
+      if (button.props['data-other-month'] === "") result = filterMoviesByDay({movies:movies,day:dayToFilter})
+      if (result.length > 0) {
+        const button = document.getElementById(dayToFilter+"dayName")
         button.classList.remove('bg-white')
         button.classList.add('bg-gray-100')
+        setMoviesToDisplay(result)
+      }
+      if (result.length === 0 && index === weekDetailsButtons.length - 1) {
+        const firstButton = document.getElementById(weekDetailsButtons[0].props.children.props.children.split(" ")[1]+"dayName")
+        firstButton.classList.remove('bg-white')
+        firstButton.classList.add('bg-gray-100')
+        setMoviesToDisplay([])
       }
     })
-    setMoviesToDisplay(filterMoviesByDay({movies:movies,day:startDay}))
   }, [weekDetailsButtons])
 
   const handleDayChange = (e) => {
-    console.log(e.currentTarget.innerText.split(" ")[1])
+    // console.log(e.currentTarget.innerText.split(" ")[1])
   }
   const handleWeekChange = (e) => {
     e.preventDefault()
@@ -97,8 +114,8 @@ function Calendar({movies}) {
         setWeekDetailsButtons([])
         for (let i = 0; i < children.length; i++) {
           setWeekDetailsButtons(prev => [...prev,
-            <div id={children[i].innerText+"dayName"} key={i+"dayName"} className="flex justify-center items-center bg-white">
-              <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 " >
+            <div id={children[i].innerText+"dayName"} data-other-month={children[i].id ? children[i].id:""} key={i+"dayName"} className="flex justify-center items-center bg-white">
+              <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 ">
                 {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
               </button>
             </div>
