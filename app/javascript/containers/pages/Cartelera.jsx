@@ -44,7 +44,7 @@ function Cartelera() {
         <div className="flex justify-center">
           <div>
             <h1 className="text-center font-bold text-xl">CARTELERA</h1>
-            <div className="lg:absolute lg:top-40 lg:right-40">
+            <div className="mt-4">
               <DownloadButton/>
             </div>
           </div>
