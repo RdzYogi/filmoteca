@@ -1,37 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import getDateObject from "../helpers/getDateObject";
 
+const DESCRIPTIONMAX = 160;
 
 function MovieCard(props){
-
+  // console.log(props)
+  const [showDates, setShowDates] = useState([])
   const movie = props.movie.movie
 
   const cycle = props.cycle
 
-  const hall = props.movie.include.hall
-
-  const showDateString = props.movie.include.session.play_time
-
   const options ={monthLong: true}
-  const showDateObject = getDateObject(showDateString, options)
+  // const showDateObject = getDateObject(showDateString, options)
+
+  useEffect(() => {
+    props.movie.include.projections.map((projection,index) => {
+      // console.log(projection)
+      const hall = projection.include.hall.name
+      const showDateObject = getDateObject(projection.include.session.play_time, options)
+      setShowDates(showDates => [...showDates,
+      <div key={index+"showTimes"} className={"flex justify-between place-items-center text-xs text-"+cycle.color}>
+        <p className="">{showDateObject.day} de {showDateObject.month}</p>
+        <div className={"h-px w-1/12 self-center bg-"+cycle.color}></div>
+        <p className="">{showDateObject.hour+":"+showDateObject.minutes}h</p>
+        <div className={"h-px w-1/12 self-center bg-"+cycle.color}></div>
+        <p className="">{hall.name}</p>
+        <p className={"text-black font-bold p-1 bg-"+cycle.color}>Comprar</p>
+      </div>
+      ])
+    })
+  }, [])
 
   return (
-    <div className="border border-black h-5/6 w-80">
-      <div className={"p-1 bg-"+cycle.color}>
-        <p className="text-center font-bold text-xl">{movie.title}</p>
-        <div className="text-center font-bold text-l">{movie.director} ({movie.year})</div>
-      </div>
-      <div className={"bg-black pl-2 pr-2 pt-1 pb-1"}>
-        <div className={"flex justify-between place-items-center text-xs text-"+cycle.color}>
-          <p className="">{showDateObject.day} de {showDateObject.month}</p>
-          <div className='h-px w-1/4 bg-white self-center'></div>
-          <p className="">{showDateObject.hour+":"+showDateObject.minutes}h</p>
-          <p className="">{hall.name}</p>
-          <p className={"text-black font-bold p-1 bg-"+cycle.color}>Comprar</p>
+    <div className="box-border border border-black h-96 w-80 overflow-hidden">
+      <Link to={"/movies/" + movie.slug}>
+        <div className={"p-1 h-16 bg-"+cycle.color}>
+          <p className="text-center font-bold text-xl">{movie.title}</p>
+          <div className="text-center font-bold text-l">{movie.director} ({movie.year})</div>
         </div>
-      </div>
-      <img className="object-cover w-screen" src="https://media.istockphoto.com/id/835370890/photo/sunset-sunrise-with-clouds-light-rays-and-other-atmospheric-effect.jpg?s=612x612&w=0&k=20&c=zGDOBYVFY74wX2gUgkonYGtNl1zenev5mPotAqUlJbM="/>  {/*delete later*/}
-      <p className="text-justify p-2">{movie.description}</p>
+      </Link>
+        <div className={"bg-black pl-2 pr-2 pt-1 pb-1 h-16 flex-col flex justify-around gap-y-2"}>
+          {showDates}
+        </div>
+      <img className="object-cover w-screen" src={movie.img_url} alt={movie.title}/>
+      <Link to={"/movies/" + movie.slug}>
+        <p className="text-justify p-2 h-24">{
+          movie.description.length > DESCRIPTIONMAX ? movie.description.slice(0, DESCRIPTIONMAX) + "..." : movie.description}
+        </p>
+      </Link>
     </div>
   );
 }

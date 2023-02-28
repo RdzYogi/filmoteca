@@ -10,6 +10,9 @@ require("esbuild").build({
   loader: {
     '.js': 'jsx',
     '.png': 'file',
-    '.svg': 'file'
+    '.svg': 'file',
+    '.eot': 'file',
+    '.woff': 'file',
+    '.ttf': 'file',
   },
 }).catch(() => process.exit(1))

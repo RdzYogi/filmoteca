@@ -6,7 +6,7 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
     './app/javascript/**/*.jsx',
-    './app/views/**/*.{erb,haml,html,slim}'
+    './app/views/**/*.{erb,haml,html,slim}',
   ],
   theme: {
     extend: {
@@ -45,7 +45,7 @@ module.exports = {
     require('@tailwindcss/typography'),
   ],
   safelist: [{
-    pattern: /(bg|text|border)-(green|blue|yellow|aqua|purple|red|gray|pink)-cycle/
+    pattern: /((bg|text|border)-(green|blue|yellow|aqua|purple|red|gray|pink)-cycle)|(h|w)-1/
     }
   ]
 }

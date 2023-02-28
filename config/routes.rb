@@ -9,9 +9,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :cycles, only: %w[index show], param: :slug
-      resources :movies, only: %w[index show], param: :slug
+      resources :cycles, only: %w[index show create destroy update], param: :slug
+      resources :movies, only: %w[index show create destroy update], param: :slug
       resources :news, only: %w[index show], param: :slug
+      get '/user_details', to: 'user_details#index'
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

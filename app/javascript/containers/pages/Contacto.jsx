@@ -4,6 +4,7 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import SubmitButton from '../../components/shared/SubmitButton';
 
 function Contacto() {
   return (
@@ -16,34 +17,34 @@ function Contacto() {
           <p className="mb-4 font-light text-left text-gray-cycle">Todos los campos son obligatorios.</p>
           <form action="#" className="space-y-8">
               <div>
-                  <label for="name" className="block mb-2 font-medium text-black">Nombre</label>
+                  <label htmlFor="name" className="block mb-2 font-medium text-black">Nombre</label>
                   <input type="text" id="name" className="shadow-sm bg-form-bg border border-form-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full p-2.5" placeholder="Ingresa tu nombre" required />
               </div>
               <div className='flex justify-between'> {/*emails div flex*/}
                 <div className='w-1/2 mr-2'>
-                    <label for="email" className="block mb-2 font-medium text-black">Correo electrónico</label>
+                    <label htmlFor="email" className="block mb-2 font-medium text-black">Correo electrónico</label>
                     <input type="email" id="email" className="shadow-sm bg-form-bg border border-form-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full p-2.5" placeholder="Ingresa tu correo" required />
                 </div>
                 <div className='w-1/2 ml-2'>
-                    <label for="email-confirmation" className="block mb-2 font-medium text-black">Repita su correo</label>
+                    <label htmlFor="email-confirmation" className="block mb-2 font-medium text-black">Repita su correo</label>
                     <input type="email" id="email-confirmation" className="shadow-sm bg-form-bg border border-form-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full p-2.5" placeholder="Ingresa tu correo" required />
                 </div>
               </div>
               <div>
-                <label for="subject" className="block mb-2 font-medium text-black">Asunto</label>
+                <label htmlFor="subject" className="block mb-2 font-medium text-black">Asunto</label>
                 <select id="asunto" className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" >
-                  <option selected>Elige un asunto</option>
+                  <option defaultValue>Elige un asunto</option>
                   <option value="pregunta">Pregunta</option>
-                  <option value="commentario">Commentario</option>
+                  <option value="comentario">Comentario</option>
                   <option value="error">Error en la información</option>
                   <option value="incidenciaReclamacion">Incidencia o reclamación</option>
                 </select>
               </div>
               <div className="sm:col-span-2">
-                  <label for="message" className="block mb-2 font-medium text-black">Your message</label>
+                  <label htmlFor="message" className="block mb-2 font-medium text-black">Your message</label>
                   <textarea id="message" rows="6" className="block p-2.5 w-full text-black bg-form-bg rounded-sm shadow-sm border border-form-border focus:ring-black focus:border-black" placeholder="Mensaje" required ></textarea>
               </div>
-              <button type="submit" className="py-3 px-5 w-32 flex m-auto justify-center sm:m-0 font-medium text-center text-white rounded-sm bg-button-submit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-button-submit">Enviar</button>
+              <SubmitButton label="Enviar"/>
           </form>
         </section>
         <div className='flex items-center mt-6'>

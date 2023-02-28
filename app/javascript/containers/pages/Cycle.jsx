@@ -14,16 +14,12 @@ function Cycle() {
     const [loaded, setLoaded] = useState(false)
     const [movies, setMovies] = useState([])
     useEffect(() => {
-      let moviesData = []
       fetch(`http://localhost:3000/api/v1/cycles/${slug}`)
         .then((response) => response.json())
         .then((data) => {
           data.movies.map((movie,index) => {
-            moviesData = [...moviesData, <MovieCard key={index} movie={movie} cycle={data.cycle}/>]
+            setMovies(movies => [...movies, <MovieCard key={index} movie={movie} cycle={data.cycle}/>])
           })
-          setMovies(moviesData)
-          // We set the state with the new array
-          // and we set loaded to true so we can render the data
           setCycleData(data)
           setLoaded(true)
         });
@@ -37,6 +33,7 @@ function Cycle() {
           <Fragment>
             <h2 className={"text-center font-bold text-2xl	pt-2 pb-2 bg-" + cycleData.cycle.color}>{cycleData.cycle.name}</h2>
             <p className="text-justify mt-3 mb-7">{cycleData.cycle.description}</p>
+            <p className="text-justify mt-3 mb-7">{cycleData.cycle.quote}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {movies}
             </div>
