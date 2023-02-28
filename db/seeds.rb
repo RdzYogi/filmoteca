@@ -109,9 +109,27 @@ Cycle.create(name: "A/Z ZULUETA INÉDITO",
               slug: "ciclo-5",
               start_date: "2023-02-01",
               end_date: "2023-12-28")
+
+Cycle.create(name: "OUSMANE SEMBENE. EL LENGUAJE DE ÁFRICA",
+              description: "Abrimos esta retrospectiva dedicada al cineasta senegalés Ousmane Sembene en el año de su
+              centenario con la transcripción de una conferencia que dio en 1995 en Londres. Bajo el título
+              “¿Puede el cine africano conseguir el mismo nivel de indigenización que otras formas de arte
+              popular africano?”, el siguiente texto fue después publicado en el volumen Symbolic Narratives/
+              African Cinema. Audiences, Theory and the Moving Image (British Film Institute, 2000)",
+              quote: "Ciclo 6",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
+              color: "yellow-cycle",
+              slug: "ciclo-6",
+              start_date: "2023-01-01",
+              end_date: "2023-02-28")
+
 puts "Cycles created"
 
 # Define placeholder sessions
+start_date = Date.today
+first_day_month = Date.new(start_date.year, start_date.month, 1)
+end_date = first_day_month >> 1
+total_days = (end_date - first_day_month).to_i
 
 Session.create(name: "Movie 1",
               description: "Movie 1",
@@ -190,7 +208,7 @@ Movie.create(title: "La Habanera",
             tra de lo que he llamado crítica social. […] Era una película
             anticapitalista, cosa que caía bien en Alemania en aquel
             momento». (Douglas Sirk)",
-            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301247/Filmoteca/La-Habanera_v0tmk8.jpg",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-golondrina-cautiva_n84sve.jpg",
             year: "1937",
             cycle_id: Cycle.all[0].id)
 puts "Movie-4 created"
@@ -309,18 +327,60 @@ Movie.create(title: "La bella y la bestia",
               cycle_id: Cycle.all[2].id)
 
 puts "Movie-9 created"
+#testing 2 shorts in same session
+Movie.create(title: "Borom sarret + La noire de…",
+              runtime: "20'",
+              director: "Ousmane Sembene",
+              description: "",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
+              year: "Varios",
+              shorts: "Borom sarret, La noire de…",
+              cycle_id: Cycle.all[5].id)
 
-Movie.create(title: "Cine Album Kodak 9",
-  runtime: "10'",
-  director: "Iván Zulueta",
-  description: "",
-  quote: "",
-  img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
-  year: "1991",
-  shorts: "Cine Album Kodak 9, Piscina",
-  cycle_id: Cycle.all[2].id)
+puts "Movie 10 Shorts-1 Non description 2 shorts same session created"
+#testing 2 shorts in same session different description
+Movie.create(title: "Borom sarret",
+              runtime: "10'",
+              director: "Ousmane Sembene",
+              description: "",
+              quote: "",
+              img_url: "https://Fres.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
+              year: "1963",
+              shorts: "",
+              cycle_id: Cycle.all[5].id)
 
-puts "Short-1 Non description created"
+puts "Movie 11 Shorts-1  Description 2 shorts same session created"
+
+Movie.create(title: "La noire de…",
+              runtime: "10'",
+              director: "Ousmane Sembene",
+              description: "",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
+              year: "1966",
+              shorts: "",
+              cycle_id: Cycle.all[5].id)
+
+puts "Movie 12 Shorts-1 Non description 2 shorts same session created"
+
+Movie.create(title: "Programa 2: Aloha",
+              runtime: "10'",
+              director: "Iván Zulueta",
+              description: "",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/Aloha_fwtpki.jpg",
+              year: "1991",
+              shorts: "Cine Album Kodak 9, Piscina, Sonoro Vicky,
+              Sound Iván Jaime, Nenes Juan Blanco,
+              Boxers Max Ernst,
+              Feria navideña regalos,
+              Nenes piscina,
+              Nenes van a la playa",
+              cycle_id: Cycle.all[4].id)
+
+puts "Movie 13 Shorts-2 Non description 9 shorts same session created"
+
 puts "Movies created"
 
 # Creating Projections
@@ -355,6 +415,11 @@ puts "Projection-7 created"
 Projection.create(movie_id: Movie.all[5].id,
                   session_id: Session.all[1].id)
 puts "Projection-8 created"
+
+#testing 2 shorts in same session
+Projection.create(movie_id: Movie.all[11].id,
+                  session_id: Session.all[1].id)
+puts "Projection-9 created testing 2 shorts in same session"
 
 # Define News placeholder
 
