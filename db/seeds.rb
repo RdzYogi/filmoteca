@@ -50,8 +50,30 @@ end
 
 # Hall 2
 11.times do |row|
-  13.times do |column|
-    Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+  if row < 1
+    8.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  elsif row == 1
+    9.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  elsif row == 2 || row == 3
+    10.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  elsif row == 4 || row == 5 || row == 7
+    11.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  elsif row == 6 || row == 8 || row == 9
+    12.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  else
+    13.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
   end
 end
 
