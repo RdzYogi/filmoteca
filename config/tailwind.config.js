@@ -17,7 +17,7 @@ module.exports = {
         "yellow-cycle": '#FABF41',
         "purple-cycle": '#9A74AF',
         "red-cycle": '#E54B27',
-        "grey-cycle": '#333333',
+        "gray-cycle": '#333333',
         "pink-cycle": '#F5AEB8',
         "button-submit": "#009DBF",
         "form-bg": "#F9FAFB",

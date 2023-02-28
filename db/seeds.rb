@@ -92,7 +92,7 @@ Cycle.create(name: "SESIÓN ESPECIAL",
               description: "Sessions especiales para los amantes del cine. Disfruta de las mejores películas en la mejor compañía.",
               quote: "Ciclo 4",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301263/Filmoteca/Volver-a-empezar_ivrimz.jpg",
-              color: "grey-cycle",
+              color: "gray-cycle",
               slug: "ciclo-4",
               start_date: "2023-02-01",
               end_date: "2023-12-28")
@@ -307,7 +307,20 @@ Movie.create(title: "La bella y la bestia",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
               year: "1991",
               cycle_id: Cycle.all[2].id)
+
 puts "Movie-9 created"
+
+Movie.create(title: "Cine Album Kodak 9",
+  runtime: "10'",
+  director: "Iván Zulueta",
+  description: "",
+  quote: "",
+  img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
+  year: "1991",
+  shorts: "Cine Album Kodak 9, Piscina",
+  cycle_id: Cycle.all[2].id)
+
+puts "Short-1 Non description created"
 puts "Movies created"
 
 # Creating Projections
@@ -405,4 +418,3 @@ Subscription.create(user_id: User.all[4].id,
                     tipo: "Abono 10",
                     remaining_uses: 5)
 puts "Subscription-5 created"
-
