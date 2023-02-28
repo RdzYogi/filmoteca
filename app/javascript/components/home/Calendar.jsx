@@ -31,7 +31,6 @@ const breakPointForDayNames = 1010
 
 function Calendar({movies}) {
 
-  const moviesRef = useRef(movies)
 
   const calendarHelperObj = calendarHelper()
   const [currentMonth, setCurrentMonth] = useState('')
@@ -44,6 +43,7 @@ function Calendar({movies}) {
 
   useEffect(() => {
     window.addEventListener('resize', handleResize)
+    console.log("Movies: ", movies)
     if (movies.length === 0) return
     smallCalendarGrid = createSmallCalendar(movies={movies})
     setCurrentMonth(smallCalendarGrid.currentMonth)
@@ -137,6 +137,7 @@ function Calendar({movies}) {
   }
 
   function handleDayChange (e) {
+    console.log("Movies: ", movies)
     e.preventDefault()
     let result = []
     const allButtons = e.currentTarget.parentElement.parentElement.children
@@ -149,7 +150,7 @@ function Calendar({movies}) {
     e.currentTarget.parentElement.classList.add('bg-gray-100')
 
     const dayToFilter = e.currentTarget.parentElement.id.split("dayName")[0]
-    if (e.currentTarget.parentElement.dataset.otherMonth === "") result = filterMoviesByDay({movies:movies,day:dayToFilter})
+    if (e.currentTarget.parentElement.dataset.otherMonth === "") result = filterMoviesByDay({movies:movies.movies,day:dayToFilter})
     // console.log(e.currentTarget.parentElement.dataset.otherMonth)
     setMoviesToDisplay(result)
   }
