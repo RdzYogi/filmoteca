@@ -43,7 +43,6 @@ function Calendar({movies}) {
 
   useEffect(() => {
     window.addEventListener('resize', handleResize)
-    console.log("Movies: ", movies)
     if (movies.length === 0) return
     smallCalendarGrid = createSmallCalendar(movies={movies})
     setCurrentMonth(smallCalendarGrid.currentMonth)
@@ -137,7 +136,6 @@ function Calendar({movies}) {
   }
 
   function handleDayChange (e) {
-    console.log("Movies: ", movies)
     e.preventDefault()
     let result = []
     const allButtons = e.currentTarget.parentElement.parentElement.children
@@ -178,7 +176,7 @@ function Calendar({movies}) {
     })
   }
   return (
-    <div className='flex flex-col-reverse lg:flex-row w-full max-w-7xl mx-auto pb-10 '>
+    <div className='flex flex-col-reverse lg:flex-row  max-w-7xl mx-auto pb-10 mx-2 '>
 
       <div className='w-full lg:w-3/4 bg-gray-100'>
         <div id="week-details-buttons-container" className='h-14 grid grid-cols-7'>
