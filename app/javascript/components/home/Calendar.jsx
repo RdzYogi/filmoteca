@@ -43,7 +43,6 @@ function Calendar({movies}) {
 
   useEffect(() => {
     window.addEventListener('resize', handleResize)
-    console.log("Movies: ", movies)
     if (movies.length === 0) return
     smallCalendarGrid = createSmallCalendar(movies={movies})
     setCurrentMonth(smallCalendarGrid.currentMonth)
