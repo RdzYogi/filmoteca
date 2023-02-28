@@ -87,6 +87,27 @@ Cycle.create(name: "FILMOTECA JUNIOR",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
 
+Cycle.create(name: "SESIÓN ESPECIAL",
+              description: "Sessions especiales para los amantes del cine. Disfruta de las mejores películas en la mejor compañía.",
+              quote: "Ciclo 4",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301263/Filmoteca/Volver-a-empezar_ivrimz.jpg",
+              color: "grey-cycle",
+              slug: "ciclo-4",
+              start_date: "2023-02-01",
+              end_date: "2023-12-28")
+
+Cycle.create(name: "A/Z ZULUETA INÉDITO",
+              description: "Voluptuosidad, alucinación y la imposibilidad de
+              acceder al objeto soñado definen, en contraste con
+              el severo o grotesco cine español de su época, las
+              creaciones de Iván Zulueta, a quien conocimos por
+              sus carteles cinematográficos.",
+              quote: "Ciclo 5",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Con-J-de-Zulueta_ustrdx.jpg",
+              color: "red-cycle",
+              slug: "ciclo-5",
+              start_date: "2023-02-01",
+              end_date: "2023-12-28")
 puts "Cycles created"
 
 # Define placeholder sessions
