@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_16_162039) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_103821) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,13 +49,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_16_162039) do
     t.text "quote"
     t.string "img_url"
     t.string "year"
-    t.bigint "session_id", null: false
     t.bigint "cycle_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.text "shorts", default: ""
     t.index ["cycle_id"], name: "index_movies_on_cycle_id"
-    t.index ["session_id"], name: "index_movies_on_session_id"
   end
 
   create_table "news", force: :cascade do |t|
@@ -76,6 +75,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_16_162039) do
     t.integer "abono10_price_discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "projections", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "session_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_projections_on_movie_id"
+    t.index ["session_id"], name: "index_projections_on_session_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -118,7 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_16_162039) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer "remaining_uses"
-    t.string "type"
+    t.string "tipo"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -139,7 +147,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_16_162039) do
   end
 
   add_foreign_key "movies", "cycles"
-  add_foreign_key "movies", "sessions"
+  add_foreign_key "projections", "movies"
+  add_foreign_key "projections", "sessions"
   add_foreign_key "reservations", "seats"
   add_foreign_key "reservations", "sessions"
   add_foreign_key "reservations", "subscriptions"
