@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import getDateObject from '../helpers/getDateObject'
+import React, { useEffect, useRef, useState } from 'react'
 import calendarHelper from '../helpers/calendarHelper'
 import createSmallCalendar from '../helpers/createSmallCalendar'
 import Carousel from 'react-multi-carousel'
 import filterMoviesByDay from '../helpers/filterMoviesByDay'
+
 
 let smallCalendarGrid = {}
 const responsive = {
@@ -26,7 +26,12 @@ const responsive = {
   }
 };
 
+const spanishWeekdays =  ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+const breakPointForDayNames = 1010
+
 function Calendar({movies}) {
+
+  const moviesRef = useRef(movies)
 
   const calendarHelperObj = calendarHelper()
   const [currentMonth, setCurrentMonth] = useState('')
@@ -38,6 +43,7 @@ function Calendar({movies}) {
 
 
   useEffect(() => {
+    window.addEventListener('resize', handleResize)
     if (movies.length === 0) return
     smallCalendarGrid = createSmallCalendar(movies={movies})
     setCurrentMonth(smallCalendarGrid.currentMonth)
@@ -51,17 +57,41 @@ function Calendar({movies}) {
         </button>
       ])
     }
+    return(() => {
+      window.removeEventListener('resize', handleResize)
+    })
   }, [movies])
+
+  const handleResize = () => {
+    const windowCheck = window.matchMedia(`(max-width: ${breakPointForDayNames}px)`)
+    const buttonsContainer = document.getElementById('week-details-buttons-container')
+    if (buttonsContainer === null) return
+    const buttons = buttonsContainer.childNodes
+    if (windowCheck.matches) {
+      // console.log("Mobile")
+      for (let i = 0; i < buttons.length; i++) {
+        // console.log(buttons[i].innerText)
+        buttons[i].firstElementChild.innerText = spanishWeekdays[i].slice(0,3) + " " + buttons[i].innerText.split(" ")[1]
+      }
+    } else {
+      for (let i = 0; i < buttons.length; i++) {
+        // console.log(buttons[i].innerText)
+        buttons[i].firstElementChild.innerText = spanishWeekdays[i] + " " + buttons[i].innerText.split(" ")[1]
+      }
+      // console.log("Desktop")
+    }
+  }
 
   useEffect(() => {
     if (calendarGrid.length === 0) return
     const firstWeek = document.getElementById('week-0')
     const children = firstWeek.children
+    const windowCheck = window.matchMedia(`(max-width: ${breakPointForDayNames}px)`)
     for (let i = 0; i < children.length; i++) {
       setWeekDetailsButtons(prev => [...prev,
         <div id={children[i].innerText+"dayName"} key={i+"dayName"} data-other-month={children[i].id ? children[i].id:""} className="flex justify-center items-center bg-white">
-          <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 " >
-            {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
+          <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-0 sm:px-3 " >
+          {windowCheck.matches ? calendarHelperObj.spanishWeekdays[i].slice(0,3) + " " + children[i].innerText : calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
           </button>
         </div>
       ])
@@ -120,11 +150,12 @@ function Calendar({movies}) {
 
     const dayToFilter = e.currentTarget.parentElement.id.split("dayName")[0]
     if (e.currentTarget.parentElement.dataset.otherMonth === "") result = filterMoviesByDay({movies:movies,day:dayToFilter})
-    console.log(e.currentTarget.parentElement.dataset.otherMonth)
+    // console.log(e.currentTarget.parentElement.dataset.otherMonth)
     setMoviesToDisplay(result)
   }
   const handleWeekChange = (e) => {
     e.preventDefault()
+    const windowCheck = window.matchMedia(`(max-width: ${breakPointForDayNames}px)`)
     const weeks = [document.getElementById('week-0'),document.getElementById('week-1'),document.getElementById('week-2'),document.getElementById('week-3'),document.getElementById('week-4')]
     weeks.map(week => {
       if (week.id === e.currentTarget.id) {
@@ -134,8 +165,8 @@ function Calendar({movies}) {
         for (let i = 0; i < children.length; i++) {
           setWeekDetailsButtons(prev => [...prev,
             <div id={children[i].innerText+"dayName"} data-other-month={children[i].id ? children[i].id:""} key={i+"dayName"} className="flex justify-center items-center bg-white">
-              <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-3 ">
-                {calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
+              <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-0 sm:px-3 ">
+                {windowCheck.matches ? calendarHelperObj.spanishWeekdays[i].slice(0,3) + " " + children[i].innerText : calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
               </button>
             </div>
           ])
@@ -146,18 +177,16 @@ function Calendar({movies}) {
     })
   }
   return (
-    <div className='flex justify-between max-w-7xl mx-auto pb-10 h-[40rem]'>
-      <div className='w-3/4 bg-gray-100'>
-        <div className='w-full h-14 grid grid-cols-7'>
+    <div className='flex flex-col-reverse lg:flex-row w-full max-w-7xl mx-auto pb-10 '>
+
+      <div className='w-full lg:w-3/4 bg-gray-100'>
+        <div id="week-details-buttons-container" className='h-14 grid grid-cols-7'>
           {weekDetailsButtons}
         </div>
-        <div>
-          <Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-32 max-w-7xl pt-5" >
-            {moviesToDisplay}
-          </Carousel>
-        </div>
-
+        {moviesToDisplay.length === 0 ? <div className='text-center text-bold'>No hay projectiones en este dia</div> :<Carousel itemClass='flex justify-center' responsive={responsive} className="mx-auto mb-4 pt-5" >{moviesToDisplay}</Carousel>}
       </div>
+
+
       <div className='w-72 pt-10 mx-auto'>
         {/* Calendar month */}
         <div className='text-black font-bold' >

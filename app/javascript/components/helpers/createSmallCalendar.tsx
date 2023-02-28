@@ -38,7 +38,7 @@ const lastDayOfMonthHelper = {
 // It returns an object with the current month, the weekdays and the calendar grid
 
 // The calendar grid is an array of JSX elements
-// That can be iterated in the small calendar component
+// This array can be iterated over
 // To attach listeners to each day or week
 
 function createSmallCalendar( {movies} : Props) {
