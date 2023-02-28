@@ -28,6 +28,6 @@ module Filmoteca
     # config.eager_load_paths << Rails.root.join("extras")
 
     # force HTTPS on all environments
-    config.force_ssl = true
+    # config.force_ssl = true
   end
 end
