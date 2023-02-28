@@ -22,10 +22,29 @@ puts "Halls created"
 
 # For each hall, create 10 rows and 10 columns
 
+
 # Hall 1
 20.times do |row|
-  17.times do |column|
-    Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+  if row < 13
+    16.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
+  elsif row == 13
+    14.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
+  elsif row == 14
+    12.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
+  elsif row == 15
+    10.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
+  else
+    17.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
   end
 end
 
@@ -383,4 +402,3 @@ Subscription.create(user_id: User.all[4].id,
                     tipo: "Abono 10",
                     remaining_uses: 5)
 puts "Subscription-5 created"
-
