@@ -17,6 +17,7 @@ import SignUp from './containers/pages/SignUpLogic';
 import SignIn from './containers/pages/SignIn';
 import { useDispatch, useSelector } from 'react-redux'
 import { verifyUserToken } from "./redux/slices/userSlice"
+import { fetchCyclesData, fetchMoviesData } from './redux/slices/dataSlice';
 
 
 
@@ -27,6 +28,8 @@ function App() {
     if (auth_token) {
       dispatch(verifyUserToken())
     }
+    dispatch(fetchMoviesData())
+    dispatch(fetchCyclesData())
   }, [])
 
   return (
