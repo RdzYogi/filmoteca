@@ -19,7 +19,6 @@ function Ciclos() {
     setLoaded(true)
   }
 
-
   return (
     <Layout>
       <Navbar/>
