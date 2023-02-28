@@ -62,10 +62,8 @@ function Navbar() {
             </Link>
             <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link>
           </div>
-
           {/* NavLink is going to add the active class to the link that we will define */}
           {/* application.tailwind.css file */}
-
           {/* The Desktop navbar */}
           <div className="max-w-7xl mx-auto mt-6 pb-1 hidden md:flex justify-around">
             <NavLink to='/calendario' className={'flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white'}>
