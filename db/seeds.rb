@@ -135,14 +135,14 @@ puts "Cycles created"
 Session.create(name: "Movie 1",
               description: "Movie 1",
               quote: "Movie 1",
-              play_time: "2023-02-01 17:00:00",
+              play_time: "2023-03-01 17:00:00",
               cycle_id: Cycle.all[0].id,
               hall_id: Hall.all[0].id)
 
 Session.create(name: "Movie 2",
                 description: "Movie 2",
                 quote: "Movie 2",
-                play_time: "2023-02-02 19:00:00",
+                play_time: "2023-03-02 19:00:00",
                 cycle_id: Cycle.all[0].id,
                 hall_id: Hall.all[0].id)
 
