@@ -77,12 +77,12 @@ function DesktopCalendar({movies}) {
     if(monthIndex < 11) {
       for (let i = 0; i < daysOfNextMonth; i++) {
         const dayHeader = Object.keys(lastDayOfMonthHelper)[i].charAt(0).toUpperCase() + Object.keys(lastDayOfMonthHelper)[i].slice(1)
-        setCalendarGrid(calendarGrid => [...calendarGrid,<div className='w-full h-full flex justify-center' key={i+" nextMonth"}><div className='text-gray-300 flex flex-col items-center bg-black w-fit px-2' id={i+"nextMonth"} >{dayHeader} {i+1}</div></div>])
+        setCalendarGrid(calendarGrid => [...calendarGrid,<div className='w-full h-fit flex justify-center' key={i+" nextMonth"}><div className='text-gray-300 flex flex-col items-center bg-black w-fit px-2' id={i+"nextMonth"} >{dayHeader} {i+1}</div></div>])
       }
     } else {
       for (let i = 0; i < daysOfNextMonth; i++) {
         const dayHeader = Object.keys(lastDayOfMonthHelper)[i].charAt(0).toUpperCase() + Object.keys(lastDayOfMonthHelper)[i].slice(1)
-        setCalendarGrid(calendarGrid => [...calendarGrid,<div className='w-full h-full flex justify-center' key={i+" nextMonth"}><div className='text-gray-300 flex flex-col items-center bg-black w-fit px-2' id={i+"nextMonth"} >{dayHeader} {i+1}</div></div>])
+        setCalendarGrid(calendarGrid => [...calendarGrid,<div className='w-full h-fit flex justify-center' key={i+" nextMonth"}><div className='text-gray-300 flex flex-col items-center bg-black w-fit px-2' id={i+"nextMonth"} >{dayHeader} {i+1}</div></div>])
       }
     }
   },[movies])
