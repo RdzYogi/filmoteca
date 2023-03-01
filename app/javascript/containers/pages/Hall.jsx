@@ -43,18 +43,71 @@ function Hall() {
       // console.log(seat.row)
 
       if (seat.row === i+""){
-        console.log("trigger for seat", seat.row)
-        row.push(<div key={index + "row"} className='w-2 h-2 bg-black m-5'></div>)
+        // console.log("trigger for seat", seat.row)
+        row.push(<Seat key={index + "row"}/>)
         if (seat.row === lastRow && seat.column === lastColumn){
-          result.push(<div key={i + 1 + "column"} className='flex'><div>{Number(seat.row) + 1}</div><div className='flex'>{row}</div></div>)
+          result.push(
+          <div key={i + 1 + "column"} className='flex justify-center'>
+            <div className='self-center'>
+              {Number(seat.row) + 1}
+            </div>
+            <div className='flex'>
+              {row}
+            </div>
+          </div>)
         }
       } else {
         console.log("else triggered for seat", seat.row)
-        result.push(<div key={i + "column"} className='flex'><div>{Number(seat.row) + 1}</div><div className='flex'>{row}</div></div>)
-        row = []
+        if (seat.row < 15) {
+          const firstHalfRow = row.slice(0, row.length/2)
+          const secondHalfRow = row.slice(-row.length/2)
+          result.push(
+            <div key={i + "column"} className='flex justify-center'>
+              <div className='self-center'>
+                {Number(seat.row) < 9 ? "0" + (Number(seat.row) + 1) : Number(seat.row) + 1}
+              </div>
+              <div className='flex'>
+                <div className='mr-4'>
+                  {firstHalfRow}
+                </div>
+                <div className='flex justify-end ml-4'>
+                  {secondHalfRow}
+                </div>
+              </div>
+            </div>)
+          row = []
 
-        row.push(<div key={index + "row"} className='w-2 h-2 bg-black m-5'></div>)
-        i -= 1
+          row.push(<Seat key={index + "row"}/>)
+          i -= 1
+        } else if (seat.row == 15) {
+          result.push(
+            <div key={i + "column"} className='flex justify-center'>
+              <div className='pt-1 self-start'>
+                {Number(seat.row) + 1}
+              </div>
+              <div className='flex mb-6'>
+                {row}
+              </div>
+            </div>)
+          row = []
+
+          row.push(<Seat key={index + "row"}/>)
+          i -= 1
+        } else {
+          result.push(
+            <div key={i + "column"} className='flex justify-center'>
+              <div className='self-center'>
+                {Number(seat.row) + 1}
+              </div>
+              <div className='flex'>
+                {row}
+              </div>
+            </div>)
+          row = []
+
+          row.push(<Seat key={index + "row"}/>)
+          i -= 1
+        }
       }
     })
     setFormatedHall(result)

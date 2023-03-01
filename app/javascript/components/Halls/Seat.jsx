@@ -8,8 +8,7 @@ function Seat() {
   }
 
   return (
-    <button onClick={handleClick} className={isTaken ? 'text-red-600 text-2xl mr-5' : 'text-2xl mr-5'}>
-      •{/*  h1 w 1 rouded bg */}
+    <button onClick={handleClick} className={isTaken ? 'bg-red-600 w-4 h-4 m-2 rounded' : 'w-4 h-4 bg-black m-2 rounded'}>
     </button>
   )
 }
