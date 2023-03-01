@@ -19,8 +19,6 @@ module Filmoteca
     config.middleware.use ActionDispatch::Cookies
 
     config.middleware.use config.session_store, config.session_options
-
-
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -28,5 +26,8 @@ module Filmoteca
     #
     config.time_zone = "Europe/Madrid"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # force HTTPS on all environments
+    # config.force_ssl = true
   end
 end

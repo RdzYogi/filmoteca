@@ -21,7 +21,7 @@ class Api::V1::CyclesController < ApplicationController
         end
         { movie:, include: { projections: } }
       end
-      render json: result
+      render json: {cycle:, include: result}
     else
       render json: { error: 'Cycle not found' }, status: :not_found
     end

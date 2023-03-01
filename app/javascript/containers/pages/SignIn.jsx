@@ -4,6 +4,7 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut, userSignIn } from "../../redux/slices/userSlice"
+import { Link } from "react-router-dom"
 
 
 function SignIn() {
@@ -51,8 +52,9 @@ function SignIn() {
             <input type="text" onChange={handleEmail} placeholder="Correo" />
             <input type="password" onChange={handlePassword} placeholder="Contraseña" />
             <button type="submit" >Entrar</button>
-            <button onClick={handleSignOut} >Sign Out</button>
           </form>
+            <button onClick={handleSignOut} >Sign Out</button>
+            <Link to="/user_details"> Mi perfil</Link>
         </div>
 
       </div>
