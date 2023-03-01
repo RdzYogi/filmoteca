@@ -126,24 +126,57 @@ Cycle.create(name: "OUSMANE SEMBENE. EL LENGUAJE DE ÁFRICA",
 puts "Cycles created"
 
 # Define placeholder sessions
+require 'date'
 start_date = Date.today
+# puts start_date
 first_day_month = Date.new(start_date.year, start_date.month, 1)
+# puts first_day_month
 end_date = first_day_month >> 1
-total_days = (end_date - first_day_month).to_i
+# puts end_date
+array_days = (first_day_month...end_date).to_a
+sesions_sala1 = []
+sesions_sala2 = []
+array_days.each do |day|
+  if day.monday? == false
+    # p day.asctime
+    i = 16
+    6.times do
+      if i <= 20
+        new_date = DateTime.new(day.year, day.month, day.mday, i)
+        i += 2
+        sesions_sala1 << new_date
+        # crear sesion con new date sala 1
+      else
+        new_date = DateTime.new(day.year, day.month, day.mday, i-6)
+        i += 2
+        sesions_sala2 << new_date
+        # crear sesion con new date sala 2
+      end
+    end
+  end
+end
 
-Session.create(name: "Movie 1",
-              description: "Movie 1",
-              quote: "Movie 1",
-              play_time: "2023-02-01 17:00:00",
-              cycle_id: Cycle.all[0].id,
-              hall_id: Hall.all[0].id)
+  # array_days.each do |day|
+  #   Session.create(name: "Movie 1",
+  #                 description: "Movie 1",
+  #                 quote: "Movie 1",
+  #                 play_time: day,
+  #                 cycle_id: Cycle.all[0].id,
+  #                 hall_id: Hall.all[0].id)
 
-Session.create(name: "Movie 2",
-                description: "Movie 2",
-                quote: "Movie 2",
-                play_time: "2023-02-02 19:00:00",
-                cycle_id: Cycle.all[0].id,
-                hall_id: Hall.all[0].id)
+# Session.create(name: "Movie 1",
+#               description: "Movie 1",
+#               quote: "Movie 1",
+#               play_time: "2023-02-01 17:00:00",
+#               cycle_id: Cycle.all[0].id,
+#               hall_id: Hall.all[0].id)
+
+# Session.create(name: "Movie 2",
+#                 description: "Movie 2",
+#                 quote: "Movie 2",
+#                 play_time: "2023-02-02 19:00:00",
+#                 cycle_id: Cycle.all[0].id,
+#                 hall_id: Hall.all[0].id)
 
 # Define placeholder movies
 # Add Douglas Sirk Movies
