@@ -65,7 +65,7 @@ function DesktopCalendar({movies}) {
       })
       setCalendarGrid(calendarGrid => [...calendarGrid,
       <div className='w-full h-full flex flex-col 'id={i+"currentMonth"} key={i+" currentMonth"}>
-        <div className='flex flex-col self-center text-white items-center bg-black w-fit px-2' >{dayHeader}
+        <div className='flex flex-col self-center text-white items-center bg-black w-fit px-2 mb-2' >{dayHeader}
         </div>
         {moviesForEachDay}
       </div>])
@@ -92,7 +92,7 @@ function DesktopCalendar({movies}) {
   return (
     <div>
       <h1 className='text-center text-xl font-bold'>{currentMonthCapitalized + " de " + currentYear}</h1>
-      <div className='grid gap-2 grid-cols-7 justify-center max-w-7xl mx-auto'>
+      <div className='grid gap-2 grid-cols-7 justify-center w-[90%] mx-auto'>
         {calendarGrid}
       </div>
     </div>
