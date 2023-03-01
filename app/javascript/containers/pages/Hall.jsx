@@ -5,6 +5,9 @@ import Layout from '../../hocs/layouts/Layout'
 import { useParams } from "react-router-dom";
 import Seat from "../../components/Halls/Seat"
 import { faLockOpen } from '@fortawesome/free-solid-svg-icons';
+import SubmitButton from '../../components/shared/SubmitButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 function Hall() {
   let params = useParams()
@@ -41,13 +44,12 @@ function Hall() {
 
     hallData.seats.reverse().forEach((seat, index) => {
       // console.log(seat.row)
-
       if (seat.row === i+""){
         // console.log("trigger for seat", seat.row)
         row.push(<Seat key={index + "row"}/>)
         if (seat.row === lastRow && seat.column === lastColumn){
           result.push(
-          <div key={i + 1 + "column"} className='flex justify-center'>
+          <div key={i + 1 + "column"} className={hallData.hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
             <div className='self-center'>
               {Number(seat.row) + 1}
             </div>
@@ -62,10 +64,12 @@ function Hall() {
           const firstHalfRow = row.slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
           result.push(
-            <div key={i + "column"} className='flex justify-center'>
+            <div key={i + "column"} className={hallData.hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
               <div className='self-center'>
                 {Number(seat.row) < 9 ? "0" + (Number(seat.row) + 1) : Number(seat.row) + 1}
               </div>
+              {
+                hallData.hall.name === "Sala 1" ?
               <div className='flex'>
                 <div className='mr-4'>
                   {firstHalfRow}
@@ -74,7 +78,13 @@ function Hall() {
                   {secondHalfRow}
                 </div>
               </div>
-            </div>)
+              :
+              <div className='flex'>
+                {row}
+              </div>
+              }
+            </div>
+          )
           row = []
 
           row.push(<Seat key={index + "row"}/>)
@@ -121,10 +131,19 @@ function Hall() {
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
         <p>{hallData.hall.name}</p>
-        {formatedHall}
-        <p>ESCENARIO</p>
-        <p>La Sala 1 NO es accesible para público en silla de ruedas.</p>
-        <p>No se permitirá la entrada una vez iniciada la función.</p>
+        <div className='my-10'>
+          {formatedHall}
+          <p className='text-2xl text-center mt-5'>ESCENARIO</p>
+        </div>
+        <div className='flex items-center'>
+          <FontAwesomeIcon icon={faCircleExclamation} />
+          <p className='ml-2'>La Sala 1 NO es accesible para público en silla de ruedas.</p>
+        </div>
+        <div className='flex items-center mb-5'>
+          <FontAwesomeIcon icon={faTriangleExclamation} />
+          <p className='ml-2'>No se permitirá la entrada una vez iniciada la función.</p>
+        </div>
+        <SubmitButton label="Siguiente"/>
       </div>
       <Footer/>
     </Layout>
