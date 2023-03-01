@@ -17,6 +17,7 @@ import SignUp from './containers/pages/SignUpLogic';
 import SignIn from './containers/pages/SignIn';
 import { useDispatch, useSelector } from 'react-redux'
 import { verifyUserToken } from "./redux/slices/userSlice"
+import Hall from './containers/pages/Hall';
 import { fetchCyclesData, fetchMoviesData } from './redux/slices/dataSlice';
 import Protected from './routes/Protected';
 
@@ -50,6 +51,7 @@ function App() {
         <Route exact path="/contacto" element={<Contacto />} />
         <Route exact path="/ciclos/:slug" element={<Cycle />} />
         <Route exact path="/movies/:slug" element={<Movie />} />
+        <Route exact path="/halls/:id" element={<Hall />} />
         {/* <Route exact path="/signup" element={<Signup />} /> */}
 
         {/* User routes */}
