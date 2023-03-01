@@ -146,6 +146,10 @@ array_days.each do |day|
         i += 2
         sesions_sala1 << new_date
         # crear sesion con new date sala 1
+        Session.create (
+                        #  play_time: new_date,
+                        #  hall_id: Hall.all[0].id
+                      )
       else
         new_date = DateTime.new(day.year, day.month, day.mday, i-6)
         i += 2
@@ -516,3 +520,7 @@ Subscription.create(user_id: User.all[4].id,
                     tipo: "Abono 10",
                     remaining_uses: 5)
 puts "Subscription-5 created"
+
+# Creating reservations
+# Reservation.create(ticket:
+#                   user_id: User.all[0].id,)
