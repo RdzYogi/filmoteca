@@ -15,20 +15,18 @@ export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",as
   isAdmin: false,
   error: ''}
   const state = store.getState()
-  // console.log("before fetch:", state)
   await fetch('/member-data', {
     method: 'GET',
     headers: {'Content-Type': 'application/json', "Authorization": state.userManager.userAuth},
   })
   .then(response => {
-    // console.log(response)
+
     if (response.ok) {
       result.isLogged = true
       return response.json();
     }
   })
   .then(json => {
-    // console.log(json)
     result.user = json.user
     if (json.admin === true) {
       result.isAdmin = true
@@ -70,9 +68,7 @@ export const userSignIn = createAsyncThunk("userManager/userSignIn", async (user
     body: JSON.stringify(data)
   })
   .then(response => {
-    // console.log(response)
     if (response.ok) {
-      // console.log(response.headers.get('Authorization'))
       result.authToken = response.headers.get('Authorization')
       result.isLogged = true
     } else {
@@ -102,35 +98,28 @@ export const userSignUp = createAsyncThunk("userManager/userSignUp", async (user
     isLogged: false,
     isAdmin: false
   }
-  // if (state.userManager.currentUser.logged_in === true) {
-  //   await store.dispatch(userSignOut())
-  // }
+
   await fetch('/users', {
     method: 'POST',
     headers: {'Content-Type': 'application/json',"X-CSRF-Token": csrfToken},
     body: JSON.stringify(data)
   })
   .then(response => {
-    // console.log(response)
     if (response.ok) {
-      // console.log(response.headers.get('Authorization').split(' ')[1])
       result.authToken = response.headers.get('Authorization')
       return response.json();
     } else {
       return response.json().then(json=> {
-        console.log(json)
         throw (json.errors)
       })
     }
   })
   .then(json => {
-    // console.log(json)
     result.user = json
     if (json.admin === true) {
       result.isAdmin = true
     }
   }).catch(errors => {
-    // console.log(errors)
     if(errors.email){
       alert(`Email ${errors.email}`)
     } else if (errors.password) {
@@ -150,7 +139,6 @@ export const userSlice = createSlice({
       .addCase(verifyUserToken.pending, (state, action) => {
       })
       .addCase(verifyUserToken.fulfilled, (state, action) => {
-        // console.log(action.payload.user)
         if (action.payload.isLogged === true) {
           state.currentUser.logged_in = true
         } else{
@@ -189,7 +177,9 @@ export const userSlice = createSlice({
         }
       })
       .addCase(userSignIn.rejected, (state, action) => {
-        console.log(action.payload)
+        state.userAuth = ""
+        state.currentUser = {admin: false, logged_in: false}
+        localStorage.setItem("auth_token", "")
       })
       .addCase(userSignUp.pending, (state, action) => {})
       .addCase(userSignUp.fulfilled, (state, action) => {

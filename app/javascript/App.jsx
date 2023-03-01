@@ -17,6 +17,8 @@ import SignUp from './containers/pages/SignUpLogic';
 import SignIn from './containers/pages/SignIn';
 import { useDispatch, useSelector } from 'react-redux'
 import { verifyUserToken } from "./redux/slices/userSlice"
+import { fetchCyclesData, fetchMoviesData } from './redux/slices/dataSlice';
+import Protected from './routes/Protected';
 
 
 
@@ -27,6 +29,8 @@ function App() {
     if (auth_token) {
       dispatch(verifyUserToken())
     }
+    dispatch(fetchMoviesData())
+    dispatch(fetchCyclesData())
   }, [])
 
   return (
@@ -44,7 +48,6 @@ function App() {
         <Route exact path="/ciclos" element={<Ciclos />} />
         <Route exact path="/noticias" element={<Noticias />} />
         <Route exact path="/contacto" element={<Contacto />} />
-        <Route exact path="/user_details" element={<UserDetails />} />
         <Route exact path="/ciclos/:slug" element={<Cycle />} />
         <Route exact path="/movies/:slug" element={<Movie />} />
         {/* <Route exact path="/signup" element={<Signup />} /> */}
@@ -52,6 +55,14 @@ function App() {
         {/* User routes */}
         <Route exact path="/sign_up" element={<SignUp />} />
         <Route exact path="/sign_in" element={<SignIn />} />
+
+        {/* Protected routes, You need to be signed in to view these  */}
+        <Route exact path="/user_details" element={
+          <Protected>
+            <UserDetails />
+          </Protected>
+        } />
+
 
         {/* This can only be accessed with a admin user */}
         <Route exact path="/admin" element={<Admin />} />
