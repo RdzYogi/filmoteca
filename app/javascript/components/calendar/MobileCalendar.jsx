@@ -46,20 +46,20 @@ function MobileCalendar({movies}) {
                 <p>{formattedSpanishDay}</p>
                 <p>{Number(smallCalendarGrid.calendarGrid[i].key.split(' ')[0])+1}</p>
               </div>
-              <div className='h-20 w-[85%] bg-blue-200 mt-2 ml-2' >No hay projections en ese dia</div>
+              <div className='h-10 w-[85%] bg-gray-200 mt-2 ml-2' >No hay projections en ese dia</div>
             </div>
           ])
         } else{
           const result = []
           filteredMovies.forEach((movie) => {
-            console.log(movie)
+            // console.log(movie)
             let playTimeString = ""
             movie.props.movie.include.projections.forEach((projection) => {
               const sessionPlayTime = getDateObject(projection.include.session.play_time)
-              console.log("algo",Number(sessionPlayTime.day))
+              // console.log("algo",Number(sessionPlayTime.day))
               if(day === Number(sessionPlayTime.day)){
                 playTimeString = sessionPlayTime.hour + ":" + sessionPlayTime.minutes + " H - " + projection.include.hall.name
-                console.log(playTimeString)
+                // console.log(playTimeString)
               }
             })
             result.push(
@@ -87,6 +87,16 @@ function MobileCalendar({movies}) {
   }, [movies])
 
   const handleDayChange = (e) => {
+    // console.log(e.currentTarget.innerText)
+    const daysContainer = document.getElementById('days-container')
+    const dayClicked = Number(e.currentTarget.innerText)
+    console.log(dayClicked)
+    const dayToDisplay = document.getElementById(dayClicked+1+"-day-to-display")
+    // dayToDisplay.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"})
+    const offsetTop = dayToDisplay.offsetTop - daysContainer.offsetTop
+    // console.log(offsetTop *0.7)
+    daysContainer.scrollTo({top:offsetTop,behavior:'smooth'})
+    console.log(dayToDisplay)
     const buttons = e.currentTarget.parentNode.childNodes
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove('border-blue-400')
@@ -108,7 +118,7 @@ function MobileCalendar({movies}) {
           {calendarGrid}
         </div>
         <div className='w-full h-px bg-black mb-3'></div>
-        <div id="days-details" className='w-full h-60 bg-gray-200 overflow-x-auto pb-5 scroll-smooth'>
+        <div id="days-container" className='w-full h-60 overflow-x-auto mb-5 scroll-smooth'>
           {daysDetails}
         </div>
     </div>
