@@ -61,7 +61,7 @@ function Navbar() {
               className=""/>
             </Link>
             {/* <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link> */}
-            <div className='text-lg py-2 w-fit font-bold self-center leading-6 text-white hidden md:flex'>
+            <div className="text-white hidden md:flex">
               {isSignedIn ?
               <button onClick={handleOnClickSignOut}>DESCONECTAR</button>:
               <Link to="/sign_in">INGRESAR</Link>}
