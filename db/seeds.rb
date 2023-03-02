@@ -144,12 +144,9 @@ array_days.each do |day|
       if i <= 20
         new_date = DateTime.new(day.year, day.month, day.mday, i)
         i += 2
-        sesions_sala1 << new_date
+        # sesions_sala1 << new_date
         # crear sesion con new date sala 1
-        Session.create (
-                        #  play_time: new_date,
-                        #  hall_id: Hall.all[0].id
-                      )
+        Session.create(play_time: new_date, hall_id: Hall.all[0].id)
       else
         new_date = DateTime.new(day.year, day.month, day.mday, i-6)
         i += 2
@@ -159,21 +156,15 @@ array_days.each do |day|
     end
   end
 end
+  Session.create( play_time: new_date,
+                hall_id: Hall.all[0].id)
 
-  # array_days.each do |day|
-  #   Session.create(name: "Movie 1",
-  #                 description: "Movie 1",
-  #                 quote: "Movie 1",
-  #                 play_time: day,
-  #                 cycle_id: Cycle.all[0].id,
-  #                 hall_id: Hall.all[0].id)
-
-# Session.create(name: "Movie 1",
-#               description: "Movie 1",
-#               quote: "Movie 1",
-#               play_time: "2023-02-01 17:00:00",
-#               cycle_id: Cycle.all[0].id,
-#               hall_id: Hall.all[0].id)
+Session.create(name: "Movie 1",
+              description: "Movie 1",
+              quote: "Movie 1",
+              play_time: "2023-02-01 17:00:00",
+              cycle_id: Cycle.all[0].id,
+              hall_id: Hall.all[0].id)
 
 # Session.create(name: "Movie 2",
 #                 description: "Movie 2",
