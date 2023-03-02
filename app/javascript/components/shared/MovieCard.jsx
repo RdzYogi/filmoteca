@@ -15,6 +15,7 @@ function MovieCard(props){
   // const showDateObject = getDateObject(showDateString, options)
 
   useEffect(() => {
+    console.log(props)
     props.movie.include.projections.map((projection,index) => {
       // console.log(projection)
       const hall = projection.include.hall.name
