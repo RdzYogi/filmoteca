@@ -372,7 +372,7 @@ Movie.create(title: "Borom sarret",
               director: "Ousmane Sembene",
               description: "",
               quote: "",
-              img_url: "https://Fres.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
               year: "1963",
               shorts: "",
               cycle_id: Cycle.all[5].id)
@@ -411,25 +411,13 @@ puts "Movie 13 Shorts-2 Non description 9 shorts same session created"
 puts "Movies created"
 
 # Creating Projections
-# Session.all.each do |session|
-#   Projection.create(movie_id: Movie.all.sample.id, session_id: session.id)
-# end
-
-# j = 0
-# Movie.all.foreach do |movie|
-#   i = 0
-#   Session.all.sample.foreach do |session|
-#     if i < 2
-#       Projection.create(movie_id: movie.id, session_id: session.id)
-#       i += 1
-#       j += 1
-#       puts "Projection-#{j} created"
-#     end
-#   end
-# end
+# usedSessions is where we store the sessions that have been used so that we dont repeat them.
 usedSesisons = []
+# movieFirstSession is where we store the movies that have one session.
 movieFirstSession = []
+# movieSecondSession is where we store the movies that have 2 sessions.
 movieSecondSession = []
+# Stop condition is when each movie has 2 sessions.
 while movieSecondSession.length < Movie.all.length
   s = Session.all.sample
   m = Movie.all.sample
@@ -446,7 +434,7 @@ while movieSecondSession.length < Movie.all.length
     end
   end
 end
-puts "Projections created"
+puts "Projections created successfully"
 
 # Projection.create(movie_id: Movie.all[0].id,
 #                   session_id: Session.all[0].id)
