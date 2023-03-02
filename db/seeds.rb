@@ -134,8 +134,6 @@ first_day_month = Date.new(start_date.year, start_date.month, 1)
 end_date = first_day_month >> 1
 # puts end_date
 array_days = (first_day_month...end_date).to_a
-sesions_sala1 = []
-sesions_sala2 = []
 array_days.each do |day|
   if day.monday? == false
     # p day.asctime
@@ -144,27 +142,28 @@ array_days.each do |day|
       if i <= 20
         new_date = DateTime.new(day.year, day.month, day.mday, i)
         i += 2
-        # sesions_sala1 << new_date
         # crear sesion con new date sala 1
         Session.create(play_time: new_date, hall_id: Hall.all[0].id)
       else
         new_date = DateTime.new(day.year, day.month, day.mday, i-6)
         i += 2
-        sesions_sala2 << new_date
         # crear sesion con new date sala 2
+        Session.create(play_time: new_date, hall_id: Hall.all[1].id)
       end
     end
   end
 end
-  Session.create( play_time: new_date,
-                hall_id: Hall.all[0].id)
+puts "Sessions Created"
 
-Session.create(name: "Movie 1",
-              description: "Movie 1",
-              quote: "Movie 1",
-              play_time: "2023-02-01 17:00:00",
-              cycle_id: Cycle.all[0].id,
-              hall_id: Hall.all[0].id)
+#   Session.create( play_time: new_date,
+#                 hall_id: Hall.all[0].id)
+
+# Session.create(name: "Movie 1",
+#               description: "Movie 1",
+#               quote: "Movie 1",
+#               play_time: "2023-02-01 17:00:00",
+#               cycle_id: Cycle.all[0].id,
+#               hall_id: Hall.all[0].id)
 
 # Session.create(name: "Movie 2",
 #                 description: "Movie 2",
@@ -412,42 +411,79 @@ puts "Movie 13 Shorts-2 Non description 9 shorts same session created"
 puts "Movies created"
 
 # Creating Projections
-Projection.create(movie_id: Movie.all[0].id,
-                  session_id: Session.all[0].id)
-puts "Projection-1 created"
+# Session.all.each do |session|
+#   Projection.create(movie_id: Movie.all.sample.id, session_id: session.id)
+# end
 
-Projection.create(movie_id: Movie.all[0].id,
-                  session_id: Session.all[1].id)
-puts "Projection-2 created"
+# j = 0
+# Movie.all.foreach do |movie|
+#   i = 0
+#   Session.all.sample.foreach do |session|
+#     if i < 2
+#       Projection.create(movie_id: movie.id, session_id: session.id)
+#       i += 1
+#       j += 1
+#       puts "Projection-#{j} created"
+#     end
+#   end
+# end
+usedSesisons = []
+movieFirstSession = []
+movieSecondSession = []
+while movieSecondSession.length < Movie.all.length
+  s = Session.all.sample
+  m = Movie.all.sample
+  if !usedSesisons.include?(s)
+    usedSesisons << s
+    if movieFirstSession.include?(m)
+      if !movieSecondSession.include?(m)
+        movieSecondSession << m
+        Projection.create(session: s, movie: m)
+      end
+    else
+      movieFirstSession << m
+      Projection.create(session: s, movie: m)
+    end
+  end
+end
+puts "Projections created"
 
-Projection.create(movie_id: Movie.all[1].id,
-                  session_id: Session.all[0].id)
-puts "Projection-3 created"
+# Projection.create(movie_id: Movie.all[0].id,
+#                   session_id: Session.all[0].id)
+# puts "Projection-1 created"
 
-Projection.create(movie_id: Movie.all[2].id,
-                  session_id: Session.all[1].id)
-puts "Projection-4 created"
+# Projection.create(movie_id: Movie.all[0].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-2 created"
 
-Projection.create(movie_id: Movie.all[3].id,
-                  session_id: Session.all[0].id)
-puts "Projection-5 created"
+# Projection.create(movie_id: Movie.all[1].id,
+#                   session_id: Session.all[0].id)
+# puts "Projection-3 created"
 
-Projection.create(movie_id: Movie.all[4].id,
-                  session_id: Session.all[1].id)
-puts "Projection-6 created"
+# Projection.create(movie_id: Movie.all[2].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-4 created"
 
-Projection.create(movie_id: Movie.all[5].id,
-                  session_id: Session.all[0].id)
-puts "Projection-7 created"
+# Projection.create(movie_id: Movie.all[3].id,
+#                   session_id: Session.all[0].id)
+# puts "Projection-5 created"
 
-Projection.create(movie_id: Movie.all[5].id,
-                  session_id: Session.all[1].id)
-puts "Projection-8 created"
+# Projection.create(movie_id: Movie.all[4].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-6 created"
 
-#testing 2 shorts in same session
-Projection.create(movie_id: Movie.all[11].id,
-                  session_id: Session.all[1].id)
-puts "Projection-9 created testing 2 shorts in same session"
+# Projection.create(movie_id: Movie.all[5].id,
+#                   session_id: Session.all[0].id)
+# puts "Projection-7 created"
+
+# Projection.create(movie_id: Movie.all[5].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-8 created"
+
+# #testing 2 shorts in same session
+# Projection.create(movie_id: Movie.all[11].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-9 created testing 2 shorts in same session"
 
 # Define News placeholder
 
@@ -513,5 +549,3 @@ Subscription.create(user_id: User.all[4].id,
 puts "Subscription-5 created"
 
 # Creating reservations
-# Reservation.create(ticket:
-#                   user_id: User.all[0].id,)

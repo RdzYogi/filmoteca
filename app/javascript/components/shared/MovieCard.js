@@ -17,7 +17,7 @@ function MovieCard(props){
   useEffect(() => {
     props.movie.include.projections.map((projection,index) => {
       // console.log(projection)
-      const hall = projection.include.hall.name
+      const hall = projection.include.hall
       const showDateObject = getDateObject(projection.include.session.play_time, options)
       setShowDates(showDates => [...showDates,
       <div key={index+"showTimes"} className={"flex justify-between place-items-center text-xs text-"+cycle.color}>
