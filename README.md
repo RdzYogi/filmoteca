@@ -7,7 +7,8 @@ Este es un proyecto sin fines de lucro que describe nuestra visión de cómo deb
 
 ## Description
 
-Rails app built from scratch. 
+Rails app built from scratch. The app allows the public to access the Filmoteca's catalogue of films and buying tickets for the movies that are currently being shown in the cinema.
+Filmoteca is an institution dedicated to the acquisition and preservation of cinematographic material, generally removed from commercial circuits, for exhibition and study.
 
 
 <!-- ## Live
