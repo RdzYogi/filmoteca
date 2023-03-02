@@ -22,17 +22,58 @@ puts "Halls created"
 
 # For each hall, create 10 rows and 10 columns
 
+
 # Hall 1
-19.times do |row|
-  18.times do |column|
-    Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+20.times do |row|
+  if row < 13
+    16.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
+  elsif row == 13
+    14.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
+  elsif row == 14
+    12.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
+  elsif row == 15
+    10.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
+  else
+    17.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+    end
   end
 end
 
 # Hall 2
 11.times do |row|
-  10.times do |column|
-    Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+  if row < 1
+    8.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  elsif row == 1
+    9.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  elsif row == 2 || row == 3
+    10.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  elsif row == 4 || row == 5 || row == 7
+    11.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  elsif row == 6 || row == 8 || row == 9
+    12.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
+  else
+    13.times do |column|
+      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+    end
   end
 end
 

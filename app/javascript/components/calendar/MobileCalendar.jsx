@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import createSmallCalendar from '../helpers/createSmallCalendar'
 import filterMoviesByDay from '../helpers/filterMoviesByDay'
 import getDateObject from '../helpers/getDateObject'
@@ -63,11 +64,11 @@ function MobileCalendar({movies}) {
               }
             })
             result.push(
-              <div key={movie.props.movie.movie.slug} className={'flex flex-col h-20 mb-2 bg-'+ movie.props.cycle.color } >
+              <Link to={"/movies/" + movie.props.movie.movie.slug } key={movie.props.movie.movie.slug} className={'flex flex-col h-20 mb-2 bg-'+ movie.props.cycle.color } >
                 <p className='ml-2 font-bold'>{movie.props.movie.movie.title}</p>
                 <p className='ml-2'>{movie.props.movie.movie.director}</p>
                 <p className='ml-2'>{playTimeString}</p>
-              </div>
+              </Link>
             )
           })
           setDaysDetails(prev => [...prev,
@@ -87,16 +88,11 @@ function MobileCalendar({movies}) {
   }, [movies])
 
   const handleDayChange = (e) => {
-    // console.log(e.currentTarget.innerText)
     const daysContainer = document.getElementById('days-container')
     const dayClicked = Number(e.currentTarget.innerText)
-    console.log(dayClicked)
     const dayToDisplay = document.getElementById(dayClicked+1+"-day-to-display")
-    // dayToDisplay.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"})
     const offsetTop = dayToDisplay.offsetTop - daysContainer.offsetTop
-    // console.log(offsetTop *0.7)
     daysContainer.scrollTo({top:offsetTop,behavior:'smooth'})
-    console.log(dayToDisplay)
     const buttons = e.currentTarget.parentNode.childNodes
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove('border-blue-400')
