@@ -30,7 +30,7 @@
     "url-loader": "^4.1.1"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx --loader:.png=file --loader:.eot=file --loader:.woff=file --loader:.ttf=file"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets --loader:.js=jsx --loader:.png=file --loader:.eot=file --loader:.woff=file --loader:.ttf=file --platform=node"
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.17",
