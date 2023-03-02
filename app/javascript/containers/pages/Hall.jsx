@@ -29,8 +29,8 @@ function Hall() {
     })
   }, [])
 
-  const [seats, setSeats] = useState([])
   const [formatedHall, setFormatedHall] = useState([])
+
 
   useEffect(() => {
     if (hallData.seats.length === 0) return
@@ -43,10 +43,12 @@ function Hall() {
     let row = []
 
     hallData.seats.reverse().forEach((seat, index) => {
-      // console.log(seat.row)
+      const getInfo = () => {
+        console.log(seat.row, seat.column)
+      }
       if (seat.row === i+""){
         // console.log("trigger for seat", seat.row)
-        row.push(<Seat key={index + "row"}/>)
+        row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
         if (seat.row === lastRow && seat.column === lastColumn){
           result.push(
           <div key={i + 1 + "column"} className={hallData.hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
@@ -54,14 +56,14 @@ function Hall() {
               {Number(seat.row) + 1}
             </div>
             <div className='flex'>
-              {row}
+              {row.reverse()}
             </div>
           </div>)
         }
       } else {
-        console.log("else triggered for seat", seat.row)
+        // console.log("else triggered for seat", seat.row)
         if (seat.row < 15) {
-          const firstHalfRow = row.slice(0, row.length/2)
+          const firstHalfRow = row.reverse().slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
           result.push(
             <div key={i + "column"} className={hallData.hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
@@ -80,14 +82,14 @@ function Hall() {
               </div>
               :
               <div className='flex'>
-                {row}
+                {row.reverse()}
               </div>
               }
             </div>
           )
           row = []
 
-          row.push(<Seat key={index + "row"}/>)
+          row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
           i -= 1
         } else if (seat.row == 15) {
           result.push(
@@ -96,12 +98,12 @@ function Hall() {
                 {Number(seat.row) + 1}
               </div>
               <div className='flex mb-6'>
-                {row}
+                {row.reverse()}
               </div>
             </div>)
           row = []
 
-          row.push(<Seat key={index + "row"}/>)
+          row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
           i -= 1
         } else {
           result.push(
@@ -110,12 +112,12 @@ function Hall() {
                 {Number(seat.row) + 1}
               </div>
               <div className='flex'>
-                {row}
+                {row.reverse()}
               </div>
             </div>)
           row = []
 
-          row.push(<Seat key={index + "row"}/>)
+          row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
           i -= 1
         }
       }

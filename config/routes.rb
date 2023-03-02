@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'reservations/index'
+  get 'reservations/show'
+  get 'reservations/create'
   get 'halls/index'
   devise_for :users, defaults: { format: :json },
     controllers: {
@@ -14,6 +17,7 @@ Rails.application.routes.draw do
       resources :movies, only: %w[index show create destroy update], param: :slug
       resources :news, only: %w[index show], param: :slug
       resources :halls, only: %w[index show], param: :id
+      resources :reservations, only: %w[index show create], param: :id
       get '/user_details', to: 'user_details#index'
     end
   end

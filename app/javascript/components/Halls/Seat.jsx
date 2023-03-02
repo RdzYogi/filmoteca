@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-function Seat() {
+function Seat({getInfo}) {
   const [isTaken, setIsTaken] = useState(false)
 
   const handleClick = (props) => {
@@ -8,7 +8,7 @@ function Seat() {
   }
 
   return (
-    <button onClick={handleClick} className={isTaken ? 'bg-red-600 w-4 h-4 m-2 rounded' : 'w-4 h-4 bg-black m-2 rounded'}>
+    <button onClick={() => {handleClick(), getInfo()}} className={isTaken ? 'bg-red-600 w-4 h-4 m-2 rounded' : 'w-4 h-4 bg-black m-2 rounded'}>
     </button>
   )
 }
