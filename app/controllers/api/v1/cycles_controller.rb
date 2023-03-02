@@ -11,7 +11,8 @@ class Api::V1::CyclesController < ApplicationController
   end
 
   def show
-    cycle = Cycle.includes(:movies, movies: [:projections, projections: [:session, session: :hall]]).references(:movies, :projections, :sessions, :halls).find_by(slug: params[:slug])
+    # cycle = Cycle.includes(:movies, movies: [:projections, projections: [:session, session: :hall]]).references(:movies, :projections, :sessions, :halls).find_by(slug: params[:slug])
+    cycle = Cycle.includes(:movies, movies: [:projections, projections: [:session, session: :hall]]).find_by(slug: params[:slug])
     if cycle
       result = cycle.movies.map do |movie|
         projections = movie.projections.map do |projection|
@@ -21,7 +22,7 @@ class Api::V1::CyclesController < ApplicationController
         end
         { movie:, include: { projections: } }
       end
-      render json: result
+      render json: { cycle:, include: result }
     else
       render json: { error: 'Cycle not found' }, status: :not_found
     end

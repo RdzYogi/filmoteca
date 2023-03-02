@@ -17,7 +17,9 @@ function Cycle() {
       fetch(`http://localhost:3000/api/v1/cycles/${slug}`)
         .then((response) => response.json())
         .then((data) => {
-          data.movies.map((movie,index) => {
+          console.log(slug)
+          data.include.map((movie,index) => {
+            console.log(data.cycle)
             setMovies(movies => [...movies, <MovieCard key={index} movie={movie} cycle={data.cycle}/>])
           })
           setCycleData(data)
@@ -35,7 +37,8 @@ function Cycle() {
             <p className="text-justify mt-3 mb-7">{cycleData.cycle.description}</p>
             <p className="text-justify mt-3 mb-7">{cycleData.cycle.quote}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {movies}
+              {/* {movies} */}
+              {loaded ? movies : <div className="text-center">Cargando...</div>}
             </div>
           </Fragment>
         }

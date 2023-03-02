@@ -31,7 +31,6 @@ const breakPointForDayNames = 1010
 
 function Calendar({movies}) {
 
-
   const calendarHelperObj = calendarHelper()
   const [currentMonth, setCurrentMonth] = useState('')
   const [calendarGrid, setCalendarGrid] = useState([])

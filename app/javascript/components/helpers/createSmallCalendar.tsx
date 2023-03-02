@@ -72,11 +72,11 @@ function createSmallCalendar( {movies} : Props) {
   const daysOfPreviousMonth = firstDayOfMonthHelper[firstDayOfMonth]
   if(monthIndex > 0) {
     for (let i = 0; i < daysOfPreviousMonth; i++) {
-      result.calendarGrid.push(<div className='text-gray-300 flex flex-col items-center' id={i+"prevMonth"} key={i+"prevMonth"}>{calendarHelperInfo[monthIndex-1].length-daysOfPreviousMonth+i+1}</div>)
+      result.calendarGrid.push(<div className='text-gray-300 flex flex-col items-center' id={i+"prevMonth"} key={i+" prevMonth"}>{calendarHelperInfo[monthIndex-1].length-daysOfPreviousMonth+i+1}</div>)
     }
   } else {
     for (let i = 0; i < daysOfPreviousMonth; i++) {
-      result.calendarGrid.push(<div className='text-gray-300 flex flex-col items-center' id={i+"prevMonth"} key={i+"prevMonth"}>{calendarHelperInfo.decemberYearBefore.length-daysOfPreviousMonth+i+1}</div>)
+      result.calendarGrid.push(<div className='text-gray-300 flex flex-col items-center' id={i+"prevMonth"} key={i+" prevMonth"}>{calendarHelperInfo.decemberYearBefore.length-daysOfPreviousMonth+i+1}</div>)
     }
   }
 
@@ -95,7 +95,7 @@ function createSmallCalendar( {movies} : Props) {
       })
     })
     result.calendarGrid.push(
-      <div key={i+"currMonth"} className="flex flex-col items-center h-10">
+      <div key={i+" currMonth"} className="flex flex-col items-center h-10">
         <div>{i+1}</div>
         <div className='flex'>
           {currentDayMovies}
@@ -108,7 +108,7 @@ function createSmallCalendar( {movies} : Props) {
     const lastDayOfMonth = getDateObject(calendarHelperInfo[monthIndex].slice(-1),{dayLong:true}).day
     const daysOfNextMonth = lastDayOfMonthHelper[lastDayOfMonth]
     for (let i = 0; i < daysOfNextMonth; i++) {
-      result.calendarGrid.push(<div className='text-gray-300 flex flex-col items-center' id={i+"nextMonth"} key={i+"nextMonth"}>{i+1}</div>)
+      result.calendarGrid.push(<div className='text-gray-300 flex flex-col items-center' id={i+" nextMonth"} key={i+" nextMonth"}>{i+1}</div>)
     }
 
   return result

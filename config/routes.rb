@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'halls/index'
   devise_for :users, defaults: { format: :json },
     controllers: {
       sessions: 'users/sessions',
@@ -12,7 +13,9 @@ Rails.application.routes.draw do
       resources :cycles, only: %w[index show create destroy update], param: :slug
       resources :movies, only: %w[index show create destroy update], param: :slug
       resources :news, only: %w[index show], param: :slug
+      resources :halls, only: %w[index show], param: :id
       get '/user_details', to: 'user_details#index'
+      post 'mails', to: 'mails#mail'
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

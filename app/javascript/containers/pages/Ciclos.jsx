@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import CycleCard from '../../components/shared/CycleCard'
@@ -9,16 +10,14 @@ function Ciclos() {
   // and use it later in the component
   const [ciclos, setCiclos] = useState([])
   const [loaded, setLoaded] = useState(false)
-  useEffect(() => {
-    fetch('api/v1/cycles')
-      .then((response) => response.json())
-      .then((data) => {
-        data.map((cycle,index) => {
-          setCiclos(ciclos => [...ciclos, <CycleCard key={index} cycle={cycle}/>])
-        })
-        setLoaded(true)
-      });
-  }, [])
+  const cyclesData = useSelector(state => state.dataManager.cycles)
+
+  if (cyclesData.length > 0 && ciclos.length === 0) {
+    cyclesData.forEach((cycle,index) => {
+      setCiclos(ciclos => [...ciclos, <CycleCard key={index} cycle={cycle}/>])
+    })
+    setLoaded(true)
+  }
 
   return (
     <Layout>

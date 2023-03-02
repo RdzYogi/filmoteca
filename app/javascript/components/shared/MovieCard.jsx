@@ -15,6 +15,7 @@ function MovieCard(props){
   // const showDateObject = getDateObject(showDateString, options)
 
   useEffect(() => {
+    console.log(props)
     props.movie.include.projections.map((projection,index) => {
       // console.log(projection)
       const hall = projection.include.hall
@@ -43,9 +44,13 @@ function MovieCard(props){
         <div className={"bg-black pl-2 pr-2 pt-1 pb-1 h-16 flex-col flex justify-around gap-y-2"}>
           {showDates}
         </div>
-      <img className="object-cover w-screen" src={movie.img_url} alt={movie.title}/>
+      <img className="object-cover w-screen h-36" src={movie.img_url} alt={movie.title}
+        onError={({ currentTarget }) => {
+          currentTarget.src = "https://via.placeholder.com/300x450.png?text=No+Image";
+        }}
+      />
       <Link to={"/movies/" + movie.slug}>
-        <p className="text-justify p-2 h-24">{
+        <p className="text-justify p-2">{
           movie.description.length > DESCRIPTIONMAX ? movie.description.slice(0, DESCRIPTIONMAX) + "..." : movie.description}
         </p>
       </Link>

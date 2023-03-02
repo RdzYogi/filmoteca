@@ -4,13 +4,23 @@ import Navbar from '../../components/navigation/Navbar'
 import DownloadButton from '../../components/shared/DownloadButton'
 import Layout from '../../hocs/layouts/Layout'
 import MovieCard from '../../components/shared/MovieCard'
+import { useSelector } from 'react-redux'
 
 
 function Cartelera() {
+
   const [movies, setMovies] = useState([])
   const [loaded, setLoaded] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [searchResults, setSearchResults] = useState([])
+  const moviesData = useSelector(state => state.dataManager.movies)
+  if (moviesData.length > 0 && movies.length === 0) {
+    moviesData.forEach((movie,index) => {
+      
+      setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
+    })
+    setLoaded(true)
+  }
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -25,18 +35,7 @@ function Cartelera() {
     })
     setSearchResults(newMovies)
   }
-  useEffect(() => {
-    fetch("api/v1/movies")
-    .then((response) => response.json())
-    .then((data) => {
-      let newMovies = []
-      data.map((movie,index) => {
-        newMovies = [...newMovies, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>]
-      })
-      setMovies(newMovies)
-      setLoaded(true)
-      });
-  }, [])
+
   return (
     <Layout>
       <Navbar/>
@@ -44,7 +43,7 @@ function Cartelera() {
         <div className="flex justify-center">
           <div>
             <h1 className="text-center font-bold text-xl">CARTELERA</h1>
-            <div className="lg:absolute lg:top-40 lg:right-40">
+            <div className="mt-4">
               <DownloadButton/>
             </div>
           </div>
