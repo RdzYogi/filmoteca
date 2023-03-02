@@ -1,6 +1,6 @@
 # Filmoteca
 
-## Note!
+## Note
 
 This a non-profit project outligning our vision for what Filmoteca's web page should look like.
 Este es un proyecto sin fines de lucro que describe nuestra visión de cómo debería ser la pagina web de Filmoteca.
