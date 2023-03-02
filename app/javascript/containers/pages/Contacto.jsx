@@ -6,7 +6,7 @@ import Layout from '../../hocs/layouts/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
 import SubmitButton from '../../components/shared/SubmitButton';
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 
 function Contacto() {
@@ -70,7 +70,7 @@ function Contacto() {
                   <label htmlFor="message" className="block mb-2 font-medium text-black">Su mensaje</label>
                   <textarea id="message" rows="6" className="block p-2.5 w-full text-black bg-form-bg rounded-sm shadow-sm border border-form-border focus:ring-black focus:border-black" placeholder="Mensaje" required ></textarea>
               </div>
-              <ReCAPTCHA sitekey="6LcEpb4kAAAAAHI7yvtKQFviAXfXjox159hHoJnA" onChange={onChange}/>
+              {/* <ReCAPTCHA sitekey="6LcEpb4kAAAAAHI7yvtKQFviAXfXjox159hHoJnA" onChange={onChange}/> */}
               <SubmitButton label="Enviar"/>
           </form>
         </section>
