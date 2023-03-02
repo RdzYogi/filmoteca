@@ -17,6 +17,7 @@
     "buffer": "^6.0.3",
     "docx4js": "^3.2.20",
     "esbuild": "^0.17.2",
+    "events": "^3.3.0",
     "font-awesome": "^4.7.0",
     "postcss": "^7",
     "react": "^18.2.0",
