@@ -3,15 +3,16 @@ class Api::V1::CyclesController < ApplicationController
     # Cycle.include preloads the data from the database
     # So that when we render the json, it doesn't have to make
     # a new query to the database for each movie and session
-    cycles = Cycle.includes(:movies, :sessions).references(:movies, :sessions)
+    cycles = Cycle.includes(:movies).references(:movies)
 
     # We use the include option to tell the json renderer
     # to include the movies and sessions in the json
-    render json: cycles, include: %i[movies sessions]
+    render json: cycles, include: %i[movies]
   end
 
   def show
-    cycle = Cycle.includes(:movies, movies: [:projections, projections: [:session, session: :hall]]).references(:movies, :projections, :sessions, :halls).find_by(slug: params[:slug])
+    # cycle = Cycle.includes(:movies, movies: [:projections, projections: [:session, session: :hall]]).references(:movies, :projections, :sessions, :halls).find_by(slug: params[:slug])
+    cycle = Cycle.includes(:movies, movies: [:projections, projections: [:session, session: :hall]]).find_by(slug: params[:slug])
     if cycle
       result = cycle.movies.map do |movie|
         projections = movie.projections.map do |projection|
@@ -21,7 +22,7 @@ class Api::V1::CyclesController < ApplicationController
         end
         { movie:, include: { projections: } }
       end
-      render json: {cycle:, include: result}
+      render json: { cycle:, include: result }
     else
       render json: { error: 'Cycle not found' }, status: :not_found
     end

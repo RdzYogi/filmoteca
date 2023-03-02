@@ -92,7 +92,7 @@ function DesktopCalendar({movies}) {
   return (
     <div>
       <h1 className='text-center text-xl font-bold'>{currentMonthCapitalized + " de " + currentYear}</h1>
-      <div className='grid gap-2 grid-cols-7 justify-center w-[90%] mx-auto'>
+      <div className='grid gap-2 grid-cols-7 justify-center text-sm w-[100vw] lg:w-[90vw] mx-auto'>
         {calendarGrid}
       </div>
     </div>

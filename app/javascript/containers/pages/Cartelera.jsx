@@ -16,6 +16,7 @@ function Cartelera() {
   const moviesData = useSelector(state => state.dataManager.movies)
   if (moviesData.length > 0 && movies.length === 0) {
     moviesData.forEach((movie,index) => {
+      
       setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
     })
     setLoaded(true)

@@ -1,12 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
 import SubmitButton from '../../components/shared/SubmitButton';
+// import ReCAPTCHA from "react-google-recaptcha";
+
 
 function Contacto() {
+  const csrfToken = document.querySelector("[name='csrf-token']").content
+  const onChange = () => {};
+  useEffect(() => {
+    fetch('/api/v1/mails', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', "X-CSRF-Token": csrfToken},
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json()
+      }
+    })
+    .then((data) => {
+      console.log(data)
+    });
+    // fetch('/api/v1/mails')
+    //   .then((response) => {
+    //     return response.json()
+    //   })
+    //   .then((data) => {
+    //     console.log(data)
+    //   });
+  }, [])
   return (
     <Layout>
       <Navbar/>
@@ -41,9 +67,10 @@ function Contacto() {
                 </select>
               </div>
               <div className="sm:col-span-2">
-                  <label htmlFor="message" className="block mb-2 font-medium text-black">Your message</label>
+                  <label htmlFor="message" className="block mb-2 font-medium text-black">Su mensaje</label>
                   <textarea id="message" rows="6" className="block p-2.5 w-full text-black bg-form-bg rounded-sm shadow-sm border border-form-border focus:ring-black focus:border-black" placeholder="Mensaje" required ></textarea>
               </div>
+              {/* <ReCAPTCHA sitekey="6LcEpb4kAAAAAHI7yvtKQFviAXfXjox159hHoJnA" onChange={onChange}/> */}
               <SubmitButton label="Enviar"/>
           </form>
         </section>
