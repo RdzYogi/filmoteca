@@ -1,24 +1,42 @@
-# README
+# Filmoteca
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Note!
 
-Things you may want to cover:
+This a non-profit project outligning our vision for what Filmoteca's web page should look like.
+Este es un proyecto sin fines de lucro que describe nuestra visión de cómo debería ser la pagina web de Filmoteca.
 
-* Ruby version
+## Description
 
-* System dependencies
+Rails app built from scratch. The app allows the public to access the Filmoteca's catalogue of films and buying tickets for the movies that are currently being shown in the cinema.
+Filmoteca is an institution dedicated to the acquisition and preservation of cinematographic material, generally removed from commercial circuits, for exhibition and study.
 
-* Configuration
 
-* Database creation
+<!-- ## Live
 
-* Database initialization
+https://www.tvtalk.me/ -->
 
-* How to run the test suite
+## Authors
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruben Sanchez [@MrBlueRuben](https://www.github.com/MrBlueRuben)
+- Francisco Crespo [@fcrespo8](https://www.github.com/fcrespo8)
+- Silviu Ioan Rosu [@RdzYogi](https://www.github.com/RdzYogi)
+- Vito Lattanzio [@vitolattanzio13](https://www.github.com/vitolattanzio13)
+- Alberto Mercado [@amercadoarriola](https://www.github.com/amercadoarriola)
+- Laura Nguyen-Trong [@laurangt](https://www.github.com/laurangt)
+- Jorrit van der Plaats [@JorritvdP](https://www.github.com/JorritvdP)
 
-* Deployment instructions
+## Tech Stack
 
-* ...
+· Ruby on Rails
+· React
+· Redux
+· JavaScript
+· Rest API
+· SASS
+· Tailwind CSS
+· PostgreSQL
+· Action Cable
+· Devise
+· Web Scraping
+· Turbo Frames
+· Heroku
