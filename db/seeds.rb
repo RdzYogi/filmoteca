@@ -128,23 +128,90 @@ Cycle.create(name: "FILMOTECA JUNIOR",
             color: "blue-cycle",
             start_date: "2023-02-01",
             end_date: "2023-12-28")
+
+Cycle.create(name: "SESIÓN ESPECIAL",
+              description: "Sessions especiales para los amantes del cine. Disfruta de las mejores películas en la mejor compañía.",
+              quote: "Ciclo 4",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301263/Filmoteca/Volver-a-empezar_ivrimz.jpg",
+              color: "gray-cycle",
+              slug: "ciclo-4",
+              start_date: "2023-02-01",
+              end_date: "2023-12-28")
+
+Cycle.create(name: "A/Z ZULUETA INÉDITO",
+              description: "Voluptuosidad, alucinación y la imposibilidad de
+              acceder al objeto soñado definen, en contraste con
+              el severo o grotesco cine español de su época, las
+              creaciones de Iván Zulueta, a quien conocimos por
+              sus carteles cinematográficos.",
+              quote: "Ciclo 5",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Con-J-de-Zulueta_ustrdx.jpg",
+              color: "red-cycle",
+              slug: "ciclo-5",
+              start_date: "2023-02-01",
+              end_date: "2023-12-28")
+
+Cycle.create(name: "OUSMANE SEMBENE. EL LENGUAJE DE ÁFRICA",
+              description: "Abrimos esta retrospectiva dedicada al cineasta senegalés Ousmane Sembene en el año de su
+              centenario con la transcripción de una conferencia que dio en 1995 en Londres. Bajo el título
+              “¿Puede el cine africano conseguir el mismo nivel de indigenización que otras formas de arte
+              popular africano?”, el siguiente texto fue después publicado en el volumen Symbolic Narratives/
+              African Cinema. Audiences, Theory and the Moving Image (British Film Institute, 2000)",
+              quote: "Ciclo 6",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
+              color: "yellow-cycle",
+              slug: "ciclo-6",
+              start_date: "2023-01-01",
+              end_date: "2023-02-28")
+
 puts "Cycles created"
 
 # Define placeholder sessions
+require 'date'
+start_date = Date.today
+# puts start_date
+first_day_month = Date.new(start_date.year, start_date.month, 1)
+# puts first_day_month
+end_date = first_day_month >> 1
+# puts end_date
+array_days = (first_day_month...end_date).to_a
+array_days.each do |day|
+  if day.monday? == false
+    # p day.asctime
+    i = 16
+    6.times do
+      if i <= 20
+        new_date = DateTime.new(day.year, day.month, day.mday, i)
+        i += 2
+        # crear sesion con new date sala 1
+        Session.create(play_time: new_date, hall_id: Hall.all[0].id)
+      else
+        new_date = DateTime.new(day.year, day.month, day.mday, i-6)
+        i += 2
+        # crear sesion con new date sala 2
+        Session.create(play_time: new_date, hall_id: Hall.all[1].id)
+      end
+    end
+  end
+end
+puts "Sessions Created"
 
-Session.create(name: "Movie 1",
-              description: "Movie 1",
-              quote: "Movie 1",
-              play_time: "2023-03-01 17:00:00",
-              cycle_id: Cycle.all[0].id,
-              hall_id: Hall.all[0].id)
+#   Session.create( play_time: new_date,
+#                 hall_id: Hall.all[0].id)
 
-Session.create(name: "Movie 2",
-                description: "Movie 2",
-                quote: "Movie 2",
-                play_time: "2023-03-02 19:00:00",
-                cycle_id: Cycle.all[0].id,
-                hall_id: Hall.all[0].id)
+# Session.create(name: "Movie 1",
+#               description: "Movie 1",
+#               quote: "Movie 1",
+#               play_time: "2023-02-01 17:00:00",
+#               cycle_id: Cycle.all[0].id,
+#               hall_id: Hall.all[0].id)
+
+# Session.create(name: "Movie 2",
+#                 description: "Movie 2",
+#                 quote: "Movie 2",
+#                 play_time: "2023-02-02 19:00:00",
+#                 cycle_id: Cycle.all[0].id,
+#                 hall_id: Hall.all[0].id)
 
 # Define placeholder movies
 # Add Douglas Sirk Movies
@@ -209,7 +276,7 @@ Movie.create(title: "La Habanera",
             tra de lo que he llamado crítica social. […] Era una película
             anticapitalista, cosa que caía bien en Alemania en aquel
             momento». (Douglas Sirk)",
-            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301247/Filmoteca/La-Habanera_v0tmk8.jpg",
+            img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-golondrina-cautiva_n84sve.jpg",
             year: "1937",
             cycle_id: Cycle.all[0].id)
 puts "Movie-4 created"
@@ -326,41 +393,126 @@ Movie.create(title: "La bella y la bestia",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
               year: "1991",
               cycle_id: Cycle.all[2].id)
+
 puts "Movie-9 created"
+#testing 2 shorts in same session
+Movie.create(title: "Borom sarret + La noire de…",
+              runtime: "20'",
+              director: "Ousmane Sembene",
+              description: "",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
+              year: "Varios",
+              shorts: "Borom sarret, La noire de…",
+              cycle_id: Cycle.all[5].id)
+
+puts "Movie 10 Shorts-1 Non description 2 shorts same session created"
+#testing 2 shorts in same session different description
+Movie.create(title: "Borom sarret",
+              runtime: "10'",
+              director: "Ousmane Sembene",
+              description: "",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
+              year: "1963",
+              shorts: "",
+              cycle_id: Cycle.all[5].id)
+
+puts "Movie 11 Shorts-1  Description 2 shorts same session created"
+
+Movie.create(title: "La noire de…",
+              runtime: "10'",
+              director: "Ousmane Sembene",
+              description: "",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
+              year: "1966",
+              shorts: "",
+              cycle_id: Cycle.all[5].id)
+
+puts "Movie 12 Shorts-1 Non description 2 shorts same session created"
+
+Movie.create(title: "Programa 2: Aloha",
+              runtime: "10'",
+              director: "Iván Zulueta",
+              description: "",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/Aloha_fwtpki.jpg",
+              year: "1991",
+              shorts: "Cine Album Kodak 9, Piscina, Sonoro Vicky,
+              Sound Iván Jaime, Nenes Juan Blanco,
+              Boxers Max Ernst,
+              Feria navideña regalos,
+              Nenes piscina,
+              Nenes van a la playa",
+              cycle_id: Cycle.all[4].id)
+
+puts "Movie 13 Shorts-2 Non description 9 shorts same session created"
+
 puts "Movies created"
 
 # Creating Projections
-Projection.create(movie_id: Movie.all[0].id,
-                  session_id: Session.all[0].id)
-puts "Projection-1 created"
+# usedSessions is where we store the sessions that have been used so that we dont repeat them.
+usedSesisons = []
+# movieFirstSession is where we store the movies that have one session.
+movieFirstSession = []
+# movieSecondSession is where we store the movies that have 2 sessions.
+movieSecondSession = []
+# Stop condition is when each movie has 2 sessions.
+while movieSecondSession.length < Movie.all.length
+  s = Session.all.sample
+  m = Movie.all.sample
+  if !usedSesisons.include?(s)
+    usedSesisons << s
+    if movieFirstSession.include?(m)
+      if !movieSecondSession.include?(m)
+        movieSecondSession << m
+        Projection.create(session: s, movie: m)
+      end
+    else
+      movieFirstSession << m
+      Projection.create(session: s, movie: m)
+    end
+  end
+end
+puts "Projections created successfully"
 
-Projection.create(movie_id: Movie.all[0].id,
-                  session_id: Session.all[1].id)
-puts "Projection-2 created"
+# Projection.create(movie_id: Movie.all[0].id,
+#                   session_id: Session.all[0].id)
+# puts "Projection-1 created"
 
-Projection.create(movie_id: Movie.all[1].id,
-                  session_id: Session.all[0].id)
-puts "Projection-3 created"
+# Projection.create(movie_id: Movie.all[0].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-2 created"
 
-Projection.create(movie_id: Movie.all[2].id,
-                  session_id: Session.all[1].id)
-puts "Projection-4 created"
+# Projection.create(movie_id: Movie.all[1].id,
+#                   session_id: Session.all[0].id)
+# puts "Projection-3 created"
 
-Projection.create(movie_id: Movie.all[3].id,
-                  session_id: Session.all[0].id)
-puts "Projection-5 created"
+# Projection.create(movie_id: Movie.all[2].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-4 created"
 
-Projection.create(movie_id: Movie.all[4].id,
-                  session_id: Session.all[1].id)
-puts "Projection-6 created"
+# Projection.create(movie_id: Movie.all[3].id,
+#                   session_id: Session.all[0].id)
+# puts "Projection-5 created"
 
-Projection.create(movie_id: Movie.all[5].id,
-                  session_id: Session.all[0].id)
-puts "Projection-7 created"
+# Projection.create(movie_id: Movie.all[4].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-6 created"
 
-Projection.create(movie_id: Movie.all[5].id,
-                  session_id: Session.all[1].id)
-puts "Projection-8 created"
+# Projection.create(movie_id: Movie.all[5].id,
+#                   session_id: Session.all[0].id)
+# puts "Projection-7 created"
+
+# Projection.create(movie_id: Movie.all[5].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-8 created"
+
+# #testing 2 shorts in same session
+# Projection.create(movie_id: Movie.all[11].id,
+#                   session_id: Session.all[1].id)
+# puts "Projection-9 created testing 2 shorts in same session"
 
 # Define News placeholder
 
@@ -424,3 +576,5 @@ Subscription.create(user_id: User.all[4].id,
                     tipo: "Abono 10",
                     remaining_uses: 5)
 puts "Subscription-5 created"
+
+# Creating reservations
