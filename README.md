@@ -1,5 +1,8 @@
 # Filmoteca
 
+The current Filmoteca's web page is not user friendly and it is hard to navigate. This project aims to completly redesign the web page from scratch,
+with the main focus being user experience.
+
 ## Note
 
 This a non-profit project outligning our vision for what Filmoteca's web page should look like.
@@ -7,6 +10,9 @@ Este es un proyecto sin fines de lucro que describe nuestra visión de cómo deb
 
 ## Description
 
+The app has been built from scratch using React JS for frontend and Ruby on Rails for the backend API.
+
+The app allows the public to access the Filmoteca's catalogue of films and buying tickets for the movies that are currently being shown in the cinema.
 Rails app built from scratch. The app allows the public to access the Filmoteca's catalogue of films and buying tickets for the movies that are currently being shown in the cinema.
 Filmoteca is an institution dedicated to the acquisition and preservation of cinematographic material, generally removed from commercial circuits, for exhibition and study.
 
@@ -40,3 +46,6 @@ https://www.tvtalk.me/ -->
 · Web Scraping
 · Turbo Frames
 · Heroku
+
+## Features
+
