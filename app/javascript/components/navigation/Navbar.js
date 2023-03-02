@@ -60,7 +60,12 @@ function Navbar() {
               height={350}
               className=""/>
             </Link>
-            <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link>
+            {/* <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link> */}
+            <div to="#" className='text-lg py-2 w-fit font-bold self-center leading-6 text-white'>
+              {isSignedIn ?
+              <button onClick={handleOnClickSignOut}>DESCONECTAR</button>:
+              <Link to="/sign_in">INGRESAR</Link>}
+            </div>
           </div>
           {/* NavLink is going to add the active class to the link that we will define */}
           {/* application.tailwind.css file */}
