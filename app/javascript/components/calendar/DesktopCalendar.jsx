@@ -2,24 +2,24 @@ import React, { useEffect, useState } from 'react'
 import calendarHelper from '../helpers/calendarHelper'
 import getDateObject from '../helpers/getDateObject'
 
-const firstDayOfMonthHelper = new Map([
-  ['lunes', 0],
-  ['martes', 1],
-  ['miércoles', 2],
-  ['jueves', 3],
-  ['viernes', 4],
-  ['sábado', 5],
-  ['domingo', 6],
-])
-const lastDayOfMonthHelper = new Map([
-  ['lunes', 6],
-  ['martes', 5],
-  ['miércoles', 4],
-  ['jueves', 3],
-  ['viernes', 2],
-  ['sábado', 1],
-  ['domingo', 0],
-])
+const firstDayOfMonthHelper = {
+  'lunes': 0,
+  'martes': 1,
+  'miércoles': 2,
+  'jueves': 3,
+  'viernes': 4,
+  'sábado': 5,
+  'domingo': 6,
+}
+const lastDayOfMonthHelper = {
+  'lunes': 6,
+  'martes': 5,
+  'miércoles': 4,
+  'jueves': 3,
+  'viernes': 2,
+  'sábado': 1,
+  'domingo': 0,
+}
 
 function DesktopCalendar({movies}) {
   // console.log(movies)
@@ -74,9 +74,11 @@ function DesktopCalendar({movies}) {
     // Fill the calendar grid with the days of the next month
     const lastDayOfMonth = getDateObject(calendarHelperInfo[monthIndex][daysOfCurrentMonth-1],{dayLong:true}).day
     const daysOfNextMonth = lastDayOfMonthHelper[lastDayOfMonth]
+    // console.log(daysOfNextMonth)
     if(monthIndex < 11) {
       for (let i = 0; i < daysOfNextMonth; i++) {
-        const dayHeader = Object.keys(lastDayOfMonthHelper)[i].charAt(0).toUpperCase() + Object.keys(lastDayOfMonthHelper)[i].slice(1)
+        // console.log(Object.keys(lastDayOfMonthHelper)[Object.keys(lastDayOfMonthHelper).length-(daysOfNextMonth-i)],i)
+        const dayHeader = Object.keys(lastDayOfMonthHelper)[Object.keys(lastDayOfMonthHelper).length-(daysOfNextMonth-i)].charAt(0).toUpperCase() + Object.keys(lastDayOfMonthHelper)[Object.keys(lastDayOfMonthHelper).length-(daysOfNextMonth-i)].slice(1)
         setCalendarGrid(calendarGrid => [...calendarGrid,<div className='w-full h-fit flex justify-center' key={i+" nextMonth"}><div className='text-gray-300 flex flex-col items-center bg-black w-fit px-2' id={i+"nextMonth"} >{dayHeader} {i+1}</div></div>])
       }
     } else {
