@@ -27,7 +27,9 @@ function MovieCard(props){
         <p className="">{showDateObject.hour+":"+showDateObject.minutes}h</p>
         <div className={"h-px w-1/12 self-center bg-"+cycle.color}></div>
         <p className="">{hall.name}</p>
-        <p className={"text-black font-bold p-1 bg-"+cycle.color}>Comprar</p>
+        <Link to={`/projections/${projection.projection.id}`}>
+          <p className={"text-black font-bold p-1 bg-"+cycle.color}>Comprar</p>
+        </Link>
       </div>
       ])
     })

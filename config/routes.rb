@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get 'reservations/index'
-  get 'reservations/show'
-  get 'reservations/create'
-  get 'halls/index'
+  get 'sessions/index'
+  # get 'reservations/index'
+  # get 'reservations/show'
+  # get 'reservations/create'
+  # get 'halls/index'
   devise_for :users, defaults: { format: :json },
     controllers: {
       sessions: 'users/sessions',
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
       resources :news, only: %w[index show], param: :slug
       resources :halls, only: %w[index show], param: :id
       resources :reservations, only: %w[index show create], param: :id
+      resources :projections, only: %w[index show create], param: :id
       get '/user_details', to: 'user_details#index'
       post 'mails', to: 'mails#mail'
     end

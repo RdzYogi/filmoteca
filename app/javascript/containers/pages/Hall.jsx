@@ -13,37 +13,36 @@ function Hall() {
   let params = useParams()
   const id = params.id;
 
-  const [reservationData, setReservationData] = useState([])
-  useEffect(() => {
-    fetch(`/api/v1/reservations/${id}`)
-    .then((response) => {
-      return response.json()
-    })
-    .then((data) => {
-      setReservationData(data)
-    })
-    console.log(reservationData)
-  }, [])
-
-
   const [hallData, setHallData] = useState({
     hall: {},
     seats: [],
     sessions: []
   })
-
-
   const [formatedHall, setFormatedHall] = useState([])
+  const [reservationData, setReservationData] = useState([])
 
   useEffect(() => {
-    fetch(`/api/v1/halls/${id}`)
+    fetch(`/api/v1/projections/${id}`)
     .then((response) => {
       return response.json()
     })
     .then((data) => {
-      setHallData(data)
+      console.log(data)
+      // setReservationData(data)
+      setHallData(data.projection.hall)
     })
+    // console.log(reservationData)
   }, [])
+
+  // useEffect(() => {
+  //   fetch(`/api/v1/halls/${id}`)
+  //   .then((response) => {
+  //     return response.json()
+  //   })
+  //   .then((data) => {
+  //     setHallData(data)
+  //   })
+  // }, [])
 
 
   useEffect(() => {
