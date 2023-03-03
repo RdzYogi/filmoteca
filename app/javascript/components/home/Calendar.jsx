@@ -3,6 +3,7 @@ import calendarHelper from '../helpers/calendarHelper'
 import createSmallCalendar from '../helpers/createSmallCalendar'
 import Carousel from 'react-multi-carousel'
 import filterMoviesByDay from '../helpers/filterMoviesByDay'
+import { all } from 'axios'
 
 
 let smallCalendarGrid = {}
@@ -28,6 +29,8 @@ const responsive = {
 
 const spanishWeekdays =  ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 const breakPointForDayNames = 1010
+const selectedColor = "bg-gray-100"
+const unselectedColor = "bg-white"
 
 function Calendar({movies}) {
 
@@ -50,7 +53,7 @@ function Calendar({movies}) {
     // Group week days and attach listener
     for (let i = 0; i < smallCalendarGrid.calendarGrid.length; i+=7) {
       setCalendarGrid(prev => [...prev,
-        <button onClick={handleWeekChange} id={"week-"+(i%34/7)} key={i%7+i%34+"week"} className={(i===0 ? "bg-gray-100 ":"") +"grid grid-cols-7 w-full"}>
+        <button onClick={handleWeekChange} id={"week-"+(i%34/7)} key={i%7+i%34+"week"} className={(i===0 ? selectedColor:"") +" grid grid-cols-7 w-full"}>
           {smallCalendarGrid.calendarGrid.slice(i, i+7)}
         </button>
       ])
@@ -87,7 +90,7 @@ function Calendar({movies}) {
     const windowCheck = window.matchMedia(`(max-width: ${breakPointForDayNames}px)`)
     for (let i = 0; i < children.length; i++) {
       setWeekDetailsButtons(prev => [...prev,
-        <div id={children[i].innerText+"dayName"} key={i+"dayName"} data-other-month={children[i].id ? children[i].id:""} className="flex justify-center items-center bg-white">
+        <div id={children[i].innerText+"dayName"} key={i+"dayName"} data-other-month={children[i].id ? children[i].id:""} className={"flex justify-center items-center " + unselectedColor}>
           <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-0 sm:px-3 " >
           {windowCheck.matches ? calendarHelperObj.spanishWeekdays[i].slice(0,3) + " " + children[i].innerText : calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
           </button>
@@ -110,14 +113,14 @@ function Calendar({movies}) {
       if (button.props['data-other-month'] === "") result = filterMoviesByDay({movies:movies,day:dayToFilter})
       if (result.length > 0) {
         const button = document.getElementById(dayToFilter+"dayName")
-        button.classList.remove('bg-white')
-        button.classList.add('bg-gray-100')
+        button.classList.remove(unselectedColor)
+        button.classList.add(selectedColor)
         setMoviesToDisplay(result)
       }
       if (result.length === 0 && index === weekDetailsButtons.length - 1) {
         const firstButton = document.getElementById(weekDetailsButtons[0].props.children.props.children.split(" ")[1]+"dayName")
-        firstButton.classList.remove('bg-white')
-        firstButton.classList.add('bg-gray-100')
+        firstButton.classList.remove(unselectedColor)
+        firstButton.classList.add(selectedColor)
         setMoviesToDisplay([])
       }
     })
@@ -128,26 +131,33 @@ function Calendar({movies}) {
       const idHelper = button.props.children.props.children.split(" ")[1]
       // console.log("from color resetter:",idHelper)
       const buttonToReset = document.getElementById(idHelper+"dayName")
-      buttonToReset.classList.remove('bg-gray-100')
-      buttonToReset.classList.remove('bg-white')
-      buttonToReset.classList.add('bg-white')
+      buttonToReset.classList.remove(selectedColor)
+      buttonToReset.classList.remove(unselectedColor)
+      buttonToReset.classList.add(unselectedColor)
     })
   }
 
   function handleDayChange (e) {
     e.preventDefault()
+    // console.log(movies)
     let result = []
     const allButtons = e.currentTarget.parentElement.parentElement.children
     for (let i = 0; i < allButtons.length; i++) {
-      allButtons[i].classList.remove('bg-gray-100')
-      allButtons[i].classList.remove('bg-white')
-      allButtons[i].classList.add('bg-white')
+      allButtons[i].classList.remove(selectedColor)
+      allButtons[i].classList.remove(unselectedColor)
+      allButtons[i].classList.add(unselectedColor)
     }
-    e.currentTarget.parentElement.classList.remove('bg-white')
-    e.currentTarget.parentElement.classList.add('bg-gray-100')
+    e.currentTarget.parentElement.classList.remove(unselectedColor)
+    e.currentTarget.parentElement.classList.add(selectedColor)
 
     const dayToFilter = e.currentTarget.parentElement.id.split("dayName")[0]
-    if (e.currentTarget.parentElement.dataset.otherMonth === "") result = filterMoviesByDay({movies:movies.movies,day:dayToFilter})
+    if (e.currentTarget.parentElement.dataset.otherMonth === ""){
+      if(movies.length > 0){
+        result = filterMoviesByDay({movies:movies,day:dayToFilter})
+      } else {
+        result = filterMoviesByDay({movies:movies.movies,day:dayToFilter})
+      }
+    }
     // console.log(e.currentTarget.parentElement.dataset.otherMonth)
     setMoviesToDisplay(result)
   }
@@ -157,7 +167,7 @@ function Calendar({movies}) {
     const weeks = [document.getElementById('week-0'),document.getElementById('week-1'),document.getElementById('week-2'),document.getElementById('week-3'),document.getElementById('week-4')]
     weeks.map(week => {
       if (week.id === e.currentTarget.id) {
-        week.classList.add('bg-gray-100')
+        week.classList.add(selectedColor)
         const children = week.children
         setWeekDetailsButtons([])
         for (let i = 0; i < children.length; i++) {
@@ -170,7 +180,7 @@ function Calendar({movies}) {
           ])
         }
       } else {
-        week.classList.remove('bg-gray-100')
+        week.classList.remove(selectedColor)
       }
     })
   }

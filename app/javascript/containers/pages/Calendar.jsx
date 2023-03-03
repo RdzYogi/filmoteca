@@ -15,8 +15,7 @@ function Calendar() {
   if (moviesData.length > 0 && movies.length === 0) {
     moviesData.forEach((movie,index) => {
       setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
-      // console.log(movie.include.projections)
-      movie.include.projections.forEach((projection,index) => {
+      movie.include.projections.forEach((projection) => {
         setDesktopCards(prev => [...prev,<CalendarCards movie={movie} projection={projection}/>])
       })
     })
