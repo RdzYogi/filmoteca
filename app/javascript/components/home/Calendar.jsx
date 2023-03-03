@@ -109,7 +109,7 @@ function Calendar({movies}) {
     if (weekDetailsButtons.length === 0) return
     weekDetailsButtons.forEach((button,index) => {
       if (result.length > 0) return
-      const dayToFilter = button.props.children.props.children.split(" ")[1]
+      const dayToFilter = Number(button.props.children.props.children.split(" ")[1])
       if (button.props['data-other-month'] === "") result = filterMoviesByDay({movies:movies,day:dayToFilter})
       if (result.length > 0) {
         const button = document.getElementById(dayToFilter+"dayName")

@@ -19,12 +19,7 @@ function getDateObject(dateString: string,
 
   const date = new Date(dateString)
 
-  const optionMonth: Intl.DateTimeFormatOptions = monthLong ? { month: "long" } : { month: "2-digit" };
-  const optionYear: Intl.DateTimeFormatOptions = { year: "numeric" };
-  const optionDay: Intl.DateTimeFormatOptions = dayLong ? {weekday:"long"} : { day: "numeric" };
-  const optionHour: Intl.DateTimeFormatOptions = { hour: "2-digit" };
-  const optionMinutes: Intl.DateTimeFormatOptions = { minute: "2-digit" };
-
+  const optionMonth = monthLong ? "long":"2-digit" ;
   const dateObject: DateObject = {
     year: "",
     month: "",
@@ -32,15 +27,28 @@ function getDateObject(dateString: string,
     hour: "",
     minutes: "",
   } as DateObject
-  dateObject.month = new Intl.DateTimeFormat('es-ES',optionMonth).format(date)
-  dateObject.year = new Intl.DateTimeFormat('es-ES',optionYear).format(date)
-  dateObject.day = new Intl.DateTimeFormat('es-ES',optionDay).format(date)
-  dateObject.hour = new Intl.DateTimeFormat('es-ES',optionHour).format(date)
-  dateObject.minutes = new Intl.DateTimeFormat('es-ES',optionMinutes).format(date)
-  if (dateObject.minutes === "0"){
-    dateObject.minutes = "00"
-  }
 
+  if (dayLong) {
+    const intlDate = new Intl.DateTimeFormat('es-ES',{year: "numeric",month: optionMonth, weekday: "long",day:"numeric",hour:"2-digit",minute: "2-digit"}).format(date)
+    dateObject.month = monthLong ? intlDate.split(" ")[2] : intlDate.split("/")[1]
+    dateObject.year = monthLong ? intlDate.split(",")[1].split(" ")[4] : intlDate.split(",")[1].split("/")[1]
+    dateObject.day = intlDate.split(',')[0]
+    dateObject.hour = intlDate.split(',')[1].split(' ')[1].split(':')[0]
+    dateObject.minutes = intlDate.split(',')[2].split(' ')[1].split(':')[1]
+    if (dateObject.minutes === "0"){
+      dateObject.minutes = "00"
+    }
+  } else{
+    const intlDate = new Intl.DateTimeFormat('es-ES',{year: "numeric",month: optionMonth, day: "2-digit",hour:"2-digit",minute: "2-digit"}).format(date)
+    dateObject.month = monthLong ? intlDate.split(" ")[2] : intlDate.split("/")[1]
+    dateObject.year = monthLong ? intlDate.split(" ")[4] : intlDate.split("/")[2].split(",")[0]
+    dateObject.day = monthLong ? intlDate.split(" ")[0] : intlDate.split("/")[0]
+    dateObject.hour = intlDate.split(',')[1].split(' ')[1].split(':')[0]
+    dateObject.minutes = intlDate.split(',')[1].split(' ')[1].split(':')[1]
+    if (dateObject.minutes === "0"){
+      dateObject.minutes = "00"
+    }
+  }
   return dateObject
 }
 

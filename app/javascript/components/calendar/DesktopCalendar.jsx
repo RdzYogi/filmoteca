@@ -74,9 +74,11 @@ function DesktopCalendar({movies}) {
     // Fill the calendar grid with the days of the next month
     const lastDayOfMonth = getDateObject(calendarHelperInfo[monthIndex][daysOfCurrentMonth-1],{dayLong:true}).day
     const daysOfNextMonth = lastDayOfMonthHelper[lastDayOfMonth]
+    // console.log(daysOfNextMonth)
     if(monthIndex < 11) {
       for (let i = 0; i < daysOfNextMonth; i++) {
-        const dayHeader = Object.keys(lastDayOfMonthHelper)[i].charAt(0).toUpperCase() + Object.keys(lastDayOfMonthHelper)[i].slice(1)
+        // console.log(Object.keys(lastDayOfMonthHelper)[Object.keys(lastDayOfMonthHelper).length-(daysOfNextMonth-i)],i)
+        const dayHeader = Object.keys(lastDayOfMonthHelper)[Object.keys(lastDayOfMonthHelper).length-(daysOfNextMonth-i)].charAt(0).toUpperCase() + Object.keys(lastDayOfMonthHelper)[Object.keys(lastDayOfMonthHelper).length-(daysOfNextMonth-i)].slice(1)
         setCalendarGrid(calendarGrid => [...calendarGrid,<div className='w-full h-fit flex justify-center' key={i+" nextMonth"}><div className='text-gray-300 flex flex-col items-center bg-black w-fit px-2' id={i+"nextMonth"} >{dayHeader} {i+1}</div></div>])
       }
     } else {
