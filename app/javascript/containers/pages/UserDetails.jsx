@@ -49,7 +49,7 @@ function UserDetails() {
               <h1 className="text-xl font-bold text-center">SUSCRIPCIONES</h1>
       </div>
       {/* <div className="pt-20">{currentUserStore.email}</div> */}
-      <div className="pt-10 bg-black">
+      <div className="mt-10 p-10 list-none bg-black text-gray-50">
         {loaded ? subscriptions : <div className="text-center">Cargando...</div>}
       </div>
       {/* <div className="pt-40">{authToken}</div> */}
