@@ -3,7 +3,7 @@ import getDateObject from './getDateObject'
 
 type Input = {
   movies: JSX.Element[]
-  day: string
+  day: number
 }
 // This will only return movies for current month
 function filterMoviesByDay(input: Input) {
@@ -13,7 +13,8 @@ function filterMoviesByDay(input: Input) {
   const result= [] as JSX.Element[]
   input.movies.forEach((movie) => {
     movie.props.movie.include.projections.forEach((projection) => {
-      const day = getDateObject(projection.include.session.play_time).day
+      // console.log(Number(projection.include.session.play_time.split('T')[0].split('-')[2]), input.day)
+      const day = Number(projection.include.session.play_time.split('T')[0].split('-')[2])
       const month = getDateObject(projection.include.session.play_time).month
       if (day === input.day && month === currentMonth) {
         result.push(movie)

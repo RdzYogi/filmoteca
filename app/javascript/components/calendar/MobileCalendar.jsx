@@ -18,7 +18,8 @@ function MobileCalendar({movies}) {
     setWeekdays(smallCalendarGrid.weekdays)
 
     // Attach listeners and format calendar grid
-    for (let i = 0; i < smallCalendarGrid.calendarGrid.length; i++) {
+    const size = smallCalendarGrid.calendarGrid.length
+    for (let i = 0; i < size; i++) {
       if (smallCalendarGrid.calendarGrid[i].props.children.length === 2 && smallCalendarGrid.calendarGrid[i].props.children[0].props.children === 1){
         setCalendarGrid(prev => [...prev, <button onClick={handleDayChange} className='h-10 w-10 rounded-full mb-2 flex justify-center border border-blue-400' key={i+"day"}>{smallCalendarGrid.calendarGrid[i]}</button>])
       } else if(smallCalendarGrid.calendarGrid[i].props.children.length === undefined && smallCalendarGrid.calendarGrid[i].props.children !== ""){
@@ -33,10 +34,10 @@ function MobileCalendar({movies}) {
     const today = new Date()
     const todayDateObj = getDateObject(today)
 
-    for (let i = 0; i < smallCalendarGrid.calendarGrid.length; i++) {
+    for (let i = 0; i < size; i++) {
       if (smallCalendarGrid.calendarGrid[i].key.split(' ')[1] === "currMonth") {
         const day = Number(smallCalendarGrid.calendarGrid[i].key.split(' ')[0])+1
-        const filteredMovies = filterMoviesByDay({movies:movies.movies,day:day.toString()})
+        const filteredMovies = filterMoviesByDay({movies:movies.movies,day:day})
         const newDate = new Date(todayDateObj.year,today.getMonth(),day)
         const spanishDay = getDateObject(newDate.toDateString(),{dayLong:true}).day
         const formattedSpanishDay = (spanishDay.charAt(0).toUpperCase()+spanishDay.slice(1)).slice(0,3)
