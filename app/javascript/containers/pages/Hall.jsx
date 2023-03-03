@@ -13,11 +13,27 @@ function Hall() {
   let params = useParams()
   const id = params.id;
 
+  const [reservationData, setReservationData] = useState([])
+  useEffect(() => {
+    fetch(`/api/v1/reservations/${id}`)
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      setReservationData(data)
+    })
+    console.log(reservationData)
+  }, [])
+
+
   const [hallData, setHallData] = useState({
     hall: {},
     seats: [],
     sessions: []
   })
+
+
+  const [formatedHall, setFormatedHall] = useState([])
 
   useEffect(() => {
     fetch(`/api/v1/halls/${id}`)
@@ -28,8 +44,6 @@ function Hall() {
       setHallData(data)
     })
   }, [])
-
-  const [formatedHall, setFormatedHall] = useState([])
 
 
   useEffect(() => {
@@ -51,7 +65,7 @@ function Hall() {
         row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
         if (seat.row === lastRow && seat.column === lastColumn){
           result.push(
-          <div key={i + 1 + "column"} className={hallData.hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
+            <div key={i + 1 + "column"} className={hallData.hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
             <div className='self-center'>
               {Number(seat.row) + 1}
             </div>
@@ -61,7 +75,6 @@ function Hall() {
           </div>)
         }
       } else {
-        // console.log("else triggered for seat", seat.row)
         if (seat.row < 15) {
           const firstHalfRow = row.reverse().slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
@@ -72,7 +85,7 @@ function Hall() {
               </div>
               {
                 hallData.hall.name === "Sala 1" ?
-              <div className='flex'>
+                <div className='flex'>
                 <div className='mr-4'>
                   {firstHalfRow}
                 </div>

@@ -1,6 +1,7 @@
-class ReservationsController < ApplicationController
+class Api::V1::ReservationsController < ApplicationController
   def index
     reservations = Reservation.includes(:session, :user, :subscription, :seat, :ticket)
+    # belong to current session
     result = reservations.map do |reservation|
       session = reservation.session_id
       user = reservation.user_id
@@ -16,7 +17,7 @@ class ReservationsController < ApplicationController
     if reservation
       render json: reservation
     else
-      render json: {rerror: "Reservation not found"}, status: :not_found
+      render json: {error: "Reservation not found"}, status: :not_found
     end
   end
 
