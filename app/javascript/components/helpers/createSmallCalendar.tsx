@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useMemo, useState } from 'react'
 import getDateObject from './getDateObject'
 import calendarHelper from './calendarHelper'
 
@@ -58,6 +58,7 @@ function createSmallCalendar( {movies} : Props) {
   // Get current month
   const dateToday = new Date()
   // Get the month name in spanish
+
   result.currentMonth = getDateObject(dateToday.toDateString(),{monthLong:true}).month
   // Get the month index
   const monthIndex = dateToday.getMonth()

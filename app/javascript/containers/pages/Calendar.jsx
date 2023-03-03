@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import CalendarCards from '../../components/calendar/CalendarCards'
 import DesktopCalendar from '../../components/calendar/DesktopCalendar'
@@ -8,17 +8,56 @@ import Navbar from '../../components/navigation/Navbar'
 import MovieCard from '../../components/shared/MovieCard'
 import Layout from '../../hocs/layouts/Layout'
 
+const breakPoint = window.matchMedia('(max-width: 768px)')
+
 function Calendar() {
   const [movies, setMovies] = useState([])
   const [desktopCards, setDesktopCards] = useState([])
   const moviesData = useSelector(state => state.dataManager.movies)
-  if (moviesData.length > 0 && movies.length === 0) {
+
+  const renderMobileCards = useMemo(() => {
+    const result = []
     moviesData.forEach((movie,index) => {
-      setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
+      result.push(<MovieCard key={index} movie={movie} cycle={movie.include.cycle}/>)
+    })
+    return result
+  },[moviesData.length])
+
+  const renderDesktopCards = useMemo(() => {
+    const result = []
+    moviesData.forEach((movie) => {
       movie.include.projections.forEach((projection) => {
-        setDesktopCards(prev => [...prev,<CalendarCards movie={movie} projection={projection}/>])
+        result.push(<CalendarCards movie={movie} projection={projection}/>)
       })
     })
+    return result
+  },[moviesData.length])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    window.addEventListener('resize', handleResize)
+    if (moviesData.length > 0 && movies.length === 0) {
+      if (breakPoint.matches) {
+        // We are in mobile
+        setMovies(renderMobileCards)
+      } else {
+        // We are in desktop
+        setDesktopCards(renderDesktopCards)
+      }
+    }
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  },[moviesData])
+
+  const handleResize = () => {
+    if (breakPoint.matches) {
+      // We are in mobile
+      setMovies(renderMobileCards)
+    } else {
+      // We are in desktop
+      setDesktopCards(renderDesktopCards)
+    }
   }
   return (
     <Layout>
