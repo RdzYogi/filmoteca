@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Fragment, useEffect, useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
-import logo_blanco from '../../assets/images/logo-blanco.png';
+// import logo_blanco from '../../assets/images/logo-blanco.png';
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut } from "../../redux/slices/userSlice"
 // For fontawesome free-solid, free-regular, free-brands, fontawesome-free
@@ -54,13 +54,21 @@ function Navbar() {
           <div className="-mt-2 flex flex-wrap items-center justify-center md:justify-between sm:flex-nowrap md:px-12 px-2 mb-4">
             <Link to='/' className="2xl:ml-40 xl:ml-4">
               <img
-              src={logo_blanco}
+              src="https://res.cloudinary.com/drz3yyvjm/image/upload/v1677832685/Filmoteca/logo-blanco_dvzj5o.png"
               alt="logo"
               width={390}
               height={350}
               className=""/>
             </Link>
-            <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link>
+            {/* <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link> */}
+            <div className="text-white hidden md:flex">
+              {isSignedIn ?
+              <div className='flex space-x-6'>
+                <Link to="/user_details">MI PERFIL</Link>
+                <button onClick={handleOnClickSignOut}>DESCONECTAR</button>
+              </div>:
+              <Link to="/sign_in">INGRESAR</Link>}
+            </div>
           </div>
           {/* NavLink is going to add the active class to the link that we will define */}
           {/* application.tailwind.css file */}

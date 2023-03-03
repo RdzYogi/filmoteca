@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :halls, only: %w[index show], param: :id
       resources :reservations, only: %w[index show create], param: :id
       get '/user_details', to: 'user_details#index'
+      post 'mails', to: 'mails#mail'
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

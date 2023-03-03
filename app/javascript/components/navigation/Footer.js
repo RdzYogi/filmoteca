@@ -1,5 +1,5 @@
 import React from 'react';
-import logo_blanco from '../../assets/images/logo-blanco.png';
+// import logo_blanco from '../../assets/images/logo-blanco.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faTelegram, faVimeo, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faGlobe} from '@fortawesome/free-solid-svg-icons'
@@ -50,8 +50,8 @@ function Footer() {
     <footer className="bg-black" aria-labelledby="footer-heading">
       <div className="xl:ml-4 px-12 py-4">
         <img
-          src={logo_blanco}
-          alt="logo"
+          src="https://res.cloudinary.com/drz3yyvjm/image/upload/v1677832685/Filmoteca/logo-blanco_dvzj5o.png"
+          alt="logo filmoteca"
           width={420}
           height={360}
           className=""/>
