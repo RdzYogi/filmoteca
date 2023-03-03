@@ -7,6 +7,7 @@ type Input = {
 }
 // This will only return movies for current month
 function filterMoviesByDay(input: Input) {
+  // console.log(input)
   const dateToday = new Date()
   const currentMonth = getDateObject(dateToday.toString()).month
   const result= [] as JSX.Element[]
