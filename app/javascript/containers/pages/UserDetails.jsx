@@ -23,13 +23,20 @@ function UserDetails() {
       }
     })
     .then((data) => {
-      data.subscriptions.map((subscription, index) => {
-        setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
-      })
-      // need seeds to continue
-      // data.reservations.map((reservation, index) => {
-      //   setReservations(reservations => [...reservations, <ReservationCard key={index} reservation={reservation}/>])
-      // })
+      if (data.subscriptions === undefined) {
+        setSubscriptions(<div className="text-center">No tienes suscripciones</div>)
+      } else {
+        data.subscriptions.map((subscription, index) => {
+          setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
+        })
+      }
+      if (data.reservations === undefined) {
+        setReservations(<div className="text-center">No tienes reservas</div>)
+      } else {
+        data.reservations.map((reservation, index) => {
+          setReservations(reservations => [...reservations, <ReservationCard key={index} reservation={reservation}/>])
+        })
+      }
       setLoaded(true)
     });
   }, [])
@@ -49,9 +56,9 @@ function UserDetails() {
       <div className="flex justify-center pt-10">
               <h1 className="text-xl font-bold text-center">RESERVAS</h1>
       </div>
-      {/* <div className="pt-10">
+      <div className="pt-10">
         {loaded ? reservations : <div className="text-center">Cargando...</div>}
-      </div> */}
+      </div>
     </div>
     <Footer/>
   </Layout>
