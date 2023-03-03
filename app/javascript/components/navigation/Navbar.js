@@ -63,7 +63,10 @@ function Navbar() {
             {/* <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link> */}
             <div className="text-white hidden md:flex">
               {isSignedIn ?
-              <button onClick={handleOnClickSignOut}>DESCONECTAR</button>:
+              <div className='flex space-x-6'>
+                <Link to="/user_details">MI PERFIL</Link>
+                <button onClick={handleOnClickSignOut}>DESCONECTAR</button>
+              </div>:
               <Link to="/sign_in">INGRESAR</Link>}
             </div>
           </div>
