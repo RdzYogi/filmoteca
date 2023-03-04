@@ -8,7 +8,7 @@ const initialState = {
 }
 export const fetchMoviesData = createAsyncThunk("dataManager/fetchMovieData",async ()=>{
   let movies = []
-  await fetch('api/v1/movies')
+  await fetch('/api/v1/movies')
       .then((response) => response.json())
       .then((data) => {
         movies = data
@@ -18,7 +18,7 @@ export const fetchMoviesData = createAsyncThunk("dataManager/fetchMovieData",asy
 
 export const fetchCyclesData = createAsyncThunk("dataManager/fetchCycleData",async ()=>{
   let cycles = []
-  await fetch('api/v1/cycles')
+  await fetch('/api/v1/cycles')
       .then((response) => response.json())
       .then((data) => {
         cycles = data
