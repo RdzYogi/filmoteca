@@ -11,6 +11,8 @@ import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRecta
 
 function Navbar() {
   const dispatch = useDispatch()
+  const moviesData= useSelector(state => state.dataManager.movies)
+  const cyclesData = useSelector(state => state.dataManager.cycles)
   useEffect(() => {
     const onWindowResize = () => {
       const width = window.innerWidth;
@@ -51,7 +53,6 @@ function Navbar() {
   }
 
   // Logic for search bar
-  const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
 
@@ -61,7 +62,10 @@ function Navbar() {
   }
   const handleSearchInput = (e) => {
     console.log(e.target.value)
-    setSearchTerm(e.target.value);
+    // setSearchTerm(e.target.value);
+    if (moviesData.length > 0 && cyclesData.length > 0) {
+      console.log(moviesData)
+    }
   }
 
   return (
@@ -171,12 +175,20 @@ function Navbar() {
 
       {/* Drop down for search input */}
       { isSearching &&
-        <div className='w-full flex justify-center items-center'>
-          <input onChange={handleSearchInput} className='border rounded-lg border-gray-600 w-1/2'></input>
-          <button onClick={handleSearchButton} className='ml-3 text-lg'>
-            <FontAwesomeIcon icon={faXmark} />
-          </button>
-        </div>}
+        <>
+          <div className='w-full flex justify-center'>
+            <div className='w-1/2'>
+              <input autoFocus onChange={handleSearchInput} className='border rounded-lg border-gray-600 w-full'></input>
+              <div className='w-full border border-gray-800 h-20 bg-white mx-auto mt-1'>
+
+              </div>
+            </div>
+            <button onClick={handleSearchButton} className='ml-3 text-lg h-fit'>
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+          </div>
+        </>
+      }
     </div>
   )
 }
