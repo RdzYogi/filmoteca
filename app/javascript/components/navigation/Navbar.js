@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut } from "../../redux/slices/userSlice"
 // For fontawesome free-solid, free-regular, free-brands, fontawesome-free
-import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRectangleXmark} from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRectangleXmark, faXmark} from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -46,9 +46,18 @@ function Navbar() {
   // Logic for the dropdown menu
   const [isOpen, setIsOpen] = useState(false);
 
+  // Logic for search bar
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+
+  const handleSearchButton = () => {
+    setIsSearching(!isSearching);
+  }
+
   return (
-    <Fragment>
-      <nav id='navbar' className='w-full bg-black pt-4 transition duration-300 ease-in-out z-40 top-0 fixed z-[10000]'>
+    <div className='top-0 w-full fixed z-[10000]'>
+      <nav id='navbar' className='w-full bg-black pt-4 transition duration-300 ease-in-out '>
         {/* Logo */}
         <div className="px-4 sm:px-6 mt-4 mb-2">
           <div className="-mt-2 flex flex-wrap items-center justify-center md:justify-between sm:flex-nowrap md:px-12 px-2 mb-4">
@@ -98,9 +107,9 @@ function Navbar() {
               CONTACTO
             </NavLink>
             <div className='bg-white w-px h-6'></div>
-            <p className="flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white">
+            <button onClick={handleSearchButton} className="flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white">
               <FontAwesomeIcon icon={faMagnifyingGlass}/>
-            </p>
+            </button>
           </div>
 
           {/* Mobile navbar */}
@@ -123,14 +132,17 @@ function Navbar() {
             <NavLink to='/noticias' className='flex items-center text-lg font-bold leading-6 text-white'>
               <FontAwesomeIcon icon={faNewspaper} />
             </NavLink>
-            <NavLink to='/' className='flex items-center text-lg font-bold leading-6 text-white'>
+            <button onClick={handleSearchButton} className='flex items-center text-lg font-bold leading-6 text-white'>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </NavLink>
+            </button>
             <button id="drop_down_button" onClick={() => setIsOpen(prev => !prev)} className='flex items-center text-lg font-bold leading-6 text-white cursor-pointer'>
               {isOpen ? <FontAwesomeIcon icon={faRectangleXmark} /> : <FontAwesomeIcon icon={faBars} />}
             </button>
           </div>
         </div>
+
+        {/* Drop down menu for mobile */}
+
         <div id="drop_down_menu" className={isOpen ? "flex flex-col ": "hidden " + 'bg-black w-full border-t-2 border-gray-500 transition duration-300 ease-in-out'}>
           <Link to="/abonos" className='text-lg py-2 w-fit font-bold self-center leading-6 text-white'>
               ABONOS
@@ -147,7 +159,16 @@ function Navbar() {
           </div>
         </div>
       </nav>
-    </Fragment>
+
+      {/* Drop down for search input */}
+      { isSearching &&
+        <div className='w-full flex justify-center items-center'>
+          <input className='border rounded-lg border-gray-600 w-1/2'></input>
+          <button onClick={handleSearchButton} className='ml-3 text-lg'>
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+        </div>}
+    </div>
   )
 }
 
