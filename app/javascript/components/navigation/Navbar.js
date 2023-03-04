@@ -48,7 +48,7 @@ function Navbar() {
 
   return (
     <Fragment>
-      <nav id='navbar' className='w-full bg-black pt-4 transition duration-300 ease-in-out z-40 top-0 fixed'>
+      <nav id='navbar' className='w-full bg-black pt-4 transition duration-300 ease-in-out z-40 top-0 fixed z-[10000]'>
         {/* Logo */}
         <div className="px-4 sm:px-6 mt-4 mb-2">
           <div className="-mt-2 flex flex-wrap items-center justify-center md:justify-between sm:flex-nowrap md:px-12 px-2 mb-4">
