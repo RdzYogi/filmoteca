@@ -17,9 +17,9 @@ function Cycle() {
       fetch(`http://localhost:3000/api/v1/cycles/${slug}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(slug)
+          // console.log(slug)
           data.include.map((movie,index) => {
-            console.log(data.cycle)
+            // console.log(data.cycle)
             setMovies(movies => [...movies, <MovieCard key={index} movie={movie} cycle={data.cycle}/>])
           })
           setCycleData(data)
