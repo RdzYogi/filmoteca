@@ -45,6 +45,10 @@ function Navbar() {
 
   // Logic for the dropdown menu
   const [isOpen, setIsOpen] = useState(false);
+  const handleDropdownClick = () => {
+    setIsOpen(!isOpen);
+    setIsSearching(false);
+  }
 
   // Logic for search bar
   const [searchTerm, setSearchTerm] = useState('');
@@ -53,6 +57,11 @@ function Navbar() {
 
   const handleSearchButton = () => {
     setIsSearching(!isSearching);
+    setIsOpen(false);
+  }
+  const handleSearchInput = (e) => {
+    console.log(e.target.value)
+    setSearchTerm(e.target.value);
   }
 
   return (
@@ -135,7 +144,7 @@ function Navbar() {
             <button onClick={handleSearchButton} className='flex items-center text-lg font-bold leading-6 text-white'>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
-            <button id="drop_down_button" onClick={() => setIsOpen(prev => !prev)} className='flex items-center text-lg font-bold leading-6 text-white cursor-pointer'>
+            <button id="drop_down_button" onClick={handleDropdownClick} className='flex items-center text-lg font-bold leading-6 text-white cursor-pointer'>
               {isOpen ? <FontAwesomeIcon icon={faRectangleXmark} /> : <FontAwesomeIcon icon={faBars} />}
             </button>
           </div>
@@ -163,7 +172,7 @@ function Navbar() {
       {/* Drop down for search input */}
       { isSearching &&
         <div className='w-full flex justify-center items-center'>
-          <input className='border rounded-lg border-gray-600 w-1/2'></input>
+          <input onChange={handleSearchInput} className='border rounded-lg border-gray-600 w-1/2'></input>
           <button onClick={handleSearchButton} className='ml-3 text-lg'>
             <FontAwesomeIcon icon={faXmark} />
           </button>
