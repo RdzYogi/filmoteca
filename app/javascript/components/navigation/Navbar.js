@@ -8,6 +8,7 @@ import { userSignOut } from "../../redux/slices/userSlice"
 import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRectangleXmark, faXmark} from '@fortawesome/free-solid-svg-icons'
 
 
+const maxSearchResults = 5;
 
 function Navbar() {
   const dispatch = useDispatch()
@@ -50,6 +51,7 @@ function Navbar() {
   const handleDropdownClick = () => {
     setIsOpen(!isOpen);
     setIsSearching(false);
+    setSearchResults([])
   }
 
   // Logic for search bar
@@ -58,6 +60,7 @@ function Navbar() {
 
   const handleSearchButton = () => {
     setIsSearching(!isSearching);
+    setSearchResults([])
     setIsOpen(false);
   }
   const handleSearchInput = (e) => {
@@ -68,33 +71,32 @@ function Navbar() {
       setSearchResults([])
     } else {
       if (moviesData.length > 0 && cyclesData.length > 0) {
+        setSearchResults([])
         const movieResultData = []
         moviesData.forEach(movie =>{
           // console.log(movie.movie.title.match(regularExpression))
-          if (movie.movie.title.match(regularExpression) || movie.movie.director.match(regularExpression)) {
-            movieResultData.push(movie)
+          if (movie.movie.title.match(regularExpression) && movieResultData.length < maxSearchResults) {
+            movieResultData.push(
+              <Link className='flex justify-between' key={movie.movie.slug+movie.movie.id+movie.movie.title} to={"/movies/"+ movie.movie.slug} >
+                <p className='ml-5'>{movie.movie.title + " - " + movie.movie.director}</p>
+                <p className='mr-5'>- Pelicula</p>
+              </Link>
+            )
           }
         })
+        setSearchResults(prevState => [...prevState, ...movieResultData])
         const cycleResultData = []
         cyclesData.forEach(cycle => {
-          if (cycle.cycle.title.match(regularExpression)) {
-            cycleResultData.push(cycle)
+          if ((cycle.name.match(regularExpression)) && (cycleResultData.length + movieResultData.length) < maxSearchResults) {
+            cycleResultData.push(
+              <Link className='flex justify-between' key={cycle.slug} to={"/ciclos/"+ cycle.slug} >
+                <p className='ml-5'>{cycle.name}</p>
+                <p className='mr-5'>- Cyclo</p>
+              </Link>
+            )
           }
         })
-
-
-        if (movieResultData.length > 0) {
-          setSearchResults([])
-          movieResultData.forEach(movie => {
-            setSearchResults(prevState => [...prevState,
-              <Link key={movie.movie.slug+movie.movie.id+movie.movie.title} to={"/movies/"+ movie.movie.slug} >
-                {movie.movie.title}
-              </Link>
-            ])
-          })
-        } else {
-          setSearchResults([])
-        }
+        setSearchResults(prevState => [...prevState, ...cycleResultData])
       }
     }
   }
@@ -208,15 +210,15 @@ function Navbar() {
       { isSearching &&
         <>
           <div className='w-full flex justify-center'>
-            <div className='w-1/2'>
-              <input placeholder='Buscar por pelicula, director, o ciclo' autoFocus onChange={handleSearchInput} className='border rounded-lg border-gray-600 w-full'></input>
+            <div className='w-[90%] md:w-1/2'>
+              <input placeholder='Buscar por pelicula, o ciclo' autoFocus onChange={handleSearchInput} className='border rounded-lg border-gray-600 w-full'></input>
               { searchResults.length > 0 &&
                 <div className='w-full border border-gray-800 h-fit bg-white mx-auto mt-1 flex flex-col'>
                   {searchResults}
                 </div>
               }
             </div>
-            <button onClick={handleSearchButton} className='ml-3 text-lg h-fit'>
+            <button onClick={handleSearchButton} className='ml-2 md:ml-3 text-lg h-fit'>
               <FontAwesomeIcon icon={faXmark} />
             </button>
           </div>
