@@ -14,6 +14,7 @@ function Navbar() {
   const dispatch = useDispatch()
   const moviesData= useSelector(state => state.dataManager.movies)
   const cyclesData = useSelector(state => state.dataManager.cycles)
+
   useEffect(() => {
     const onWindowResize = () => {
       const width = window.innerWidth;
@@ -64,7 +65,7 @@ function Navbar() {
     setIsOpen(false);
   }
   const handleSearchInput = (e) => {
-    // console.log(e.target.value)
+    // console.log(e.target.value, moviesData, cyclesData)
     // setSearchTerm(e.target.value);
     const regularExpression = new RegExp(e.target.value, 'i');
     if (e.target.value === "") {
