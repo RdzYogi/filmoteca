@@ -61,10 +61,41 @@ function Navbar() {
     setIsOpen(false);
   }
   const handleSearchInput = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     // setSearchTerm(e.target.value);
-    if (moviesData.length > 0 && cyclesData.length > 0) {
-      console.log(moviesData)
+    const regularExpression = new RegExp(e.target.value, 'i');
+    if (e.target.value === "") {
+      setSearchResults([])
+    } else {
+      if (moviesData.length > 0 && cyclesData.length > 0) {
+        const movieResultData = []
+        moviesData.forEach(movie =>{
+          // console.log(movie.movie.title.match(regularExpression))
+          if (movie.movie.title.match(regularExpression) || movie.movie.director.match(regularExpression)) {
+            movieResultData.push(movie)
+          }
+        })
+        const cycleResultData = []
+        cyclesData.forEach(cycle => {
+          if (cycle.cycle.title.match(regularExpression)) {
+            cycleResultData.push(cycle)
+          }
+        })
+
+
+        if (movieResultData.length > 0) {
+          setSearchResults([])
+          movieResultData.forEach(movie => {
+            setSearchResults(prevState => [...prevState,
+              <Link key={movie.movie.slug+movie.movie.id+movie.movie.title} to={"/movies/"+ movie.movie.slug} >
+                {movie.movie.title}
+              </Link>
+            ])
+          })
+        } else {
+          setSearchResults([])
+        }
+      }
     }
   }
 
@@ -178,10 +209,12 @@ function Navbar() {
         <>
           <div className='w-full flex justify-center'>
             <div className='w-1/2'>
-              <input autoFocus onChange={handleSearchInput} className='border rounded-lg border-gray-600 w-full'></input>
-              <div className='w-full border border-gray-800 h-20 bg-white mx-auto mt-1'>
-
-              </div>
+              <input placeholder='Buscar por pelicula, director, o ciclo' autoFocus onChange={handleSearchInput} className='border rounded-lg border-gray-600 w-full'></input>
+              { searchResults.length > 0 &&
+                <div className='w-full border border-gray-800 h-fit bg-white mx-auto mt-1 flex flex-col'>
+                  {searchResults}
+                </div>
+              }
             </div>
             <button onClick={handleSearchButton} className='ml-3 text-lg h-fit'>
               <FontAwesomeIcon icon={faXmark} />
