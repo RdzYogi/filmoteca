@@ -181,12 +181,12 @@ array_days.each do |day|
     i = 16
     6.times do
       if i <= 20
-        new_date = DateTime.new(day.year, day.month, day.mday, i)
+        new_date = DateTime.new(day.year, day.month, day.mday, i, 0, 0, '+00:00')
         i += 2
         # crear sesion con new date sala 1
         Session.create(play_time: new_date, hall_id: Hall.all[0].id)
       else
-        new_date = DateTime.new(day.year, day.month, day.mday, i-6)
+        new_date = DateTime.new(day.year, day.month, day.mday, i - 6, 0, 0, '+00:00')
         i += 2
         # crear sesion con new date sala 2
         Session.create(play_time: new_date, hall_id: Hall.all[1].id)
