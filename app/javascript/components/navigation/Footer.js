@@ -60,7 +60,7 @@ function Footer() {
         <div>
           <div className="xl:ml-12">
                 {navigation.address.map((item) =>(
-                  <p key={item.value} className="text-xs text-gray-50 pt-2">
+                  <p key={item.value} className="text-xs text-gray-50 pt-2 truncate ...">
                     {item.value}
                   </p>
                 ))}
@@ -94,7 +94,7 @@ function Footer() {
             ))}
           </div>
           <div className="mt-3">
-            <div className="grid grid-cols-3 w-1/2">
+            <div className="grid grid-cols-3 md:w-1/2">
               {/* <div className="grid grid-cols-3 gap-y-0 gap-x-0"> */}
                 <a href="https://www.facebook.com/FilmotecaES" className=' text-3xl text-gray-50' ><FontAwesomeIcon icon={faFacebookF}/></a>
                 <a href="https://twitter.com/Filmoteca_es" className='text-3xl text-gray-50' ><FontAwesomeIcon icon={faTwitter}/></a>

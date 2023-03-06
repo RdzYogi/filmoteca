@@ -14,12 +14,12 @@ function Cycle() {
     const [loaded, setLoaded] = useState(false)
     const [movies, setMovies] = useState([])
     useEffect(() => {
-      fetch(`http://localhost:3000/api/v1/cycles/${slug}`)
+      fetch(`/api/v1/cycles/${slug}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(slug)
+          // console.log(slug)
           data.include.map((movie,index) => {
-            console.log(data.cycle)
+            console.log(data)
             setMovies(movies => [...movies, <MovieCard key={index} movie={movie} cycle={data.cycle}/>])
           })
           setCycleData(data)
