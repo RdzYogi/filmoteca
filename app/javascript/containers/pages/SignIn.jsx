@@ -43,20 +43,21 @@ function SignIn() {
     <Layout>
       <Navbar/>
       <div className="pt-40 container">
-        <div>
-          <div>
+        <div className="flex justify-center items-center flex-col">
+          <div className="text-center my-4">
             <h1>Current user</h1>
             <p>{currentUserStore.email || "none"}</p>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form className="flex justify-center flex-col gap-4 w-full max-w-sm" onSubmit={handleSubmit}>
             <input type="text" onChange={handleEmail} placeholder="Correo" />
             <input type="password" onChange={handlePassword} placeholder="Contraseña" />
             <button type="submit" >Entrar</button>
           </form>
+          <div className="flex justify-between my-4 w-full max-w-sm">
+            <Link to="/user_details">Mi perfil</Link>
             <button onClick={handleSignOut} >Sign Out</button>
-            <Link to="/user_details"> Mi perfil</Link>
+          </div>
         </div>
-
       </div>
       <Footer/>
     </Layout>
