@@ -4,6 +4,7 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut, userSignIn } from "../../redux/slices/userSlice"
+import SubmitButton from '../../components/shared/SubmitButton';
 import { Link } from "react-router-dom"
 
 
@@ -43,19 +44,22 @@ function SignIn() {
     <Layout>
       <Navbar/>
       <div className="pt-40 container">
-        <div className="flex justify-center items-center flex-col">
+        <div className="flex justify-center items-center flex-col bg-gray-200 shadow-md rounded p-4 mb-4 max-w-sm">
           <div className="text-center my-4">
-            <h1>Current user</h1>
-            <p>{currentUserStore.email || "none"}</p>
+            <h1>INGRESO</h1>
+            {/* <p>{currentUserStore.email || "none"}</p> */}
           </div>
           <form className="flex justify-center flex-col gap-4 w-full max-w-sm" onSubmit={handleSubmit}>
             <input type="text" onChange={handleEmail} placeholder="Correo" />
             <input type="password" onChange={handlePassword} placeholder="Contraseña" />
-            <button type="submit" >Entrar</button>
-          </form>
-          <div className="flex justify-between my-4 w-full max-w-sm">
-            <Link to="/user_details">Mi perfil</Link>
+            {/* <button type="submit" >Entrar</button> */}
+            <div className="flex items-center justify-between">
+            <SubmitButton label="Entrar"/>
             <button onClick={handleSignOut} >Sign Out</button>
+            </div>
+          </form>
+          <div className="mt-4">
+          <Link to="/sign_up">¿Aún no tienes cuenta? Regístrate</Link>
           </div>
         </div>
       </div>
