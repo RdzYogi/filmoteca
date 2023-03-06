@@ -6,25 +6,34 @@ import filterMoviesByDay from '../helpers/filterMoviesByDay'
 
 
 let smallCalendarGrid = {}
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 2
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 768 },
-    items: 2
-  },
-  mobile: {
-    breakpoint: { max: 768, min: 0 },
-    items: 1
+const responsive = (x) =>{
+  // items = 2
+  if (x === 1){
+    items = 1
+  } else {
+    items = 2
   }
-};
+  console.log(items)
+  return ({
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: items
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: items
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 768 },
+      items: items
+    },
+    mobile: {
+      breakpoint: { max: 768, min: 0 },
+      items: 1
+    }
+  });
+}
 
 const spanishWeekdays =  ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 const breakPointForDayNames = 1010
@@ -40,6 +49,7 @@ function Calendar({movies}) {
 
   const [weekDetailsButtons, setWeekDetailsButtons] = useState([])
   const [moviesToDisplay, setMoviesToDisplay] = useState([])
+  const [movieCount, setMovieCount] = useState(null)
 
 
   useEffect(() => {
@@ -114,6 +124,11 @@ function Calendar({movies}) {
         const button = document.getElementById(dayToFilter+"dayName")
         button.classList.remove(unselectedColor)
         button.classList.add(selectedColor)
+        if (result.length === 1) {
+          setMovieCount(1)
+        } else {
+          setMovieCount(null)
+        }
         setMoviesToDisplay(result)
       }
       if (result.length === 0 && index === weekDetailsButtons.length - 1) {
@@ -157,6 +172,11 @@ function Calendar({movies}) {
         result = filterMoviesByDay({movies:movies.movies,day:dayToFilter})
       }
     }
+    if (result.length === 1) {
+      setMovieCount(1)
+    } else {
+      setMovieCount(null)
+    }
     // console.log(e.currentTarget.parentElement.dataset.otherMonth)
     setMoviesToDisplay(result)
   }
@@ -190,7 +210,7 @@ function Calendar({movies}) {
         <div id="week-details-buttons-container" className='h-14 grid grid-cols-7'>
           {weekDetailsButtons}
         </div>
-        {moviesToDisplay.length === 0 ? <div className='text-center text-bold'>No hay projectiones en este dia</div> : <Carousel itemClass='flex justify-center' infinite={true} responsive={responsive} className="mx-auto mb-4 pt-5" >{moviesToDisplay}</Carousel>}
+        {moviesToDisplay.length === 0 ? <div className='text-center text-bold'>No hay projectiones en este dia</div> : <Carousel itemClass='flex justify-center' infinite={true} responsive={responsive(moviesToDisplay.length)} className="mx-auto mb-4 pt-5" >{moviesToDisplay}</Carousel>}
       </div>
 
 
