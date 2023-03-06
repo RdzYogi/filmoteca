@@ -13,11 +13,7 @@ function Hall() {
   let params = useParams()
   const id = params.id;
 
-  const [hallData, setHallData] = useState({
-    hall: {},
-    seats: [],
-    sessions: []
-  })
+  const [projectionData, setProjectionData] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
   const [reservationData, setReservationData] = useState([])
 
@@ -27,35 +23,19 @@ function Hall() {
       return response.json()
     })
     .then((data) => {
-      console.log(data)
-      // setReservationData(data)
-      setHallData(data.projection.hall)
-    })
-    // console.log(reservationData)
-  }, [])
+    // if (Object.keys(projection).length === 0 ) return
+    const movie = data.include.movie
+    const session = data.include.session
+    const hall = data.include.include.hall
+    const seats = data.include.include.include.seats
 
-  // useEffect(() => {
-  //   fetch(`/api/v1/halls/${id}`)
-  //   .then((response) => {
-  //     return response.json()
-  //   })
-  //   .then((data) => {
-  //     setHallData(data)
-  //   })
-  // }, [])
-
-
-  useEffect(() => {
-    if (hallData.seats.length === 0) return
-    // console.log(hallData.seats)
-    const lastRow = hallData.seats.slice(-1)[0].row
-    console.log(hallData.seats)
-    const lastColumn = hallData.seats.slice(-1)[0].column
+    const lastRow = seats.slice(-1)[0].row
+    const lastColumn = seats.slice(-1)[0].column
     const result = []
     let i = lastRow
     let row = []
 
-    hallData.seats.reverse().forEach((seat, index) => {
+    seats.reverse().forEach((seat, index) => {
       const getInfo = () => {
         console.log(seat.row, seat.column)
       }
@@ -64,7 +44,7 @@ function Hall() {
         row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
         if (seat.row === lastRow && seat.column === lastColumn){
           result.push(
-            <div key={i + 1 + "column"} className={hallData.hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
+            <div key={i + 1 + "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
             <div className='self-center'>
               {Number(seat.row) + 1}
             </div>
@@ -78,12 +58,12 @@ function Hall() {
           const firstHalfRow = row.reverse().slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
           result.push(
-            <div key={i + "column"} className={hallData.hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
+            <div key={i + "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
               <div className='self-center'>
                 {Number(seat.row) < 9 ? "0" + (Number(seat.row) + 1) : Number(seat.row) + 1}
               </div>
               {
-                hallData.hall.name === "Sala 1" ?
+                hall.name === "Sala 1" ?
                 <div className='flex'>
                 <div className='mr-4'>
                   {firstHalfRow}
@@ -135,8 +115,8 @@ function Hall() {
       }
     })
     setFormatedHall(result)
-  }, [hallData])
-
+    })
+  }, [])
 
   return (
     <Layout>
@@ -144,7 +124,7 @@ function Hall() {
       <div className="pt-40 max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
-        <p>{hallData.hall.name}</p>
+        {/* <p>{hall.name}</p> */}
         <div className='my-10'>
           {formatedHall}
           <p className='text-2xl text-center mt-5'>ESCENARIO</p>
