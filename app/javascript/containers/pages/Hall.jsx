@@ -8,14 +8,15 @@ import { faLockOpen } from '@fortawesome/free-solid-svg-icons';
 import SubmitButton from '../../components/shared/SubmitButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import getDateObject from '../../components/helpers/getDateObject';
 
 function Hall() {
   let params = useParams()
   const id = params.id;
 
-  const [projectionData, setProjectionData] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
-  const [reservationData, setReservationData] = useState([])
+  const [reservationData, setReservationData] = useState({})
+  console.log(reservationData)
 
   useEffect(() => {
     fetch(`/api/v1/projections/${id}`)
@@ -38,7 +39,15 @@ function Hall() {
     seats.reverse().forEach((seat, index) => {
       const getInfo = () => {
         console.log(seat.row, seat.column)
+        setReservationData({
+          session: session,
+          // user: current_user,
+          seat: seat,
+          // subscription: subscription,
+          ticket: false
+        })
       }
+
       if (seat.row === i+""){
         // console.log("trigger for seat", seat.row)
         row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
@@ -125,10 +134,21 @@ function Hall() {
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
         {/* <p>{hall.name}</p> */}
-        <div className='my-10'>
-          {formatedHall}
-          <p className='text-2xl text-center mt-5'>ESCENARIO</p>
-        </div>
+          <div className='my-10'>
+            {formatedHall}
+            <p className='text-2xl text-center mt-5'>ESCENARIO</p>
+          </div>
+          {(Object.keys(reservationData).length === 0 ) ? '' :
+            <div className=''>
+              <p>movie date</p>
+              <p>{getDateObject(reservationData.session.play_time).day}/{getDateObject(reservationData.session.play_time).month}/{getDateObject(reservationData.session.play_time).year}</p>
+              <p>{getDateObject(reservationData.session.play_time).hour}:{getDateObject(reservationData.session.play_time).minutes}</p>
+              <p>movie title</p>
+              <p>Fila: {reservationData.seat.row}</p>
+              <p>Columna: {reservationData.seat.column}</p>
+              <p>precio: €</p>
+            </div>
+          }
         <div className='flex items-center'>
           <FontAwesomeIcon icon={faCircleExclamation} />
           <p className='ml-2'>La Sala 1 NO es accesible para público en silla de ruedas.</p>
