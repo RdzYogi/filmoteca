@@ -6,27 +6,20 @@ import filterMoviesByDay from '../helpers/filterMoviesByDay'
 
 
 let smallCalendarGrid = {}
-const responsive = (x) =>{
-  // items = 2
-  if (x === 1){
-    items = 1
-  } else {
-    items = 2
-  }
-  console.log(items)
+const responsive = () =>{
   return ({
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: items
+      items: 2
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: items
+      items: 2
     },
     tablet: {
       breakpoint: { max: 1024, min: 768 },
-      items: items
+      items: 2
     },
     mobile: {
       breakpoint: { max: 768, min: 0 },
@@ -210,7 +203,7 @@ function Calendar({movies}) {
         <div id="week-details-buttons-container" className='h-14 grid grid-cols-7'>
           {weekDetailsButtons}
         </div>
-        {moviesToDisplay.length === 0 ? <div className='text-center text-bold'>No hay projectiones en este dia</div> : <Carousel itemClass='flex justify-center' infinite={true} responsive={responsive(moviesToDisplay.length)} className="mx-auto mb-4 pt-5" >{moviesToDisplay}</Carousel>}
+        {moviesToDisplay.length === 0 ? <div className='text-center text-bold'>No hay projectiones en este dia</div> : <Carousel itemClass='flex justify-center' infinite={true} responsive={responsive()} className={"w-[90%] mx-auto mb-4 pt-5 " + (movieCount === 1 ? "flex justify-center" : "")} >{moviesToDisplay}</Carousel>}
       </div>
 
 
