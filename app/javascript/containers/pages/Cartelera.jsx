@@ -5,6 +5,7 @@ import DownloadButton from '../../components/shared/DownloadButton'
 import Layout from '../../hocs/layouts/Layout'
 import MovieCard from '../../components/shared/MovieCard'
 import { useSelector } from 'react-redux'
+import Paginate from '../../components/cartelera/Paginate'
 
 
 function Cartelera() {
@@ -71,13 +72,13 @@ function Cartelera() {
             {cycles}
           </select>
         </div>
-        <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-y-4">
+
           {loaded ?
           <>
-            {searchQuery === "" && selectCycleValue === "" ? movies : searchResults}
+            {searchQuery === "" && selectCycleValue === "" ? <Paginate movies={movies}/> : <Paginate movies={searchResults}/>}
           </>
           : <h1>Loading...</h1>}
-        </div>
+
       </div>
       <Footer/>
     </Layout>
