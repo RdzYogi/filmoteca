@@ -212,7 +212,7 @@ function Navbar() {
         <>
           <div className='w-full flex justify-center'>
             <div className='w-[90%] md:w-1/2'>
-              <input placeholder='Buscar por pelicula, o ciclo' autoFocus onChange={handleSearchInput} className='border rounded-lg border-gray-600 w-full'></input>
+              <input placeholder='Buscar por pelicula o ciclo' autoFocus onChange={handleSearchInput} className='border rounded-lg border-gray-600 w-full'></input>
               { searchResults.length > 0 &&
                 <div className='w-full border border-gray-800 h-fit bg-white mx-auto mt-1 flex flex-col'>
                   {searchResults}
