@@ -12,10 +12,20 @@ import SubmitButton from '../../components/shared/SubmitButton';
 function Contacto() {
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const onChange = () => {};
-  useEffect(() => {
+
+  const [contactValues, setContactValues] = useState({})
+
+  const handleChange = (e) => {
+    setContactValues({...contactValues,
+      [e.target.name]: (e.target.value)
+    })
+    console.log(e)
+  }
+  const handleSubmit = (e) => {
     fetch('/api/v1/mails', {
       method: 'POST',
       headers: {'Content-Type': 'application/json', "X-CSRF-Token": csrfToken},
+      body: JSON.stringify(contactValues)
     })
     .then((response) => {
       if (response.ok) {
@@ -25,14 +35,7 @@ function Contacto() {
     .then((data) => {
       console.log(data)
     });
-    // fetch('/api/v1/mails')
-    //   .then((response) => {
-    //     return response.json()
-    //   })
-    //   .then((data) => {
-    //     console.log(data)
-    //   });
-  }, [])
+  }
   return (
     <Layout>
       <Navbar/>
@@ -41,24 +44,24 @@ function Contacto() {
           <h2 className="text-center text-2xl font-bold">CONTACTO</h2>
           <p className="my-8 font-light text-gray-cycle lg:text-center">Estamos encantados de ayudarle. Por favor envíenos cualquier pregunta, comentario o incidencia.</p>
           <p className="mb-4 font-light text-left text-gray-cycle">Todos los campos son obligatorios.</p>
-          <form action="#" className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-8">
               <div>
                   <label htmlFor="name" className="block mb-2 font-medium text-black">Nombre</label>
-                  <input type="text" id="name" className="shadow-sm bg-form-bg border border-form-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full p-2.5" placeholder="Ingresa tu nombre" required />
+                  <input type="text" name="name" className="shadow-sm bg-form-bg border border-form-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full p-2.5" placeholder="Ingresa tu nombre" required onChange={handleChange}/>
               </div>
               <div className='flex justify-between'> {/*emails div flex*/}
                 <div className='w-1/2 mr-2'>
                     <label htmlFor="email" className="block mb-2 font-medium text-black">Correo electrónico</label>
-                    <input type="email" id="email" className="shadow-sm bg-form-bg border border-form-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full p-2.5" placeholder="Ingresa tu correo" required />
+                    <input type="email" name="email" className="shadow-sm bg-form-bg border border-form-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full p-2.5" placeholder="Ingresa tu correo" required onChange={handleChange}/>
                 </div>
                 <div className='w-1/2 ml-2'>
                     <label htmlFor="email-confirmation" className="block mb-2 font-medium text-black">Repita su correo</label>
-                    <input type="email" id="email-confirmation" className="shadow-sm bg-form-bg border border-form-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full p-2.5" placeholder="Ingresa tu correo" required />
+                    <input type="email" name="email-confirmation" className="shadow-sm bg-form-bg border border-form-border text-gray-cycle rounded-sm focus:ring-black focus:border-black block w-full p-2.5" placeholder="Ingresa tu correo" required onChange={handleChange}/>
                 </div>
               </div>
               <div>
                 <label htmlFor="subject" className="block mb-2 font-medium text-black">Asunto</label>
-                <select id="asunto" className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" >
+                <select name="asunto" className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" onChange={handleChange}>
                   <option defaultValue>Elige un asunto</option>
                   <option value="pregunta">Pregunta</option>
                   <option value="comentario">Comentario</option>
@@ -68,7 +71,7 @@ function Contacto() {
               </div>
               <div className="sm:col-span-2">
                   <label htmlFor="message" className="block mb-2 font-medium text-black">Su mensaje</label>
-                  <textarea id="message" rows="6" className="block p-2.5 w-full text-black bg-form-bg rounded-sm shadow-sm border border-form-border focus:ring-black focus:border-black" placeholder="Mensaje" required ></textarea>
+                  <textarea name="message" rows="6" className="block p-2.5 w-full text-black bg-form-bg rounded-sm shadow-sm border border-form-border focus:ring-black focus:border-black" placeholder="Mensaje" required onChange={handleChange} ></textarea>
               </div>
               {/* <ReCAPTCHA sitekey="6LcEpb4kAAAAAHI7yvtKQFviAXfXjox159hHoJnA" onChange={onChange}/> */}
               <SubmitButton label="Enviar"/>
