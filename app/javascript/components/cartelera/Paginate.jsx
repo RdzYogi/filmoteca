@@ -9,6 +9,7 @@ function Paginate({movies}) {
   const [currentPage, setCurrentPage] = useState(1)
   const [pages, setPages] = useState([])
   useEffect(() => {
+    window.scrollTo(0, 0)
     const pagesTotal = Math.ceil(movies.length/moviesPerPage)
     // console.log(pagesTotal)
     setPages([])
@@ -20,6 +21,7 @@ function Paginate({movies}) {
   }, [movies])
 
   const handleClick = (e) => {
+    window.scrollTo(0, 0)
     e.preventDefault()
     setCurrentPage(Number(e.target.innerText))
     const allPagesButtons = document.getElementById('pages').children
@@ -29,6 +31,7 @@ function Paginate({movies}) {
     e.target.classList.add(selectedBackground)
   }
   const handleFirst = (e) => {
+    window.scrollTo(0, 0)
     e.preventDefault()
     setCurrentPage(1)
     const allPagesButtons = document.getElementById('pages').children
@@ -38,6 +41,7 @@ function Paginate({movies}) {
     allPagesButtons[0].classList.add(selectedBackground)
   }
   const handleLast = (e) => {
+    window.scrollTo(0, 0)
     e.preventDefault()
     const pagesTotal = Math.ceil(movies.length/moviesPerPage)
     setCurrentPage(pagesTotal)
@@ -49,6 +53,7 @@ function Paginate({movies}) {
   }
 
   const handlePrev = (e) => {
+    window.scrollTo(0, 0)
     e.preventDefault()
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1)
@@ -60,6 +65,7 @@ function Paginate({movies}) {
     }
   }
   const handleNext = (e) => {
+    window.scrollTo(0, 0)
     e.preventDefault()
     const pagesTotal = Math.ceil(movies.length/moviesPerPage)
     if (currentPage < pagesTotal) {
@@ -73,30 +79,6 @@ function Paginate({movies}) {
   }
   return (
     <>
-      {/* { pages.length > 1 &&
-        <div className="flex justify-center pb-3">
-          { pages.length > 2 &&
-            <button onClick={handleFirst} className='flex items-center'>
-            <FontAwesomeIcon icon={faAngleDoubleLeft}/>
-          </button>}
-          <button onClick={handlePrev} className='flex items-center ml-3'>
-            <FontAwesomeIcon icon={faAngleLeft}/>
-          </button>
-
-          <div id="pages" className="flex justify-center">
-            {pages}
-          </div>
-
-          <button onClick={handleNext} className='flex items-center'>
-            <FontAwesomeIcon icon={faAngleRight}/>
-          </button>
-          { pages.length > 2 &&
-            <button onClick={handleLast} className='flex items-center ml-3'>
-            <FontAwesomeIcon icon={faAngleDoubleRight}/>
-          </button>}
-        </div>
-      } */}
-
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-y-4">
         {movies.slice((currentPage-1)*moviesPerPage, currentPage*moviesPerPage)}
       </div>
