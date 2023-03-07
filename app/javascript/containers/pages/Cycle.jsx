@@ -19,7 +19,7 @@ function Cycle() {
         .then((data) => {
           // console.log(slug)
           data.include.map((movie,index) => {
-            console.log(data)
+            // console.log(data)
             setMovies(movies => [...movies, <MovieCard key={index} movie={movie} cycle={data.cycle}/>])
           })
           setCycleData(data)
