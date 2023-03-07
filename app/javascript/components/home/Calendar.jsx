@@ -32,7 +32,7 @@ const responsive = () =>{
 
 const spanishWeekdays =  ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 const breakPointForDayNames = 1010
-const selectedColor = "bg-gray-100"
+const selectedColor = "bg-gray-200"
 const unselectedColor = "bg-white"
 
 function Calendar({movies}) {
@@ -201,11 +201,11 @@ function Calendar({movies}) {
   return (
     <div className='flex flex-col-reverse lg:flex-row  max-w-7xl mx-auto pb-10'>
 
-      <div className='w-full lg:w-3/4 bg-gray-100'>
+      <div className={'w-full lg:w-3/4 ' + selectedColor}>
         <div id="week-details-buttons-container" className='h-14 grid grid-cols-7'>
           {weekDetailsButtons}
         </div>
-        {moviesToDisplay.length === 0 ? <div className='text-center text-bold'>No hay projectiones en este dia</div> : <Carousel customLeftArrow={<LeftArrow/>} customRightArrow={<RightArrow/>} itemClass='flex justify-center' responsive={responsive()} className={" mx-auto mb-4 pt-5 " + (movieCount === 1 ? "flex justify-center" : "")} >{moviesToDisplay}</Carousel>}
+        {moviesToDisplay.length === 0 ? <div className='text-center text-bold h-96'>No hay projectiones en este dia</div> : <Carousel customLeftArrow={<LeftArrow/>} customRightArrow={<RightArrow/>} itemClass='flex justify-center' responsive={responsive()} className={" mx-auto mb-4 pt-5 " + (movieCount === 1 ? "flex justify-center" : "")} >{moviesToDisplay}</Carousel>}
       </div>
 
 
