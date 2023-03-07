@@ -9,6 +9,7 @@ function MobileCalendar({movies}) {
   const [calendarGrid, setCalendarGrid] = useState([])
   const [weekdays, setWeekdays] = useState([])
   const [daysDetails, setDaysDetails] = useState([])
+  const borderSelectedDay = 'border-transparent'
 
   useEffect(() => {
     if (movies.length === 0) return
@@ -21,7 +22,7 @@ function MobileCalendar({movies}) {
     const size = smallCalendarGrid.calendarGrid.length
     for (let i = 0; i < size; i++) {
       if (smallCalendarGrid.calendarGrid[i].props.children.length === 2 && smallCalendarGrid.calendarGrid[i].props.children[0].props.children === 1){
-        setCalendarGrid(prev => [...prev, <button onClick={handleDayChange} className='h-10 w-10 rounded-full mb-2 flex justify-center border border-blue-400' key={i+"day"}>{smallCalendarGrid.calendarGrid[i]}</button>])
+        setCalendarGrid(prev => [...prev, <button onClick={handleDayChange} className={'h-10 w-10 rounded-full mb-2 flex justify-center border ' + borderSelectedDay} key={i+"day"}>{smallCalendarGrid.calendarGrid[i]}</button>])
       } else if(smallCalendarGrid.calendarGrid[i].props.children.length === undefined && smallCalendarGrid.calendarGrid[i].props.children !== ""){
         setCalendarGrid(prev => [...prev, <div className='h-10 w-10 rounded-full mb-2 flex justify-center border border-transparent text-gray-300' key={i+"day"}>{smallCalendarGrid.calendarGrid[i]}</div>])
       }
@@ -96,11 +97,11 @@ function MobileCalendar({movies}) {
     daysContainer.scrollTo({top:offsetTop,behavior:'smooth'})
     const buttons = e.currentTarget.parentNode.childNodes
     for (let i = 0; i < buttons.length; i++) {
-      buttons[i].classList.remove('border-blue-400')
+      buttons[i].classList.remove(borderSelectedDay)
       buttons[i].classList.add('border-transparent')
     }
     e.currentTarget.classList.remove('border-transparent')
-    e.currentTarget.classList.add('border-blue-400')
+    e.currentTarget.classList.add(borderSelectedDay)
   }
   return (
     <div className='w-72 mx-auto'>
