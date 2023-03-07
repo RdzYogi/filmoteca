@@ -35,6 +35,7 @@ const responsive = (x) =>{
 }
 
 function Home() {
+  window.scrollTo(0, 0)
   const [ciclos, setCiclos] = useState([])
   const [movieCards, setMovieCards] = useState([])
 
