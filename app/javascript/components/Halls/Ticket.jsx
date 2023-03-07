@@ -2,7 +2,7 @@ import React from 'react'
 
 function Ticket(props) {
   return (
-    <div className='bg-red-700'>
+    <div className='bg-black text-white p-2'>
       <p>Asiento elegido:</p>
       <div className='flex'>
         <p>Fila {props.seat_row}</p>

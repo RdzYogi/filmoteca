@@ -1,6 +1,9 @@
 class Api::V1::ProjectionsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     projections = Projection.includes(:movie, :session, session: [:hall, hall: :seats]).references(:movie, :session, :hall, :seats)
+# add reservations
     render json: projections, include: %i[movie session]
   end
 

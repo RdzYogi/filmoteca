@@ -17,7 +17,6 @@ Rails.application.routes.draw do
       resources :cycles, only: %w[index show create destroy update], param: :slug
       resources :movies, only: %w[index show create destroy update], param: :slug
       resources :news, only: %w[index show], param: :slug
-      # resources :halls, only: %w[index show], param: :id
       resources :reservations, only: %w[index show create], param: :id
       resources :projections, only: %w[index show create], param: :id
       get '/user_details', to: 'user_details#index'

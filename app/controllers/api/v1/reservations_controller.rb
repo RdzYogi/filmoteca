@@ -1,4 +1,7 @@
 class Api::V1::ReservationsController < ApplicationController
+  before_action :authenticate_user!
+
+  # props dont need index nor show
   def index
     reservations = Reservation.includes(:session, :user, :subscription, :seat, :ticket)
     # belong to current session

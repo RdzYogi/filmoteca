@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { useSelector } from 'react-redux'
 import Footer from '../../components/navigation/Footer'
 import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
@@ -14,6 +15,7 @@ import getDateObject from '../../components/helpers/getDateObject';
 function Hall() {
   let params = useParams()
   const id = params.id;
+  const authToken = useSelector(state => state.userManager.userAuth)
 
   const [movieInfo, setMovieInfo] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
@@ -21,7 +23,10 @@ function Hall() {
   console.log(reservationsData)
 
   useEffect(() => {
-    fetch(`/api/v1/projections/${id}`)
+    fetch(`/api/v1/projections/${id}`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json', "Authorization": authToken},
+    })
     .then((response) => {
       return response.json()
     })
@@ -43,7 +48,6 @@ function Hall() {
       const getInfo = () => {
         setReservationsData(prevReservation => [...prevReservation, {
           session: session,
-          // user: current_user,
           seat: seat,
           // subscription: subscription,
         }])
@@ -140,8 +144,8 @@ function Hall() {
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
           {(Object.keys(reservationsData).length === 0 ) ? '' :
-            <div className='my-10'>
-              <p>En tu carrito</p>
+            <div className='my-10 bg-slate-300 p-5'>
+              <p className='text-center underline text-lg'>En tu carrito</p>
               <div className='flex'>
                 <p>{getDateObject(movieInfo.session.play_time).day}/{getDateObject(movieInfo.session.play_time).month}/{getDateObject(movieInfo.session.play_time).year}</p>
                 <p className='mx-2'>-</p>
@@ -151,15 +155,16 @@ function Hall() {
               </div>
               <p className='font-bold'>{movieInfo.movie.title}</p>
               {reservationsData.map((reservation, index) => {
-                return (
-                  <div key={index}>
-
-                  <Ticket
-                    seat_row={reservation.seat.row}
-                    seat_col={reservation.seat.column}
-                    // price={}
-                    />
-                </div>)
+                // if (!reservationsData.includes(reservation))
+                  return (
+                    <div key={index} className="py-2">
+                    <Ticket
+                      seat_row={reservation.seat.row}
+                      seat_col={reservation.seat.column}
+                      // price={}
+                      />
+                  </div>
+                )
               })}
               <p>Total entradas: {reservationsData.length}</p>
               <p>Total precio: €</p>
