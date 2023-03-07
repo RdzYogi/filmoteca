@@ -27,6 +27,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Mailtrap gem to send emails in contact form [https://mailtrap.io/]
+gem 'mailtrap'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
