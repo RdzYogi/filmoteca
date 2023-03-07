@@ -5,6 +5,7 @@ import DownloadButton from '../../components/shared/DownloadButton'
 import Layout from '../../hocs/layouts/Layout'
 import MovieCard from '../../components/shared/MovieCard'
 import { useSelector } from 'react-redux'
+import Paginate from '../../components/cartelera/Paginate'
 
 
 function Cartelera() {
@@ -65,19 +66,19 @@ function Cartelera() {
           </div>
         </div>
         <div className="flex justify-center max-w-7xl mx-auto my-6">
-          <input id="movie-search" onChange={handleChange} type="search" className="border-solid border-gray-300 focus:ring-gray-300 focus:border-gray-100 w-6/12 md:w-5/12 lg:w-4/12" placeholder="Buscar por Titulo o Director" />
+          <input id="movie-search" onChange={handleChange} type="search" className="border-solid border-gray-300 focus:ring-gray-300 focus:border-gray-100 w-6/12 md:w-5/12 lg:w-4/12" placeholder="Filtrar por Titulo o Director" />
           <select id="select-cycle" onChange={handleChange} className="border-solid border-gray-300 focus:ring-gray-300 focus:border-gray-100 w-6/12 md:w-5/12 lg:w-4/12">
             <option value="">Todos los ciclos</option>
             {cycles}
           </select>
         </div>
-        <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-y-4">
+
           {loaded ?
           <>
-            {searchQuery === "" && selectCycleValue === "" ? movies : searchResults}
+            {searchQuery === "" && selectCycleValue === "" ? <Paginate movies={movies}/> : <Paginate movies={searchResults}/>}
           </>
           : <h1>Loading...</h1>}
-        </div>
+
       </div>
       <Footer/>
     </Layout>
