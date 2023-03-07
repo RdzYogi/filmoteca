@@ -22,6 +22,7 @@ function Contacto() {
     console.log(e)
   }
   const handleSubmit = (e) => {
+    e.preventDefault()
     fetch('/api/v1/mails', {
       method: 'POST',
       headers: {'Content-Type': 'application/json', "X-CSRF-Token": csrfToken},
