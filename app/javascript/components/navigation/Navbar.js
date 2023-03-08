@@ -112,14 +112,20 @@ function Navbar() {
           {/* Logo and links */}
           <div className="w-full md:w-[90%] mx-auto flex flex-wrap items-center justify-center md:justify-between px-2 mb-4">
 
-            <Link to='/' className="">
+            {!isAdmin ?
+              <Link to='/' className="">
               <img
               src="https://res.cloudinary.com/drz3yyvjm/image/upload/v1677832685/Filmoteca/logo-blanco_dvzj5o.png"
               alt="logo"
               width={390}
               height={350}
               className=""/>
-            </Link>
+            </Link> :
+              <div className='flex'>
+                <Link to="/admin/db" className='p-1 border rounded text-white border-black transition-all duration-300 hover:border-white'>Base de Datos</Link>
+                <Link to="/admin/file" className='p-1 border rounded text-white border-black transition-all duration-300 hover:border-white'>Subir Fichero</Link>
+              </div>
+            }
 
             <div className="text-white hidden md:flex">
               {isSignedIn ?

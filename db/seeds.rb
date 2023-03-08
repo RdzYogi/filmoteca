@@ -505,8 +505,7 @@ User.create(email: "vito@gmail.com",
 puts "Vito created"
 
 User.create(email: "silviu@gmail.com",
-            password: "123456",
-            admin: true)
+            password: "123456",)
 puts "Silviu created"
 
 User.create(email: "alberto@gmail.com",
@@ -515,6 +514,10 @@ puts "Alberto created"
 
 User.create(email: "laura@gmail.com",
             password: "123456")
+
+User.create(email: "admin@gmail.com",
+            password: "123456",
+            admin: true)
 puts "Laura created"
 
 # Creating subscriptions for users

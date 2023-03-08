@@ -28,7 +28,7 @@ export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",as
   })
   .then(json => {
     result.user = json.user
-    if (json.admin === true) {
+    if (json.user.admin === true) {
       result.isAdmin = true
     }
   })
