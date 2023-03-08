@@ -4,7 +4,8 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut, userSignIn } from "../../redux/slices/userSlice"
-import { Link } from "react-router-dom"
+// import SubmitButton from '../../components/shared/SubmitButton';
+import { Link, useNavigate } from "react-router-dom"
 
 
 function SignIn() {
@@ -28,35 +29,38 @@ function SignIn() {
     setUserFormData({...userFormData, password: e.target.value})
   }
 
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(userSignIn(userFormData))
-  }
-
-  const handleSignOut = (e) => {
-    e.preventDefault()
-    dispatch(userSignOut())
+    dispatch(userSignIn(userFormData)
+    )
+    .then(
+      (response) => {
+        if (response.meta.requestStatus === "fulfilled") {
+          navigate("/")
+        }
+      }
+    )
   }
 
 
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40 container">
-        <div>
-          <div>
-            <h1>Current user</h1>
-            <p>{currentUserStore.email || "none"}</p>
+      <div className="pt-40 flex justify-center max-w-7xl">
+        <div className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-8">
+          <div className="text-center mb-6">
+            <h1>INGRESO</h1>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form className="flex justify-center flex-col gap-6 w-80" onSubmit={handleSubmit}>
             <input type="text" onChange={handleEmail} placeholder="Correo" />
             <input type="password" onChange={handlePassword} placeholder="Contraseña" />
-            <button type="submit" >Entrar</button>
+            <button type="submit" className="inline-block w-full py-3 px-5 font-medium text-white rounded-sm bg-button-submit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-button-submit" >Entrar</button>
           </form>
-            <button onClick={handleSignOut} >Sign Out</button>
-            <Link to="/user_details"> Mi perfil</Link>
+          <div className="mt-6 text-blue-cycle text-center">
+          <Link to="/sign_up">¿Aún no tienes cuenta? Regístrate</Link>
+          </div>
         </div>
-
       </div>
       <Footer/>
     </Layout>

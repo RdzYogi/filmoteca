@@ -6,8 +6,7 @@ import CycleCard from '../../components/shared/CycleCard'
 import Layout from '../../hocs/layouts/Layout'
 
 function Ciclos() {
-  // We declare a state so we can store the data from the API
-  // and use it later in the component
+  window.scrollTo(0, 0)
   const [ciclos, setCiclos] = useState([])
   const [loaded, setLoaded] = useState(false)
   const cyclesData = useSelector(state => state.dataManager.cycles)
@@ -25,11 +24,7 @@ function Ciclos() {
       <div className="pt-40 max-w-7xl mx-auto pb-1 my-6">
         <h1 className='text-center font-bold text-xl'>CICLOS</h1>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center'>
-
-          {/* First check if the data is loaded, then render */}
-          {/* If the data is not yet loaded we can have a placeholder header or animation */}
           {loaded ? ciclos : <h1>Loading...</h1>}
-
         </div>
       </div>
       <Footer/>

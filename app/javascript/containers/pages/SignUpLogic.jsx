@@ -39,18 +39,18 @@ function SignUp() {
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40 container">
-        <div>
-          <h1>Current user</h1>
-          <p>{ currentUserStore.email || "none"}</p>
+      <div className="pt-40 flex justify-center max-w-7xl">
+        <div className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-8">
+          <div className="text-center mb-6">
+            <h1>REGISTRO</h1>
+          </div>
+          <form className="flex justify-center flex-col gap-6 w-80" onSubmit={handleSubmit}>
+            <input type="text" onChange={handleEmail} placeholder="Correo" />
+            <input type="password" onChange={handlePassword} placeholder="Contraseña" />
+            <input type="password" onChange={handlePasswordConfirmation} placeholder="Confirmar contraseña" />
+            <button type="submit" className="inline-block w-full py-3 px-5 font-medium text-white rounded-sm bg-button-submit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-button-submit" >Registrarse</button>
+          </form>
         </div>
-        <form onSubmit={handleSubmit}>
-          <input type="text" onChange={handleEmail} placeholder="Correo" />
-          <input type="password" onChange={handlePassword} placeholder="Contraseña" />
-          <input type="password" onChange={handlePasswordConfirmation} placeholder="Confirmar contraseña" />
-          <button type="submit" >Registrarse</button>
-        </form>
-
       </div>
       <Footer/>
     </Layout>

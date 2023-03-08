@@ -20,6 +20,7 @@ import { verifyUserToken } from "./redux/slices/userSlice"
 import Hall from './containers/pages/Hall';
 import { fetchCyclesData, fetchMoviesData } from './redux/slices/dataSlice';
 import Protected from './routes/Protected';
+import ProtectedAdmin from './routes/ProtectedAdmin';
 
 
 
@@ -67,8 +68,16 @@ function App() {
 
 
         {/* This can only be accessed with a admin user */}
-        <Route exact path="/admin" element={<Admin />} />
-        <Route exact path="/admin/db" element={<AdminDB />} />
+        <Route exact path="/admin/file" element={
+          <ProtectedAdmin>
+            <Admin />
+          </ProtectedAdmin>
+          } />
+        <Route exact path="/admin/db" element={
+          <ProtectedAdmin>
+            <AdminDB />
+          </ProtectedAdmin>
+          } />
 
       </Routes>
     </Router>
