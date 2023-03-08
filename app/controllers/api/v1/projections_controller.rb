@@ -1,9 +1,8 @@
 class Api::V1::ProjectionsController < ApplicationController
-  before_action :authenticate_user!
 
   def index
-    projections = Projection.includes(:movie, :session, session: [:hall, hall: :seats]).references(:movie, :session, :hall, :seats)
-# add reservations
+    projections = Projection.includes(:movie, :session, session: [:reservations, :hall, hall: :seats]).references(:movie, :session, :hall, :seats)
+    # add reservations
     render json: projections, include: %i[movie session]
   end
 
@@ -14,7 +13,8 @@ class Api::V1::ProjectionsController < ApplicationController
       movie = projection.movie
       hall = session.hall
       seats = hall.seats
-      result = { projection:, include: { movie:, session:, include: { hall:, include: { seats: } } } }
+      reservations = session.reservations
+      result = { projection:, include: { movie:, session:, include: { reservations:, hall:, include: { seats: } } } }
       render json: result
     else
       render json: { error: 'projection not found' }, status: :not_found

@@ -1,5 +1,5 @@
 class Api::V1::ReservationsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:create]
 
   # props dont need index nor show
   def index
@@ -15,14 +15,14 @@ class Api::V1::ReservationsController < ApplicationController
     render json: result
   end
 
-  def show
-    reservation = Reservation.find(params[:id])
-    if reservation
-      render json: reservation
-    else
-      render json: {error: "Reservation not found"}, status: :not_found
-    end
-  end
+  # def show
+  #   reservation = Reservation.find(params[:id])
+  #   if reservation
+  #     render json: reservation
+  #   else
+  #     render json: {error: "Reservation not found"}, status: :not_found
+  #   end
+  # end
 
   def create
     reservation = Reservation.create(reservation_params)
@@ -32,6 +32,6 @@ class Api::V1::ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:id, :session_id, :seat_id, :user_id, :subscription_id, :ticket)
+    params.require(:reservation).permit(:id, :session_id, :seat_id, :user_id, :subscription_id)
   end
 end

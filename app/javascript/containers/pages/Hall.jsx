@@ -5,7 +5,6 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useParams } from "react-router-dom";
 import Seat from "../../components/Halls/Seat"
-import { faLockOpen } from '@fortawesome/free-solid-svg-icons';
 import SubmitButton from '../../components/shared/SubmitButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
@@ -16,26 +15,30 @@ function Hall() {
   let params = useParams()
   const id = params.id;
   const authToken = useSelector(state => state.userManager.userAuth)
+  const csrfToken = document.querySelector("[name='csrf-token']").content
 
   const [movieInfo, setMovieInfo] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
   const [reservationsData, setReservationsData] = useState([])
-  console.log(reservationsData)
+  const [newReservation, setNewReservation] = useState({})
+  const [pickedSeat, setPickedSeat] = useState({})
 
   useEffect(() => {
     fetch(`/api/v1/projections/${id}`, {
       method: 'GET',
-      headers: {'Content-Type': 'application/json', "Authorization": authToken},
+      headers: {'Content-Type': 'application/json'},
     })
     .then((response) => {
       return response.json()
     })
     .then((data) => {
+      console.log(data)
     // if (Object.keys(projection).length === 0 ) return
     const movie = data.include.movie
     const session = data.include.session
     const hall = data.include.include.hall
     const seats = data.include.include.include.seats
+    const reservations = data.include.include.reservations
     setMovieInfo({movie: movie, hall: hall, session: session})
 
     const lastRow = seats.slice(-1)[0].row
@@ -46,6 +49,7 @@ function Hall() {
 
     seats.reverse().forEach((seat, index) => {
       const getInfo = () => {
+        setPickedSeat(seat)
         setReservationsData(prevReservation => [...prevReservation, {
           session: session,
           seat: seat,
@@ -132,6 +136,32 @@ function Hall() {
     })
   }, [])
 
+  useEffect(() => {
+    console.log(pickedSeat)
+    setNewReservation({
+      seat: pickedSeat
+    })
+  }, [pickedSeat])
+  
+  const handleCreate = () => {
+    fetch('/api/v1/reservations', {
+      method: 'POST',
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": authToken,
+        'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify(newReservation)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+  }
+
   return (
     <Layout>
       <Navbar/>
@@ -168,18 +198,18 @@ function Hall() {
               })}
               <p>Total entradas: {reservationsData.length}</p>
               <p>Total precio: €</p>
+              <SubmitButton label="Comprar" onClick={handleCreate}/>
             </div>
           }
           </div>
           <div className='flex items-center'>
-          <FontAwesomeIcon icon={faCircleExclamation} />
-          <p className='ml-2'>La Sala 1 NO es accesible para público en silla de ruedas.</p>
-        </div>
-        <div className='flex items-center mb-5'>
-          <FontAwesomeIcon icon={faTriangleExclamation} />
-          <p className='ml-2'>No se permitirá la entrada una vez iniciada la función.</p>
-        </div>
-        <SubmitButton label="Siguiente"/>
+            <FontAwesomeIcon icon={faCircleExclamation} />
+            <p className='ml-2'>La Sala 1 NO es accesible para público en silla de ruedas.</p>
+          </div>
+          <div className='flex items-center mb-5'>
+            <FontAwesomeIcon icon={faTriangleExclamation} />
+            <p className='ml-2'>No se permitirá la entrada una vez iniciada la función.</p>
+          </div>
         </div>
         <Footer/>
     </Layout>
