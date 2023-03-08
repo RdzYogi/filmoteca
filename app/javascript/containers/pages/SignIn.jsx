@@ -5,7 +5,7 @@ import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut, userSignIn } from "../../redux/slices/userSlice"
 // import SubmitButton from '../../components/shared/SubmitButton';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 function SignIn() {
@@ -29,14 +29,18 @@ function SignIn() {
     setUserFormData({...userFormData, password: e.target.value})
   }
 
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(userSignIn(userFormData))
-  }
-
-  const handleSignOut = (e) => {
-    e.preventDefault()
-    dispatch(userSignOut())
+    dispatch(userSignIn(userFormData)
+    )
+    .then(
+      (response) => {
+        if (response.meta.requestStatus === "fulfilled") {
+          navigate("/")
+        }
+      }
+    )
   }
 
 
