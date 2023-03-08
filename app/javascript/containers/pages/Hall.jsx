@@ -19,7 +19,8 @@ function Hall() {
 
   const [movieInfo, setMovieInfo] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
-  const [reservationsData, setReservationsData] = useState([])
+  const [wantedReservations, setWantedReservations] = useState([])
+  const [previousReservationsData, setPreviousReservationsData] = useState([])
   const [newReservation, setNewReservation] = useState({})
   const [pickedSeat, setPickedSeat] = useState({})
 
@@ -50,10 +51,9 @@ function Hall() {
     seats.reverse().forEach((seat, index) => {
       const getInfo = () => {
         setPickedSeat(seat)
-        setReservationsData(prevReservation => [...prevReservation, {
+        setWantedReservations(prevWantedReservation => [...prevWantedReservation, {
           session: session,
           seat: seat,
-          // subscription: subscription,
         }])
       }
 
@@ -136,13 +136,14 @@ function Hall() {
     })
   }, [])
 
+
   useEffect(() => {
     console.log(pickedSeat)
     setNewReservation({
-      seat: pickedSeat
+      seat_id: pickedSeat.id
     })
   }, [pickedSeat])
-  
+
   const handleCreate = () => {
     fetch('/api/v1/reservations', {
       method: 'POST',
@@ -173,7 +174,7 @@ function Hall() {
             {formatedHall}
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
-          {(Object.keys(reservationsData).length === 0 ) ? '' :
+          {(Object.keys(wantedReservations).length === 0 ) ? '' :
             <div className='my-10 bg-slate-300 p-5'>
               <p className='text-center underline text-lg'>En tu carrito</p>
               <div className='flex'>
@@ -184,19 +185,19 @@ function Hall() {
                 <p>{movieInfo.hall.name}</p>
               </div>
               <p className='font-bold'>{movieInfo.movie.title}</p>
-              {reservationsData.map((reservation, index) => {
-                // if (!reservationsData.includes(reservation))
+              {wantedReservations.map((wantedReservation, index) => {
+                // if (!wantedReservations.includes(wantedReservation))
                   return (
                     <div key={index} className="py-2">
                     <Ticket
-                      seat_row={reservation.seat.row}
-                      seat_col={reservation.seat.column}
+                      seat_row={wantedReservation.seat.row}
+                      seat_col={wantedReservation.seat.column}
                       // price={}
                       />
                   </div>
                 )
               })}
-              <p>Total entradas: {reservationsData.length}</p>
+              <p>Total entradas: {wantedReservations.length}</p>
               <p>Total precio: €</p>
               <SubmitButton label="Comprar" onClick={handleCreate}/>
             </div>

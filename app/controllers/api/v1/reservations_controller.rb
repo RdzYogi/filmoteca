@@ -1,18 +1,11 @@
 class Api::V1::ReservationsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  # before_action :authenticate_user!, only: [:create]
 
   # props dont need index nor show
   def index
-    reservations = Reservation.includes(:session, :user, :subscription, :seat, :ticket)
+    reservations = Reservation.includes(:session, :user, :subscription, :seat)
     # belong to current session
-    result = reservations.map do |reservation|
-      session = reservation.session_id
-      user = reservation.user_id
-      subscription = reservation.subscription_id
-      seat = reservation.seat_id
-      { reservation:, include: { session:, user:, subscription:, seat:, ticket: } }
-    end
-    render json: result
+    render json: reservations
   end
 
   # def show
@@ -25,6 +18,11 @@ class Api::V1::ReservationsController < ApplicationController
   # end
 
   def create
+    # user = current_user
+    # subscription = user.subscription
+    # projection = Projection.find(params[id])
+    # session = projection.session
+    # reservation = Reservation.create(user_id: user, subscription_id: subscription, session_id: session, seat_id: reservation_params)
     reservation = Reservation.create(reservation_params)
     render json: reservation
   end
