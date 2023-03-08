@@ -46,6 +46,7 @@ function Navbar() {
 
   // Logic for checking if the user is signed in
   const isSignedIn = useSelector(state => state.userManager.currentUser.logged_in);
+  const isAdmin = useSelector(state => state.userManager.currentUser.admin);
 
   // Logic for the dropdown menu
   const [isOpen, setIsOpen] = useState(false);
@@ -107,8 +108,11 @@ function Navbar() {
       <nav id='navbar' className='w-full bg-black pt-4 transition duration-300 ease-in-out '>
         {/* Logo */}
         <div className="px-4 sm:px-6 mt-4 mb-2">
-          <div className="-mt-2 flex flex-wrap items-center justify-center md:justify-between sm:flex-nowrap md:px-12 px-2 mb-4">
-            <Link to='/' className="2xl:ml-40 xl:ml-4">
+
+          {/* Logo and links */}
+          <div className="w-full md:w-[90%] mx-auto flex flex-wrap items-center justify-center md:justify-between px-2 mb-4">
+
+            <Link to='/' className="">
               <img
               src="https://res.cloudinary.com/drz3yyvjm/image/upload/v1677832685/Filmoteca/logo-blanco_dvzj5o.png"
               alt="logo"
@@ -116,18 +120,20 @@ function Navbar() {
               height={350}
               className=""/>
             </Link>
-            {/* <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link> */}
+
             <div className="text-white hidden md:flex">
               {isSignedIn ?
-              <div className="flex items-center space-x-6">
-                <Link to="/user_details" className='border-b-2 border-black hover:border-white'>MI PERFIL</Link>
-                <button className="p-1 border rounded text-white border-white" onClick={handleOnClickSignOut}>DESCONECTAR</button>
+              <div className="flex items-center">
+                <Link to="/user_details" className='p-1 border rounded text-white border-black transition-all duration-300 hover:border-white'>MI PERFIL</Link>
+                <button className="p-1 border rounded text-white border-black transition-all duration-300 hover:border-white" onClick={handleOnClickSignOut}>DESCONECTAR</button>
               </div>:
-              <Link to="/sign_in" className="p-1 border rounded text-white border-white">INGRESAR</Link>}
+              <Link to="/sign_in" className="p-1 border rounded text-white border-black transition-all duration-300 hover:border-white">INGRESAR</Link>}
             </div>
           </div>
           {/* NavLink is going to add the active class to the link that we will define */}
           {/* application.tailwind.css file */}
+
+
           {/* The Desktop navbar */}
           <div className="max-w-7xl mx-auto mt-6 pb-1 hidden md:flex justify-around">
             <NavLink to='/calendario' className={'flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white'}>

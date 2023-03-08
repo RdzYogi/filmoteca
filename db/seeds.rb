@@ -479,42 +479,6 @@ while movieSecondSession.length < Movie.all.length
 end
 puts "Projections created successfully"
 
-# Projection.create(movie_id: Movie.all[0].id,
-#                   session_id: Session.all[0].id)
-# puts "Projection-1 created"
-
-# Projection.create(movie_id: Movie.all[0].id,
-#                   session_id: Session.all[1].id)
-# puts "Projection-2 created"
-
-# Projection.create(movie_id: Movie.all[1].id,
-#                   session_id: Session.all[0].id)
-# puts "Projection-3 created"
-
-# Projection.create(movie_id: Movie.all[2].id,
-#                   session_id: Session.all[1].id)
-# puts "Projection-4 created"
-
-# Projection.create(movie_id: Movie.all[3].id,
-#                   session_id: Session.all[0].id)
-# puts "Projection-5 created"
-
-# Projection.create(movie_id: Movie.all[4].id,
-#                   session_id: Session.all[1].id)
-# puts "Projection-6 created"
-
-# Projection.create(movie_id: Movie.all[5].id,
-#                   session_id: Session.all[0].id)
-# puts "Projection-7 created"
-
-# Projection.create(movie_id: Movie.all[5].id,
-#                   session_id: Session.all[1].id)
-# puts "Projection-8 created"
-
-# #testing 2 shorts in same session
-# Projection.create(movie_id: Movie.all[11].id,
-#                   session_id: Session.all[1].id)
-# puts "Projection-9 created testing 2 shorts in same session"
 
 # Define News placeholder
 
@@ -541,7 +505,8 @@ User.create(email: "vito@gmail.com",
 puts "Vito created"
 
 User.create(email: "silviu@gmail.com",
-            password: "123456")
+            password: "123456",
+            admin: true)
 puts "Silviu created"
 
 User.create(email: "alberto@gmail.com",
