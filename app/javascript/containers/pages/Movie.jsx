@@ -84,26 +84,25 @@ function Movie() {
       <Navbar />
       <div className="pt-40">
         {loaded &&
-        <div className="w-full mx-auto md:max-w-7xl ">
+        <div className="w-full mx-auto md:max-w-7xl">
           <div className="flex justify-between items-center">
-            <div className="flex">
-              <div className={"w-5 bg-"+mainMovie.include.cycle.color}></div>
+            <div className="flex mb-7">
+              <div className={"w-4 bg-"+mainMovie.include.cycle.color}></div>
               <div className="ml-3">
-                <h3 className="h3 font-bold">{mainMovie.include.cycle.name}</h3>
-                <h3 className="h3 font-bold">{mainMovie.movie.title}</h3>
-                <h3 className="h3 font-medium">{mainMovie.movie.director+" ("+ mainMovie.movie.year+")"} </h3>
+                <h3 className="h3 pt-1 font-bold">{mainMovie.include.cycle.name}</h3>
+                <h3 className="h3 py-2 font-bold text-xl">{mainMovie.movie.title}</h3>
+                <h3 className="h3 pb-1 font-medium">{mainMovie.movie.director+" ("+ mainMovie.movie.year+")"} </h3>
               </div>
             </div>
           <DownloadButton />
           </div>
-          <div className="flex">
+          <div className="flex mb-28">
             <div className="w-3/4">
-              <img src={mainMovie.movie.img_url}
-              className="aspect-video w-full object-cover" alt={mainMovie.movie.title}/>
-              <p>{mainMovie.movie.description}</p>
+              <img src={mainMovie.movie.img_url} className="aspect-video max-w-4xl object-cover" alt={mainMovie.movie.title}/>
+              <p className="max-w-4xl mt-5">{mainMovie.movie.description}</p>
             </div>
-            <div className="w-1/4 bg-gray-500">
-              <h3>PASES</h3>
+            <div className="w-1/4 ml-5 bg-gray-500">
+              <h3 className="text-center">PASES</h3>
               {projectionsData}
             </div>
           </div>
