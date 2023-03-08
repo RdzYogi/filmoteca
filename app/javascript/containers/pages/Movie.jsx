@@ -55,10 +55,11 @@ function Movie() {
           const dateObjectDay = getDateObject(projection.include.session.play_time, {monthLong: true})
           const capitalizedDay = dateObject.day.charAt(0).toUpperCase() + dateObject.day.slice(1)
           setProjectionsData(projectionsData => [...projectionsData,
-            <div key={projection.projection.id}>
-              <h3>{projection.include.hall.name}</h3>
-              <h3>{capitalizedDay + ", " + dateObjectDay.day + " de " + dateObject.month + " " + dateObject.year}</h3>
-              <h3>{dateObject.hour + ":" + dateObject.minutes}</h3>
+            <div className="border-t-2 border-t-gray-800 mb-5" key={projection.projection.id}>
+              <h3 className="pt-3 mx-2 font-bold">{projection.include.hall.name}</h3>
+              <h3 className="pt-3 mx-2">{capitalizedDay + ", " + dateObjectDay.day + " de " + dateObject.month + " " + dateObject.year}</h3>
+              <h3 className="py-3 mx-2">{dateObject.hour + ":" + dateObject.minutes}</h3>
+              <p className="font-bold px-1 py-2 mx-2 bg-black text-slate-100 text-center">Comprar</p>
             </div>
           ])
         });
@@ -72,7 +73,7 @@ function Movie() {
     const currentCycle = mainMovie.include.cycle.id
     moviesData.forEach((movie, index) => {
       if (movie.include.cycle.id === currentCycle){
-        console.log(movie)
+        //console.log(movie)
         setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
 
       }
@@ -96,19 +97,22 @@ function Movie() {
             </div>
           <DownloadButton />
           </div>
-          <div className="flex mb-28">
+          <div className="flex mb-16">
             <div className="w-3/4">
               <img src={mainMovie.movie.img_url} className="aspect-video max-w-4xl object-cover" alt={mainMovie.movie.title}/>
               <p className="max-w-4xl mt-5">{mainMovie.movie.description}</p>
             </div>
-            <div className="w-1/4 ml-5 bg-gray-500">
-              <h3 className="text-center">PASES</h3>
+            <div className="w-1/4 ml-5">
+              <h3 className="text-center font-bold text-lg text-gray-800 pb-5">PASES</h3>
               {projectionsData}
             </div>
           </div>
-          <Carousel customLeftArrow={<LeftArrow/>} customRightArrow={<RightArrow/>} itemClass='flex justify-center' responsive = {responsive} className="mx-auto mb-32 max-w-7xl">
-            {movies}
-          </Carousel>
+          <div>
+            <h3 className="text-center font-bold text-xl text-gray-800 pb-5">OTRAS PELÍCULAS DEL CICLO</h3>
+            <Carousel customLeftArrow={<LeftArrow/>} customRightArrow={<RightArrow/>} itemClass='flex justify-center' responsive = {responsive} className="mx-auto mb-32 max-w-7xl">
+              {movies}
+            </Carousel>
+          </div>
         </div>
         }
       </div>
