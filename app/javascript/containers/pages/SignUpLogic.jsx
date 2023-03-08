@@ -39,8 +39,8 @@ function SignUp() {
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40 flex justify-center max-w-7xl">
-        <div className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-8">
+      <div className="pt-40 flex justify-center mx-auto">
+        <div className="bg-gray-200 shadow-md rounded px-4 pt-6 pb-8 mb-8">
           <div className="text-center mb-6">
             <h1>REGISTRO</h1>
           </div>
