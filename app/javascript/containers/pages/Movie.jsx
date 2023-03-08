@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
 import Footer from "../../components/navigation/Footer";
@@ -6,36 +5,37 @@ import Navbar from "../../components/navigation/Navbar";
 import Layout from "../../hocs/layouts/Layout";
 
 function Movie() {
-      // Get the slug from the URL
-      let params = useParams()
-      const slug = params.slug;
-      // We declare a state so we can store the data from the API
-      const [cycleData, setCycleData] = useState([])
-      const [loaded, setLoaded] = useState(false)
-      const [movies, setMovies] = useState([])
-      useEffect(() => {
-        fetch(`/api/v1/movie/${slug}`)
-          .then((response) => response.json())
-          .then((data) => {
-            //console.log(slug)
-            data.include.map((movie,index) => {
-              // console.log(data.cycle)
-              setMovies(movies => [...movies, <MovieCard key={index} movie={movie} cycle={data.cycle}/>])
-            })
-            setCycleData(data)
-            setLoaded(true)
-          });
-      }, [])
+  // Get the slug from the URL
+  let params = useParams()
+  const slug = params.slug;
+  // console.log(slug)
+  // We declare a state so we can store the data from the API
+  const [cycleData, setCycleData] = useState([])
+  const [loaded, setLoaded] = useState(true)
+  const [movies, setMovies] = useState([])
+  useEffect(() => {
+    fetch(`/api/v1/movies/${slug}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(slug)
+        data.movie.map((movie,index) => {
+          // console.log(data)
+          setMovies(movies => [...movies, <MovieCard key={index} movie={movie} cycle={data.cycle}/>])
+        })
+        setCycleData(data)
+        setLoaded(true)
+      });
+  }, [])
   return (
     <Layout>
       <Navbar />
       <div className="pt-40">
         <div className="grid grid-cols-2 gap-4">
-          <div className="h-100 w-30 bg-indigo-500"></div>
+          <div className="bg-"></div>
           <div className="">
-            <h3 className="h3 font-bold">Ciclo DOUGLASetc..</h3>
+            <h3 className="h3 font-bold">{cycleData.cycle.name}</h3>
             <h3 className="h3 font-bold">Peli LA April</h3>
-            <h3 className="h3 font-medium"> Douglas Sirk <time>18 Nov 2022</time></h3>
+            <h3 className="h3 font-medium">{movie.movie.director} Douglas Sirk <time>18 Nov 2022</time></h3>
           </div>
           <div>
             <img src="https://i1.wp.com/www.anim-arte.com/wp-content/uploads/2013/02/el-padrino.jpg?fit=1920%2C1080"
