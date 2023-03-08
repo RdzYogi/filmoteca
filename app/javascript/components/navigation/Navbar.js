@@ -119,11 +119,11 @@ function Navbar() {
             {/* <Link to="/sign_in" className={(isSignedIn ? "bg-green-500 " : "bg-gray-500 ") + "hidden md:flex h-10 w-10 rounded-full mr-40 "}></Link> */}
             <div className="text-white hidden md:flex">
               {isSignedIn ?
-              <div className='flex space-x-6'>
+              <div className="flex space-x-6">
                 <Link to="/user_details">MI PERFIL</Link>
-                <button onClick={handleOnClickSignOut}>DESCONECTAR</button>
+                <button className="p-2 border rounded text-white border-white" onClick={handleOnClickSignOut}>DESCONECTAR</button>
               </div>:
-              <Link to="/sign_in">INGRESAR</Link>}
+              <Link to="/sign_in" className="p-2 border rounded text-white border-white">INGRESAR</Link>}
             </div>
           </div>
           {/* NavLink is going to add the active class to the link that we will define */}

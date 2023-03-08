@@ -39,12 +39,12 @@ function SignUp() {
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40 flex justify-center">
-        <div className="max-w-xs bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-8">
+      <div className="pt-40 flex justify-center max-w-7xl">
+        <div className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-8">
           <div className="text-center mb-6">
             <h1>REGISTRO</h1>
           </div>
-          <form className="flex justify-center flex-col gap-6 max-w-sm" onSubmit={handleSubmit}>
+          <form className="flex justify-center flex-col gap-6 w-80" onSubmit={handleSubmit}>
             <input type="text" onChange={handleEmail} placeholder="Correo" />
             <input type="password" onChange={handlePassword} placeholder="Contraseña" />
             <input type="password" onChange={handlePasswordConfirmation} placeholder="Confirmar contraseña" />
