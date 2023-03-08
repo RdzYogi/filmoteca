@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut } from "../../redux/slices/userSlice"
 // For fontawesome free-solid, free-regular, free-brands, fontawesome-free
-import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRectangleXmark, faXmark} from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRectangleXmark, faXmark, faHouse} from '@fortawesome/free-solid-svg-icons'
 
 
 const maxSearchResults = 5;
@@ -142,6 +142,10 @@ function Navbar() {
 
           {/* The Desktop navbar */}
           <div className="max-w-7xl mx-auto mt-6 pb-1 hidden md:flex justify-around">
+            <NavLink to='/' className='flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white'>
+              INICIO
+            </NavLink>
+            <div className='bg-white w-px h-6'></div>
             <NavLink to='/calendario' className={'flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white'}>
               CALENDARIO
             </NavLink>
@@ -152,10 +156,6 @@ function Navbar() {
             <div className='bg-white w-px h-6'></div>
             <NavLink to='/cartelera' className='flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white'>
               CARTELERA
-            </NavLink>
-            <div className='bg-white w-px h-6'></div>
-            <NavLink to='/noticias' className='flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white'>
-              NOTICIAS
             </NavLink>
             <div className='bg-white w-px h-6'></div>
             <NavLink to='/abonos' className='flex items-center text-lg font-bold leading-6 text-white transition duration-300 ease-in-out border-b-2 border-black hover:border-white'>
@@ -173,6 +173,9 @@ function Navbar() {
 
           {/* Mobile navbar */}
           <div className="md:hidden flex max-w-full justify-around">
+            <NavLink to='/' className='flex items-center text-lg font-bold leading-6 text-white'>
+              <FontAwesomeIcon icon={faHouse} />
+            </NavLink>
             <NavLink to='/calendario' className='flex items-center text-lg font-bold leading-6 text-white '>
               <FontAwesomeIcon icon={faCalendarDays}/>
             </NavLink>
@@ -187,9 +190,6 @@ function Navbar() {
             </NavLink>
             <NavLink to='/cartelera' className='flex items-center text-lg font-bold leading-6 text-white'>
               <FontAwesomeIcon icon={faFilm} />
-            </NavLink>
-            <NavLink to='/noticias' className='flex items-center text-lg font-bold leading-6 text-white'>
-              <FontAwesomeIcon icon={faNewspaper} />
             </NavLink>
             <button onClick={handleSearchButton} className='flex items-center text-lg font-bold leading-6 text-white'>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
