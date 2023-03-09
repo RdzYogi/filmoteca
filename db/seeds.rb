@@ -467,7 +467,11 @@ while movieSecondSession.length < Movie.all.length
   if !usedSesisons.include?(s)
     usedSesisons << s
     if movieFirstSession.include?(m)
-      if !movieSecondSession.include?(m)
+      # (s.play_time - m.projections[0].session.play_time) is the difference in seconds between the first session and the second session.
+      # 86400 is the number of seconds in a day.
+      # We want to make sure that the difference between the first session and the second session is at least 6 days.
+      puts (s.play_time - m.projections[0].session.play_time)/86400
+      if !movieSecondSession.include?(m) && (((s.play_time - m.projections[0].session.play_time)/86400 > 6) || ((m.projections[0].session.play_time - s.play_time)/86400 > 6))
         movieSecondSession << m
         Projection.create(session: s, movie: m)
       end
