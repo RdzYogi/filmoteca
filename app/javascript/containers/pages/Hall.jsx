@@ -57,7 +57,6 @@ function Hall() {
           seat: seat
         }])
       }
-
       if (seat.row === i+""){
         row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
         if (seat.row === lastRow && seat.column === lastColumn){
@@ -136,18 +135,14 @@ function Hall() {
     })
   }, [])
 
-//don't think this should be here but within handleCreate
-  // useEffect(() => {
-  //   console.log(pickedSeat)
-  //   setNewReservation({
-  //     seat_id: pickedSeat.id
-  //   })
-  // }, [])
+  useEffect(()=> {
+    setNewReservation({
+      seat_id: pickedSeat
+    })
+  },[pickedSeat])
+
 
   const handleCreate = () => {
-    setNewReservation({
-      seat_id: pickedSeat.id
-    })
     fetch('/api/v1/reservations', {
       method: 'POST',
       headers: {
