@@ -4,7 +4,7 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignUp } from "../../redux/slices/userSlice"
-
+import { useNavigate } from "react-router-dom"
 
 
 function SignUp() {
@@ -28,12 +28,19 @@ function SignUp() {
     setUserFormData({...userFormData, password_confirmation: e.target.value})
   }
 
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
     // TODO basic validations
     dispatch(userSignUp(userFormData))
+    .then(
+      (response) => {
+        if (response.payload.authToken !== "") {
+          navigate("/")
+        }
+      }
+    )
   }
-
 
 
   return (
