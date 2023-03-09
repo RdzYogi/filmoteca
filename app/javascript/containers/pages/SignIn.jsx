@@ -4,7 +4,6 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut, userSignIn } from "../../redux/slices/userSlice"
-// import SubmitButton from '../../components/shared/SubmitButton';
 import { Link, useNavigate } from "react-router-dom"
 
 
@@ -36,7 +35,7 @@ function SignIn() {
     )
     .then(
       (response) => {
-        if (response.meta.requestStatus === "fulfilled") {
+        if (response.payload.isLogged) {
           navigate("/")
         }
       }
