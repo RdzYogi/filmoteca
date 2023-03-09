@@ -88,9 +88,9 @@ puts "Seats created"
 
 # Define placeholder sessions
 require 'date'
-start_date = Date.today
-# puts start_date
-first_day_month = Date.new(start_date.year, start_date.month, 1)
+today_date = Date.today
+# puts today_date
+first_day_month = Date.new(today_date.year, today_date.month, 1)
 # puts first_day_month
 end_date = first_day_month >> 1
 # puts end_date
@@ -145,8 +145,8 @@ Cycle.create(name: "JERZY SKOLIMOWSKI IDENTIDADES MÚLTIPLES",
               quote: "Ciclo 1",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               color: "aqua-cycle",
-              start_date: "2022-03-01",
-              end_date: "2022-05-31")
+              start_date: Date.new(today_date.year, today_date.month, 1),
+              end_date: Date.new(today_date.year, today_date.month + 2, 1))
 
 Movie.create(title: "11 MINUTES",
              runtime: "81 min",
@@ -354,8 +354,8 @@ Cycle.create(name: "MARGARITA ALEXANDRE VISCERALMENTE LIBRE",
               quote: "Ciclo 2",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               color: "purple-cycle",
-              start_date: "2023-03-01",
-              end_date: "2023-03-31",
+              start_date: Date.new(today_date.year, today_date.month, 1),
+              end_date: Date.new(today_date.year, today_date.month, 1),
               )
 
 Movie.create(title: "CRISTO",
@@ -467,8 +467,8 @@ Cycle.create(name: "EL SIGLO DE JOSÉ MARÍA FORQUÉ",
               quote: "Ciclo 1",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               color: "red-cycle",
-              start_date: "2023-03-01",
-              end_date: "2023-03-31")
+              start_date: Date.new(today_date.year, today_date.month, 1),
+              end_date: Date.new(today_date.year, today_date.month, 1))
 
 Movie.create(title: "091: POLICÍA AL HABLA",
               runtime: "91 min",
@@ -748,8 +748,8 @@ Cycle.create(name: "DOUGLAS SIRK LA EMOCIÓN INMEDIATA",
               quote: "Ciclo 4",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               color: "green-cycle",
-              start_date: "2021-01-01",
-              end_date: "2021-05-31")
+              start_date: Date.new(today_date.year, 1, 1),
+              end_date: Date.new(today_date.year, today_date.month + 2, 1))
 
 Movie.create(title: "¿ALGUIEN HA VISTO A MI CHICA?",
               runtime: "88 min",
@@ -1006,8 +1006,8 @@ Cycle.create(name: "HOMENAJE A EUGENIO MARTÍN",
               quote: "Ciclo 5",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               color: "yellow-cycle",
-              start_date: "2021-03-01",
-              end_date: "2021-03-31")
+              start_date: Date.new(today_date.year, today_date.month, 1),
+              end_date: Date.new(today_date.year, today_date.month, 1))
 
 Movie.create(title: "EL PRECIO DE UN HOMBRE ",
               runtime: "95 min",
@@ -1078,8 +1078,8 @@ Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
               quote: "Ciclo 5",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               color: "brown-cycle",
-              start_date: "2022-01-01",
-              end_date: "2023-12-31")
+              start_date: Date.new(today_date.year, 1, 1),
+              end_date: Date.new(today_date.year, 12, 1))
 
 Movie.create(title: "EL BALCÓN DE LA LUNA",
               runtime: "99 min",
@@ -1102,8 +1102,8 @@ Cycle.create(name: "FLORES EN LA SOMBRA",
               quote: "Ciclo 6",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               color: "black text-white",
-              start_date: "2022-03-01",
-              end_date: "2023-03-31")
+              start_date: Date.new(today_date.year, today_date.month, 1),
+              end_date: Date.new(today_date.year, today_date.month, 1))
 
 Movie.create(title: "CORTOMETRAJES DE ADELA MEDRANO",
               runtime: "120 min",
@@ -1131,8 +1131,8 @@ Cycle.create(name: "FILMOTECA JUNIOR",
               quote: "Ciclo 7",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               color: "blue-cycle text-pink-cycle",
-              start_date: "2022-03-01",
-              end_date: "2023-03-31")
+              start_date: Date.new(today_date.year, today_date.month, 1),
+              end_date: Date.new(today_date.year, today_date.month, 1))
 
 Movie.create(title: "CORTOMETRAJES DE FLEISCHER STUDIOS",
               runtime: "120 min",
@@ -1207,8 +1207,8 @@ Movie.create(title: "THE WHITE SNAKE ENCHANTRESS ",
 Cycle.create(name: "OTRAS SESIONES",
               color: "blue-cycle",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
-              start_date: "2023-03-01",
-              end_date: "2023-03-31")
+              start_date: Date.new(today_date.year, today_date.month, 1),
+              end_date: Date.new(today_date.year, today_date.month, 1))
 
 Movie.create(title: "CHANTAJE EN BROADWAY",
               runtime: "96 min",
