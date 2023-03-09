@@ -460,14 +460,18 @@ usedSesisons = []
 movieFirstSession = []
 # movieSecondSession is where we store the movies that have 2 sessions.
 movieSecondSession = []
+# movieThirdSession is where we store the movies that have 3 sessions.
 # Stop condition is when each movie has 2 sessions.
-while movieSecondSession.length < Movie.all.length
+while movieFirstSession.length < Movie.all.length || movieSecondSession.length < Movie.all.length/2
   s = Session.all.sample
   m = Movie.all.sample
   if !usedSesisons.include?(s)
     usedSesisons << s
     if movieFirstSession.include?(m)
-      if !movieSecondSession.include?(m)
+      # (s.play_time - m.projections[0].session.play_time) is the difference in seconds between the first session and the second session.
+      # 86400 is the number of seconds in a day.
+      # We want to make sure that the difference between the first session and the second session is at least 6 days.
+      if !movieSecondSession.include?(m) && (((s.play_time - m.projections[0].session.play_time)/86400 > 6) || ((m.projections[0].session.play_time - s.play_time)/86400 > 6))
         movieSecondSession << m
         Projection.create(session: s, movie: m)
       end
