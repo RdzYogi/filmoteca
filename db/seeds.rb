@@ -164,7 +164,7 @@ Movie.create(title: "11 MINUTES",
               psicológica del cine. Hay algún que otro rasgo psicológico aquí y allá (los celos de un esposo, una ruptura sentimental), pero la mayoría de las historias entrelazadas se
               desarrollan sin exponer de forma clara las motivaciones
               de los personajes, que permanecen suspendidos en el
-              limbo del suspense». (Manu Yáñez)"
+              limbo del suspense». (Manu Yáñez)",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               cycle_id: Cycle.all[0].id)
 
@@ -231,7 +231,7 @@ Movie.create(title: "EL GRITO",
               en sus ambiciones formales (antaño parecía un rival real
               de Godard), este largometraje de 1978 es pura astucia e
               imaginación cinematográficas, un thriller en trance que
-              supera a Peter Weir en su propio terreno». (Dave Kehr)"
+              supera a Peter Weir en su propio terreno». (Dave Kehr)",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               cycle_id: Cycle.all[0].id)
 
@@ -1307,7 +1307,7 @@ movieFirstSession = []
 movieSecondSession = []
 # movieThirdSession is where we store the movies that have 3 sessions.
 # Stop condition is when each movie has 2 sessions.
-while movieFirstSession.length < Movie.all.length || movieSecondSession.length < Movie.all.length/2
+while movieFirstSession.length < Movie.all.length
   s = Session.all.sample
   m = Movie.all.sample
   if !usedSesisons.include?(s)
