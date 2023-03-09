@@ -144,9 +144,9 @@ Cycle.create(name: "JERZY SKOLIMOWSKI IDENTIDADES MÚLTIPLES",
               Truffaut a la cabeza.",
               quote: "Ciclo 1",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
-              color: "blue-cycle",
-              start_date: "2021-03-01",
-              end_date: "2021-05-31")
+              color: "aqua-cycle",
+              start_date: "2022-03-01",
+              end_date: "2022-05-31")
 
 Movie.create(title: "11 MINUTES",
              runtime: "81 min",
@@ -1097,6 +1097,255 @@ Movie.create(title: "EL BALCÓN DE LA LUNA",
               cycle_id: Cycle.all[5].id)
 
 
+Cycle.create(name: "FLORES EN LA SOMBRA",
+              description: "",
+              quote: "Ciclo 6",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              color: "black text-white",
+              start_date: "2022-03-01",
+              end_date: "2023-03-31")
+
+Movie.create(title: "CORTOMETRAJES DE ADELA MEDRANO",
+              runtime: "120 min",
+              year: "",
+              director: "",
+              description: "Esta sesión acoge dos cortometrajes de la periodista y
+              cineasta Adela Medrano, recientemente recuperados
+              gracias al trabajo de investigación llevado a cabo por las
+              investigadoras María del Pilar García Herrador y Amaia
+              Zufiaur Ruiz de Eguino. Se trata de dos piezas de cine
+              industrial en torno a la Euskadiko Kutxa (Las calidades de
+              la vida) y el Concurso Internacional de Esculturas para la
+              Autopista del Mediterráneo (Esculturas para un paisaje).",
+              shorts: "Las calidades de la vida (Adela Medrano, 1974). España.
+              DCP. Color. 28’
+              • Esculturas para un paisaje (Adela Medrano, 1975).
+              España. DCP. Color. 25’",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[6].id)
+
+
+Cycle.create(name: "FILMOTECA JUNIOR",
+              description: "",
+              quote: "Ciclo 7",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              color: "blue-cycle text-pink-cycle",
+              start_date: "2022-03-01",
+              end_date: "2023-03-31")
+
+Movie.create(title: "CORTOMETRAJES DE FLEISCHER STUDIOS",
+              runtime: "120 min",
+              year: "1921-1941",
+              director: "Dave Fleischer",
+              description: "Los animadores Max y Dave Fleischer fundaron el estudio
+              Out of the Inkwell en 1921. Empezando en un sótano de
+              Nueva York, el estudio fue creciendo hasta convertirse
+              en una fuerza pionera de la animación, alcanzando fama
+              mundial gracias a sus trabajos con personajes como
+              Betty Boop, Popeye, KoKo y Superman. En 1929 el estudio
+              cambió su nombre a Fleischer Studios",
+              shorts: "Out of the Inkwell: Modeling (Dave Fleischer, 1921).
+              EEUU. B-R. B/N. 7’
+              • Advertisement Films: In My Merry Oldsmobile (Dave
+              Fleischer, 1931). EEUU. B-R. VOSE*. B/N. 6’
+              • Betty Boop: Is My Palm Read (Dave Fleischer, 1933).
+              EEUU. B-R. VOSE*. B/N. 7’
+              • A Color Classic: The Little Dutch Mill (Dave Fleischer,
+              1934). EEUU. B-R. VOSE*. Color. 9’
+              • Popeye: The Paneless Window Washer (Dave Fleischer,
+              1937). EEUU. B-R. VOSE*. B/N. 6’
+              • Betty Boop: Ding Dong Doggie (Dave Fleischer, 1937).
+              EEUU. B-R. VOSE*. B/N. 7’
+              • Gabby: Two for the Zoo (Dave Fleischer, 1941). EEUU.
+              B-R. VOSE*. Color. 7’
+              • Gabby: Swing Cleaning (Dave Fleischer, 1941). EEUU.
+              B-R. VOSE*. Color. 7’",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[7].id)
+
+Movie.create(title: "LA VACA Y EL PRISIONERO",
+              runtime: "119 min",
+              year: "1959",
+              director: "Henri Verneuil",
+              description: "Durante la Segunda Guerra Mundial, un prisionero de
+              guerra francés huye de Alemania acompañado de una
+              vaca, que utiliza para hacerse pasar por ganadero.",
+              quote: "«Desde La table aux crevés, el director Henri Verneuil y el
+              actor Fernandel habían colaborado juntos en varias producciones. Esta fue quizás la guinda del pastel, ya que,
+              aunque no era el mejor papel de Fernandel en la pantalla, estaba muy en consonancia con los estándares de la
+              época por su tema ligeramente francés. Además, saber
+              que un artista como Fernandel compartía el papel principal con una vaca, Marguerite, no dejaba de despertar
+              la curiosidad de los espectadores, que se reían a carcajadas... ¿y por qué no? Es cierto que asistimos más a
+              una comedia de situación en la que destaca Fernandel
+              que a una comedia filosófica, porque si nos deleitamos
+              siguiendo este 'paseo' no es ciertamente gracias a los
+              diálogos, que de hecho son muy pobres. Esta obra pertenece a una época en la que íbamos al cine a ver actuar
+              a un actor y, desde este punto de vista, no nos decepciona. La prueba: la receta sigue funcionando y todavía nos
+              complace degustar esta producción de Henri Verneuil».
+              (Gérard Rocher)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[7].id)
+
+Movie.create(title: "THE WHITE SNAKE ENCHANTRESS ",
+              runtime: "79 min",
+              year: "1958",
+              director: "Taiji Yabushita",
+              description: "Adaptación de un cuento tradicional chino que sigue
+              las aventuras de un joven enamorado de un espíritu. El
+              primer largometraje de animación japonés en color y
+              uno de los primeros en estrenarse fuera de las fronteras
+              niponas, fue una importante proeza técnica y artística
+              para la casa Toei, probablemente el estudio de animación
+              más importante de la historia de Japón.",
+              quote: "",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[7].id)
+
+
+Cycle.create(name: "OTRAS SESIONES",
+              color: "blue-cycle",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              start_date: "2023-03-01",
+              end_date: "2023-03-31")
+
+Movie.create(title: "CHANTAJE EN BROADWAY",
+              runtime: "96 min",
+              year: "1957",
+              director: "Alexander Mackendrick",
+              description: "Un ambicioso agente de prensa, dispuesto a lo que sea
+              para ascender en el mundo de la prensa, acepta participar
+              en los oscuros tejemanejes de un poderoso columnista.",
+              quote: "«El público de 1957 no iba a ver una película de Tony Curtis o Burt Lancaster para descubrir a personajes
+               empapados en un desprecio que también contaminaba venerables lugares comunes de la vida estadounidense, del
+              amor fraternal a la ambición perseverante, por no hablar
+              de los columnistas de periódico, las chicas que venden
+              cigarrillos, los senadores, la policía y todo aquello que
+              brilla e ilumina el Gran Camino Blanco. Por eso no fueron
+              a ver Chantaje en Broadway. Aquel era el año de Vidas
+              borrascosas y Sayonara: grandes y coloridas producciones con héroes y valores esópicos. Lo que ellos se perdieron, nosotros lo ganamos. Chantaje en Broadway es
+              un absoluto clásico». (Gary Giddins)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[8].id)
+
+Movie.create(title: "CRÍA CUERVOS",
+              runtime: "105 min",
+              year: "1976",
+              director: "Carlos Saura",
+              description: "Retrato de una familia española de clase alta en 1975,
+              vista a través de los ojos de una niña de 8 años.",
+              quote: "«La mirada de Ana nos va descubriendo, gracias además
+              a una sugerente y hábil estructura en flashbacks alternos
+              (que saltan de 1995 a 1975 en sucesivas ocasiones), distintos momentos de su historia familiar. Un microcosmos
+              donde dominan la mentira y la hipocresía, tanto moral
+              como amorosa, de unos personajes frustrados e infelices, incapaces de escapar a un contexto que los mantiene atrapados. Un padre militar autoritario y conservador
+              y una madre frágil atrapada en un matrimonio sin amor
+              que además le impide desarrollar su carrera como pianista dibujan un universo descompuesto, corrompido y
+              angustioso que funciona como perfecta metonimia no
+              solo de buena parte de los valores y principios de la sociedad española de entonces, sino también de lo que el
+              régimen franquista representaba». (Jara Yáñez)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[8].id)
+
+Movie.create(title: "MUJERES ENAMORADAS",
+              runtime: "131 min",
+              year: "1969",
+              director: "Ken Russell",
+              description: "Adaptación de la novela homónima de D.H. Lawrence que
+              relata las relaciones entre dos hermanas y dos amigos,
+              los cuatro marcados por un intenso deseo. ",
+              quote: "«Russell presenta esta fascinante historia como una procesión de personajes ingeniosos, absurdos y vanguardistas que se enfrentan a grandes preguntas y aún más
+              grandes pasiones […] Si la historia del cine se escribe en
+              parte a través de hitos en los que lo previamente imposible de representar se torna visible, Mujeres enamoradas
+              es uno de esos hitos. Se trata de la primera aparición, en
+              una película de gran presupuesto y sin ningún tipo de recato, de los genitales masculinos, en una escena de amor
+              gay velada que apareció solo dos años después de que
+              Reino Unido legalizase la sodomía entre hombres mayores de 21 años». (Linda Ruth Williams)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[8].id)
+
+Movie.create(title: "PASIÓN",
+              runtime: "88 min",
+              year: "1982",
+              director: "Jean-Luc Godard",
+              description: "Un director de cine que está rodando una película en la
+              que reconstruye cuadros célebres conoce a una joven
+              que acaba de quedarse sin empleo y ambos se enamoran.",
+              quote: "«La constante recreación de pinturas famosas –con un
+              detallismo tan extremo como irreverente- expone cómo
+              el mundo del arte ha reducido el impacto del artista como
+              trabajador. Con demasiada frecuencia consideramos la
+              obra de arte como un objeto surgido de la inspiración divina, minusvalorando el esfuerzo del artista y anulando
+              cualquier posible compromiso con ella. Como si dijera
+              que, en el mundo contemporáneo, cualquier arte que aspire al realismo puede ser incluso más artificial que un
+              sonido mal sincronizado, Godard deja al descubierto las
+              mentiras que nos contamos, poco a poco, sobre la forma
+              en que funciona el mundo del arte». (Justine Peres Smith)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[8].id)
+
+Movie.create(title: "«SALA:B» Y EL SAINETE FALLERO",
+              runtime: "210 min",
+              year: "",
+              director: "",
+              description: "",
+              quote: "«Programa doble fallero con las películas que Vicente
+              Escrivá y Antonio Fos dedicaron al sainete valenciano de
+              Baldoví, una de las raíces del humor y el costumbrismo
+              español.
+              Desde nuestra primera sesión, reflexionar sobre los cimientos del cine popular español ha sido una de las misiones de «Sala:B». Este programa doble presenta El virgo
+              de Visanteta con la intención de situar en ese contexto la
+              obra de Josep Bernat i Baldoví, escritor de mediados del
+              XIX que combinó la sátira, las costumbres religiosas y el
+              erotismo con un controvertido uso del lenguaje valenciano, a favor del pueblo y en contra de dogmas oficialistas.
+              La trama combina dos historias de carácter sexual, la de Visanteta (Maria Rosario Omaggio, La lozana andaluza),
+              cuya virginidad parece protegida por poderes divinos, y
+              la del Tío Collons (Antonio Ferrandis), aficionado a la sodomía para disgusto de su esposa. La película de Escrivá y su guionista Antonio Fos mantuvo el tono y el verso
+              valenciano, pero se vio entonces como una alternativa
+              menos transgresora que la de Carles Mira y La portentosa vida del Padre Vicente, del mismo año 1978. Si bien
+              la película resulta más moralizante que la obra teatral, se
+              trata de un rasgo tan típico del sainete clásico como del
+              cine del destape, y lo que trasciende del film hoy en día
+              es el descaro esperpéntico y las situaciones católico-surrealistas, que prefiguran particularmente nuestra serie
+              B. Mención aparte merece el reparto, con una selección
+              de actrices y actores de carácter como Josele Román,
+              Pepe Sancho, Luis Barbero o Joan Monleón y artistas de
+              varietés autóctonas como Queta Claver o Rosita Amores.
+              El éxito comercial, sobre todo en el Levante, motivó a Escrivá y Fos a continuar la saga inmediatamente con Visanteta, esta-te queta, con el mismo reparto y basada
+              en los personajes de Baldoví, pero ahora con una trama
+              original. Un concurso de pedos es aquí la escena más
+              memorable, demostrando una vez más que escatología
+              y comedia van unidas a nuestra tradición. Este díptico
+              “erótico-vernáculo”, en palabras del investigador Pablo Adiego, son de los últimos trabajos de Antonio Fos,
+              “un prolífico guionista, plenamente integrado en la industria de productos con tirón popular y con extrañas
+              y apasionantes obras como Volveré a nacer, El transexual, La semana del asesino o Una vela para el diablo.”».
+              (Álex Mendíbil)",
+              shorts: "El virgo de Visanteta (Vicente Escrivá, 1979). Int.: Maria
+              Rosaria Omaggio, Antonio Ferrandis, José Sancho, Josele
+              Román. España. 35 mm. VOSE*. Color. 95’
+              • Visanteta, esta-te queta (Vicente Escrivá, 1979). Int.:
+              Maria Rosaria Omaggio, José Sancho, Josele Román,
+              Josep Maria Angelat. España. 35 mm. VOSE*. Color. 91’
+              ",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[8].id)
+
+Movie.create(title: "YO CONFIESO",
+              runtime: "95 min",
+              year: "1953",
+              director: "Alfred Hitchcock",
+              description: "Convertido en sospechoso de asesinato, un sacerdote
+              se debate entre romper el secreto de confesión o ser
+              acusado de un crimen que no ha cometido.",
+              quote: "«El tema del film es la transferencia de la culpabilidad,
+              pero renovado aquí por la religión y por una idea absoluta
+              de la confesión. A partir del instante en que Montgomery
+              Clift recibe en confesión la declaración del crimen cometido por Otto Hasse es el sacerdote quien se convierte
+              realmente en culpable y así es como lo entiende el asesino». (François Truffaut)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[8].id)
+
 
 
 puts "Movies created"
@@ -1110,21 +1359,23 @@ movieFirstSession = []
 movieSecondSession = []
 # movieThirdSession is where we store the movies that have 3 sessions.
 # Stop condition is when each movie has 2 sessions.
+movies = Movie.all
 while movieFirstSession.length < Movie.all.length
   s = Session.all.sample
   m = Movie.all.sample
   if !usedSesisons.include?(s)
-    usedSesisons << s
     if movieFirstSession.include?(m)
       # (s.play_time - m.projections[0].session.play_time) is the difference in seconds between the first session and the second session.
       # 86400 is the number of seconds in a day.
       # We want to make sure that the difference between the first session and the second session is at least 6 days.
       if !movieSecondSession.include?(m) && (((s.play_time - m.projections[0].session.play_time)/86400 > 6) || ((m.projections[0].session.play_time - s.play_time)/86400 > 6))
         movieSecondSession << m
+        usedSesisons << s
         Projection.create(session: s, movie: m)
       end
     else
       movieFirstSession << m
+      usedSesisons << s
       Projection.create(session: s, movie: m)
     end
   end

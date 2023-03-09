@@ -46,7 +46,7 @@ module.exports = {
     require('@tailwindcss/typography'),
   ],
   safelist: [{
-    pattern: /((bg|text|border)-(green|blue|yellow|aqua|purple|red|gray|pink)-cycle)|((h|w)-(\%d*))|((h|w)-1)/
+    pattern: /((bg|text|border)-(green|blue|yellow|aqua|purple|red|gray|pink|brown)-cycle)|((h|w)-(\%d*))|((h|w)-1)/
     }
   ]
 }
