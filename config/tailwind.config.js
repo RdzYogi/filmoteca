@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       backgroundColor:{
         "green-cycle": '#369764',
+        "brown-cycle": '#C7AA86',
         "blue-cycle": '#3C82B5',
         "aqua-cycle": '#7FCCDC',
         "yellow-cycle": '#FABF41',

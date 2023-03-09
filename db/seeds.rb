@@ -1003,7 +1003,6 @@ Cycle.create(name: "HOMENAJE A EUGENIO MARTÍN",
               con Lee Van Cleef, relatos de terror con
               Christopher Lee, comedias con Lola Flores
               o dramas con Marisol.",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               quote: "Ciclo 5",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               color: "yellow-cycle",
@@ -1038,6 +1037,65 @@ Movie.create(title: "HIPNOSIS",
               (Carlos Aguilar y Anita Haas)",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               cycle_id: Cycle.all[4].id)
+
+Movie.create(title: "PÁNICO EN EL TRANSIBERIANO",
+              runtime: "88 min",
+              year: "1972",
+              director: "Eugenio Martín",
+              description: "Un antropólogo inglés descubre en Manchuria una
+              criatura prehistórica congelada que decide llevar a
+              Inglaterra a bordo del Transiberiano. El despertar del fósil
+              convierte el viaje un auténtico pasaje del terror.",
+              quote: "«[El terror] puede ser burdo, como en el caso del gore,
+              que me parece detestable y encima aburrido, pero también puede ser apasionante cuando introduces elementos no cartesianos en situaciones realistas. Este tipo de
+              cine fantástico recoge todos los mundos posibles que la
+              mente humana puede poner en pie, y puede hacerlo con
+              la suficiente coherencia para que lleguen a impresionarnos y a emocionarnos». (Eugenio Martín)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[4].id)
+
+Movie.create(title: "UNA VELA PARA EL DIABLO",
+              runtime: "83 min",
+              year: "1973",
+              director: "Eugenio Martín",
+              description: "Dos hermanas que regentan un pequeño hotel rural se
+              dedican a matar a todos los huéspedes que no cumplen
+              con sus estándares morales y religiosos.",
+              quote: "«Concebí Una vela para el diablo no como una película de
+              terror, sino como un drama de cierta ambición, que denunciara el fanatismo y sus secuelas. Porque todo fanático es un asesino en potencia, que asesina con tranquilidad debido a que su conciencia está libre, está limpia. […]
+              Los españoles podemos ofrecer aspectos terroríficos,
+              pero no en las brumas del atardecer, como los ingleses
+              y alemanes, sino en las plazas abiertas, cuando nuestro
+              fanatismo religioso ha torturado y quemado a sus víctimas, o cuando el fanatismo político las ha humillado y
+              fusilado. ¿Cuántas historias de horror, de auténtico horror, permanecen ocultas en el marco de nuestra guerra
+              civil? No hay que enfocarlas sólo como historias dramáticas estrictas, con ellas se pueden entrar también en el
+              mundo de la fantasía negra irracional». (Eugenio Martín)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[4].id)
+
+Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
+              description: "",
+              quote: "Ciclo 5",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              color: "brown-cycle",
+              start_date: "2022-01-01",
+              end_date: "2023-12-31")
+
+Movie.create(title: "EL BALCÓN DE LA LUNA",
+              runtime: "99 min",
+              year: "1962",
+              director: "Luis Saslavsky",
+              description: "Los romances, aventuras y desventuras de tres artistas
+              que trabajan en un local de variedades.",
+              quote: "«Una de las películas en las que más creadores queer
+              participaron de todo el franquismo, un ejemplo paradigmático para evidenciar la existencia de colaboraciones creativas queer en el cine de la dictadura. […] Todos ellos compartían su predilección por la expresión
+              creativa a través de la feminidad. En las narrativas de
+              sus creaciones, los hombres ocupan mayoritariamente la posición de objetos de deseo […] Frente a la tradición patriarcal, aquí las mujeres son protagonistas y
+              obtienen el poder, y los hombres son intercambiables».
+              (Santiago Lomas Martínez)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[5].id)
+
 
 
 
