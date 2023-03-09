@@ -50,7 +50,7 @@ function MovieCard(props){
         }}
       />
       <Link to={"/movies/" + movie.slug}>
-        <p className="text-justify p-2">{
+        <p className="text-justify p-2 bg-white">{
           movie.description.length > DESCRIPTIONMAX ? movie.description.slice(0, DESCRIPTIONMAX) + "..." : movie.description}
         </p>
       </Link>
