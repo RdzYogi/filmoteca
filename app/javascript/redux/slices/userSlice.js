@@ -183,6 +183,7 @@ export const userSlice = createSlice({
       })
       .addCase(userSignUp.pending, (state, action) => {})
       .addCase(userSignUp.fulfilled, (state, action) => {
+        console.log(action.payload)
         if (action.payload.isLogged === true) {
           state.userAuth = action.payload.authToken
           state.currentUser.logged_in = true
