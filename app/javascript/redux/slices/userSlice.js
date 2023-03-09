@@ -28,7 +28,7 @@ export const verifyUserToken = createAsyncThunk("userManager/verifyUserToken",as
   })
   .then(json => {
     result.user = json.user
-    if (json.admin === true) {
+    if (json.user.admin === true) {
       result.isAdmin = true
     }
   })
@@ -183,7 +183,7 @@ export const userSlice = createSlice({
       })
       .addCase(userSignUp.pending, (state, action) => {})
       .addCase(userSignUp.fulfilled, (state, action) => {
-        if (action.payload.isLogged === true) {
+        if (action.payload.authToken !== "") {
           state.userAuth = action.payload.authToken
           state.currentUser.logged_in = true
           localStorage.setItem("auth_token", action.payload.authToken);
