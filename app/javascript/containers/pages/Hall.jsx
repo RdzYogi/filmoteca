@@ -23,6 +23,7 @@ function Hall() {
   const [previousReservationsData, setPreviousReservationsData] = useState([])
   const [newReservation, setNewReservation] = useState({})
   const [pickedSeat, setPickedSeat] = useState({})
+  // const [available, setAvailable] = useState(true)
 
   useEffect(() => {
     fetch(`/api/v1/projections/${id}`, {
@@ -53,12 +54,11 @@ function Hall() {
         setPickedSeat(seat)
         setWantedReservations(prevWantedReservation => [...prevWantedReservation, {
           session: session,
-          seat: seat,
+          seat: seat
         }])
       }
 
       if (seat.row === i+""){
-        // console.log("trigger for seat", seat.row)
         row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
         if (seat.row === lastRow && seat.column === lastColumn){
           result.push(
@@ -136,15 +136,18 @@ function Hall() {
     })
   }, [])
 
+//don't think this should be here but within handleCreate
+  // useEffect(() => {
+  //   console.log(pickedSeat)
+  //   setNewReservation({
+  //     seat_id: pickedSeat.id
+  //   })
+  // }, [])
 
-  useEffect(() => {
-    console.log(pickedSeat)
+  const handleCreate = () => {
     setNewReservation({
       seat_id: pickedSeat.id
     })
-  }, [pickedSeat])
-
-  const handleCreate = () => {
     fetch('/api/v1/reservations', {
       method: 'POST',
       headers: {

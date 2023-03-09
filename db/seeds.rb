@@ -27,7 +27,7 @@ puts "Halls created"
 20.times do |row|
   if row < 13
     16.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+      Seat.create(row: row, column: column, hall_id: Hall.all[0].id, available: true)
     end
   elsif row == 13
     14.times do |column|
