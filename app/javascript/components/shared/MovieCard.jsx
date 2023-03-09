@@ -37,8 +37,8 @@ function MovieCard(props){
     <div className="box-border border border-black h-96 w-80 overflow-hidden">
       <Link to={"/movies/" + movie.slug}>
         <div className={"p-1 h-16 bg-"+cycle.color}>
-          <p className="text-center font-bold text-xl">{movie.title}</p>
-          <div className="text-center font-bold text-l">{movie.director} ({movie.year})</div>
+          <p className="text-center font-bold text-sm">{movie.title}</p>
+          <div className="text-center font-bold text-sm">{movie.director} ({movie.year})</div>
         </div>
       </Link>
         <div className={"bg-black pl-2 pr-2 pt-1 pb-1 h-16 flex-col flex justify-around gap-y-2"}>
