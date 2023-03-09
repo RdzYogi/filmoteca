@@ -981,319 +981,64 @@ Movie.create(title: "THE LADY PAYS OFF",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               cycle_id: Cycle.all[3].id)
 
+Cycle.create(name: "HOMENAJE A EUGENIO MARTÍN",
+              description: "El pasado enero recibimos con tristeza
+              la noticia del fallecimiento de Eugenio
+              Martín, nombre clave del cine de género
+              en España. A modo de recuerdo, este
+              mes recuperamos cuatro de sus trabajos,
+              incluyendo dos títulos de culto como
+              Pánico en el Transiberiano (1972) y Una
+              vela para el diablo (1973). Tras debutar en
+              el largometraje en 1957 con Despedida de
+              soltero, que se saldó con un importante
+              fracaso, Martín participó en numerosas coproducciones internacionales como
+              ayudante de dirección, colaborando con
+              directores como Terence Young o Nicholas
+              Ray, hasta que en 1961 pudo regresar a la
+              dirección con Los corsarios del Caribe. A
+              partir de ese momento, Martín se convertiría
+              en uno de los artesanos más polifacéticos
+              de la industria española, firmando wésterns
+              con Lee Van Cleef, relatos de terror con
+              Christopher Lee, comedias con Lola Flores
+              o dramas con Marisol.",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              quote: "Ciclo 5",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              color: "yellow-cycle",
+              start_date: "2021-03-01",
+              end_date: "2021-03-31")
 
+Movie.create(title: "EL PRECIO DE UN HOMBRE ",
+              runtime: "95 min",
+              year: "1966",
+              director: "Eugenio Martín",
+              description: "Perseguido por un cazarrecompensas, un forajido
+              mexicano se refugia en su pueblo natal. Los vecinos de
+              la localidad colaboran en su encubrimiento hasta que se
+              dan cuenta de lo mucho que ha cambiado.",
+              quote: "«En El precio de un hombre predomina la tradición americana. Por lo menos, eso fue lo que intenté yo. Porque
+              una cosa es que el wéstern tenga dureza, que eso lo tenían todos los americanos, porque América es un pueblo
+              duro, y otra cosa es que tenga cinismo, que eso lo introdujo Italia, que es un pueblo cínico». (Eugenio Martín)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[4].id)
 
+Movie.create(title: "HIPNOSIS",
+              runtime: "92 min",
+              year: "1962",
+              director: "Eugenio Martín",
+              description: "Cuando un hipnotista aparece asesinado en su camerino,
+              un boxeador y un chico de los recados se convierten en
+              los sospechosos principales. ",
+              quote: "«Remite a Fritz Lang, en las imágenes, y a Alfred Hitchcock, en la trama, así como, por supuesto, al más célebre episodio de Al morir la noche […] La belleza estética
+              y los aciertos plásticos, con un magnífico uso expresivo
+              de la fotografía en blanco y negro, redondean un gratísimo tono particular, a la vez típico y atípico, que basta y sobra para reivindicar, una vez más y por si todavía
+              hiciera falta, el magnífico cine de género en coproducción propuesto por Europa durante los años 50/60».
+              (Carlos Aguilar y Anita Haas)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[4].id)
 
-
-# Cycle.create(name: "DOUGLAS SIRK. LA EMOCIÓN INMEDIATA",
-#               description: "Douglas Sirk, el maestro del melodrama: el
-#               título es incontestable. Hoy en día seguimos
-#               viendo Obsesión (1954), Su gran deseo (1953),
-#               Solo el cielo lo sabe (1955), Escrito sobre el
-#               viento (1956) e Imitación a la vida (1959) con
-#               la misma fascinación y emoción -que, a veces,
-#               intenta combatir con una sonrisa- que cuando
-#               se estrenaron.",
-#               quote: "Ciclo 1",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
-#               color: "green-cycle",
-#               start_date: "2023-01-01",
-#               end_date: "2023-03-31")
-
-# Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
-#             description: "¿Se puede decir algo nuevo sobre esta gran
-#             estrella del mundo del espectáculo español?
-#             ¿Queda algo que podamos apuntar acerca
-#             de una persona que rompió todos los moldes
-#             en un tiempo en el que ser notoria aludía a un
-#             horizonte no apto para las mujeres? ¿Puede
-#             alguien ser merecedora de la Gran Cruz de la
-#             Orden de Isabel Católica, otorgada en pleno
-#             franquismo, y de la muy democrática Medalla
-#             de Oro al Mérito en el trabajo?",
-#             quote: "Ciclo 2",
-#             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/Embrujo_hre7a8.jpg",
-#             color: "purple-cycle",
-#             start_date: "2023-02-01",
-#             end_date: "2023-12-28")
-
-# Cycle.create(name: "FILMOTECA JUNIOR",
-#             description: "Pelis para los junior de la casa",
-#             quote: "Ciclo 3",
-#             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
-#             color: "blue-cycle",
-#             start_date: "2023-02-01",
-#             end_date: "2023-12-28")
-
-# Cycle.create(name: "SESIÓN ESPECIAL",
-#               description: "Sessions especiales para los amantes del cine. Disfruta de las mejores películas en la mejor compañía.",
-#               quote: "Ciclo 4",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301263/Filmoteca/Volver-a-empezar_ivrimz.jpg",
-#               color: "gray-cycle",
-#               slug: "ciclo-4",
-#               start_date: "2023-02-01",
-#               end_date: "2023-12-28")
-
-# Cycle.create(name: "A/Z ZULUETA INÉDITO",
-#               description: "Voluptuosidad, alucinación y la imposibilidad de
-#               acceder al objeto soñado definen, en contraste con
-#               el severo o grotesco cine español de su época, las
-#               creaciones de Iván Zulueta, a quien conocimos por
-#               sus carteles cinematográficos.",
-#               quote: "Ciclo 5",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Con-J-de-Zulueta_ustrdx.jpg",
-#               color: "red-cycle",
-#               slug: "ciclo-5",
-#               start_date: "2023-02-01",
-#               end_date: "2023-12-28")
-
-# Cycle.create(name: "OUSMANE SEMBENE. EL LENGUAJE DE ÁFRICA",
-#               description: "Abrimos esta retrospectiva dedicada al cineasta senegalés Ousmane Sembene en el año de su
-#               centenario con la transcripción de una conferencia que dio en 1995 en Londres. Bajo el título
-#               “¿Puede el cine africano conseguir el mismo nivel de indigenización que otras formas de arte
-#               popular africano?”, el siguiente texto fue después publicado en el volumen Symbolic Narratives/
-#               African Cinema. Audiences, Theory and the Moving Image (British Film Institute, 2000)",
-#               quote: "Ciclo 6",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
-#               color: "yellow-cycle",
-#               slug: "ciclo-6",
-#               start_date: "2023-01-01",
-#               end_date: "2023-02-28")
-
-# puts "Cycles created"
-
-
-# Movie.create(title: "April, April",
-#               runtime: "84'",
-#               director: "Douglas Sirk",
-#               description: "Un panadero que se ha hecho rico monta una fábrica de pasta. Un amigo, harto de su superficialidad, decide gastarle una broma y le cuenta que un príncipe va a ir a visitarla. Debut en el largometraje de Detlef Sierck / Douglas Sirk, siguiendo el sistema de dobles versiones tan común en la época fue rodada también en holandés, aunque esa versión se ha perdido.",
-#               quote: "«El primer intento de hacer una comedia alemana con el estilo americano». (Douglas Sirk)",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
-#               year: "1943",
-#               cycle_id: Cycle.all[0].id)
-
-# Movie.create(title: "Concierto en la corte",
-#               runtime: "85'",
-#               director: "Douglas Sirk",
-#               description: "Relato musical sobre los encuentros y desencuentros
-#               amorosos de una cantante en busca de su padre",
-#               quote: "«Es una obra de pastelería vienesa. Tras la gravedad de
-#               La novena sinfonía, sentí la necesidad de hacer algo lige-
-#               ro y por eso la hice: requería un tono ligero. La rodé en
-#               Würzburg en el verano de 1936. Por las fotos puedes veremb
-#               que era una película de gran presupuesto. Tenía en ella a
-#               Martha Eggerth, que era una famosa soprano de la épo-
-#               ca. Pude hacer algunos experimentos con la iluminación
-#               y la cámara. Tenía un operador muy bueno; Weihmayr
-#               hizo aquí un magnífico trabajo y lo mantuve para el resto
-#               de mis películas alemanas». (Douglas Sirk)",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Concierto-en-la-corte_cvfxwv.jpg",
-#               year: "2021",
-#               cycle_id: Cycle.all[0].id)
-# puts "Movie-2 created"
-# Movie.create(title: "La golondrina cautiva",
-#             runtime: "106'",
-#             director: "Douglas Sirk",
-#             description: "Cuando se descubre a un noble caído en desgracia
-#             cometiendo un delito, una actriz que está perdidamente
-#             enamorada de él acepta encubrirle e ir a prisión en su lugar.",
-#             quote: "«Es una obra de crítica social, de la clase que a mí me gus-
-#             ta. Detesto el término “crítica social” porque se ha conver-
-#             tido en un cliché, pero no parece que exista otra expresión
-#             para describir este tipo de película. Además, la palabra
-#             “crítica” (criticism) tiene dos aspectos en inglés. Lo que yo
-#             hago en una película como esta es simplemente mostrar
-#             cosas; la crítica tiene que empezar en el público. [...] Tiene
-#             dos elementos que son fundamentales en mi cine: este
-#             aspecto de conciencia social y el tipo de personaje que
-#             siempre me había interesado, tanto en el cine como en el
-#             teatro, y que procuré mantener también en el melodrama,
-#             el indeciso, el ambiguo, el inseguro». (Douglas Sirk)",
-#             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676291459/Filmoteca/Mas-fuerte-que-la-ley_kgutup.jpg",
-#             year: "1937",
-#             cycle_id: Cycle.all[0].id)
-# puts "Movie-3 created"
-# Movie.create(title: "La Habanera",
-#             runtime: "98'",
-#             director: "Douglas Sirk",
-#             description: "«Fuimos a Tenerife, que estaba en manos franquistas,
-#             para rodarla. Era en medio de la guerra civil española.
-#             Era terrible lo que estaba pasando allí: había un enorme
-#             campo de concentración, algo que yo no había visto en
-#             Alemania. […] Pero, volviendo a la película, era otra mues-
-#             tra de lo que he llamado crítica social. […] Era una película
-#             anticapitalista, cosa que caía bien en Alemania en aquel
-#             momento». (Douglas Sirk)",
-#             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-golondrina-cautiva_n84sve.jpg",
-#             year: "1937",
-#             cycle_id: Cycle.all[0].id)
-# puts "Movie-4 created"
-# Movie.create(title: "La novena sinfonía",
-#             runtime: "100'",
-#             director: "Douglas Sirk",
-#             description: "Obligada a emigrar a Estados Unidos, una mujer alemana
-#             decide ceder a su bebé en adopción. Cuando regresa a
-#             Alemania tiempo después, se introduce como niñera en
-#             la casa de la familia que acogió a su hijo para poder estar
-#             cerca de él.",
-#             quote: "«Es una película bastante importante en mi carrera. […]
-#             Era la primera vez que prescindía del material literario. […]
-#             Me di cuenta de que debía romper por completo con mi
-#             pasado teatral. […] Al principio estaba terriblemente ata-
-#             do a la literatura. A partir de La novena sinfonía me liberé
-#             de ella y traté de desarrollar un estilo cinematográfico.
-#             Empecé a comprender que aquí la cámara es lo impor-
-#             tante […] El movimiento es emoción, en un modo en el
-#             que nunca puede serlo en el teatro». (Douglas Sirk)",
-#             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301243/Filmoteca/La-novena-sinfon%C3%ADa_ifwrdb.jpg",
-#             year: "1936",
-#             cycle_id: Cycle.all[0].id)
-# puts "Movie-5 created"
-# # Add Lola Flores movies
-# Movie.create(title: "Embrujo",
-#             runtime: "82'",
-#             director: "Carlos Serrano de Osma",
-#             description: "La exitosa pareja artística que forman una bailaora y un
-#             cantaor se quiebra cuando él se enamora de ella.",
-#             quote: "«Embrujo fue un intento honrado y Lola Flores lo sabe.
-#             Un experimento que ha dado, artísticamente –no así en
-#             lo comercial- un resultado negativo. Pero era un experi-
-#             mento necesario. Me decía Jesús Leoz, a raíz del mal am-
-#             biente que se hizo en torno a la película: “Ahora te cen-
-#             suran, pero un día veremos cosas de Embrujo en el cine
-#             español”. Hemos visto influencias directísimas de Em-
-#             brujo en Noche sin cielo, de Iquino; Brindis a Manolete,
-#             de Florián Rey; El amor brujo, de Tony Román […] No, Lola
-#             Flores sabe que Embrujo no fue un camelo, aunque bien
-#             pudiera parecerlo tal y como la presentaron al público
-#             productores y exhibidores». (Carlos Serrano de Osma)",
-#             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/Embrujo_hre7a8.jpg",
-#             year: "1947",
-#             cycle_id: Cycle.all[1].id)
-# puts "Movie-6 created"
-# Movie.create(title: "Una señora estupenda",
-#             runtime: "70'",
-#             director: "Eugenio Martin",
-#             description: "Una cantante española que ha hecho fortuna en México
-#             regresa a España tras la boda de su hijo. Al llegar descubre
-#             que no todo el mundo está contento con su vuelta.",
-#             quote: "«Combina sin inquietud los ingredientes de un prota-
-#             gonismo de Lola Flores en la época con rasgos melo-
-#             sos típicamente mexicanos y el estilo de comicidad del
-#             cine español coetáneo, no en vano intervienen José Luis
-#             López Vázquez, José Sazatornil, Gracita Morales, Rafaela
-#             Aparicio… amén de un Miguel Gila cuyas escenas se di-
-#             rían autónomas. Con todo, resulta inolvidable la escena
-#             en que la estrella canta Qué barbaridad, chispeante y
-#             arrolladora […] La guitarra corre a cargo del marido de
-#             Lola Flores, o sea Antonio González El Pescaílla, e inter-
-#             vienen también un apreciable número de artistas flamen-
-#             cos: Rafael Romero, Pepe Montoyita, Beni de Jerez, Paco
-#             Aguilera, Juana la del Pipa…». (Carlos Aguilar y Anita Haas)",
-#             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301269/Filmoteca/Una-se%C3%B1ora-estupenda_x6ymci.jpg",
-#             year: "1947",
-#             cycle_id: Cycle.all[1].id)
-# puts "Movie-7 created"
-# # Add Filmoteca Junior movies
-# Movie.create(title: "El último unicornio",
-#             runtime: "92'",
-#             director: "Arthur Rankin",
-#             description: "Negándose a creer que sea la última de su especie, una
-#             unicornia parte en busca de otros como ella, aunque le
-#             suponga enfrentarse a un malvado rey obsesionado con
-#             capturarla.",
-#             quote: "«Vista con ojos contemporáneos, la animación es uno
-#             de los puntos fuertes de El último unicornio. […] Posee
-#             una gracia lírica y unos arranques de sofisticado su-
-#             rrealismo que la diferencian de muchas otras produc-
-#             ciones animadas. La gente de Rankin/Bass era capaz de
-#             reconocer el talento, así que trabajaron con el estudio
-#             Topcraft hasta que este tuvo que cerrar por dificultades
-#             económicas. En ese momento, un grupo de animado-
-#             res compró el estudio para empezar un nuevo proyecto,
-#             manteniendo buena parte de sus empleados. Ese grupo
-#             estaba compuesto por Hayao Miyazaki, Toshio Suzuki e
-#             Isao Takahata; el nuevo proyecto era el Estudio Ghibli».
-#             (Alex McLevy)",
-#             img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/El-%C3%BAltimo-unicornio_mxtekq.jpg",
-#             year: "1982",
-#             cycle_id: Cycle.all[2].id)
-# puts "Movie-8 created"
-# Movie.create(title: "La bella y la bestia",
-#               runtime: "84'",
-#               director: " Gary Trousdale y Kirk Wise",
-#               description: "Una joven acepta convertirse en prisionera de un
-#               temible monstruo para salvar a su padre. Sin embargo, la
-#               convivencia va derribando las barreras entre ambos.",
-#               quote: "«Con La bella y la bestia, una película aún más tierna,
-#               constante y ambiciosa que La sirenita, Disney ha logra-
-#               do algo que nadie había conseguido antes: combinar
-#               las últimas técnicas de animación por ordenador con lo
-#               mejor de Broadway. Aquí, bajo la apariencia de una fá-
-#               bula infantil se esconde el tipo de partitura ingeniosa e
-#               inspiradora que ya no existe en los escenarios. La sireni-
-#               ta ya era una demostración del talento para componer
-#               canciones de Howard Ashman y Alan Menken, pero en
-#               este caso la música es incluso más importante. Broad-
-#               way tiene aquí tanto peso en la puesta en escena y la
-#               construcción de personajes como en las propias can-
-#               ciones». (Janet Maslin)",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301246/Filmoteca/La-bella-y-la-bestia_npzo3w.jpg",
-#               year: "1991",
-#               cycle_id: Cycle.all[2].id)
-
-# puts "Movie-9 created"
-# #testing 2 shorts in same session
-# Movie.create(title: "Borom sarret + La noire de…",
-#               runtime: "20'",
-#               director: "Ousmane Sembene",
-#               description: "",
-#               quote: "",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
-#               year: "Varios",
-#               shorts: "Borom sarret, La noire de…",
-#               cycle_id: Cycle.all[5].id)
-
-# puts "Movie 10 Shorts-1 Non description 2 shorts same session created"
-# #testing 2 shorts in same session different description
-# Movie.create(title: "Borom sarret",
-#               runtime: "10'",
-#               director: "Ousmane Sembene",
-#               description: "",
-#               quote: "",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
-#               year: "1963",
-#               shorts: "",
-#               cycle_id: Cycle.all[5].id)
-
-# puts "Movie 11 Shorts-1  Description 2 shorts same session created"
-
-# Movie.create(title: "La noire de…",
-#               runtime: "10'",
-#               director: "Ousmane Sembene",
-#               description: "",
-#               quote: "",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301245/Filmoteca/Borom-sarret_La_noire_l1yyme.jpg",
-#               year: "1966",
-#               shorts: "",
-#               cycle_id: Cycle.all[5].id)
-
-# puts "Movie 12 Shorts-1 Non description 2 shorts same session created"
-
-# Movie.create(title: "Programa 2: Aloha",
-#               runtime: "10'",
-#               director: "Iván Zulueta",
-#               description: "",
-#               quote: "",
-#               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/Aloha_fwtpki.jpg",
-#               year: "1991",
-#               shorts: "Cine Album Kodak 9, Piscina, Sonoro Vicky,
-#               Sound Iván Jaime, Nenes Juan Blanco,
-#               Boxers Max Ernst,
-#               Feria navideña regalos,
-#               Nenes piscina,
-#               Nenes van a la playa",
-#               cycle_id: Cycle.all[4].id)
 
 
 puts "Movies created"
