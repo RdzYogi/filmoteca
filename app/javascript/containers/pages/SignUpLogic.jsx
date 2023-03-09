@@ -4,7 +4,7 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignUp } from "../../redux/slices/userSlice"
-
+import { useNavigate } from "react-router-dom"
 
 
 function SignUp() {
@@ -28,19 +28,26 @@ function SignUp() {
     setUserFormData({...userFormData, password_confirmation: e.target.value})
   }
 
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
     // TODO basic validations
     dispatch(userSignUp(userFormData))
+    .then(
+      (response) => {
+        if (response.payload.authToken !== "") {
+          navigate("/")
+        }
+      }
+    )
   }
-
 
 
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40 flex justify-center max-w-7xl">
-        <div className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-8">
+      <div className="pt-40 flex justify-center mx-auto">
+        <div className="bg-gray-200 shadow-md rounded px-4 pt-6 pb-8 mb-8">
           <div className="text-center mb-6">
             <h1>REGISTRO</h1>
           </div>
