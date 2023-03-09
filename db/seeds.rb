@@ -580,6 +580,177 @@ Movie.create(title: "DE ESPALDAS A LA PUERTA",
               img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
               cycle_id: Cycle.all[2].id)
 
+Movie.create(title: "EL SEGUNDO PODER",
+              runtime: "119 min",
+              year: "1976",
+              director: "José María Forqué",
+              description: "El hijo de Felipe II, el príncipe Carlos, sufre un accidente
+              en el Alcázar de Madrid. Las autoridades eclesiásticas
+              investigan el suceso como un posible atentado.
+              Adaptación de la novela El hombre de la cruz verde, de
+              Segundo Serrano Poncela.",
+              quote: "«La reconstrucción de época es de un gran rigor, patente en los más mínimos detalles. La omnipotencia de
+              una cámara penetrante que desvela rostros, actitudes,
+              ambientes, demuestra una vez más la capacidad visualizadora, la capacidad descriptiva de Forqué y sus sobresalientes condiciones para la creación de atmósferas. A
+              este respecto, en esta conjunción de aciertos formales,
+              hay que reconocer los singulares méritos de los directores artístico y de fotografía, Rafael Richart y Alejandro
+              Ulloa». (Florentino Soria)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[2].id)
+
+Movie.create(title: "EMBAJADORES EN EL INFIERNO",
+              runtime: "103 min",
+              year: "1956",
+              director: "José María Forqué",
+              description: "Cuatro soldados de la División azul son capturados
+              en territorio soviético tras la expulsión de las tropas
+              alemanas.",
+              quote: "«En la salita de proyección del NO-DO, se reunieron para
+              visionar la película José Luis Arrese, Ministro Secretario
+              General del Movimiento; Muñoz Grande, Ministro del Ejército, y creo que Gabriel Arias Salgado, responsable de la
+              censura. Yo me había introducido subrepticiamente en la
+              sala y, cuando terminó la proyección, oí este comentario:
+              'La cabronada es que la película es buena'. Entonces se
+              dieron cuenta de que estaba en la sala y me echaron. Al
+              poco rato salió, creo que Arrese, y me dijo que se iba a
+              autorizar, pero que teníamos que añadir al principio una
+              frase rimbombante en la que se decía que la actuación
+              de los voluntarios había sido como una prolongación de
+              la guerra de liberación española e introducir unos planos
+              en los que algunos prisioneros aparecieran con las flechas
+              de la Falange, lo que era un pegote inverosímil. Como ya
+              había pronosticado fue un éxito tremendo. Al llegar al final se hizo un gran silencio y la sala se llenó de pañuelos
+              porque la gente lloraba. […] Resolvió mi vida profesional».
+              (José María Forqué)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[2].id)
+
+Movie.create(title: "LAS QUE TIENEN QUE SERVIR",
+              runtime: "78 min",
+              year: "1967",
+              director: "José María Forqué",
+              description: "Un militar estadounidense y su mujer contratan a dos
+              jóvenes como empleadas del hogar. La cosa se complica
+              cuando resulta que, además de sus respectivos novios,
+              ambas tienen pretendientes en la base militar de Torrejón
+              de Ardoz",
+              quote: "«La versión cinematográfica estuvo producida y escrita
+              por José Luis Dibildos que siempre tuvo olfato para detectar los temas de impacto, mediante aquella su 'tercera vía', en la que se aliaban la contundencia comercial
+              y cierta dignidad artística. Forqué, cultivador de diversos
+              géneros con desigual fortuna siempre sale airoso cuando se mueve en su terreno favorito, la comedia. La obra
+              original, que presenta los contrastes de costumbres entre españoles y americanos se aprovecha de los tópicos
+              clichés de unos y otros, pero no deja de sacarles partido
+              con situaciones divertidas y diálogos ocurrentes. Unas
+              'chachas' españolas, sirviendo en el chalet de un típico matrimonio americano y con unos novios al 'ibérico
+              modo', pueden dar lugar a momentos bien regocijantes». (Florentino Soria)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[2].id)
+
+Movie.create(title: "MARIBEL Y LA EXTRAÑA FAMILIA ",
+              runtime: "101 min",
+              year: "1960",
+              director: "José María Forqué",
+              description: "Un tímido provinciano le presenta a su madre y a su tía la
+              joven con la que se va a casar, sin saber que se dedica a la
+              prostitución. Adaptación de la obra de teatro de Miguel
+              Mihura.",
+              quote: "«Pese al humor que destila, la obra de teatro es una comedia ácida, atrevida y casi subversiva para el momento.
+              Y José María Forqué –que había asistido en la terraza del
+              Café Gijón a la gestación de la obra de su amigo Miguel
+              Mihura junto a “Tono” y Mingote- supo respetar ese espíritu en su adaptación al cine. El director mantiene prácticamente el mismo esquema teatral y respeta unos diálogos casi idénticos a los de la comedia, reforzando con
+              las posibilidades de la cámara –que le permite crear las
+              secuencias de la pensión de las prostitutas- la división de
+              diferentes ambientes donde se desarrollan las dos formas de vida. Ambientes que Forqué construye con exquisito cuidado». (Fernando Lara y Eduardo Rodríguez)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[2].id)
+
+Movie.create(title: "NO ES NADA MAMÁ, SOLO UN JUEGO ",
+              runtime: "85 min",
+              year: "1974",
+              director: "José María Forqué",
+              description: "El joven propietario de una hacienda sufre un grave
+              trauma hacia las mujeres por culpa de su madre. Pronto
+              se enamora de la hija de uno de sus empleados, a la que
+              antes maltrataba.",
+              quote: "«Es una de mis películas predilectas. Repito en ella, por
+              una parte, ese juego de la utilización de un ser humano
+              que se resuelve en su rebeldía final. Por otra parte, expongo la decadencia de una raza, de una familia, con ese
+              vástago que sustituye unos valores por otros, el dinero
+              por unas pasiones enfermizas. Hay un cúmulo de odios y
+              perversiones exaltados, llevados al límite. […] Cuando estaba montando la película se me ocurrió que un símbolo
+              indicativo, un tanto surrealista, hubiera sido la expresión,
+              con ciertas imágenes, de que, así como las plantas más
+              bellas crecen en la putrefacción, nacen del humus, la
+              muchacha, que había llegado a un servilismo y degradación absolutos, resurge, liberada y distinta, de la misma
+              putrefacción». (José María Forqué)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[2].id)
+
+Movie.create(title: "TENGO 17 AÑOS",
+              runtime: "90 min",
+              year: "1964",
+              director: "José María Forqué",
+              description: "Una joven, harta de sentirse incomprendida, huye de su
+              casa y termina en un pequeño pueblo, donde la acoge un
+              grupo de alfareros.",
+              quote: "«Nos pidieron una cosa apta para menores, lo que me
+              permitió, al fin, hacer una película que pudieran ver mis
+              hijos. Fue para nosotros como un juego. […] Roberto Font
+              no era ni bueno ni malo, era un genio, un actor imposible
+              de clasificar. No creo que su trabajo fuera meditado, estructurado; lo hacía instintivamente, y como él tenía un
+              poder de proyección enorme, salían unas cosas maravillosas». (José María Forqué)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[2].id)
+
+Movie.create(title: "YO HE VISTO A LA MUERTE",
+              runtime: "101 min",
+              year: "1967",
+              director: "José María Forqué",
+              description: "Cuatro episodios reales sobre la tauromaquia contados
+              por sus protagonistas.",
+              quote: "«No se planteó como una película sino como una serie
+              de televisión. Quería hacer con Armiñán, que fue realmente el creador de la idea, una gran crónica sobre el
+              toro, el toreo y el público, compuesta de trece o catorce
+              capítulos. El proyecto no prosperó en TVE pero, como ya
+              teníamos escritos cuatro capítulos, me dio pena desaprovecharlos. Creí que sería interesante mostrar el mundo de los toros desde dentro y a los toreros en zapatillas. Jaime de Armiñán conocía muy bien el tema desde
+              antiguo pues su padre había sido un prestigioso crítico
+              de toros. Nos interesaba reflejar, en forma de docudrama, una realidad, sin las deformaciones habituales».
+              (José María Forqué)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[2].id)
+
+
+Cycle.create(name: "DOUGLAS SIRK LA EMOCIÓN INMEDIATA",
+              description: "“El cine es un campo de batalla“, dice Samuel
+              Fuller, que una vez escribió un guion para
+              Douglas Sirk, en una película de Jean-Luc
+              Godard, el cual poco antes de rodar Al final
+              de la escapada (1960), escribió un homenaje
+              a la película Tiempo de amar, tiempo de morir
+              (1958), de Douglas Sirk.
+              Da igual quién sea, Godard o Fuller, cualquier otro
+              o yo, nadie le llega a la suela del zapato. Sirk dijo
+              que el cine es sangre, lágrimas, violencia, odio,
+              muerte y amor. Y Sirk hizo películas, películas
+              con sangre, con lágrimas, con violencia, con
+              odio, películas con muerte y películas con amor.
+              Sirk dijo que las películas no pueden hacerse
+              sobre algo, que sólo pueden hacerse con algo,
+              con personas, con luz, con flores, con espejos,
+              con sangre, con todas esas cosas locas que
+              valen la pena. Además dijo que la iluminación y el enfoque son la filosofía del director. Y Douglas
+              Sirk hizo las películas más tiernas que conozco,
+              películas de alguien que ama a las personas y
+              no las desprecia como nosotros. Una vez, Darryl
+              F. Zanuck le dijo: “La película tiene que gustar,
+              sea en Kansas City o en Singapur”. Vaya locura,
+              América, ¿no?",
+              quote: "Ciclo 4",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              color: "green-cycle",
+              start_date: "2021-01-01",
+              end_date: "2021-05-31")
+
 
 
 
