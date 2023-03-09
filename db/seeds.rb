@@ -751,6 +751,236 @@ Cycle.create(name: "DOUGLAS SIRK LA EMOCIÓN INMEDIATA",
               start_date: "2021-01-01",
               end_date: "2021-05-31")
 
+Movie.create(title: "¿ALGUIEN HA VISTO A MI CHICA?",
+              runtime: "88 min",
+              year: "1952",
+              director: "Douglas Sirk",
+              description: "Un anciano millonario sin herederos decide legar toda su
+              fortuna a la familia de su primera novia. Para asegurarse
+              de que no está cometiendo un error, finge ser pobre y
+              alquila una habitación en su casa.",
+              quote: "«Había surgido en la Universal una especie de producción de serie B en contra de la tendencia de la época,
+              según yo pensaba, y el tiempo me dio la razón. Ello era en
+              parte debido a la falta de estrellas bajo contrato del estudio. Lo único que se podía hacer en estas circunstancias
+              era fabricar una estrella, porque el conseguir más dinero
+              dependía de tener un nombre en la película. Así que busqué por allá y vi una película en la que actuaba Rock Hudson, con Jeff Chandler de protagonista (Iron Man, Joseph
+              Pevney, 1951). Tenía un papel pequeño y era muy inferior
+              a Chandler, pero creí ver algo en él. Preparé una reunión
+              y, a primera vista, no parecía ser gran cosa, salvo muy
+              guapo. Pero la cámara ve con su propio ojo. Ve cosas que
+              el ojo humano no detecta. Y al fin aprendes a confiar en
+              tu cámara». (Douglas Sirk)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "ATILA, REY DE LOS HUNOS",
+              runtime: "92 min",
+              year: "1954",
+              director: "Douglas Sirk",
+              description: "Atila, el huno, aúna a los pueblos bárbaros ante el divido
+              Imperio Romano.",
+              quote: "«Yo necesitaba a alguien para interpretar el papel de Atila y la película corría prisa. La firme actitud de Chandler
+              era que él tenía que ser el chico bueno, un galán de la
+              pantalla, y que sería malo para su carrera interpretar lo
+              que él llamaba “un villano”. Creo que a él le gustaba la
+              idea de andar por ahí con toga y todo eso. Mi postura
+              era que lo único interesante de la historia era la furia de
+              Atila… este hombre que da vueltas en torno a sí mismo y a
+              su objetivo imposible, la captura de la ciudadela de la religión, Roma, a la que cerca como un animal. Atila es uno
+              de esos personajes que dan vueltas en torno a sí mismos
+              que tanto me gustan. Encaja en mi galería, solo que es
+              una variante violenta de este personaje habitualmente
+              tranquilo, a lo Hamlet. Le dije honradamente a Chandler
+              que en mi película el centro de atención sería Atila. Pero
+              no quería saber nada de ello. […] Había por allá un actor
+              menos conocido, Jack Palance. Era famoso, pero no un
+              protagonista. […] Le dije a Chandler: “Piénsalo, porque el
+              personaje del huno va a dominar la película”. Pero él solo
+              decía “Nunca me ha oscurecido un villano”. Y, como sabes, la película es de Palance». (Douglas Sirk)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "DOUGLAS SIRK - HOPE AS IN DESPAIR",
+              runtime: "75 min",
+              year: "2022",
+              director: "Roman Hüben",
+              description: "Documental de investigación que recorre la vida de
+              Douglas Sirk a través de testimonios de aquellos que
+              le conocieron y de las páginas del diario de su segunda
+              mujer",
+              quote: "Antes de la proyección tendrá lugar una mesa redonda
+              con Roberto Turigliatto, cocomisario del ciclo; Paula
+              Arantzazu Ruiz, crítica de cine; y el director, Roman
+              Hüben. Tras la mesa redonda habrá un pequeño descanso de diez minutos y acto seguido se proyectará la
+              película. Duración aproximada de la mesa redonda: 60’
+              (Total sesión: 140’).",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "ESCÁNDALO EN PARÍS",
+              runtime: "100 min",
+              year: "1946",
+              director: "Douglas Sirk",
+              description: "Nacido en la cárcel, un ladrón profesional del siglo XVIII
+              se convierte hacia el final de su vida en el jefe de la policía
+              parisina.",
+              quote: "«En esta película traté de ir más allá del realismo en la
+              forma de presentar la historia. Resultaba casi surrealista. A la manera de los surrealistas americanos, no de los
+              franceses. La película no tuvo mucho éxito. Esto se debió
+              presuntamente a que yo adopté una actitud que hacía
+              surgir la ironía y esto no funcionaba nada bien con el público americano. […] Pero, por supuesto, sólo mostraba
+              una pequeña parte de la vida de Vidocq en la película. Se
+              podría haber hecho toda una serie de películas a partir
+              de su vida, lo mismo que con Cagliostro. Pero la parte
+              que utilicé es el periodo más interesante, el que se presta
+              mejor a la ironía; hay mucha en su oscilación entre policía y ladrón. Y esto proporciona al personaje de Sanders
+              mejor margen para actuar». (Douglas Sirk)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "LA PRIMERA LEGIÓN",
+              runtime: "86 min",
+              year: "1951",
+              director: "Douglas Sirk",
+              description: "Un jesuita se prepara para abandonar el seminario
+              cuando una serie de milagros hacen que se replantee su
+              decisión.",
+              quote: "«Lo que intenté fue llevarla decididamente hacia la comedia. Hay un milagro que no es un milagro, pero a causa
+              del cual le suceden un montón de cosas a ese pequeño
+              monasterio, y entonces Dios dice: “Ahora les mandaré un
+              milagro de verdad”. Es como si Dios se presentara y dijese: “Parece que ha habido por aquí un falso milagro, cosa
+              a que nadie puede hacerle muy feliz, pero por Dios que
+              habrá uno de verdad. Ahora veréis”, y empieza a arremangarse». (Douglas Sirk)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "ORGULLO DE RAZA",
+              runtime: "92 min",
+              year: "1955",
+              director: "Douglas Sirk",
+              description: "En el siglo XIX, un hombre se une al capitán Thunderbolt
+              para luchar por la independencia de Irlanda.",
+              quote: "«El turbulento drama histórico de Douglas Sirk, ambientado en
+              la Irlanda de 1815, es un wéstern disfrazado. A pesar del colorido
+              de la aventura romántica, Sirk está menos interesado en la lucha
+              de espadachines que en la estrategia: observa el alzamiento de
+              forma analítica, señalando las amargas ironías de los astutos comandantes, obligados a contener a los audaces guerreros por el
+              bien de la lucha a largo plazo. Describe a los colaboradores locales de las autoridades británicas, evoca la paranoica circunspección de los muy organizados luchadores por la libertad, que
+              temen la infiltración y la delación, y evoca las amenazas de cárcel
+              y tortura utilizadas para doblegar la voluntad de los conspiradores detenidos. Sirk —un emigrante alemán— ofrece también una
+              visión velada de la resistencia a la ocupación nazi en la Europa de
+              la Segunda Guerra Mundial». (Richard Brody)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "PACTO TENEBROSO",
+              runtime: "97 min",
+              year: "1948",
+              director: "Douglas Sirk",
+              description: "Una mujer se despierta en un tren en marcha, incapaz de
+              recordar cómo ha llegado allí.",
+              quote: "«Incluso con el problema de casting que es Claudette
+              Colbert, la película es, como decía James Harvey en “Film
+              Comment”, una maravilla. Además, todo el metraje está
+              surcado por un tema muy propio de los años 40 y que
+              Sirk amplificó, el de una mujer que descubre su propia
+              identidad bajo todas las mentiras que ha estado aceptando durante años. “Eso no es propio de mi chica”, le
+              dice el antagonista a su cómplice, a lo que esta responde: “Tu chica es muchas chicas”. Las damas perversas
+              siempre saben mucho de la vida; son las bondadosas las
+              que tienen que romper con la hipnosis». (Farran Smith
+              Nehme)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "RAZA DE VIOLENCIA",
+              runtime: "79 min",
+              year: "1954",
+              director: "Douglas Sirk",
+              description: "Tras la muerte de un jefe apache, la tribu debe elegir
+              entre sus dos hijos un nuevo líder que sepa cómo lidiar
+              con la amenaza del hombre blanco: uno es un pacifista,
+              el otro aboga por la lucha.",
+              quote: "«Quería hacer un wéstern. Y Rock Hudson quería volver a trabajar conmigo, así que hicimos esta película en
+              la que interpretaba a un indio. Al estudio no le gustaba
+              que interpretase de nuevo a un indio porque acababa de
+              hacerlo y pensaban que podía estropear su imagen. […]
+              Me interesaban mucho los indios y traté de incluir mucho sobre sus costumbres en la película. Se rodó por
+              entero en Utah, en su mayor parte cerca de Moab, y un
+              poco más arriba, en la parte del río Colorado. Se rodó
+              completamente en exteriores y de forma improvisada.
+              Hay algunos decorados, pero fueron construidos todos
+              allí, en el lugar, y también por los indios. Y los indios eran
+              auténticos, no habían sido viciados por Ford. Había una
+              gran batalla en la película, en la que empezaron a pelear
+              de verdad como demonios. Ninguno de ellos hablaba inglés y teníamos un par de intérpretes para las dos tribus
+              apaches, ninguna de las cuales hablaba tampoco la otra
+              lengua. La batalla fue una de las cosas más apasionantes
+              que he hecho nunca». (Douglas Sirk)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "SLIGHTLY FRENCH",
+              runtime: "81 min",
+              year: "1949",
+              director: "Douglas Sirk",
+              description: "Tras despedir a una estrella de cine francesa, un
+              director de Hollywood contrata a una joven cantante
+              estadounidense para sustituirla.",
+              quote: "«Slightly French es como un juego de espejos en el que lo
+              que es real y lo que es artificio se vuelven indistinguibles,
+              hasta el punto de ser inseparables. […] Es como si la trama
+              de Slightly French se moviera en una dirección, mientras
+              que Sirk la guía escépticamente en otra, completamente
+              en desacuerdo con el espíritu de la comedia romántica
+              de Hollywood. El enfoque estratégicamente subversivo
+              del cineasta no solo es evidente en la forma en que la
+              película rechaza favorecer la empatía con los protagonistas, sino también en la representación intransigente
+              del Hollywood que iba a ser el lugar de trabajo de Sirk
+              durante una década más. Además, e igual de importante,
+              está la forma en que el habitual diseño de iluminación del
+              género, que evita cualquier presencia de la oscuridad,
+              es ignorado en favor de una fotografía altamente contrastada y escenarios cargados de sombras que resultan
+              más desconcertantes que tranquilizadores». (Tom Ryan)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "TEMPESTAD EN LA CUMBRE",
+              runtime: "84 min",
+              year: "1951",
+              director: "Douglas Sirk",
+              description: "Convencida de que una mujer acusada de asesinato es
+              inocente, una monja trata de encontrar al culpable",
+              quote: "«La Universal me ofreció un contrato. [...] Me dijeron: “Tenemos que firmar un contrato de siete años”. Yo dije: “De
+              acuerdo, firmaré, a condición de que me garanticéis una
+              película de serie A”, y esta iba a ser Tempestad en la cumbre. […] Las condiciones no eran perfectas, pero cuando
+              me quejaba de una historia me decían: “Si consigues una
+              estrella, magnífico; puedes tener más dinero y elegir una
+              historia mejor”. Pero al menos se me permitía trabajar sobre el material, por lo que reestructuré en cierta medida
+              algunos de los casi imposibles guiones de las películas
+              que tuve que dirigir. Por supuesto, tenía que seguir las
+              reglas, evitar experimentos, atenerme a los gustos familiares, poner “finales felices” y todo eso». (Douglas Sirk)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
+Movie.create(title: "THE LADY PAYS OFF",
+              runtime: "80 min",
+              year: "1951",
+              director: "Douglas Sirk",
+              description: "Como premio por ser elegida profesora del año por la
+              revista “Time”, una joven realiza un viaje a Las Vegas,
+              donde termina perdiendo todo su dinero. Para pagar su
+              deuda, acepta cuidar de la hija del mánager del casino.",
+              quote: "«Los roles de género son el elemento principal de esta
+              inquietante comedia romántica sobre una maestra de
+              escuela que quiere ser percibida como una mujer en lugar de simplemente como una persona cuyas habilidades han acabado por definir como “una segunda madre”.
+              […] Como es habitual en muchas de las películas de Sirk
+              con protagonistas femeninos, su identidad está significativamente conectada con las circunstancias sociales
+              que define qué es ser una mujer. Es una profesional respetada, pero sus habilidades se consideran inseparables
+              de las necesidades del hogar. Se la alaba porque es la
+              madre que tienen los niños cuando sus verdaderas madres no están cerca». (Tom Ryan)",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              cycle_id: Cycle.all[3].id)
+
 
 
 
