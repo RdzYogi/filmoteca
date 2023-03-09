@@ -30,11 +30,12 @@ function getDateObject(dateString: string,
 
   if (dayLong) {
     const intlDate = new Intl.DateTimeFormat('es-ES',{year: "numeric",month: optionMonth, weekday: "long",day:"numeric",hour:"2-digit",minute: "2-digit"}).format(date)
-    dateObject.month = monthLong ? intlDate.split(" ")[2] : intlDate.split("/")[1]
-    dateObject.year = monthLong ? intlDate.split(",")[1].split(" ")[4] : intlDate.split(",")[1].split("/")[1]
+    // console.log(intlDate.split(',')[2].split(' ')[1].split(':')[0])
+    dateObject.month = monthLong ? intlDate.split(",")[1].split(" ")[3] : intlDate.split("/")[1]
+    dateObject.year = monthLong ? intlDate.split(",")[1].split(" ")[5] : intlDate.split(",")[1].split("/")[1]
     dateObject.day = intlDate.split(',')[0]
-    dateObject.hour = intlDate.split(',')[1].split(' ')[1].split(':')[0]
-    dateObject.minutes = intlDate.split(',')[2].split(' ')[1].split(':')[1]
+    dateObject.hour = monthLong ? intlDate.split(',')[2].split(' ')[1].split(':')[0] : intlDate.split(',')[1].split(' ')[1].split(':')[0]
+    dateObject.minutes = monthLong ? intlDate.split(',')[2].split(' ')[1].split(':')[1] : intlDate.split(',')[2].split(' ')[1].split(':')[1]
     if (dateObject.minutes === "0"){
       dateObject.minutes = "00"
     }
