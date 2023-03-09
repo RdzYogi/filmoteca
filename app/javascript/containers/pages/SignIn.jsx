@@ -4,7 +4,6 @@ import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut, userSignIn } from "../../redux/slices/userSlice"
-// import SubmitButton from '../../components/shared/SubmitButton';
 import { Link, useNavigate } from "react-router-dom"
 
 
@@ -36,7 +35,7 @@ function SignIn() {
     )
     .then(
       (response) => {
-        if (response.meta.requestStatus === "fulfilled") {
+        if (response.payload.isLogged) {
           navigate("/")
         }
       }
@@ -47,8 +46,8 @@ function SignIn() {
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40 flex justify-center max-w-7xl">
-        <div className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-8">
+      <div className="pt-40 flex justify-center mx-auto">
+        <div className="bg-gray-200 shadow-md rounded px-4 pt-6 pb-8 mb-8">
           <div className="text-center mb-6">
             <h1>INGRESO</h1>
           </div>
