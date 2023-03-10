@@ -86,7 +86,7 @@ function Movie() {
       <div className="pt-40">
         {loaded &&
         <div className="w-full mx-auto md:max-w-7xl">
-          <div className="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center">
+          <div className="flex flex-col-reverse sm:flex-row first:items-center sm:justify-between md:items-center">
             <div className="flex my-7">
               <div className={"w-4 bg-"+mainMovie.include.cycle.color}></div>
               <div className="ml-3">
