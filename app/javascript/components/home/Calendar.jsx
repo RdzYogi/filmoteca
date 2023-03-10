@@ -88,13 +88,14 @@ function Calendar({movies}) {
   }
 
   useEffect(() => {
+    // The clickable buttons for the days of the week initial render
     if (calendarGrid.length === 0) return
     const firstWeek = document.getElementById('week-0')
     const children = firstWeek.children
     const windowCheck = window.matchMedia(`(max-width: ${breakPointForDayNames}px)`)
     for (let i = 0; i < children.length; i++) {
       setWeekDetailsButtons(prev => [...prev,
-        <div id={children[i].innerText+"dayName"} key={i+"dayName"} data-other-month={children[i].id ? children[i].id:""} className={"flex  justify-center items-center " + unselectedColor}>
+        <div id={children[i].innerText+"dayName"} key={i+"dayName"} data-other-month={children[i].id ? children[i].id:""} className={"flex transition hover:bg-gray-100 duration-300 justify-center items-center " + unselectedColor}>
           <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-0 sm:px-3 " >
           {windowCheck.matches ? calendarHelperObj.spanishWeekdays[i].slice(0,3) + " " + children[i].innerText : calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
           </button>
@@ -109,6 +110,8 @@ function Calendar({movies}) {
     // Reset all the colors to white
     resetButtonColors()
 
+    // Find the first day of that week that has a movie
+    // And set the color to gray
     let result = []
     if (weekDetailsButtons.length === 0) return
     weekDetailsButtons.forEach((button,index) => {
@@ -118,6 +121,7 @@ function Calendar({movies}) {
       if (result.length > 0) {
         const button = document.getElementById(dayToFilter+"dayName")
         button.classList.remove(unselectedColor)
+        button.classList.remove("hover:bg-gray-100")
         button.classList.add(selectedColor)
         if (result.length === 1) {
           setMovieCount(1)
@@ -129,6 +133,7 @@ function Calendar({movies}) {
       if (result.length === 0 && index === weekDetailsButtons.length - 1) {
         const firstButton = document.getElementById(weekDetailsButtons[0].props.children.props.children.split(" ")[1]+"dayName")
         firstButton.classList.remove(unselectedColor)
+        firstButton.classList.remove("hover:bg-gray-100")
         firstButton.classList.add(selectedColor)
         setMoviesToDisplay([])
       }
@@ -155,9 +160,12 @@ function Calendar({movies}) {
       allButtons[i].classList.remove(selectedColor)
       allButtons[i].classList.remove(unselectedColor)
       allButtons[i].classList.add(unselectedColor)
+      allButtons[i].classList.add("hover:bg-gray-100")
     }
     e.currentTarget.parentElement.classList.remove(unselectedColor)
+    e.currentTarget.parentElement.classList.remove("hover:bg-gray-100")
     e.currentTarget.parentElement.classList.add(selectedColor)
+
 
     const dayToFilter = e.currentTarget.parentElement.id.split("dayName")[0]
     if (e.currentTarget.parentElement.dataset.otherMonth === ""){
