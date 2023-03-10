@@ -66,7 +66,7 @@ function MobileCalendar({movies}) {
               }
             })
             result.push(
-              <Link to={"/movies/" + movie.props.movie.movie.slug } key={playTimeString + day.toString()} className={'flex flex-col h-fit mb-2 bg-'+ movie.props.cycle.color } >
+              <Link to={"/movies/" + movie.props.movie.movie.slug } key={playTimeString + day.toString()} className={'transition duration-300 hover:opacity-75 flex flex-col h-fit mb-2 bg-'+ movie.props.cycle.color } >
                 <p className='ml-2 font-bold'>{movie.props.movie.movie.title}</p>
                 <p className='ml-2'>{movie.props.movie.movie.director}</p>
                 <p className='ml-2'>{playTimeString}</p>
