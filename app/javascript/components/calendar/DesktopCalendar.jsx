@@ -57,9 +57,15 @@ function DesktopCalendar({movies}) {
     for (let i = 0; i < daysOfCurrentMonth; i++) {
       const dayHeader = getDateObject(new Date(currentYear,monthIndex,i+1).toDateString(),{dayLong:true}).day.charAt(0).toUpperCase() + getDateObject(new Date(currentYear,monthIndex,i+1).toDateString(),{dayLong:true}).day.slice(1) + " " + (i+1)
       const moviesForEachDay = []
+      let dayInLoop = ""
       movies.forEach((movieCard,index) => {
-        // console.log(movieCard)
-        if (getDateObject(movieCard.props.projection.include.session.play_time).day === i+1+"") {
+        if (i < 9){
+          dayInLoop = "0"+(i+1)
+        } else {
+          dayInLoop = i+1 + ""
+        }
+        // console.log(getDateObject(movieCard.props.projection.include.session.play_time).day,i+1+"")
+        if (getDateObject(movieCard.props.projection.include.session.play_time).day === dayInLoop) {
           moviesForEachDay.push(<div key={dayHeader+index} className="flex justify-center">{movieCard}</div>)
         }
       })
