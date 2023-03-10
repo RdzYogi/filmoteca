@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import getDateObject from "../helpers/getDateObject";
 
-const DESCRIPTIONMAX = 160;
+const DESCRIPTIONMAX = 240;
 
 function MovieCard(props){
   // console.log(props)
@@ -50,7 +50,7 @@ function MovieCard(props){
         }}
       />
       <Link to={"/movies/" + movie.slug}>
-        <p className="text-justify p-2">{
+        <p className="text-justify text-sm p-2 h-[30%] bg-white">{
           movie.description.length > DESCRIPTIONMAX ? movie.description.slice(0, DESCRIPTIONMAX) + "..." : movie.description}
         </p>
       </Link>
