@@ -57,7 +57,7 @@ function Calendar({movies}) {
     // Group week days and attach listener
     for (let i = 0; i < smallCalendarGrid.calendarGrid.length; i+=7) {
       setCalendarGrid(prev => [...prev,
-        <button onClick={handleWeekChange} id={"week-"+(i%34/7)} key={i%7+i%34+"week"} className={(i===0 ? selectedColor:"") +" grid grid-cols-7 w-full"}>
+        <button onClick={handleWeekChange} id={"week-"+(i%34/7)} key={i%7+i%34+"week"} className={(i===0 ? selectedColor:"hover:bg-gray-100") +" transition duration-300 grid grid-cols-7 w-full"}>
           {smallCalendarGrid.calendarGrid.slice(i, i+7)}
         </button>
       ])
@@ -94,7 +94,7 @@ function Calendar({movies}) {
     const windowCheck = window.matchMedia(`(max-width: ${breakPointForDayNames}px)`)
     for (let i = 0; i < children.length; i++) {
       setWeekDetailsButtons(prev => [...prev,
-        <div id={children[i].innerText+"dayName"} key={i+"dayName"} data-other-month={children[i].id ? children[i].id:""} className={"flex justify-center items-center " + unselectedColor}>
+        <div id={children[i].innerText+"dayName"} key={i+"dayName"} data-other-month={children[i].id ? children[i].id:""} className={"flex  justify-center items-center " + unselectedColor}>
           <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-0 sm:px-3 " >
           {windowCheck.matches ? calendarHelperObj.spanishWeekdays[i].slice(0,3) + " " + children[i].innerText : calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
           </button>
@@ -183,11 +183,12 @@ function Calendar({movies}) {
     weeks.map(week => {
       if (week.id === e.currentTarget.id) {
         week.classList.add(selectedColor)
+        week.classList.remove("hover:bg-gray-100")
         const children = week.children
         setWeekDetailsButtons([])
         for (let i = 0; i < children.length; i++) {
           setWeekDetailsButtons(prev => [...prev,
-            <div id={children[i].innerText+"dayName"} data-other-month={children[i].id ? children[i].id:""} key={i+"dayName"} className="flex justify-center items-center bg-white">
+            <div id={children[i].innerText+"dayName"} data-other-month={children[i].id ? children[i].id:""} key={i+"dayName"} className="flex justify-center items-center bg-white transition duration-300 hover:bg-gray-100">
               <button onClick={handleDayChange} className="text-white bg-black h-fit w-fit px-0 sm:px-3 ">
                 {windowCheck.matches ? calendarHelperObj.spanishWeekdays[i].slice(0,3) + " " + children[i].innerText : calendarHelperObj.spanishWeekdays[i] + " " + children[i].innerText}
               </button>
@@ -196,6 +197,7 @@ function Calendar({movies}) {
         }
       } else {
         week.classList.remove(selectedColor)
+        week.classList.add("hover:bg-gray-100")
       }
     })
   }
