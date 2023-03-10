@@ -12,6 +12,7 @@ function Paginate({movies}) {
     window.scrollTo(0, 0)
     const pagesTotal = Math.ceil(movies.length/moviesPerPage)
     // console.log(pagesTotal)
+    setCurrentPage(1)
     setPages([])
     for (let i = 0; i < pagesTotal; i++) {
       setPages(pages => [...pages,
