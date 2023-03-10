@@ -99,7 +99,11 @@ function Movie() {
           </div>
           <div className="flex mb-16">
             <div className="w-3/4">
-              <img src={mainMovie.movie.img_url} className="aspect-video max-w-4xl object-cover" alt={mainMovie.movie.title}/>
+              <img src={mainMovie.movie.img_url} className="aspect-video max-w-4xl object-cover" alt={mainMovie.movie.title}
+                onError={({ currentTarget }) => {
+                  currentTarget.src = "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438457/Filmoteca/Default_a26wtz.jpg";
+                }}
+              />
               <p className="max-w-4xl mt-5">{mainMovie.movie.description}</p>
             </div>
             <div className="w-1/4 ml-5">
