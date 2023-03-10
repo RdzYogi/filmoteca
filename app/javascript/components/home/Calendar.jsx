@@ -175,6 +175,7 @@ function Calendar({movies}) {
     // console.log(e.currentTarget.parentElement.dataset.otherMonth)
     setMoviesToDisplay(result)
   }
+
   const handleWeekChange = (e) => {
     e.preventDefault()
     const windowCheck = window.matchMedia(`(max-width: ${breakPointForDayNames}px)`)
@@ -205,7 +206,7 @@ function Calendar({movies}) {
         <div id="week-details-buttons-container" className='h-14 grid grid-cols-7'>
           {weekDetailsButtons}
         </div>
-        {moviesToDisplay.length === 0 ? <div className='text-center text-bold h-96'>No hay projectiones en este dia</div> : <Carousel customLeftArrow={<LeftArrow/>} customRightArrow={<RightArrow/>} itemClass='flex justify-center' responsive={responsive()} className={" mx-auto mb-4 pt-5 " + (movieCount === 1 ? "flex justify-center" : "")} >{moviesToDisplay}</Carousel>}
+        {moviesToDisplay.length === 0 ? <div className='text-center text-bold h-96'>No hay projectiones en este dia</div> : <Carousel infinite={true} shouldResetAutoplay movies={moviesToDisplay} customLeftArrow={<LeftArrow/>} customRightArrow={<RightArrow/>} itemClass='flex justify-center' responsive={responsive()} className={" mx-auto mb-4 pt-5 " + (movieCount === 1 ? "flex justify-center" : "")} >{moviesToDisplay}</Carousel>}
       </div>
 
 

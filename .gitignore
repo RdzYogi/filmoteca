@@ -36,7 +36,7 @@
 /node_modules
 
 # Ignore lock files
-yarn.lock
-package-lock.json
-Gemfile.lock
+# yarn.lock
+# package-lock.json
+# Gemfile.lock
 .env*
