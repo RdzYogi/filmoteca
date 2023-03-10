@@ -143,7 +143,7 @@ Cycle.create(name: "JERZY SKOLIMOWSKI IDENTIDADES MÚLTIPLES",
               cine europeo, con Jean-Luc Godard y François
               Truffaut a la cabeza.",
               quote: "Ciclo 1",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/Ferdydurke_rxyrin.jpg",
               color: "aqua-cycle",
               start_date: Date.new(today_date.year, today_date.month, 1),
               end_date: Date.new(today_date.year, today_date.month + 2, 1))
@@ -165,7 +165,7 @@ Movie.create(title: "11 MINUTES",
               desarrollan sin exponer de forma clara las motivaciones
               de los personajes, que permanecen suspendidos en el
               limbo del suspense». (Manu Yáñez)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/11-Minutes_k58bkg.jpg",
               cycle_id: Cycle.order(:id)[0].id)
 
 Movie.create(title: "DEEP END",
@@ -187,7 +187,7 @@ Movie.create(title: "DEEP END",
               Mulligan, y a Taxi Driver, de Martin Scorsese, en uno y
               seis años, respectivamente, la alucinante, disonante pero
               convincente historia de confusión hormonal de Skolimowski parece anticiparse a ambas». (Jaime N. Christley)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/Deep-end_vmk6ko.jpg",
               cycle_id: Cycle.order(:id)[0].id)
 
 Movie.create(title: "EL CUCHILLO EN EL AGUA",
@@ -213,7 +213,7 @@ Movie.create(title: "EL CUCHILLO EN EL AGUA",
               Times”, en una entrevista de 1971: “Lo que me gusta son
               las situaciones realistas en la que las cosas no encajan
               del todo”». (Brian Eggert)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/El-cuchillo-en-el-agua_ufku9k.jpg",
               cycle_id: Cycle.order(:id)[0].id)
 
 Movie.create(title: "EL GRITO",
@@ -232,7 +232,7 @@ Movie.create(title: "EL GRITO",
               de Godard), este largometraje de 1978 es pura astucia e
               imaginación cinematográficas, un thriller en trance que
               supera a Peter Weir en su propio terreno». (Dave Kehr)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438457/Filmoteca/El-grito_gcifs5.jpg",
               cycle_id: Cycle.order(:id)[0].id)
 
 Movie.create(title: "ESSENTIAL KILLING",
@@ -254,7 +254,7 @@ Movie.create(title: "ESSENTIAL KILLING",
               a este paisaje nevado que está lo más lejos posible de
               todo lo que ha conocido. Por un extraño giro de la suerte, o más bien de la desgracia, como pronto descubrirá,
               consigue escapar. La película trata de su lucha por sobrevivir». (Jerzy Skolimowski)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/Essential-Killing_ubqafz.jpg",
               cycle_id: Cycle.order(:id)[0].id)
 
 Movie.create(title: "FERDYDURKE",
@@ -273,7 +273,7 @@ Movie.create(title: "FERDYDURKE",
               Es una afirmación de su propia identidad polaca, pero es
               una afirmación que, en el estilo característico de Skolimowski y Gombrowicz, ironiza, se burla y cuestiona».
               (Ian Johnston)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/Ferdydurke_rxyrin.jpg",
               cycle_id: Cycle.order(:id)[0].id)
 
 Movie.create(title: "LAS AVENTURAS DE GERARD",
@@ -292,7 +292,7 @@ Movie.create(title: "LAS AVENTURAS DE GERARD",
               Skolimowski, estrafalario y resuelto en su búsqueda de la
               realización personal, convirtiéndose en la contraposición
               napoleónica del Marc de La partida. A pesar de su apariencia caótica, Gerard tiene una personalidad inconfundible». (Nigel Andrews)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/Las-aventuras-de-Gerard_km9pu8.jpg",
               cycle_id: Cycle.order(:id)[0].id)
 
 Movie.create(title: "MOONLIGHTING",
@@ -311,7 +311,7 @@ Movie.create(title: "MOONLIGHTING",
               Festival de Cannes en la primavera de 1982. […] Es el tipo
               de película que me hace maravillarme de cómo alguien
               puede tener una idea tan genial y llevarla a cabo de forma tan redonda, con medios casi cómicamente modestos». (Richard T. Jameson)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "",
               cycle_id: Cycle.order(:id)[0].id)
 
 
@@ -352,7 +352,7 @@ Cycle.create(name: "MARGARITA ALEXANDRE VISCERALMENTE LIBRE",
               Puebla de las mujeres (1952) le sirvió para dar el
               salto definitivo al otro lado de la cámara.",
               quote: "Ciclo 2",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/Cristo_vj5nbw.jpg",
               color: "purple-cycle",
               start_date: Date.new(today_date.year, today_date.month, 1),
               end_date: Date.new(today_date.year, today_date.month, 1),
@@ -374,7 +374,7 @@ Movie.create(title: "CRISTO",
               mismo tiempo, supone un desfile pictórico, que se ordena por primera vez en el cine: un tesoro plástico que el
               cine va a vulgarizar con su enorme poder de extensión».
               (Margarita Alexandre)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/Cristo_vj5nbw.jpg",
               cycle_id: Cycle.order(:id)[1].id)
 
 Movie.create(title: "LA CIUDAD PERDIDA",
@@ -394,7 +394,7 @@ Movie.create(title: "LA CIUDAD PERDIDA",
               trama policial sirve como pretexto para llevar hasta los
               límites de la permisividad la figuración del vencido —para
               emplear la terminología oficial de la época— y la representación del pasado». (Sonia García López)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/La-ciudad-perdida_njl9nv.jpg",
               cycle_id: Cycle.order(:id)[1].id)
 
 Movie.create(title: "LA GATA",
@@ -414,7 +414,7 @@ Movie.create(title: "LA GATA",
               los formatos anamórficos. […] aborda, en pleno franquismo folclorista, una historia de la España racial sin tópicos, huyendo del estereotipo y fijándose en la representación naturalista de la Andalucía rural, la de la marisma
               de Huelva, para la mejor adecuación con el sentido primitivo e instintivo de las pasiones de los protagonistas».
               (Fernando Gabriel Martín)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/La-gata_mdorou.jpg",
               cycle_id: Cycle.order(:id)[1].id)
 
 Movie.create(title: "LA MUERTE DE UN BURÓCRATA",
@@ -434,7 +434,7 @@ Movie.create(title: "LA MUERTE DE UN BURÓCRATA",
               rompedor capaz de criticar aspectos de su gobierno y al
               mismo tiempo permanecer leal a la revolución cubana».
               (Alejandro Veciana)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/La-muerte-de-un-bur%C3%B3crata_n36nhm.jpg",
               cycle_id: Cycle.order(:id)[1].id)
 
 Cycle.create(name: "EL SIGLO DE JOSÉ MARÍA FORQUÉ",
@@ -465,7 +465,7 @@ Cycle.create(name: "EL SIGLO DE JOSÉ MARÍA FORQUÉ",
               una de las actrices de mayor prestigio en la
               actualidad.",
               quote: "Ciclo 1",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/Atraco-a-las-tres_bzfais.jpg",
               color: "red-cycle",
               start_date: Date.new(today_date.year, today_date.month, 1),
               end_date: Date.new(today_date.year, today_date.month, 1))
@@ -489,7 +489,7 @@ Movie.create(title: "091: POLICÍA AL HABLA",
               pusieran la etiqueta de director muy comercial. Para mí
               aquello era muy halagador, pues pienso que si una película no es comercial, no es nada, pero, a partir de entonces, la crítica no fue demasiado generosa conmigo, en
               muchas ocasiones». (José María Forqué)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/091-Polic%C3%ADa-al-habla_yyjycs.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "AMANECER EN PUERTA OSCURA",
@@ -508,7 +508,7 @@ Movie.create(title: "AMANECER EN PUERTA OSCURA",
               españoles y extranjeros, unos los oprimidos y otros los
               opresores. Yo esta cuestión la sentía como propia, y la
               sigo sintiendo». (José María Forqué)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/Amanecer-en-Puerta-Oscura_sipmus.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "ATRACO A LAS TRES",
@@ -525,7 +525,7 @@ Movie.create(title: "ATRACO A LAS TRES",
               el espectador disfruta sin parar del diseño de los personajes, de los conflictos entre ellos y de las expectativas
               planteadas […] Atraco a las tres es algo más que el resultado del saber hacer en el montaje o la puesta en escena
               de un director artesano». (José María Forqué)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/Atraco-a-las-tres_bzfais.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "CASI UN CABALLERO",
@@ -543,7 +543,7 @@ Movie.create(title: "CASI UN CABALLERO",
               bien porque tiene un gran talento intuitivo, aparte de su
               enorme encanto personal. Creamos muchos 'gags' y
               nos divertimos mucho en el rodaje». (José María Forqué)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678444227/Filmoteca/Casi-un-caballero_gq9gpg.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "¡DAME UN POCO DE AMOOOR…!",
@@ -559,7 +559,7 @@ Movie.create(title: "¡DAME UN POCO DE AMOOOR…!",
               en los cómics de la época. Había una estilización de trucos visuales, de mucha semejanza con la técnica de los
               videoclips, tan en boga hoy. Aquello suponía entonces
               una curiosa novedad». (Florentino Soria)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/Dame-un-poco-de-amooor_pjjnqw.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "DE ESPALDAS A LA PUERTA",
@@ -577,7 +577,7 @@ Movie.create(title: "DE ESPALDAS A LA PUERTA",
               maestro siempre en ambición y refinamiento, luce Forqué
               su flexible dominio de los recursos cinematográficos».
               (Carlos Fernández Cuenca)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/De-espaldas-a-la-puerta_iqp6tq.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "EL SEGUNDO PODER",
@@ -595,7 +595,7 @@ Movie.create(title: "EL SEGUNDO PODER",
               este respecto, en esta conjunción de aciertos formales,
               hay que reconocer los singulares méritos de los directores artístico y de fotografía, Rafael Richart y Alejandro
               Ulloa». (Florentino Soria)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/El-segundo-poder_jnonuq.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "EMBAJADORES EN EL INFIERNO",
@@ -622,7 +622,7 @@ Movie.create(title: "EMBAJADORES EN EL INFIERNO",
               había pronosticado fue un éxito tremendo. Al llegar al final se hizo un gran silencio y la sala se llenó de pañuelos
               porque la gente lloraba. […] Resolvió mi vida profesional».
               (José María Forqué)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/Embajadores-en-el-infierno_cawdde.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "LAS QUE TIENEN QUE SERVIR",
@@ -643,7 +643,7 @@ Movie.create(title: "LAS QUE TIENEN QUE SERVIR",
               con situaciones divertidas y diálogos ocurrentes. Unas
               'chachas' españolas, sirviendo en el chalet de un típico matrimonio americano y con unos novios al 'ibérico
               modo', pueden dar lugar a momentos bien regocijantes». (Florentino Soria)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/Las-que-tienen-que-servir_wgqo45.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "MARIBEL Y LA EXTRAÑA FAMILIA ",
@@ -661,7 +661,7 @@ Movie.create(title: "MARIBEL Y LA EXTRAÑA FAMILIA ",
               las posibilidades de la cámara –que le permite crear las
               secuencias de la pensión de las prostitutas- la división de
               diferentes ambientes donde se desarrollan las dos formas de vida. Ambientes que Forqué construye con exquisito cuidado». (Fernando Lara y Eduardo Rodríguez)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438460/Filmoteca/Maribel-y-la-extra%C3%B1a-familia_sa1rnu.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "NO ES NADA MAMÁ, SOLO UN JUEGO ",
@@ -683,7 +683,7 @@ Movie.create(title: "NO ES NADA MAMÁ, SOLO UN JUEGO ",
               bellas crecen en la putrefacción, nacen del humus, la
               muchacha, que había llegado a un servilismo y degradación absolutos, resurge, liberada y distinta, de la misma
               putrefacción». (José María Forqué)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438460/Filmoteca/No-es-nada-mam%C3%A1_-s%C3%B3lo-un-juego_xq8rve.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "TENGO 17 AÑOS",
@@ -699,7 +699,7 @@ Movie.create(title: "TENGO 17 AÑOS",
               no era ni bueno ni malo, era un genio, un actor imposible
               de clasificar. No creo que su trabajo fuera meditado, estructurado; lo hacía instintivamente, y como él tenía un
               poder de proyección enorme, salían unas cosas maravillosas». (José María Forqué)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/Tengo-17-a%C3%B1os_hqoc11.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 Movie.create(title: "YO HE VISTO A LA MUERTE",
@@ -716,7 +716,7 @@ Movie.create(title: "YO HE VISTO A LA MUERTE",
               antiguo pues su padre había sido un prestigioso crítico
               de toros. Nos interesaba reflejar, en forma de docudrama, una realidad, sin las deformaciones habituales».
               (José María Forqué)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/Yo-he-visto-a-la-muerte_yobfi2.jpg",
               cycle_id: Cycle.order(:id)[2].id)
 
 
@@ -746,7 +746,7 @@ Cycle.create(name: "DOUGLAS SIRK LA EMOCIÓN INMEDIATA",
               sea en Kansas City o en Singapur”. Vaya locura,
               América, ¿no?",
               quote: "Ciclo 4",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/Esc%C3%A1ndalo-en-Paris_x7kc97.jpg",
               color: "green-cycle",
               start_date: Date.new(today_date.year, 1, 1),
               end_date: Date.new(today_date.year, today_date.month + 2, 1))
@@ -770,7 +770,7 @@ Movie.create(title: "¿ALGUIEN HA VISTO A MI CHICA?",
               guapo. Pero la cámara ve con su propio ojo. Ve cosas que
               el ojo humano no detecta. Y al fin aprendes a confiar en
               tu cámara». (Douglas Sirk)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/Alguien-ha-visto-a-mi-chica_bsqrn1.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "ATILA, REY DE LOS HUNOS",
@@ -797,7 +797,7 @@ Movie.create(title: "ATILA, REY DE LOS HUNOS",
               protagonista. […] Le dije a Chandler: “Piénsalo, porque el
               personaje del huno va a dominar la película”. Pero él solo
               decía “Nunca me ha oscurecido un villano”. Y, como sabes, la película es de Palance». (Douglas Sirk)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/Atila-rey-de-los-hunos_f5dgeo.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "DOUGLAS SIRK - HOPE AS IN DESPAIR",
@@ -814,7 +814,7 @@ Movie.create(title: "DOUGLAS SIRK - HOPE AS IN DESPAIR",
               Hüben. Tras la mesa redonda habrá un pequeño descanso de diez minutos y acto seguido se proyectará la
               película. Duración aproximada de la mesa redonda: 60’
               (Total sesión: 140’).",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/Douglas-SirkHope-as-in-Despair_evelu1.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "ESCÁNDALO EN PARÍS",
@@ -835,7 +835,7 @@ Movie.create(title: "ESCÁNDALO EN PARÍS",
               que utilicé es el periodo más interesante, el que se presta
               mejor a la ironía; hay mucha en su oscilación entre policía y ladrón. Y esto proporciona al personaje de Sanders
               mejor margen para actuar». (Douglas Sirk)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/Esc%C3%A1ndalo-en-Paris_x7kc97.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "LA PRIMERA LEGIÓN",
@@ -851,7 +851,7 @@ Movie.create(title: "LA PRIMERA LEGIÓN",
               milagro de verdad”. Es como si Dios se presentara y dijese: “Parece que ha habido por aquí un falso milagro, cosa
               a que nadie puede hacerle muy feliz, pero por Dios que
               habrá uno de verdad. Ahora veréis”, y empieza a arremangarse». (Douglas Sirk)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678443539/Filmoteca/La-primera-legion_mfqnho.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "ORGULLO DE RAZA",
@@ -870,7 +870,7 @@ Movie.create(title: "ORGULLO DE RAZA",
               y tortura utilizadas para doblegar la voluntad de los conspiradores detenidos. Sirk —un emigrante alemán— ofrece también una
               visión velada de la resistencia a la ocupación nazi en la Europa de
               la Segunda Guerra Mundial». (Richard Brody)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438460/Filmoteca/Orgullo-de-raza_cvjxdf.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "PACTO TENEBROSO",
@@ -889,7 +889,7 @@ Movie.create(title: "PACTO TENEBROSO",
               siempre saben mucho de la vida; son las bondadosas las
               que tienen que romper con la hipnosis». (Farran Smith
               Nehme)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438460/Filmoteca/Pacto_tenebroso_fftm9y.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "RAZA DE VIOLENCIA",
@@ -916,7 +916,7 @@ Movie.create(title: "RAZA DE VIOLENCIA",
               apaches, ninguna de las cuales hablaba tampoco la otra
               lengua. La batalla fue una de las cosas más apasionantes
               que he hecho nunca». (Douglas Sirk)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438460/Filmoteca/Raza-de-violencia_cgep93.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "SLIGHTLY FRENCH",
@@ -941,7 +941,7 @@ Movie.create(title: "SLIGHTLY FRENCH",
               género, que evita cualquier presencia de la oscuridad,
               es ignorado en favor de una fotografía altamente contrastada y escenarios cargados de sombras que resultan
               más desconcertantes que tranquilizadores». (Tom Ryan)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438460/Filmoteca/Slightly-French_qrror5.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "TEMPESTAD EN LA CUMBRE",
@@ -959,7 +959,7 @@ Movie.create(title: "TEMPESTAD EN LA CUMBRE",
               algunos de los casi imposibles guiones de las películas
               que tuve que dirigir. Por supuesto, tenía que seguir las
               reglas, evitar experimentos, atenerme a los gustos familiares, poner “finales felices” y todo eso». (Douglas Sirk)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438460/Filmoteca/Tempestad-en-la-cumbre_o0jnzc.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Movie.create(title: "THE LADY PAYS OFF",
@@ -978,7 +978,7 @@ Movie.create(title: "THE LADY PAYS OFF",
               que define qué es ser una mujer. Es una profesional respetada, pero sus habilidades se consideran inseparables
               de las necesidades del hogar. Se la alaba porque es la
               madre que tienen los niños cuando sus verdaderas madres no están cerca». (Tom Ryan)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/The-Lady-Pays-Off_ueibmh.jpg",
               cycle_id: Cycle.order(:id)[3].id)
 
 Cycle.create(name: "HOMENAJE A EUGENIO MARTÍN",
@@ -1004,7 +1004,7 @@ Cycle.create(name: "HOMENAJE A EUGENIO MARTÍN",
               Christopher Lee, comedias con Lola Flores
               o dramas con Marisol.",
               quote: "Ciclo 5",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/El-precio-de-un-hombre_lausgl.jpg",
               color: "yellow-cycle",
               start_date: Date.new(today_date.year, today_date.month, 1),
               end_date: Date.new(today_date.year, today_date.month, 1))
@@ -1020,7 +1020,7 @@ Movie.create(title: "EL PRECIO DE UN HOMBRE ",
               quote: "«En El precio de un hombre predomina la tradición americana. Por lo menos, eso fue lo que intenté yo. Porque
               una cosa es que el wéstern tenga dureza, que eso lo tenían todos los americanos, porque América es un pueblo
               duro, y otra cosa es que tenga cinismo, que eso lo introdujo Italia, que es un pueblo cínico». (Eugenio Martín)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/El-precio-de-un-hombre_lausgl.jpg",
               cycle_id: Cycle.order(:id)[4].id)
 
 Movie.create(title: "HIPNOSIS",
@@ -1035,7 +1035,7 @@ Movie.create(title: "HIPNOSIS",
               de la fotografía en blanco y negro, redondean un gratísimo tono particular, a la vez típico y atípico, que basta y sobra para reivindicar, una vez más y por si todavía
               hiciera falta, el magnífico cine de género en coproducción propuesto por Europa durante los años 50/60».
               (Carlos Aguilar y Anita Haas)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438459/Filmoteca/Hipnosis_atwqla.jpg",
               cycle_id: Cycle.order(:id)[4].id)
 
 Movie.create(title: "PÁNICO EN EL TRANSIBERIANO",
@@ -1051,7 +1051,7 @@ Movie.create(title: "PÁNICO EN EL TRANSIBERIANO",
               cine fantástico recoge todos los mundos posibles que la
               mente humana puede poner en pie, y puede hacerlo con
               la suficiente coherencia para que lleguen a impresionarnos y a emocionarnos». (Eugenio Martín)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678444087/Filmoteca/Panico-en-el-Transiberian_zkwpfz.jpg",
               cycle_id: Cycle.order(:id)[4].id)
 
 Movie.create(title: "UNA VELA PARA EL DIABLO",
@@ -1070,13 +1070,13 @@ Movie.create(title: "UNA VELA PARA EL DIABLO",
               fusilado. ¿Cuántas historias de horror, de auténtico horror, permanecen ocultas en el marco de nuestra guerra
               civil? No hay que enfocarlas sólo como historias dramáticas estrictas, con ellas se pueden entrar también en el
               mundo de la fantasía negra irracional». (Eugenio Martín)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/Una-vela-para-el-diablo_enpjhg.jpg",
               cycle_id: Cycle.order(:id)[4].id)
 
 Cycle.create(name: "LOS MIL Y UN EMBRUJOS DE LOLA FLORES",
               description: "",
               quote: "Ciclo 5",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/El-balcon-de-la-luna_gobpgj.jpg",
               color: "brown-cycle",
               start_date: Date.new(today_date.year, 1, 1),
               end_date: Date.new(today_date.year, 12, 1))
@@ -1093,14 +1093,14 @@ Movie.create(title: "EL BALCÓN DE LA LUNA",
               sus creaciones, los hombres ocupan mayoritariamente la posición de objetos de deseo […] Frente a la tradición patriarcal, aquí las mujeres son protagonistas y
               obtienen el poder, y los hombres son intercambiables».
               (Santiago Lomas Martínez)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/El-balcon-de-la-luna_gobpgj.jpg",
               cycle_id: Cycle.order(:id)[5].id)
 
 
 Cycle.create(name: "FLORES EN LA SOMBRA",
               description: "",
               quote: "Ciclo 6",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438462/Filmoteca/Cortometrajes-Adela-Medrano_ygyium.jpg",
               color: "black text-white",
               start_date: Date.new(today_date.year, today_date.month, 1),
               end_date: Date.new(today_date.year, today_date.month, 1))
@@ -1122,14 +1122,14 @@ Movie.create(title: "CORTOMETRAJES DE ADELA MEDRANO",
               • Esculturas para un paisaje (Adela Medrano, 1975).
               España. DCP. Color. 25’",
               quote: "",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438462/Filmoteca/Cortometrajes-Adela-Medrano_ygyium.jpg",
               cycle_id: Cycle.order(:id)[6].id)
 
 
 Cycle.create(name: "FILMOTECA JUNIOR",
               description: "",
               quote: "Ciclo 7",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/The-White-Snake-Enchantress_qxmgkb.jpg",
               color: "blue-cycle text-pink-cycle",
               start_date: Date.new(today_date.year, today_date.month, 1),
               end_date: Date.new(today_date.year, today_date.month, 1))
@@ -1162,7 +1162,7 @@ Movie.create(title: "CORTOMETRAJES DE FLEISCHER STUDIOS",
               • Gabby: Swing Cleaning (Dave Fleischer, 1941). EEUU.
               B-R. VOSE*. Color. 7’",
               quote: "",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438457/Filmoteca/Cortometrajes-Fleischer-Studios_vzahlg.jpg",
               cycle_id: Cycle.order(:id)[7].id)
 
 Movie.create(title: "LA VACA Y EL PRISIONERO",
@@ -1185,7 +1185,7 @@ Movie.create(title: "LA VACA Y EL PRISIONERO",
               a un actor y, desde este punto de vista, no nos decepciona. La prueba: la receta sigue funcionando y todavía nos
               complace degustar esta producción de Henri Verneuil».
               (Gérard Rocher)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678443735/Filmoteca/La-vaca-y-el-prisionero_xoz5am.jpg",
               cycle_id: Cycle.order(:id)[7].id)
 
 Movie.create(title: "THE WHITE SNAKE ENCHANTRESS ",
@@ -1200,13 +1200,13 @@ Movie.create(title: "THE WHITE SNAKE ENCHANTRESS ",
               para la casa Toei, probablemente el estudio de animación
               más importante de la historia de Japón.",
               quote: "",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438461/Filmoteca/The-White-Snake-Enchantress_qxmgkb.jpg",
               cycle_id: Cycle.order(:id)[7].id)
 
 
 Cycle.create(name: "OTRAS SESIONES",
               color: "blue-cycle",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438462/Filmoteca/Chantaje-en-Broadway_pyng2a.jpg",
               start_date: Date.new(today_date.year, today_date.month, 1),
               end_date: Date.new(today_date.year, today_date.month, 1))
 
@@ -1226,7 +1226,7 @@ Movie.create(title: "CHANTAJE EN BROADWAY",
               a ver Chantaje en Broadway. Aquel era el año de Vidas
               borrascosas y Sayonara: grandes y coloridas producciones con héroes y valores esópicos. Lo que ellos se perdieron, nosotros lo ganamos. Chantaje en Broadway es
               un absoluto clásico». (Gary Giddins)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438462/Filmoteca/Chantaje-en-Broadway_pyng2a.jpg",
               cycle_id: Cycle.order(:id)[8].id)
 
 Movie.create(title: "CRÍA CUERVOS",
@@ -1245,7 +1245,7 @@ Movie.create(title: "CRÍA CUERVOS",
               angustioso que funciona como perfecta metonimia no
               solo de buena parte de los valores y principios de la sociedad española de entonces, sino también de lo que el
               régimen franquista representaba». (Jara Yáñez)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/Cr%C3%ADa-cuervos_ohwwxm.jpg",
               cycle_id: Cycle.order(:id)[8].id)
 
 Movie.create(title: "MUJERES ENAMORADAS",
@@ -1262,7 +1262,7 @@ Movie.create(title: "MUJERES ENAMORADAS",
               una película de gran presupuesto y sin ningún tipo de recato, de los genitales masculinos, en una escena de amor
               gay velada que apareció solo dos años después de que
               Reino Unido legalizase la sodomía entre hombres mayores de 21 años». (Linda Ruth Williams)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438460/Filmoteca/Mujeres-enamoradas_hsr3d9.jpg",
               cycle_id: Cycle.order(:id)[8].id)
 
 Movie.create(title: "PASIÓN",
@@ -1282,7 +1282,7 @@ Movie.create(title: "PASIÓN",
               sonido mal sincronizado, Godard deja al descubierto las
               mentiras que nos contamos, poco a poco, sobre la forma
               en que funciona el mundo del arte». (Justine Peres Smith)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438460/Filmoteca/Pasi%C3%B3n_me9cpa.jpg",
               cycle_id: Cycle.order(:id)[8].id)
 
 Movie.create(title: "«SALA:B» Y EL SAINETE FALLERO",
@@ -1328,7 +1328,7 @@ Movie.create(title: "«SALA:B» Y EL SAINETE FALLERO",
               Maria Rosaria Omaggio, José Sancho, Josele Román,
               Josep Maria Angelat. España. 35 mm. VOSE*. Color. 91’
               ",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438458/Filmoteca/El-virgo-de-Visanteta_n9kmne.jpg",
               cycle_id: Cycle.order(:id)[8].id)
 
 Movie.create(title: "YO CONFIESO",
@@ -1343,7 +1343,7 @@ Movie.create(title: "YO CONFIESO",
               de la confesión. A partir del instante en que Montgomery
               Clift recibe en confesión la declaración del crimen cometido por Otto Hasse es el sacerdote quien se convierte
               realmente en culpable y así es como lo entiende el asesino». (François Truffaut)",
-              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1676301244/Filmoteca/April-April_rrjzli.jpg",
+              img_url: "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678443888/Filmoteca/Yo-confieso_gisblv.jpg",
               cycle_id: Cycle.order(:id)[8].id)
 
 
