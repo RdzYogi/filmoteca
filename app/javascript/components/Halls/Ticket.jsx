@@ -10,6 +10,8 @@ function Ticket(props) {
         <p>Asiento {props.seat_col}</p>
       </div>
       <p>Precio: {props.price}€</p>
+      <p>abono</p>
+      {/* remove one remaining in subscription + can only use 4 at a time */}
     </div>
   )
 }

@@ -19,22 +19,18 @@ function Hall() {
 
   const [movieInfo, setMovieInfo] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
-  const [wantedReservations, setWantedReservations] = useState([])
-  const [previousReservationsData, setPreviousReservationsData] = useState([])
-  const [newReservation, setNewReservation] = useState({})
-  const [pickedSeat, setPickedSeat] = useState({})
-  // const [available, setAvailable] = useState(true)
+  const [pickedSeats, setPickedSeats] = useState([])
 
   useEffect(() => {
     fetch(`/api/v1/projections/${id}`, {
       method: 'GET',
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json', "Authorization": authToken},
     })
     .then((response) => {
       return response.json()
     })
     .then((data) => {
-      console.log(data)
+      // console.log(data)
     // if (Object.keys(projection).length === 0 ) return
     const movie = data.include.movie
     const session = data.include.session
@@ -49,16 +45,11 @@ function Hall() {
     let i = lastRow
     let row = []
 
+    //data/row===row dataattributes e.target.data
+    // check if can put seat component w attribute row and column
     seats.reverse().forEach((seat, index) => {
-      const getInfo = () => {
-        setPickedSeat(seat)
-        setWantedReservations(prevWantedReservation => [...prevWantedReservation, {
-          session: session,
-          seat: seat
-        }])
-      }
       if (seat.row === i+""){
-        row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
+        row.push(<Seat key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
         if (seat.row === lastRow && seat.column === lastColumn){
           result.push(
             <div key={i + 1 + "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
@@ -98,7 +89,7 @@ function Hall() {
           )
           row = []
 
-          row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
+          row.push(<Seat key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
           i -= 1
         } else if (seat.row == 15) {
           result.push(
@@ -112,7 +103,7 @@ function Hall() {
             </div>)
           row = []
 
-          row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
+          row.push(<Seat key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
           i -= 1
         } else {
           result.push(
@@ -126,23 +117,80 @@ function Hall() {
             </div>)
           row = []
 
-          row.push(<Seat key={index + "row"} getInfo={getInfo}/>)
+          row.push(<Seat key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
           i -= 1
         }
       }
     })
     setFormatedHall(result)
-    })
-  }, [])
+  })
+}, [])
 
-  useEffect(()=> {
-    setNewReservation({
-      seat_id: pickedSeat
-    })
-  },[pickedSeat])
+const handleSeatClick = (e) => {
+  const row = e.target.dataset.row
+  const column = e.target.dataset.column
+  const selectedSeatsContainer = document.getElementById('selected-seats-container')
+  const selectedSeats = selectedSeatsContainer.childNodes
+  if (selectedSeats.length === 0){
+    setPickedSeats(prevPickedSeats => [...prevPickedSeats,
+      <div key={row+column} data-row={row} data-column={column} className='bg-black text-white p-2'>
+        <p>Asiento elegido:</p>
+        <div className='flex'>
+          <p>Fila {row}</p>
+          <p className='mx-2'>-</p>
+          <p>Asiento {column}</p>
+        </div>
+        {/* <p>Precio: {props.price}€</p> */}
+        <p>abono</p>
+      </div>
+    ])
+  } else {
+    let exists = false
+    for (let i = 0; i < selectedSeats.length; i++) {
+      if (selectedSeats[i].dataset.row === row && selectedSeats[i].dataset.column === column){
+        setPickedSeats([])
+        exists = true
+        for (let j = 0; j < selectedSeats.length; j++) {
+          if (selectedSeats[j] !== selectedSeats[i]){
+            setPickedSeats(prevPickedSeats => [...prevPickedSeats,
+              <div key={selectedSeats[j].dataset.row+selectedSeats[j].dataset.column} data-row={selectedSeats[j].dataset.row} data-column={selectedSeats[j].dataset.column} className='bg-black text-white p-2'>
+                <p>Asiento elegido:</p>
+                <div className='flex'>
+                  <p>Fila {selectedSeats[j].dataset.row}</p>
+                  <p className='mx-2'>-</p>
+                  <p>Asiento {selectedSeats[j].dataset.column}</p>
+                </div>
+                {/* <p>Precio: {props.price}€</p> */}
+                <p>abono</p>
+              </div>
+            ])
+          }
+        }
+        break
+      }
+    }
+    if (!exists){
+      setPickedSeats(prevPickedSeats => [...prevPickedSeats,
+        <div key={row+column} data-row={row} data-column={column} className='bg-black text-white p-2'>
+        <p>Asiento elegido:</p>
+        <div className='flex'>
+          <p>Fila {row}</p>
+          <p className='mx-2'>-</p>
+          <p>Asiento {column}</p>
+        </div>
+        {/* <p>Precio: {props.price}€</p> */}
+        <p>abono</p>
+      </div>
+      ])
+    }
+  }
+}
 
+const handleCreate = () => {
+  // retireve parent w id fget its children map push into newSeats array and extract all datatags which has seat
+  // reservations array of multiple seats id or rows and columns
+  // console.log(newReservation)
 
-  const handleCreate = () => {
     fetch('/api/v1/reservations', {
       method: 'POST',
       headers: {
@@ -150,14 +198,14 @@ function Hall() {
         "Authorization": authToken,
         'X-CSRF-Token': csrfToken
       },
-      body: JSON.stringify(newReservation)
+      body: JSON.stringify({reservationinfo: {seats: newSeats, projection_id: id}})
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
+      // console.log(data)
     })
     .catch((err) => {
-      console.log(err.message)
+      // console.log(err.message)
     })
   }
 
@@ -172,7 +220,11 @@ function Hall() {
             {formatedHall}
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
-          {(Object.keys(wantedReservations).length === 0 ) ? '' :
+          <div id='selected-seats-container'>
+            {pickedSeats}
+          </div>
+
+          {/* {(Object.keys(wantedReservations).length === 0 ) ? '' :
             <div className='my-10 bg-slate-300 p-5'>
               <p className='text-center underline text-lg'>En tu carrito</p>
               <div className='flex'>
@@ -183,23 +235,11 @@ function Hall() {
                 <p>{movieInfo.hall.name}</p>
               </div>
               <p className='font-bold'>{movieInfo.movie.title}</p>
-              {wantedReservations.map((wantedReservation, index) => {
-                // if (!wantedReservations.includes(wantedReservation))
-                  return (
-                    <div key={index} className="py-2">
-                    <Ticket
-                      seat_row={wantedReservation.seat.row}
-                      seat_col={wantedReservation.seat.column}
-                      // price={}
-                      />
-                  </div>
-                )
-              })}
               <p>Total entradas: {wantedReservations.length}</p>
               <p>Total precio: €</p>
               <SubmitButton label="Comprar" onClick={handleCreate}/>
             </div>
-          }
+          } */}
           </div>
           <div className='flex items-center'>
             <FontAwesomeIcon icon={faCircleExclamation} />

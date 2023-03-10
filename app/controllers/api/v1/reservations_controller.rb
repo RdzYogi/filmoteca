@@ -1,5 +1,6 @@
 class Api::V1::ReservationsController < ApplicationController
-  # before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create]
+  protect_from_forgery with: :null_session
 
   # props dont need index nor show
   def index
@@ -18,18 +19,18 @@ class Api::V1::ReservationsController < ApplicationController
   # end
 
   def create
-    # user = current_user
-    # subscription = user.subscription
-    # projection = Projection.find(params[id])
-    # session = projection.session
-    # reservation = Reservation.create(user_id: user, subscription_id: subscription, session_id: session, seat_id: reservation_params)
-    reservation = Reservation.create(reservation_params)
+    projection = Projection.find(reservation_params[:projection_id].to_i)
+    session = projection.session
+    reservation_params[:seats].forEach do |seat|
+      reservation = Reservation.new(seat_id: seat.id, session_id: session.id, user_id: current_user.id)
+      reservation.save
+    end
     render json: reservation
   end
 
   private
 
   def reservation_params
-    params.require(:reservation).permit(:id, :session_id, :seat_id, :user_id, :subscription_id)
+    params.require(:reservationinfo).permit(:seats, :projection_id)
   end
 end
