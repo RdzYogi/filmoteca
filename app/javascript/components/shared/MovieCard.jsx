@@ -27,7 +27,10 @@ function MovieCard(props){
         <p className="">{showDateObject.hour+":"+showDateObject.minutes}h</p>
         <div className={"h-px w-1/12 self-center" + (cycle.color.split(" ")[1] === "text-pink-cycle"?" bg-pink-cycle":" bg-"+cycle.color)}></div>
         <p className="">{hall.name}</p>
-        <p className={"font-bold p-1 bg-"+cycle.color + (cycle.color.split(" ")[0]==="black" ? "":" text-black") }>Comprar</p>
+        <Link to={`/projections/${projection.projection.id}`}>
+          {/* <p className={"text-black font-bold p-1 bg-"+cycle.color}>Comprar</p> */}
+          <p className={"font-bold p-1 bg-"+cycle.color + (cycle.color.split(" ")[0]==="black" ? "":" text-black") }>Comprar</p>
+        </Link>
       </div>
       ])
     })
