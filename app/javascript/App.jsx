@@ -52,7 +52,6 @@ function App() {
         <Route exact path="/contacto" element={<Contacto />} />
         <Route exact path="/ciclos/:slug" element={<Cycle />} />
         <Route exact path="/movies/:slug" element={<Movie />} />
-        <Route exact path="/projections/:id" element={<Hall />} />
         {/* <Route exact path="/signup" element={<Signup />} /> */}
 
         {/* User routes */}
@@ -60,6 +59,11 @@ function App() {
         <Route exact path="/sign_in" element={<SignIn />} />
 
         {/* Protected routes, You need to be signed in to view these  */}
+        <Route exact path="/projections/:id" element={
+          <Protected>
+            <Hall />
+          </Protected>
+        } />
         <Route exact path="/user_details" element={
           <Protected>
             <UserDetails />
