@@ -71,11 +71,11 @@ function Movie() {
     if (moviesData.length === 0 || Object.keys(mainMovie).length === 0 ) return
     //console.log(moviesData)
     const currentCycle = mainMovie.include.cycle.id
+    const currentMovie = mainMovie.movie.id
     moviesData.forEach((movie, index) => {
-      if (movie.include.cycle.id === currentCycle){
+      if (movie.include.cycle.id === currentCycle && movie.movie.id !== currentMovie){
         console.log(movie)
         setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
-
       }
     })
   }, [moviesData, mainMovie])
