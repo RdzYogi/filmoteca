@@ -58,35 +58,19 @@ function Movie() {
           const dateObjectDay = getDateObject(projection.include.session.play_time, {monthLong: true})
           const capitalizedDay = dateObject.day.charAt(0).toUpperCase() + dateObject.day.slice(1)
           setProjectionsData(projectionsData => [...projectionsData,
-            <div className="border-t-2 border-t-gray-800 mb-5" key={projection.projection.id}>
+            <div className="border-t-2 border-t-gray-800 mb-5 flex flex-col" key={projection.projection.id}>
               <h3 className="pt-3 mx-2 font-bold">{projection.include.hall.name}</h3>
               <h3 className="pt-3 mx-2">{capitalizedDay + ", " + dateObjectDay.day + " de " + dateObject.month + " " + dateObject.year}</h3>
               <h3 className="py-3 mx-2">{dateObject.hour + ":" + dateObject.minutes}</h3>
-              <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100">Comprar</button>
+              <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100 self-center">Comprar</button>
             </div>
           ])
-<<<<<<< HEAD
-        });
-        setMainMovie(data)
-        setLoaded(true)
-      });
-  }, [])
-  useEffect(() => {
-    if (moviesData.length === 0 || Object.keys(mainMovie).length === 0 ) return
-    //console.log(moviesData)
-    const currentCycle = mainMovie.include.cycle.id
-    const currentMovie = mainMovie.movie.id
-    moviesData.forEach((movie, index) => {
-      if (movie.include.cycle.id === currentCycle && movie.movie.id !== currentMovie){
-        console.log(movie)
-=======
         })
       }
     })
     moviesData.forEach((movie, index) => {
       if (movie.include.cycle.id === currentCycle && movie.movie.slug !== slug){
         // console.log(movie)
->>>>>>> master
         setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
       }
     })
