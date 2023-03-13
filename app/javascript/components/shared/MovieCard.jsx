@@ -21,7 +21,7 @@ function MovieCard(props){
       const hall = projection.include.hall
       const showDateObject = getDateObject(projection.include.session.play_time, options)
       setShowDates(showDates => [...showDates,
-      <div key={index+"showTimes"} className={"flex justify-between place-items-center text-xs text-"+cycle.color}>
+      <div key={index+"showTimes"} className={"flex justify-between place-items-center text-xs text-"+(cycle.color.split(" ")[0] === "black" ?  "black": cycle.color)}>
         <p className="">{showDateObject.day} de {showDateObject.month}</p>
         <div className={"h-px w-1/12 self-center" + (cycle.color.split(" ")[1] === "text-pink-cycle"?" bg-pink-cycle":" bg-"+cycle.color)}></div>
         <p className="">{showDateObject.hour+":"+showDateObject.minutes}h</p>
