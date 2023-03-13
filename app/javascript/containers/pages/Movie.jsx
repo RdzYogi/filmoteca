@@ -59,7 +59,7 @@ function Movie() {
               <h3 className="pt-3 mx-2 font-bold">{projection.include.hall.name}</h3>
               <h3 className="pt-3 mx-2">{capitalizedDay + ", " + dateObjectDay.day + " de " + dateObject.month + " " + dateObject.year}</h3>
               <h3 className="py-3 mx-2">{dateObject.hour + ":" + dateObject.minutes}</h3>
-              <p className="font-bold px-1 py-2 mx-2 bg-black text-slate-100 text-center">Comprar</p>
+              <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100">Comprar</button>
             </div>
           ])
         });
@@ -73,7 +73,7 @@ function Movie() {
     const currentCycle = mainMovie.include.cycle.id
     moviesData.forEach((movie, index) => {
       if (movie.include.cycle.id === currentCycle){
-        //console.log(movie)
+        console.log(movie)
         setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
 
       }
@@ -86,8 +86,8 @@ function Movie() {
       <div className="pt-40">
         {loaded &&
         <div className="w-full mx-auto md:max-w-7xl">
-          <div className="flex justify-between items-center">
-            <div className="flex mb-7">
+          <div className="flex flex-col-reverse sm:flex-row first:items-center sm:justify-between md:items-center">
+            <div className="flex my-7">
               <div className={"w-4 bg-"+mainMovie.include.cycle.color}></div>
               <div className="ml-3">
                 <h3 className="h3 pt-1 font-bold">{mainMovie.include.cycle.name}</h3>
@@ -97,16 +97,16 @@ function Movie() {
             </div>
           <DownloadButton />
           </div>
-          <div className="flex mb-16">
-            <div className="w-3/4">
-              <img src={mainMovie.movie.img_url} className="aspect-video max-w-4xl object-cover" alt={mainMovie.movie.title}
+          <div className="flex flex-col sm:flex-row mb-16">
+            <div className="w-full sm:w-3/4">
+              <img src={mainMovie.movie.img_url} className="aspect-video w-4xl object-cover" alt={mainMovie.movie.title}
                 onError={({ currentTarget }) => {
                   currentTarget.src = "https://res.cloudinary.com/drz3yyvjm/image/upload/v1678438457/Filmoteca/Default_a26wtz.jpg";
                 }}
               />
-              <p className="max-w-4xl mt-5">{mainMovie.movie.description}</p>
+              <p className="w-4xl my-5">{mainMovie.movie.description}</p>
             </div>
-            <div className="w-1/4 ml-5">
+            <div className="w-full sm:w-1/4 ml-5">
               <h3 className="text-center font-bold text-lg text-gray-800 pb-5">PASES</h3>
               {projectionsData}
             </div>
