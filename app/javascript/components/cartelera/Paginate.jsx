@@ -27,38 +27,20 @@ function Paginate({movies}) {
     window.scrollTo(0, 0)
     e.preventDefault()
     setCurrentPage(Number(e.target.innerText))
-    const allPagesButtons = document.getElementById('pages').children
-    for (let i = 0; i < allPagesButtons.length; i++) {
-      allPagesButtons[i].classList.remove(selectedBackground)
-      allPagesButtons[i].classList.add(hoverBackground)
-    }
-    e.target.classList.add(selectedBackground)
-    e.target.classList.remove(hoverBackground)
+    resetButtons()
   }
   const handleFirst = (e) => {
     window.scrollTo(0, 0)
     e.preventDefault()
     setCurrentPage(1)
-    const allPagesButtons = document.getElementById('pages').children
-    for (let i = 0; i < allPagesButtons.length; i++) {
-      allPagesButtons[i].classList.remove(selectedBackground)
-      allPagesButtons[i].classList.add(hoverBackground)
-    }
-    allPagesButtons[0].classList.add(selectedBackground)
-    allPagesButtons[0].classList.remove(hoverBackground)
+    resetButtons()
   }
   const handleLast = (e) => {
     window.scrollTo(0, 0)
     e.preventDefault()
     const pagesTotal = Math.ceil(movies.length/moviesPerPage)
     setCurrentPage(pagesTotal)
-    const allPagesButtons = document.getElementById('pages').children
-    for (let i = 0; i < allPagesButtons.length; i++) {
-      allPagesButtons[i].classList.remove(selectedBackground)
-      allPagesButtons[i].classList.add(hoverBackground)
-    }
-    allPagesButtons[pagesTotal-1].classList.add(selectedBackground)
-    allPagesButtons[pagesTotal-1].classList.remove(hoverBackground)
+    resetButtons()
   }
 
   const handlePrev = (e) => {
@@ -66,13 +48,7 @@ function Paginate({movies}) {
     e.preventDefault()
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1)
-      const allPagesButtons = document.getElementById('pages').children
-      for (let i = 0; i < allPagesButtons.length; i++) {
-        allPagesButtons[i].classList.remove(selectedBackground)
-        allPagesButtons[i].classList.add(hoverBackground)
-      }
-      allPagesButtons[currentPage-2].classList.add(selectedBackground)
-      allPagesButtons[currentPage-2].classList.remove(hoverBackground)
+      resetButtons()
     }
   }
   const handleNext = (e) => {
@@ -81,13 +57,7 @@ function Paginate({movies}) {
     const pagesTotal = Math.ceil(movies.length/moviesPerPage)
     if (currentPage < pagesTotal) {
       setCurrentPage(currentPage + 1)
-      const allPagesButtons = document.getElementById('pages').children
-      for (let i = 0; i < allPagesButtons.length; i++) {
-        allPagesButtons[i].classList.remove(selectedBackground)
-        allPagesButtons[i].classList.add(hoverBackground)
-      }
-      allPagesButtons[currentPage].classList.add(selectedBackground)
-      allPagesButtons[currentPage].classList.remove(hoverBackground)
+      resetButtons()
     }
   }
 
@@ -95,6 +65,7 @@ function Paginate({movies}) {
   const resetButtons = () => {
     const allPagesButtonsParent = document.getElementById('pages')
     if(allPagesButtonsParent === null) return
+    console.log("resetting")
     const allPagesButtons = allPagesButtonsParent.children
     for (let i = 0; i < allPagesButtons.length; i++) {
       if (allPagesButtons[i].innerText === currentPage.toString()) {
@@ -102,7 +73,9 @@ function Paginate({movies}) {
         allPagesButtons[i].classList.remove(hoverBackground)
       } else {
       allPagesButtons[i].classList.remove(selectedBackground)
-      allPagesButtons[i].classList.add(hoverBackground)
+      if (allPagesButtons[i].nodeName === "BUTTON") {
+        allPagesButtons[i].classList.add(hoverBackground)
+      }
       }
     }
   }
@@ -113,8 +86,8 @@ function Paginate({movies}) {
 
     const firstPage = <button className={spacing +' font-bold  h-6 w-6 transition-all duration-300 rounded-full ' +(currentPage === 1 ? selectedBackground : hoverBackground)} key={0+"page"} onClick={handleClick}>{1}</button>
     const lastPage = <button className={spacing +' font-bold h-6 w-6 transition-all duration-300 rounded-full ' + (currentPage === pagesTotal ? selectedBackground : hoverBackground)} key={pagesTotal-1+"page"} onClick={handleClick}>{pagesTotal}</button>
-    const dotsBefore = <div className={spacing+' font-bold h-6 transition-all duration-300 rounded-full'} key={pagesTotal+"pageDotsBefore"}>...</div>
-    const dotsAfter = <div className={spacing+' font-bold h-6 transition-all duration-300 rounded-full'} key={pagesTotal+"pageDotsAfter"}>...</div>
+    const dotsBefore = <div className={spacing+' font-bold h-6'} key={pagesTotal+"pageDotsBefore"}>...</div>
+    const dotsAfter = <div className={spacing+' font-bold h-6'} key={pagesTotal+"pageDotsAfter"}>...</div>
     if (currentPage < 4) {
       return [firstPage, pages[1], pages[2], pages[3], dotsAfter, lastPage]
     } else if (currentPage > pagesTotal-3) {
@@ -139,26 +112,6 @@ function Paginate({movies}) {
             <FontAwesomeIcon icon={faAngleLeft}/>
           </button>
 
-            {/* Principio */}
-            {/* << < 1 2 3 4 .. 10 > >> */}
-            {/* Pagina 2 */}
-            {/* << < 1 2 3 4 .. 10 > >> */}
-            {/* Pagina 3 */}
-            {/* << < 1 2 3 4 .. 10 > >> */}
-            {/* Pagina 4 */}
-            {/* << < 1 .. 3 4 5 .. 10 > >> */}
-            {/* Pagina 5 */}
-            {/* << < 1 .. 4 5 6 .. 10 > >> */}
-            {/* Pagina 6 */}
-            {/* << < 1 .. 5 6 7 .. 10 > >> */}
-            {/* Pagina 7 */}
-            {/* << < 1 .. 6 7 8 .. 10 > >> */}
-            {/* Pagina 8 */}
-            {/* << < 1 .. 7 8 9 10 > >> */}
-            {/* Pagina 9 */}
-            {/* << < 1 .. 7 8 9 10 > >> */}
-            {/* Pagina 10 */}
-            {/* << < 1 .. 7 8 9 10 > >> */}
           <div id="pages" className="flex justify-center">
             {pages.length < 6 ? pages : formatPages(pages, currentPage)}
           </div>
