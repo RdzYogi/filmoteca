@@ -31,8 +31,6 @@ function Hall() {
       return response.json()
     })
     .then((data) => {
-      // console.log(data)
-    // if (Object.keys(projection).length === 0 ) return
     const movie = data.include.movie
     const session = data.include.session
     const hall = data.include.include.hall
@@ -50,8 +48,9 @@ function Hall() {
     //data/row===row dataattributes e.target.data
     // check if can put seat component w attribute row and column
     seats.reverse().forEach((seat, index) => {
+      // console.log(seat.row, i)
       if (seat.row === i+""){
-        row.push(<Seat key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
+        row.push(<Seat key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick}/>)
         if (seat.row === lastRow && seat.column === lastColumn){
           result.push(
             <div key={i + 1 + "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
@@ -84,7 +83,7 @@ function Hall() {
               </div>
               :
               <div className='flex'>
-                {row.reverse()}
+                {row}
               </div>
               }
             </div>
@@ -131,6 +130,7 @@ function Hall() {
 const handleSeatClick = (e) => {
   const row = e.target.dataset.row
   const column = e.target.dataset.column
+  console.log(row, column)
   const selectedSeatsContainer = document.getElementById('selected-seats-container')
   const selectedSeats = selectedSeatsContainer.childNodes
   if (selectedSeats.length === 0){
@@ -194,7 +194,7 @@ const handleCreate = () => {
   // console.log(newReservation)
   let newSeats = []
   const parent = document.getElementById('selected-seats-container')
-  console.log(parent)
+  // console.log(parent)
   parent.childNodes.forEach(child => {
     const newSeatRow = child.getAttribute('data-row')
     const newSeatColumn = child.getAttribute('data-column')
@@ -236,25 +236,31 @@ const handleCreate = () => {
             {formatedHall}
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
-          <div id='selected-seats-container'>
-            {pickedSeats}
-          </div>
-          {(Object.keys(pickedSeats).length === 0 ) ? '' :
-            <div className='my-10 bg-slate-300 p-5'>
-              <p className='text-center underline text-lg'>En tu carrito</p>
-              <div className='flex'>
-                <p>{getDateObject(movieInfo.session.play_time).day}/{getDateObject(movieInfo.session.play_time).month}/{getDateObject(movieInfo.session.play_time).year}</p>
-                <p className='mx-2'>-</p>
-                <p>{getDateObject(movieInfo.session.play_time).hour}:{getDateObject(movieInfo.session.play_time).minutes}h</p>
-                <p className='mx-2'>-</p>
-                <p>{movieInfo.hall.name}</p>
+          <div>
+            {(Object.keys(pickedSeats).length === 0 ) ? '' :
+              <div className='mt-10 bg-slate-300 p-5'>
+                <p className='text-center underline text-lg'>En tu carrito</p>
+                <div className='flex'>
+                  <p>{getDateObject(movieInfo.session.play_time).day}/{getDateObject(movieInfo.session.play_time).month}/{getDateObject(movieInfo.session.play_time).year}</p>
+                  <p className='mx-2'>-</p>
+                  <p>{getDateObject(movieInfo.session.play_time).hour}:{getDateObject(movieInfo.session.play_time).minutes}h</p>
+                  <p className='mx-2'>-</p>
+                  <p>{movieInfo.hall.name}</p>
+                </div>
+                <p className='font-bold'>{movieInfo.movie.title}</p>
               </div>
-              <p className='font-bold'>{movieInfo.movie.title}</p>
-              <p>Total entradas: {pickedSeats.length}</p>
-              <p>Total precio: €</p>
-              <SubmitButton label="Comprar" onClick={handleCreate}/>
+            }
+            <div id='selected-seats-container'>
+              {pickedSeats}
             </div>
-          }
+            {(Object.keys(pickedSeats).length === 0 ) ? '' :
+              <div className='bg-slate-300'>
+                <p>Total entradas: {pickedSeats.length}</p>
+                <p>Total precio: €</p>
+                <SubmitButton label="Comprar" onClick={handleCreate}/>
+              </div>
+            }
+            </div>
           </div>
           <div className='flex items-center'>
             <FontAwesomeIcon icon={faCircleExclamation} />
