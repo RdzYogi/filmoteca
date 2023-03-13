@@ -40,6 +40,7 @@ const lastDayOfMonthHelper = {
 // The calendar grid is an array of JSX elements
 // This array can be iterated over
 // To attach listeners to each day or week
+const otherMonthsDayColor = 'text-gray-400'
 
 function createSmallCalendar( {movies} : Props) {
   // console.log("smallCalendar",typeof movies,movies)
@@ -73,11 +74,11 @@ function createSmallCalendar( {movies} : Props) {
   const daysOfPreviousMonth = firstDayOfMonthHelper[firstDayOfMonth]
   if(monthIndex > 0) {
     for (let i = 0; i < daysOfPreviousMonth; i++) {
-      result.calendarGrid.push(<div className='text-gray-300 flex flex-col items-center' id={i+"prevMonth"} key={i+" prevMonth"}>{calendarHelperInfo[monthIndex-1].length-daysOfPreviousMonth+i+1}</div>)
+      result.calendarGrid.push(<div className={otherMonthsDayColor+' flex flex-col items-center'} id={i+"prevMonth"} key={i+" prevMonth"}>{calendarHelperInfo[monthIndex-1].length-daysOfPreviousMonth+i+1}</div>)
     }
   } else {
     for (let i = 0; i < daysOfPreviousMonth; i++) {
-      result.calendarGrid.push(<div className='text-gray-300 flex flex-col items-center' id={i+"prevMonth"} key={i+" prevMonth"}>{calendarHelperInfo.decemberYearBefore.length-daysOfPreviousMonth+i+1}</div>)
+      result.calendarGrid.push(<div className={otherMonthsDayColor+' flex flex-col items-center'} id={i+"prevMonth"} key={i+" prevMonth"}>{calendarHelperInfo.decemberYearBefore.length-daysOfPreviousMonth+i+1}</div>)
     }
   }
 
@@ -109,7 +110,7 @@ function createSmallCalendar( {movies} : Props) {
     const lastDayOfMonth = getDateObject(calendarHelperInfo[monthIndex].slice(-1),{dayLong:true}).day
     const daysOfNextMonth = lastDayOfMonthHelper[lastDayOfMonth]
     for (let i = 0; i < daysOfNextMonth; i++) {
-      result.calendarGrid.push(<div className='text-gray-300 flex flex-col items-center' id={i+" nextMonth"} key={i+" nextMonth"}>{i+1}</div>)
+      result.calendarGrid.push(<div className={otherMonthsDayColor+' flex flex-col items-center'} id={i+" nextMonth"} key={i+" nextMonth"}>{i+1}</div>)
     }
 
   return result
