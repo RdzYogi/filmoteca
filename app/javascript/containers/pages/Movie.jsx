@@ -69,10 +69,9 @@ function Movie() {
       }
     })
     moviesData.forEach((movie, index) => {
-      if (movie.include.cycle.id === currentCycle){
+      if (movie.include.cycle.id === currentCycle && movie.movie.slug !== slug){
         // console.log(movie)
         setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
-
       }
     })
   }, [moviesData, slug])

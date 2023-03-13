@@ -65,7 +65,7 @@ function Paginate({movies}) {
   const resetButtons = () => {
     const allPagesButtonsParent = document.getElementById('pages')
     if(allPagesButtonsParent === null) return
-    console.log("resetting")
+    // console.log("resetting")
     const allPagesButtons = allPagesButtonsParent.children
     for (let i = 0; i < allPagesButtons.length; i++) {
       if (allPagesButtons[i].innerText === currentPage.toString()) {
