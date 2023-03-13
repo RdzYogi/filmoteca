@@ -13,7 +13,7 @@ function Paginate({movies}) {
   useEffect(() => {
     window.scrollTo(0, 0)
     const pagesTotal = Math.ceil(movies.length/moviesPerPage)
-    // console.log(pagesTotal)
+    // console.log("triggered", pagesTotal)
     setCurrentPage(1)
     setPages([])
     for (let i = 0; i < pagesTotal; i++) {
@@ -92,9 +92,25 @@ function Paginate({movies}) {
   }
 
   // Logic for pagination of large number of pages
+  const resetButtons = () => {
+    const allPagesButtonsParent = document.getElementById('pages')
+    if(allPagesButtonsParent === null) return
+    const allPagesButtons = allPagesButtonsParent.children
+    for (let i = 0; i < allPagesButtons.length; i++) {
+      if (allPagesButtons[i].innerText === currentPage.toString()) {
+        allPagesButtons[i].classList.add(selectedBackground)
+        allPagesButtons[i].classList.remove(hoverBackground)
+      } else {
+      allPagesButtons[i].classList.remove(selectedBackground)
+      allPagesButtons[i].classList.add(hoverBackground)
+      }
+    }
+  }
   const formatPages = (pages, currentPage) => {
     const pagesTotal = pages.length
-    console.log(currentPage)
+    // console.log(currentPage)
+    resetButtons()
+
     const firstPage = <button className={spacing +' font-bold  h-6 w-6 transition-all duration-300 rounded-full ' +(currentPage === 1 ? selectedBackground : hoverBackground)} key={0+"page"} onClick={handleClick}>{1}</button>
     const lastPage = <button className={spacing +' font-bold h-6 w-6 transition-all duration-300 rounded-full ' + (currentPage === pagesTotal ? selectedBackground : hoverBackground)} key={pagesTotal-1+"page"} onClick={handleClick}>{pagesTotal}</button>
     const dotsBefore = <div className={spacing+' font-bold h-6 transition-all duration-300 rounded-full'} key={pagesTotal+"pageDotsBefore"}>...</div>
