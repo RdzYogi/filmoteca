@@ -41,16 +41,19 @@ function Movie() {
   const [loaded, setLoaded] = useState(false)
   const [movies, setMovies] = useState([])
   const [mainMovie, setMainMovie] = useState({})
-  const moviesData= useSelector(state => state.dataManager.movies)
-  useEffect(() => {
+  const moviesData = useSelector(state => state.dataManager.movies)
 
-    fetch(`/api/v1/movies/${slug}`)
-      .then((response) => response.json())
-      .then((data) => {
-        //console.log(data.include.projections)
-        data.include.projections.forEach(projection => {
-          // console.log(projection)
-          //console.log(getDateObject(projection.include.session.play_time, {dayLong: true, monthLong: true}))
+  useEffect(() => {
+    if (moviesData.length === 0) return
+    let currentCycle = 0
+    moviesData.forEach((movie, index) => {
+      if (movie.movie.slug === slug) {
+        // console.log(movie)
+        currentCycle = movie.include.cycle.id
+        setMainMovie(movie)
+        setLoaded(true)
+        setProjectionsData([])
+        movie.include.projections.forEach(projection => {
           const dateObject = getDateObject(projection.include.session.play_time, {dayLong: true, monthLong: true})
           const dateObjectDay = getDateObject(projection.include.session.play_time, {monthLong: true})
           const capitalizedDay = dateObject.day.charAt(0).toUpperCase() + dateObject.day.slice(1)
@@ -62,23 +65,17 @@ function Movie() {
               <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100">Comprar</button>
             </div>
           ])
-        });
-        setMainMovie(data)
-        setLoaded(true)
-      });
-  }, [])
-  useEffect(() => {
-    if (moviesData.length === 0 || Object.keys(mainMovie).length === 0 ) return
-    //console.log(moviesData)
-    const currentCycle = mainMovie.include.cycle.id
+        })
+      }
+    })
     moviesData.forEach((movie, index) => {
       if (movie.include.cycle.id === currentCycle){
-        console.log(movie)
+        // console.log(movie)
         setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
 
       }
     })
-  }, [moviesData, mainMovie])
+  }, [moviesData, slug])
 
   return (
     <Layout>
