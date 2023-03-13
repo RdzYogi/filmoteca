@@ -29,14 +29,16 @@ function Cycle() {
   return (
     <Layout>
       <Navbar/>
-      <div className="pt-40 max-w-7xl mx-auto pb-1 my-6">
+      <div className="pt-40 w-full mx-auto pb-1 my-6">
         {/* First check if the data is loaded, then render */}
         { loaded &&
           <Fragment>
-            <h2 className={"text-center font-bold text-2xl	pt-2 pb-2 bg-" + cycleData.cycle.color}>{cycleData.cycle.name}</h2>
-            <p className="text-justify mt-3 mb-7">{cycleData.cycle.description}</p>
-            <p className="text-justify mt-3 mb-7">{cycleData.cycle.quote}</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className='mx-auto w-[90%]'>
+              <h2 className={"text-center font-bold text-2xl	pt-2 pb-2 bg-" + cycleData.cycle.color}>{cycleData.cycle.name}</h2>
+              <p className="text-justify mt-3 mb-7">{cycleData.cycle.description}</p>
+              <p className="text-center mt-3 mb-7 font-bold text-lg">Peliculas del ciclo</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
               {/* {movies} */}
               {loaded ? movies : <div className="text-center">Cargando...</div>}
             </div>
