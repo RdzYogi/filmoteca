@@ -14,12 +14,13 @@ import getDateObject from '../../components/helpers/getDateObject';
 function Hall() {
   let params = useParams()
   const id = params.id;
-  const authToken = useSelector(state => state.userManager.userAuth)
   const csrfToken = document.querySelector("[name='csrf-token']").content
+  const authToken = useSelector(state => state.userManager.userAuth)
 
   const [movieInfo, setMovieInfo] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
   const [pickedSeats, setPickedSeats] = useState([])
+  const [hallAllSeats, setHallAllSeats] = useState([])
 
   useEffect(() => {
     fetch(`/api/v1/projections/${id}`, {
@@ -38,7 +39,8 @@ function Hall() {
     const seats = data.include.include.include.seats
     const reservations = data.include.include.reservations
     setMovieInfo({movie: movie, hall: hall, session: session})
-
+    setHallAllSeats(seats)
+// console.log(reservations)
     const lastRow = seats.slice(-1)[0].row
     const lastColumn = seats.slice(-1)[0].column
     const result = []
@@ -89,7 +91,7 @@ function Hall() {
           )
           row = []
 
-          row.push(<Seat key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
+          row.push(<Seat key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick}/>)
           i -= 1
         } else if (seat.row == 15) {
           result.push(
@@ -187,25 +189,39 @@ const handleSeatClick = (e) => {
 }
 
 const handleCreate = () => {
-  // retireve parent w id fget its children map push into newSeats array and extract all datatags which has seat
+  // retrieve parent w id get its children map push into newSeats array and extract all datatags which has seat
   // reservations array of multiple seats id or rows and columns
   // console.log(newReservation)
+  let newSeats = []
+  const parent = document.getElementById('selected-seats-container')
+  console.log(parent)
+  parent.childNodes.forEach(child => {
+    const newSeatRow = child.getAttribute('data-row')
+    const newSeatColumn = child.getAttribute('data-column')
+    hallAllSeats.filter(seat => {
+      if (seat.row === newSeatRow && seat.column === newSeatColumn){
+        newSeats.push(seat)
+      }
+    })
+  })
 
     fetch('/api/v1/reservations', {
       method: 'POST',
       headers: {
         "Content-type": "application/json",
-        "Authorization": authToken,
-        'X-CSRF-Token': csrfToken
+        'X-CSRF-Token': csrfToken,
+        "Authorization": authToken
       },
       body: JSON.stringify({reservationinfo: {seats: newSeats, projection_id: id}})
     })
     .then((response) => response.json())
     .then((data) => {
       // console.log(data)
+      alert("You purchase was successful")
     })
     .catch((err) => {
       // console.log(err.message)
+      alert("We are sorry, someone else has bought your chosen seat(s)")
     })
   }
 
@@ -223,8 +239,7 @@ const handleCreate = () => {
           <div id='selected-seats-container'>
             {pickedSeats}
           </div>
-
-          {/* {(Object.keys(wantedReservations).length === 0 ) ? '' :
+          {(Object.keys(pickedSeats).length === 0 ) ? '' :
             <div className='my-10 bg-slate-300 p-5'>
               <p className='text-center underline text-lg'>En tu carrito</p>
               <div className='flex'>
@@ -235,11 +250,11 @@ const handleCreate = () => {
                 <p>{movieInfo.hall.name}</p>
               </div>
               <p className='font-bold'>{movieInfo.movie.title}</p>
-              <p>Total entradas: {wantedReservations.length}</p>
+              <p>Total entradas: {pickedSeats.length}</p>
               <p>Total precio: €</p>
               <SubmitButton label="Comprar" onClick={handleCreate}/>
             </div>
-          } */}
+          }
           </div>
           <div className='flex items-center'>
             <FontAwesomeIcon icon={faCircleExclamation} />
