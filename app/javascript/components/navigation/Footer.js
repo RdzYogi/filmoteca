@@ -71,9 +71,9 @@ function Footer() {
             <ul role="list">
               {navigation.company.map((item) => (
                 <li key={item.name}>
-                  <a href={item.href} className="text-xs text-gray-50">
+                  <button href={item.href} className="text-xs text-gray-50">
                     {item.name}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>

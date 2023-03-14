@@ -58,11 +58,11 @@ function Movie() {
           const dateObjectDay = getDateObject(projection.include.session.play_time, {monthLong: true})
           const capitalizedDay = dateObject.day.charAt(0).toUpperCase() + dateObject.day.slice(1)
           setProjectionsData(projectionsData => [...projectionsData,
-            <div className="border-t-2 border-t-gray-800 mb-5" key={projection.projection.id}>
+            <div className="border-t-2 border-t-gray-800 mb-5 flex flex-col" key={projection.projection.id}>
               <h3 className="pt-3 mx-2 font-bold">{projection.include.hall.name}</h3>
               <h3 className="pt-3 mx-2">{capitalizedDay + ", " + dateObjectDay.day + " de " + dateObject.month + " " + dateObject.year}</h3>
               <h3 className="py-3 mx-2">{dateObject.hour + ":" + dateObject.minutes}</h3>
-              <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100">Comprar</button>
+              <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100 self-center">Comprar</button>
             </div>
           ])
         })
@@ -82,8 +82,8 @@ function Movie() {
       <div className="pt-40">
         {loaded &&
         <div className="w-full mx-auto md:max-w-7xl">
-          <div className="flex flex-col-reverse sm:flex-row first:items-center sm:justify-between md:items-center">
-            <div className="flex my-7">
+          <div className="flex flex-col-reverse sm:flex-row sm:justify-between items-center">
+            <div className="flex my-7 self-start">
               <div className={"w-4 bg-"+mainMovie.include.cycle.color}></div>
               <div className="ml-3">
                 <h3 className="h3 pt-1 font-bold">{mainMovie.include.cycle.name}</h3>
