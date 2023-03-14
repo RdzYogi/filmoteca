@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { userSignOut } from "../../redux/slices/userSlice"
 // For fontawesome free-solid, free-regular, free-brands, fontawesome-free
 import { faMagnifyingGlass, faCalendarDays, faFilm, faNewspaper, faBars, faRectangleXmark, faXmark, faHouse} from '@fortawesome/free-solid-svg-icons'
+import normalizeText from '../helpers/normalizeText';
 
 
 const maxSearchResults = 5;
@@ -68,7 +69,7 @@ function Navbar() {
   const handleSearchInput = (e) => {
     // console.log(e.target.value, moviesData, cyclesData)
     // setSearchTerm(e.target.value);
-    const regularExpression = new RegExp(e.target.value, 'i');
+    const regularExpression = new RegExp(normalizeText(e.target.value), 'i');
     if (e.target.value === "") {
       setSearchResults([])
     } else {
@@ -77,7 +78,8 @@ function Navbar() {
         const movieResultData = []
         moviesData.forEach(movie =>{
           // console.log(movie.movie.title.match(regularExpression))
-          if (movie.movie.title.match(regularExpression) && movieResultData.length < maxSearchResults) {
+          const normalizedTitle = normalizeText(movie.movie.title)
+          if (normalizedTitle.match(regularExpression) && movieResultData.length < maxSearchResults) {
             movieResultData.push(
               <Link className='flex justify-between' key={movie.movie.slug+movie.movie.id+movie.movie.title} to={"/movies/"+ movie.movie.slug} >
                 <p className='ml-5'>{movie.movie.title + " - " + movie.movie.director}</p>
@@ -89,7 +91,8 @@ function Navbar() {
         setSearchResults(prevState => [...prevState, ...movieResultData])
         const cycleResultData = []
         cyclesData.forEach(cycle => {
-          if ((cycle.name.match(regularExpression)) && (cycleResultData.length + movieResultData.length) < maxSearchResults) {
+          const normalizedTitle = normalizeText(cycle.name)
+          if ((normalizedTitle.match(regularExpression)) && (cycleResultData.length + movieResultData.length) < maxSearchResults) {
             cycleResultData.push(
               <Link className='flex justify-between' key={cycle.slug} to={"/ciclos/"+ cycle.slug} >
                 <p className='ml-5'>{cycle.name}</p>
