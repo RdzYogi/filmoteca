@@ -10,6 +10,7 @@ import MovieCard from "../../components/shared/MovieCard";
 import Carousel from "react-multi-carousel";
 import LeftArrow from "../../components/carousel/LeftArrow";
 import RightArrow from "../../components/carousel/RightArrow";
+import projectionStillToCome from "../../components/helpers/projectionStillToCome";
 
 const responsive = {
   superLargeDesktop: {
@@ -53,16 +54,21 @@ function Movie() {
         setMainMovie(movie)
         setLoaded(true)
         setProjectionsData([])
+        const today = new Date()
+        const todayDate = getDateObject(today)
         movie.include.projections.forEach(projection => {
           const dateObject = getDateObject(projection.include.session.play_time, {dayLong: true, monthLong: true})
           const dateObjectDay = getDateObject(projection.include.session.play_time, {monthLong: true})
           const capitalizedDay = dateObject.day.charAt(0).toUpperCase() + dateObject.day.slice(1)
           setProjectionsData(projectionsData => [...projectionsData,
-            <div className="border-t-2 border-t-gray-800 mb-5" key={projection.projection.id}>
+            <div className="border-t-2 border-t-gray-800 mb-5 flex flex-col" key={projection.projection.id}>
               <h3 className="pt-3 mx-2 font-bold">{projection.include.hall.name}</h3>
               <h3 className="pt-3 mx-2">{capitalizedDay + ", " + dateObjectDay.day + " de " + dateObject.month + " " + dateObject.year}</h3>
               <h3 className="py-3 mx-2">{dateObject.hour + ":" + dateObject.minutes}</h3>
-              <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100">Comprar</button>
+              { projectionStillToCome(dateObjectDay, todayDate) ?
+                <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100 self-center">Comprar</button> :
+                <p className="text-center">Finalizado</p>
+              }
             </div>
           ])
         })
@@ -82,13 +88,13 @@ function Movie() {
       <div className="pt-40">
         {loaded &&
         <div className="w-full mx-auto md:max-w-7xl">
-          <div className="flex flex-col-reverse sm:flex-row first:items-center sm:justify-between md:items-center">
-            <div className="flex my-7">
+          <div className="flex flex-col-reverse sm:flex-row sm:justify-between items-center">
+            <div className="flex my-7 self-start">
               <div className={"w-4 bg-"+mainMovie.include.cycle.color}></div>
               <div className="ml-3">
                 <h3 className="h3 pt-1 font-bold">{mainMovie.include.cycle.name}</h3>
                 <h3 className="h3 py-2 font-bold text-xl">{mainMovie.movie.title}</h3>
-                <h3 className="h3 pb-1 font-medium">{mainMovie.movie.director+" ("+ mainMovie.movie.year+")"} </h3>
+                <h3 className="h3 pb-1 font-medium">{mainMovie.movie.director} {mainMovie.movie.year === "" ? "":"("+mainMovie.movie.year+")"}</h3>
               </div>
             </div>
           <DownloadButton />
@@ -107,12 +113,12 @@ function Movie() {
               {projectionsData}
             </div>
           </div>
-          <div>
+          { movies.length > 0 && <div>
             <h3 className="text-center font-bold text-xl text-gray-800 pb-5">OTRAS PELÍCULAS DEL CICLO</h3>
             <Carousel customLeftArrow={<LeftArrow/>} customRightArrow={<RightArrow/>} itemClass='flex justify-center' responsive = {responsive} className="mx-auto mb-32 max-w-7xl">
               {movies}
             </Carousel>
-          </div>
+          </div>}
         </div>
         }
       </div>
