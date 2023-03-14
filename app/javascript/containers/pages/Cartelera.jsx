@@ -6,6 +6,7 @@ import Layout from '../../hocs/layouts/Layout'
 import MovieCard from '../../components/shared/MovieCard'
 import { useSelector } from 'react-redux'
 import Paginate from '../../components/cartelera/Paginate'
+import normalizeText from '../../components/helpers/normalizeText'
 
 
 function Cartelera() {
@@ -35,13 +36,15 @@ function Cartelera() {
     e.preventDefault()
     const query = document.getElementById('movie-search').value
     setSearchQuery(query)
+    const queryNormalized = normalizeText(query)
     const selectValue = document.getElementById('select-cycle').value
     setSelectCycleValue(selectValue)
     let newMovies = []
     movies.map((movie) => {
       // console.log(movie.props)
-
-      if(movie.props.movie.movie.title.toLowerCase().includes(query.toLowerCase()) || movie.props.movie.movie.director.toLowerCase().includes(query.toLowerCase())) {
+      const normalizedTitle = normalizeText(movie.props.movie.movie.title)
+      const normalizedDirector = normalizeText(movie.props.movie.movie.director)
+      if(normalizedTitle.toLowerCase().includes(queryNormalized.toLowerCase()) || normalizedDirector.toLowerCase().includes(queryNormalized.toLowerCase())) {
         if (selectValue === "") {
           // console.log("empty select",movie)
           newMovies = [...newMovies, movie]
