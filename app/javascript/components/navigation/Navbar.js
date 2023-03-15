@@ -127,6 +127,7 @@ function Navbar() {
               <div className='flex'>
                 <Link to="/admin/db" className='p-1 border rounded text-white border-black transition-all duration-300 hover:border-white'>Base de Datos</Link>
                 <Link to="/admin/file" className='p-1 border rounded text-white border-black transition-all duration-300 hover:border-white'>Subir Fichero</Link>
+                <Link to="/admin/msg" className='p-1 border rounded text-white border-black transition-all duration-300 hover:border-white'>Ver mensajes</Link>
               </div>
             }
 

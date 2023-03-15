@@ -21,6 +21,7 @@ import Hall from './containers/pages/Hall';
 import { fetchCyclesData, fetchMoviesData } from './redux/slices/dataSlice';
 import Protected from './routes/Protected';
 import ProtectedAdmin from './routes/ProtectedAdmin';
+import AdminMsg from './containers/pages/AdminMsg';
 
 
 
@@ -82,6 +83,12 @@ function App() {
             <AdminDB />
           </ProtectedAdmin>
           } />
+        <Route exact path="/admin/msg" element={
+          <ProtectedAdmin>
+            <AdminMsg />
+          </ProtectedAdmin>
+          } />
+
 
       </Routes>
     </Router>
