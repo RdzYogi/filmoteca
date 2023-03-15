@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import Footer from '../../components/navigation/Footer'
-import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
@@ -35,7 +32,6 @@ function Contacto() {
   }, [])
   return (
     <Layout>
-      <Navbar/>
       <div className='pt-40 p-4 max-w-7xl mx-auto pb-1 my-6 md:px-12 text-justify'>
         <section className="bg-white">
           <h2 className="text-center text-2xl font-bold">CONTACTO</h2>
@@ -79,7 +75,6 @@ function Contacto() {
           <p className='ml-4'>Para cuestiones urgentes, favor de contactar a través del número 902 044 414 para hablar con el equipo de soporte.</p>
         </div>
       </div>
-      <Footer/>
     </Layout>
   )
 }

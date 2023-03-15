@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux'
 import CalendarCards from '../../components/calendar/CalendarCards'
 import DesktopCalendar from '../../components/calendar/DesktopCalendar'
 import MobileCalendar from '../../components/calendar/MobileCalendar'
-import Footer from '../../components/navigation/Footer'
-import Navbar from '../../components/navigation/Navbar'
 import MovieCard from '../../components/shared/MovieCard'
 import Layout from '../../hocs/layouts/Layout'
 
@@ -61,7 +59,6 @@ function Calendar() {
   }
   return (
     <Layout>
-      <Navbar/>
       <div className="pt-40">
         <div id="movie-calendar-container" className='block md:hidden'>
           <MobileCalendar movies={movies}/>
@@ -70,7 +67,6 @@ function Calendar() {
           <DesktopCalendar movies={desktopCards}/>
         </div>
       </div>
-      <Footer/>
     </Layout>
   )
 }

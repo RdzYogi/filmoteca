@@ -1,13 +1,10 @@
 import React from 'react'
-import Footer from '../../components/navigation/Footer'
-import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import Ticket from '../../components/abonos/Ticket'
 
 function Abonos() {
   return (
     <Layout>
-      <Navbar/>
       <div className="pt-40 max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
         <h1 className='text-center text-2xl font-bold'>ABONOS Y TARIFAS</h1>
         <h2 className='font-bold text-lg mt-4'>Abono 10</h2>
@@ -39,7 +36,6 @@ function Abonos() {
           <li className='list-disc'>Personal del Instituto de la Cinematografía y de las Artes Audiovisuales, así como las personas becarias o en prácticas, durante el período de duración de la beca o de las prácticas, respectivamente, en el organismo. Asimismo, personas jubiladas cuyo último destino antes de la jubilación hubiera sido en la Filmoteca Española, cualquiera que sea el régimen de acceso a la jubilación.</li>
         </ul>
       </div>
-      <Footer/>
     </Layout>
   )
 }

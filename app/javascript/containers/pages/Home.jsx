@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../../components/navigation/Footer'
-import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import CycleCard from '../../components/shared/CycleCard'
 import MovieCard from '../../components/shared/MovieCard'
@@ -57,7 +55,6 @@ function Home() {
 
   return (
     <Layout>
-      <Navbar/>
       <div className="pt-40 ">
         <h2 className='text-center font-bold text-2xl pb-4'>Calendario de este mes</h2>
         {movieCards.length > 0 ? <Calendar movies={movieCards}/>: <h1>Loading...</h1>}
@@ -66,7 +63,6 @@ function Home() {
           {ciclos}
         </Carousel>
       </div>
-      <Footer/>
     </Layout>
   )
 }

@@ -1,6 +1,4 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Footer from '../../components/navigation/Footer'
-import Navbar from '../../components/navigation/Navbar'
 import DownloadButton from '../../components/shared/DownloadButton'
 import Layout from '../../hocs/layouts/Layout'
 import MovieCard from '../../components/shared/MovieCard'
@@ -58,7 +56,6 @@ function Cartelera() {
 
   return (
     <Layout>
-      <Navbar/>
       <div className="pt-40 max-w-7xl mx-auto pb-1 my-6">
         <div className="flex justify-center">
           <div>
@@ -83,7 +80,6 @@ function Cartelera() {
           : <h1>Loading...</h1>}
 
       </div>
-      <Footer/>
     </Layout>
   )
 }

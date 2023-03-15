@@ -1,7 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
-import Footer from '../../components/navigation/Footer'
-import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import MovieCard from '../../components/shared/MovieCard'
 import { useSelector } from 'react-redux';
@@ -33,7 +31,6 @@ function Cycle() {
     }, [moviesData,cyclesData])
   return (
     <Layout>
-      <Navbar/>
       <div className="pt-40 w-full mx-auto pb-1 my-6">
         {/* First check if the data is loaded, then render */}
         { loaded &&
@@ -50,7 +47,6 @@ function Cycle() {
           </Fragment>
         }
       </div>
-      <Footer/>
     </Layout>
   )
 }
