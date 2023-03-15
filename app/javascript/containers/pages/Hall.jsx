@@ -8,7 +8,6 @@ import Seat from "../../components/Halls/Seat"
 import SubmitButton from '../../components/shared/SubmitButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
-import Ticket from '../../components/Halls/Ticket';
 import getDateObject from '../../components/helpers/getDateObject';
 
 function Hall() {
@@ -16,6 +15,10 @@ function Hall() {
   const id = params.id;
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const authToken = useSelector(state => state.userManager.userAuth)
+  const [previousReservations, setPreviousReservations] = useState([])
+
+  const disabledIds = previousReservations.map(item => item.seat_id)
+  console.log(disabledIds)
 
   const [movieInfo, setMovieInfo] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
@@ -38,7 +41,9 @@ function Hall() {
     const reservations = data.include.include.reservations
     setMovieInfo({movie: movie, hall: hall, session: session})
     setHallAllSeats(seats)
-// console.log(reservations)
+    setPreviousReservations(reservations)
+
+    console.log(reservations)
     const lastRow = seats.slice(-1)[0].row
     const lastColumn = seats.slice(-1)[0].column
     const result = []
@@ -48,9 +53,12 @@ function Hall() {
     //data/row===row dataattributes e.target.data
     // check if can put seat component w attribute row and column
     seats.reverse().forEach((seat, index) => {
+      // console.log(seat)
+      console.log(disabledIds)
+
       // console.log(seat.row, i)
       if (seat.row === i+""){
-        row.push(<Seat key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick}/>)
+        row.push(<Seat id={seat.id} disabledIds={disabledIds} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
         if (seat.row === lastRow && seat.column === lastColumn){
           result.push(
             <div key={i + 1 + "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
@@ -90,7 +98,7 @@ function Hall() {
           )
           row = []
 
-          row.push(<Seat key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick}/>)
+          row.push(<Seat id={seat.id} disabledIds={disabledIds} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick}/>)
           i -= 1
         } else if (seat.row == 15) {
           result.push(
@@ -104,7 +112,7 @@ function Hall() {
             </div>)
           row = []
 
-          row.push(<Seat key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
+          row.push(<Seat id={seat.id} disabledIds={disabledIds} key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
           i -= 1
         } else {
           result.push(
@@ -118,7 +126,7 @@ function Hall() {
             </div>)
           row = []
 
-          row.push(<Seat key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
+          row.push(<Seat id={seat.id} disabledIds={disabledIds} key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
           i -= 1
         }
       }
@@ -217,6 +225,7 @@ const handleCreate = () => {
     .then((response) => response.json())
     .then((data) => {
       // console.log(data)
+      // add next redirect home or payment or where?
       alert("You purchase was successful")
     })
     .catch((err) => {
