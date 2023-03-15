@@ -19,7 +19,7 @@ function Cycle() {
     const [movies, setMovies] = useState([])
     useEffect(() => {
       if (cyclesData.length === 0 || moviesData.length === 0) return
-      console.log("triggered")
+      //console.log("triggered")
       let cycle = cyclesData.find(cycle => cycle.slug === slug)
       setCycleData(cycle)
       setLoaded(true)

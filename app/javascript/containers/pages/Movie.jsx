@@ -43,13 +43,21 @@ function Movie() {
   const [movies, setMovies] = useState([])
   const [mainMovie, setMainMovie] = useState({})
   const moviesData = useSelector(state => state.dataManager.movies)
+  const [shorts , setShorts] = useState([])
 
   useEffect(() => {
     if (moviesData.length === 0) return
     let currentCycle = 0
     moviesData.forEach((movie, index) => {
       if (movie.movie.slug === slug) {
-        // console.log(movie)
+        if (movie.movie.shorts !== "" ){
+           //console.log(movie.movie.shorts.split("•"))
+          movie.movie.shorts.split("•").forEach((short, index) => {
+            setShorts(prev => [...prev,
+              <li className="" key={index+"short"} >{short}</li>
+            ])
+          })
+        }
         currentCycle = movie.include.cycle.id
         setMainMovie(movie)
         setLoaded(true)
@@ -76,7 +84,7 @@ function Movie() {
     })
     moviesData.forEach((movie, index) => {
       if (movie.include.cycle.id === currentCycle && movie.movie.slug !== slug){
-        // console.log(movie)
+        //console.log(movie)
         setMovies(prev => [...prev, <MovieCard key={index} movie={movie} cycle={movie.include.cycle}/> ])
       }
     })
@@ -107,6 +115,14 @@ function Movie() {
                 }}
               />
               <p className="w-4xl my-5">{mainMovie.movie.description}</p>
+              {shorts.length > 0 &&
+                <>
+                  <h4 className="">Cortos:</h4>
+                  <ul className="list-disc list-inside mb-3">
+                    {shorts}
+                  </ul>
+                </>
+              }
             </div>
             <div className="w-full sm:w-1/4 ml-5">
               <h3 className="text-center font-bold text-lg text-gray-800 pb-5">PASES</h3>
