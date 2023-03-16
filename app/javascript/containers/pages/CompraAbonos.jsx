@@ -30,9 +30,11 @@ function CompraAbonos() {
     .then((data) => {
       // console.log(data)
       if (data.subscriptions === undefined) return
-      const button = document.getElementById("buy-abono")
-      button.disabled = true
-      button.style.backgroundColor = "gray"
+      if (data.subscriptions.length > 0) {
+        const button = document.getElementById("buy-abono")
+        button.disabled = true
+        button.style.backgroundColor = "gray"
+      }
       data.subscriptions.map((subscription, index) => {
         console.log(subscription.tipo.split("no")[1])
         let annual = false
