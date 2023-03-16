@@ -56,7 +56,7 @@ function Cartelera() {
 
   return (
     <Layout>
-      <div className="pt-40 max-w-7xl mx-auto pb-1 my-6">
+      <div className="pt-40 w-full 2xl:w-3/4 mx-auto pb-1 my-6">
         <div className="flex justify-center">
           <div>
             <h1 className="text-center font-bold text-xl">CARTELERA</h1>
