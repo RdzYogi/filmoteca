@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Layout from '../../hocs/layouts/Layout'
+import getDateObject from '../../components/helpers/getDateObject'
 
 function CompraAbonos() {
   const params = useParams()
@@ -27,15 +28,31 @@ function CompraAbonos() {
       }
     })
     .then((data) => {
-      console.log(data)
+      // console.log(data)
       if (data.subscriptions === undefined) return
+      const button = document.getElementById("buy-abono")
+      button.disabled = true
+      button.style.backgroundColor = "gray"
       data.subscriptions.map((subscription, index) => {
-        console.log(subscription.tipo.split("no"))
+        console.log(subscription.tipo.split("no")[1])
+        let annual = false
+        let startDate, endDate
+        if (subscription.tipo.split("no")[1] === "") annual = true
+        if (annual){
+          startDate = getDateObject(subscription.start_date)
+          endDate = getDateObject(subscription.end_date)
+        }
         setCurrentSubscription(prev => [...prev,
-          <div key={index} className="flex flex-col">
-            <p className="text-black font-bold">Tipo de abono: {subscription.tipo}</p>
-            <p className="text-black font-bold">Fecha de inicio: {subscription.start_date}</p>
-            <p className="text-black font-bold">Fecha de fin: {subscription.end_date}</p>
+          <div key={index} className="flex flex-col w-fit mx-auto text-left">
+            <p className="text-black font-bold">Tipo de abono: {annual? "Abono anual":" Abono 10"}</p>
+            {annual ?
+              <>
+                <p className="text-black font-bold">Fecha de inicio: { startDate.day + "-" + startDate.month +"-"+startDate.year }</p>
+                <p className="text-black font-bold">Fecha de fin: {endDate.day + "-" + endDate.month +"-"+endDate.year}</p>
+              </>
+            :
+              <p className="text-black font-bold">Usos restantes: {subscription.remaining_uses}</p>
+            }
           </div>
         ])
       })
@@ -84,7 +101,7 @@ function CompraAbonos() {
             <option value="abono10D"> Abono 10 con descuento     -15€</option>
             <option value="abonoAD">  Abono anual con descuento  -30€</option>
           </select>
-          <button onClick={handleClick} className='mt-10 w-fit px-2 bg-black text-white self-center'>Comprar</button>
+          <button id="buy-abono" onClick={handleClick} className='mt-10 w-fit px-2 bg-black text-white self-center'>Comprar</button>
       </form>
 
     </div>

@@ -6,7 +6,18 @@ class Api::V1::UserDetailsController < ApplicationController
   def index
     # fetch user details from devise rails api
     # user_details = current_user.as_json(only: [:id, :email, :name, :created_at, :updated_at])
-    subscriptions = current_user.subscriptions
+    all_subscriptions = current_user.subscriptions
+    subscriptions = all_subscriptions.map do |s|
+      if s.tipo == 'abono'
+        if s.end_date > Date.today
+          s
+        end
+      elsif s.tipo == 'abono10'
+        if s.remaining_uses > 0
+          s
+        end
+      end
+    end
     reservations = current_user.reservations
     render json: { subscriptions:, reservations: }, status: :ok
   end
