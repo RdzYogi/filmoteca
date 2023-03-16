@@ -15,9 +15,6 @@ function Hall() {
   const authToken = useSelector(state => state.userManager.userAuth)
   const [previousReservations, setPreviousReservations] = useState([])
 
-  const disabledIds = previousReservations.map(item => item.seat_id)
-  // console.log(disabledIds)
-
   const [movieInfo, setMovieInfo] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
   const [pickedSeats, setPickedSeats] = useState([])
@@ -32,50 +29,69 @@ function Hall() {
       return response.json()
     })
     .then((data) => {
-    const movie = data.include.movie
-    const session = data.include.session
-    const hall = data.include.include.hall
-    const seats = data.include.include.include.seats
-    const reservations = data.include.include.reservations
-    setMovieInfo({movie: movie, hall: hall, session: session})
-    setHallAllSeats(seats)
-    setPreviousReservations(reservations)
+      const movie = data.include.movie
+      const session = data.include.session
+      const hall = data.include.include.hall
+      const seats = data.include.include.include.seats
+      const reservations = data.include.include.reservations
+      setMovieInfo({movie: movie, hall: hall, session: session})
+      setHallAllSeats(seats)
+      setPreviousReservations(reservations)
+      // console.log(reservations)
 
-    // console.log(reservations)
-    const lastRow = seats.slice(-1)[0].row
-    const lastColumn = seats.slice(-1)[0].column
-    const result = []
-    let i = lastRow
-    let row = []
-
-    //data/row===row dataattributes e.target.data
-    // check if can put seat component w attribute row and column
+      // console.log(reservations)
+      const lastRow = seats.slice(-1)[0].row
+      const lastColumn = seats.slice(-1)[0].column
+      const result = []
+      let i = +lastRow
+      let row = []
+      //data/row===row dataattributes e.target.data
+      // check if can put seat component w attribute row and column
     seats.reverse().forEach((seat, index) => {
       // console.log(seat)
-      // console.log(disabledIds)
+      // console.log(reservations)
 
-      // console.log(seat.row, i)
       if (seat.row === i+""){
-        row.push(<Seat id={seat.id} disabledIds={disabledIds} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
-        if (seat.row === lastRow && seat.column === lastColumn){
+        // console.log(row)
+        // create row
+        const firstHalfRow = row.reverse().slice(0, row.length/2)
+        const secondHalfRow = row.slice(-row.length/2)
+
+        row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
+        // console.log(seat.row, lastRow, seat.column, lastColumn)
+        // pushing last row
+        if (seat.row === '0' && seat.column === '0'){
           result.push(
             <div key={i + 1 + "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
             <div className='self-center'>
-              {Number(seat.row) + 1}
+              {Number(seat.row) < 9 ? "0" + (Number(seat.row) + 1) : Number(seat.row) + 1}
             </div>
-            <div className='flex'>
-              {row.reverse()}
-            </div>
+            {
+                hall.name === "Sala 1" ?
+                <div className='flex'>
+                <div className='mr-4'>
+                  {firstHalfRow}
+                </div>
+                <div className='flex justify-end ml-4'>
+                  {secondHalfRow}
+                </div>
+              </div>
+              :
+              <div className='flex'>
+                {row}
+              </div>
+              }
           </div>)
         }
       } else {
         if (seat.row < 15) {
           const firstHalfRow = row.reverse().slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
+
           result.push(
-            <div key={i + "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
+            <div key={i +row+ "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
               <div className='self-center'>
-                {Number(seat.row) < 9 ? "0" + (Number(seat.row) + 1) : Number(seat.row) + 1}
+                {Number(seat.row) < 8 ? "0" + (Number(seat.row) + 2) : Number(seat.row) + 2}
               </div>
               {
                 hall.name === "Sala 1" ?
@@ -96,13 +112,15 @@ function Hall() {
           )
           row = []
 
-          row.push(<Seat id={seat.id} disabledIds={disabledIds} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick}/>)
+          row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick}/>)
           i -= 1
-        } else if (seat.row == 15) {
+          console.log(row, 'hi', i)
+        } else if (seat.row === 15) {
+
           result.push(
             <div key={i + "column"} className='flex justify-center'>
               <div className='pt-1 self-start'>
-                {Number(seat.row) + 1}
+                {Number(seat.row) + 2}
               </div>
               <div className='flex mb-6'>
                 {row.reverse()}
@@ -110,13 +128,14 @@ function Hall() {
             </div>)
           row = []
 
-          row.push(<Seat id={seat.id} disabledIds={disabledIds} key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
+          row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
           i -= 1
         } else {
+
           result.push(
             <div key={i + "column"} className='flex justify-center'>
               <div className='self-center'>
-                {Number(seat.row) + 1}
+                {Number(seat.row) + 2}
               </div>
               <div className='flex'>
                 {row.reverse()}
@@ -124,7 +143,7 @@ function Hall() {
             </div>)
           row = []
 
-          row.push(<Seat id={seat.id} disabledIds={disabledIds} key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
+          row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
           i -= 1
         }
       }
@@ -135,7 +154,7 @@ function Hall() {
 
 const [selectedSeatPrices, setSelectedSeatPrices] = useState([]);
 const [selectedSeatPrice, setSelectedSeatPrice] = useState('');
-console.log(selectedSeatPrice)
+// console.log(selectedSeatPrice)
 
 const handlePriceSelection = (e) => {
   setSelectedSeatPrice(event.target.value)
@@ -158,8 +177,8 @@ const handleSeatClick = (e) => {
           <p className='mx-2'>-</p>
           <p>Asiento {column}</p>
         </div>
-        <label htmlFor="price" className="block mb-2 font-medium">Precio</label>
-        <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+        <label htmlFor={'price'+row+column} className="block mb-2 font-medium">Precio</label>
+        <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
           <option defaultValue>Elige forma de pago</option>
           <option value="3">Entrada sencilla - 3€</option>
           <option value="0">Abono anual</option>
@@ -175,6 +194,7 @@ const handleSeatClick = (e) => {
     for (let i = 0; i < selectedSeats.length; i++) {
       if (selectedSeats[i].dataset.row === row && selectedSeats[i].dataset.column === column){
         setPickedSeats([])
+        setSelectedSeatPrices([])
         exists = true
         for (let j = 0; j < selectedSeats.length; j++) {
           if (selectedSeats[j] !== selectedSeats[i]){
@@ -186,8 +206,8 @@ const handleSeatClick = (e) => {
                   <p className='mx-2'>-</p>
                   <p>Asiento {selectedSeats[j].dataset.column}</p>
                 </div>
-                <label htmlFor="price" className="block mb-2 font-medium ">Precio</label>
-                <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+                <label htmlFor={'price'+row+column} className="block mb-2 font-medium ">Precio</label>
+                <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
                   <option defaultValue>Elige forma de pago</option>
                   <option value="3">Entrada sencilla - 3€</option>
                   <option value="0">Abono anual</option>
@@ -198,6 +218,13 @@ const handleSeatClick = (e) => {
                 </select>
               </div>
             ])
+          const childnodes = selectedSeats[j].childNodes
+          for (let i = 0; i < childnodes.length; i++) {
+            if (childnodes[i].nodeName === "SELECT" && childnodes[i].value !== 'Elige forma de pago') {
+              setSelectedSeatPrices(prev => [...prev, +childnodes[i].value])
+            }
+          }
+          // console.log(selectedSeats[j])
           }
         }
         break
@@ -212,8 +239,8 @@ const handleSeatClick = (e) => {
           <p className='mx-2'>-</p>
           <p>Asiento {column}</p>
         </div>
-        <label htmlFor="price" className="block mb-2 font-medium">Precio</label>
-        <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+        <label htmlFor={'price'+row+column} className="block mb-2 font-medium">Precio</label>
+        <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
           <option defaultValue>Elige forma de pago</option>
           <option value="3">Entrada sencilla - 3€</option>
           <option value="0">Abono anual</option>
@@ -227,7 +254,6 @@ const handleSeatClick = (e) => {
     }
   }
 }
-console.log(pickedSeats)
 const handleCreate = () => {
   // retrieve parent w id get its children map push into newSeats array and extract all datatags which has seat
   // reservations array of multiple seats id or rows and columns
@@ -257,7 +283,7 @@ const handleCreate = () => {
     .then((response) => response.json())
     .then((data) => {
       // console.log(data)
-      // add next redirect home or payment or where?
+      // add next redirect home or payment or where? add popup
       alert("You purchase was successful")
     })
     .catch((err) => {
@@ -296,7 +322,6 @@ const handleCreate = () => {
             {(Object.keys(pickedSeats).length === 0 ) ? '' :
               <div className='bg-slate-300'>
                 <p>Total entradas: {pickedSeats.length}</p>
-                {console.log(selectedSeatPrices)}
                 <p>Total precio: {selectedSeatPrices.reduce((acc, number) => acc + number, 0)}€</p>
                 <SubmitButton label="Comprar" onClick={handleCreate}/>
               </div>
