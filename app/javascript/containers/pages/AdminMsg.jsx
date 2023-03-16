@@ -14,7 +14,7 @@ function AdminMsg() {
         // console.log(data)
         data.map((message, index) => {
             setMessages(prev => [...prev,
-              <div id={message.id} key={index+"message"} className={'flex flex-col pb-3 w-1/2 border' + (message.read ? "" : " border-black")}>
+              <div id={message.id} key={index+"message"} className={'flex flex-col pb-3 w-1/2 border' + " border-black"}>
                 <div className='ml-3'>
                   <div className='flex'>
                     <h1 className='font-bold mr-3'>Asunto:</h1>
@@ -34,7 +34,7 @@ function AdminMsg() {
                   </div>
                 </div>
                 <div className='flex justify-around mt-3'>
-                  <button className='bg-blue-200'>Marcar leido</button>
+                  <button onClick={handleRead} className='bg-blue-200'>{message.read ? "Leido" : "Marcar leido"}</button>
                   <button onClick={handleDelete} className='bg-blue-200'>Borrar</button>
                 </div>
               </div>
@@ -43,6 +43,20 @@ function AdminMsg() {
       });
   }, [])
 
+  const handleRead = (e) => {
+    const msgId = e.target.parentNode.parentNode.id
+    console.log(e.target)
+    e.target.innerText = "Leido"
+    fetch(`/api/v1/messages/${msgId}`, {
+      method: "PATCH",
+      headers: {headers: { "Content-Type": "application/json",}},
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+      }
+    );
+  }
   const handleDelete = (e) => {
     const msgId = e.target.parentNode.parentNode.id
     const msgContainer = document.getElementById("message-container")
@@ -54,7 +68,7 @@ function AdminMsg() {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        // console.log(data)
       }
     );
   }
