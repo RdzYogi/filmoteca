@@ -27,6 +27,10 @@ function Contacto() {
     prompt.style.top = 20 + "%"
     prompt.style.left = 50 + "%"
     prompt.style.transform = "translateX(-50%)"
+
+    setTimeout(() => {
+      prompt.classList.add("hidden")
+    }, 3000);
   }
   const handleChange = (e) => {
     // console.log(e.target.id)
@@ -139,9 +143,9 @@ function Contacto() {
     <Layout>
       <div className='pt-40 p-4 max-w-7xl mx-auto pb-1 my-6 md:px-12 text-justify'>
         <section className="bg-white relative">
-          <div id="prompt" className='h-20 w-fit max-w-1/2 bg-gray-500 flex flex-col justify-around fixed'>
+          <div id="prompt" className='h-20 w-fit max-w-1/2 bg-black flex flex-col justify-around fixed'>
             <p id="prompt-message" className='text-white text-center mx-5'></p>
-            <button onClick={handlePopupClick} className='w-fit self-center px-2 bg-button-submit'>Ok</button>
+            <button onClick={handlePopupClick} className='w-fit self-center px-2 bg-button-submit text-white'>Ok</button>
           </div>
           <h2 className="text-center text-2xl font-bold">CONTACTO</h2>
           <p className="my-8 font-light text-gray-cycle lg:text-center">Estamos encantados de ayudarle. Por favor envíenos cualquier pregunta, comentario o incidencia.</p>
