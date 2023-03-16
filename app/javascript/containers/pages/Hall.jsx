@@ -134,24 +134,24 @@ function Hall() {
 }, [])
 
 const [selectedSeatPrices, setSelectedSeatPrices] = useState([]);
-const [selectedSeatPrice, setSelectedSeatPrice] = useState();
-const handlePriceSelection = (e) => {
-  // setSelectedSeatPrice(event.target.value)
-  setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
-}
+const [selectedSeatPrice, setSelectedSeatPrice] = useState('');
 console.log(selectedSeatPrice)
 
+const handlePriceSelection = (e) => {
+  setSelectedSeatPrice(event.target.value)
+  setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
+}
 
 const handleSeatClick = (e) => {
   const row = e.target.dataset.row
   const column = e.target.dataset.column
-console.log(selectedSeatPrice)
+// console.log(selectedSeatPrice)
   // console.log(row, column)
   const selectedSeatsContainer = document.getElementById('selected-seats-container')
   const selectedSeats = selectedSeatsContainer.childNodes
   if (selectedSeats.length === 0){
     setPickedSeats(prevPickedSeats => [...prevPickedSeats,
-      <div key={row+column} data-row={row} data-column={column} className='bg-black text-white p-2'>
+      <div key={row+column} data-price={selectedSeatPrice} data-row={row} data-column={column} className='bg-black text-white p-2'>
         <p>Asiento elegido:</p>
         <div className='flex'>
           <p>Fila {row}</p>
@@ -159,7 +159,7 @@ console.log(selectedSeatPrice)
           <p>Asiento {column}</p>
         </div>
         <label htmlFor="price" className="block mb-2 font-medium">Precio</label>
-        <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
+        <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
           <option defaultValue>Elige forma de pago</option>
           <option value="3">Entrada sencilla - 3€</option>
           <option value="0">Abono anual</option>
@@ -186,8 +186,8 @@ console.log(selectedSeatPrice)
                   <p className='mx-2'>-</p>
                   <p>Asiento {selectedSeats[j].dataset.column}</p>
                 </div>
-                        <label htmlFor="price" className="block mb-2 font-medium ">Precio</label>
-                <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
+                <label htmlFor="price" className="block mb-2 font-medium ">Precio</label>
+                <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
                   <option defaultValue>Elige forma de pago</option>
                   <option value="3">Entrada sencilla - 3€</option>
                   <option value="0">Abono anual</option>
@@ -205,7 +205,7 @@ console.log(selectedSeatPrice)
     }
     if (!exists){
       setPickedSeats(prevPickedSeats => [...prevPickedSeats,
-        <div key={row+column} data-row={row} data-column={column} className='bg-black text-white p-2'>
+        <div key={row+column} data-price={selectedSeatPrice} data-row={row} data-column={column} className='bg-black text-white p-2'>
         <p>Asiento elegido:</p>
         <div className='flex'>
           <p>Fila {row}</p>
@@ -213,7 +213,7 @@ console.log(selectedSeatPrice)
           <p>Asiento {column}</p>
         </div>
         <label htmlFor="price" className="block mb-2 font-medium">Precio</label>
-        <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
+        <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
           <option defaultValue>Elige forma de pago</option>
           <option value="3">Entrada sencilla - 3€</option>
           <option value="0">Abono anual</option>
