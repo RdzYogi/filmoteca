@@ -37,28 +37,23 @@ function Hall() {
       setMovieInfo({movie: movie, hall: hall, session: session})
       setHallAllSeats(seats)
       setPreviousReservations(reservations)
-      // console.log(reservations)
 
-      // console.log(reservations)
       const lastRow = seats.slice(-1)[0].row
       const lastColumn = seats.slice(-1)[0].column
       const result = []
       let i = +lastRow
       let row = []
-      //data/row===row dataattributes e.target.data
-      // check if can put seat component w attribute row and column
+
     seats.reverse().forEach((seat, index) => {
-      // console.log(seat)
-      // console.log(reservations)
 
       if (seat.row === i+""){
-        // console.log(row)
+        console.log(seat.row)
         // create row
+        row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
+
         const firstHalfRow = row.reverse().slice(0, row.length/2)
         const secondHalfRow = row.slice(-row.length/2)
-
-        row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
-        // console.log(seat.row, lastRow, seat.column, lastColumn)
+        console.log(row)
         // pushing last row
         if (seat.row === '0' && seat.column === '0'){
           result.push(
@@ -78,13 +73,13 @@ function Hall() {
               </div>
               :
               <div className='flex'>
-                {row}
+                {row.reverse()}
               </div>
               }
           </div>)
         }
       } else {
-        if (seat.row < 15) {
+        if (seat.row < 14) {
           const firstHalfRow = row.reverse().slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
 
@@ -114,9 +109,8 @@ function Hall() {
 
           row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick}/>)
           i -= 1
-          console.log(row, 'hi', i)
-        } else if (seat.row === 15) {
 
+        } else if (seat.row === 14) {
           result.push(
             <div key={i + "column"} className='flex justify-center'>
               <div className='pt-1 self-start'>
@@ -131,7 +125,6 @@ function Hall() {
           row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column}  handleSeatClick={handleSeatClick}/>)
           i -= 1
         } else {
-
           result.push(
             <div key={i + "column"} className='flex justify-center'>
               <div className='self-center'>
