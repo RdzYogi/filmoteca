@@ -151,7 +151,16 @@ const handleSeatClick = (e) => {
           <p>Asiento {column}</p>
         </div>
         {/* <p>Precio: {props.price}€</p> */}
-        <p>abono</p>
+        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
+        <select id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option selected>Elige forma de pago</option>
+          <option value="entrada-sencilla-normal">Entrada sencilla</option>
+          <option value="abono-anual">Abono anual</option>
+          <option value="abono10">Abono 10</option>
+          <option value="descuento-sencilla">Entrada sencilla descuento</option>
+          <option value="descuento-anual">Abono anual descuento</option>
+          <option value="descuento-10">Abono 10 descuento</option>
+        </select>
       </div>
     ])
   } else {
@@ -171,7 +180,16 @@ const handleSeatClick = (e) => {
                   <p>Asiento {selectedSeats[j].dataset.column}</p>
                 </div>
                 {/* <p>Precio: {props.price}€</p> */}
-                <p>abono</p>
+                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
+                <select id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>Elige forma de pago</option>
+                  <option value="entrada-sencilla-normal">Entrada sencilla</option>
+                  <option value="abono-anual">Abono anual</option>
+                  <option value="abono10">Abono 10</option>
+                  <option value="descuento-sencilla">Entrada sencilla descuento</option>
+                  <option value="descuento-anual">Abono anual descuento</option>
+                  <option value="descuento-10">Abono 10 descuento</option>
+                </select>
               </div>
             ])
           }
@@ -189,7 +207,16 @@ const handleSeatClick = (e) => {
           <p>Asiento {column}</p>
         </div>
         {/* <p>Precio: {props.price}€</p> */}
-        <p>abono</p>
+        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
+        <select id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option selected>Elige forma de pago</option>
+          <option value="entrada-sencilla-normal">Entrada sencilla</option>
+          <option value="abono-anual">Abono anual</option>
+          <option value="abono10">Abono 10</option>
+          <option value="descuento-sencilla">Entrada sencilla descuento</option>
+          <option value="descuento-anual">Abono anual descuento</option>
+          <option value="descuento-10">Abono 10 descuento</option>
+        </select>
       </div>
       ])
     }
