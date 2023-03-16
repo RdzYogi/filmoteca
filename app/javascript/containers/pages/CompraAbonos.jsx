@@ -3,11 +3,14 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Layout from '../../hocs/layouts/Layout'
 import getDateObject from '../../components/helpers/getDateObject'
+import PopUp from '../../components/shared/PopUp'
 
 function CompraAbonos() {
   const params = useParams()
   const [abono, setAbono] = useState("")
   const [currentSubscription, setCurrentSubscription] = useState("")
+  const [responseStatus, setResponseStatus] = useState("")
+  const [popUp, setPopUp] = useState([""])
   const authToken = useSelector(state => state.userManager.userAuth)
   useEffect(() => {
     let i=0
@@ -36,7 +39,7 @@ function CompraAbonos() {
         button.style.backgroundColor = "gray"
       }
       data.subscriptions.map((subscription, index) => {
-        console.log(subscription.tipo.split("no")[1])
+        // console.log(subscription.tipo.split("no")[1])
         let annual = false
         let startDate, endDate
         if (subscription.tipo.split("no")[1] === "") annual = true
@@ -76,17 +79,21 @@ function CompraAbonos() {
     })
     .then((response) => {
       if (response.ok) {
+        // console.log(response)
+        setResponseStatus(response.statusText)
+        setPopUp(["Compra realizada con éxito"])
         return response.json()
       }
     }
     )
     .then((data) => {
-      console.log(data)
+      // console.log(data.status)
     })
   }
   return (
     <Layout>
     <div className="pt-40 pb-20">
+      <PopUp status={popUp} responseStatus={responseStatus} />
       <h1 className='text-center text-2xl font-bold'>COMPRA ABONO</h1>
       {
         currentSubscription.length > 0 &&
