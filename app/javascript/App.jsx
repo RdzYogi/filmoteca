@@ -22,6 +22,7 @@ import { fetchCyclesData, fetchMoviesData } from './redux/slices/dataSlice';
 import Protected from './routes/Protected';
 import ProtectedAdmin from './routes/ProtectedAdmin';
 import AdminMsg from './containers/pages/AdminMsg';
+import CompraAbonos from './containers/pages/CompraAbonos';
 
 
 
@@ -68,6 +69,11 @@ function App() {
         <Route exact path="/user_details" element={
           <Protected>
             <UserDetails />
+          </Protected>
+        } />
+        <Route exact path="/compra_abono/:t?/:d?" element={
+          <Protected>
+            <CompraAbonos/>
           </Protected>
         } />
 
