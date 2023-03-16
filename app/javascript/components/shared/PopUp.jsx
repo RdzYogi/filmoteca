@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function PopUp({status}) {
+function PopUp({status, responseStatus}) {
+  const navigate = useNavigate()
   useEffect(() => {
     const popup = document.getElementById("prompt")
     // console.log(status)
@@ -55,6 +57,10 @@ function PopUp({status}) {
         promptMessage.innerText = 'Ha surgido un error, por favor inténtelo de nuevo'
         displayPopup()
       break;
+      case "Compra realizada con éxito":
+        promptMessage.innerText = "Compra realizada con éxito"
+        displayPopup()
+      break;
       default:
         break;
     }
@@ -65,11 +71,17 @@ function PopUp({status}) {
     popup.classList.remove("hidden")
     setTimeout(() => {
       popup.classList.add("hidden")
+      if(responseStatus === 'Created') {
+        navigate('/')
+      }
     }, 3000);
   }
   const handlePopupClick = () => {
     const popup = document.getElementById("prompt")
     popup.classList.add("hidden")
+    if(responseStatus === 'Created') {
+      navigate('/')
+    }
   }
   return (
     <div id="prompt" className='h-20 w-fit max-w-1/2 bg-black flex flex-col justify-around fixed transition-all duration-300'>

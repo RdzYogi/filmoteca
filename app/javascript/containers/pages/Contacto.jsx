@@ -17,6 +17,7 @@ function Contacto() {
     message: '',
   })
   const [status, setStatus] = useState([])
+  const [responseStatus, setResponseStatus] = useState('')
 
   const handleChange = (e) => {
     // console.log(e.target.id)
@@ -83,6 +84,7 @@ function Contacto() {
     })
     .then((response) => {
       setStatus([response.message])
+      setResponseStatus('Created')
       if(response.message === 'Message sent successfully') document.getElementById('form').reset()
       setFormInfo({
         name: '',
@@ -98,7 +100,7 @@ function Contacto() {
     <Layout>
       <div className='pt-40 p-4 max-w-7xl mx-auto pb-1 my-6 md:px-12 text-justify'>
         <section className="bg-white relative">
-          <PopUp status={status} />
+          <PopUp status={status} responseStatus={responseStatus} />
           <h2 className="text-center text-2xl font-bold">CONTACTO</h2>
           <p className="my-8 font-light text-gray-cycle lg:text-center">Estamos encantados de ayudarle. Por favor envíenos cualquier pregunta, comentario o incidencia.</p>
           <p className="mb-4 font-light text-left text-gray-cycle">Todos los campos son obligatorios.</p>
