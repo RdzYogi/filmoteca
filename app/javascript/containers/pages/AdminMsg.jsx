@@ -45,7 +45,7 @@ function AdminMsg() {
 
   const handleRead = (e) => {
     const msgId = e.target.parentNode.parentNode.id
-    console.log(e.target)
+    // console.log(e.target)
     e.target.innerText = "Leido"
     fetch(`/api/v1/messages/${msgId}`, {
       method: "PATCH",
@@ -53,7 +53,7 @@ function AdminMsg() {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        // console.log(data)
       }
     );
   }
