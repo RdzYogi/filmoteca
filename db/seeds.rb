@@ -1425,29 +1425,5 @@ puts "Laura created"
 
 # Creating subscriptions for users
 
-Subscription.create(user_id: User.all[0].id,
-                    tipo: "Abono 10",
-                    remaining_uses: 10)
-puts "Subscription-1 created"
-
-Subscription.create(user_id: User.all[1].id,
-                    tipo: "Abono 10",
-                    remaining_uses: 8)
-puts "Subscription-2 created"
-
-Subscription.create(user_id: User.all[2].id,
-                    tipo: "Abono 10",
-                    remaining_uses: 6)
-puts "Subscription-3 created"
-
-Subscription.create(user_id: User.all[3].id,
-                    tipo: "Abono 10",
-                    remaining_uses: 4)
-puts "Subscription-4 created"
-
-Subscription.create(user_id: User.all[4].id,
-                    tipo: "Abono 10",
-                    remaining_uses: 5)
-puts "Subscription-5 created"
 
 # Creating reservations

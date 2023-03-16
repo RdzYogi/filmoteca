@@ -6,6 +6,7 @@ import Layout from '../../hocs/layouts/Layout'
 function CompraAbonos() {
   const params = useParams()
   const [abono, setAbono] = useState("")
+  const [currentSubscription, setCurrentSubscription] = useState("")
   const authToken = useSelector(state => state.userManager.userAuth)
   useEffect(() => {
     let i=0
@@ -27,11 +28,18 @@ function CompraAbonos() {
     })
     .then((data) => {
       console.log(data)
-      // if (data.subscriptions ) {
-      //   // data.subscriptions.map((subscription, index) => {
-      //   //   setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
-      //   // })
-      // }
+      if (data.subscriptions === undefined) return
+      data.subscriptions.map((subscription, index) => {
+        console.log(subscription.tipo.split("no"))
+        setCurrentSubscription(prev => [...prev,
+          <div key={index} className="flex flex-col">
+            <p className="text-black font-bold">Tipo de abono: {subscription.tipo}</p>
+            <p className="text-black font-bold">Fecha de inicio: {subscription.start_date}</p>
+            <p className="text-black font-bold">Fecha de fin: {subscription.end_date}</p>
+          </div>
+        ])
+      })
+
     })
 
   }, [])
@@ -40,7 +48,8 @@ function CompraAbonos() {
   }
   const handleClick = (e) => {
     e.preventDefault()
-    const dataToSend = {abono_details:{type: abono}}
+    const select = document.getElementById("abono")
+    const dataToSend = {abono_details:{type: select.value}}
     fetch('/api/v1/user_details', {
       method: 'POST',
       headers: {'Content-Type': 'application/json', "Authorization": authToken},
@@ -60,6 +69,13 @@ function CompraAbonos() {
     <Layout>
     <div className="pt-40 pb-20">
       <h1 className='text-center text-2xl font-bold'>COMPRA ABONO</h1>
+      {
+        currentSubscription.length > 0 &&
+        <div className="flex flex-col">
+          <h2 className="text-center text-2xl font-bold">Usted ya tiene un abono</h2>
+          {currentSubscription}
+        </div>
+      }
       <form className='w-1/2 mx-auto flex flex-col'>
         <label htmlFor="abono" className="block mb-2 font-medium text-black">Tipo de abono</label>
           <select onChange={handleChange} id="abono" className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" >

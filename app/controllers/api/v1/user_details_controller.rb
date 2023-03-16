@@ -13,11 +13,27 @@ class Api::V1::UserDetailsController < ApplicationController
 
   def create
     # create user details
-    p = user_details_params
-    res = {}
-    res[:type] = "algo"
-    res[:type] = p[:type]
-    render json: { res:, current_user: }, status: :ok
+    p = user_details_params["type"]
+    puts "aqui "
+    puts user_details_params["type"]
+    puts p
+    case p
+    when 'abono10N'
+      a = Subscription.create(user_id: current_user.id, tipo: 'abono10', remaining_uses: 10)
+    when 'abono10D'
+      a = Subscription.create(user_id: current_user.id, tipo: 'abono10', remaining_uses: 10)
+    when 'abonoAN'
+      a = Subscription.create(user_id: current_user.id, tipo: 'abono',start_date: Date.today, end_date: Date.today + 1.year)
+    when 'abonoAD'
+      a = Subscription.create(user_id: current_user.id, tipo: 'abono',start_date: Date.today, end_date: Date.today + 1.year)
+    end
+
+    if a.save
+      render json: a, status: :created
+    else
+      render json: { errors: a.errors }, status: :unprocessable_entity
+    end
+
   end
 
   private
