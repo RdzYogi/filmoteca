@@ -11,10 +11,10 @@ function AdminMsg() {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        // console.log(data)
         data.map((message, index) => {
             setMessages(prev => [...prev,
-              <div key={index+"message"} className={'flex flex-col pb-3 w-1/2 border' + (message.read ? "" : " border-black")}>
+              <div id={message.id} key={index+"message"} className={'flex flex-col pb-3 w-1/2 border' + (message.read ? "" : " border-black")}>
                 <div className='ml-3'>
                   <div className='flex'>
                     <h1 className='font-bold mr-3'>Asunto:</h1>
@@ -35,18 +35,26 @@ function AdminMsg() {
                 </div>
                 <div className='flex justify-around mt-3'>
                   <button className='bg-blue-200'>Marcar leido</button>
-                  <button className='bg-blue-200'>Borrar</button>
+                  <button onClick={handleDelete} className='bg-blue-200'>Borrar</button>
                 </div>
               </div>
             ])
         })
       });
   }, [])
+
+  const handleDelete = (e) => {
+    const msgId = e.target.parentNode.parentNode.id
+    const msgContainer = document.getElementById("message-container")
+    const msg = document.getElementById(msgId)
+    msgContainer.removeChild(msg)
+  }
+
   return (
     <Layout>
       <div className="pt-40 pb-20">
         <h1 className="text-center text-2xl font-bold">Mensajes</h1>
-        <div className="flex flex-col items-center gap-3">
+        <div id="message-container" className="flex flex-col items-center gap-3">
           {messages}
         </div>
       </div>
