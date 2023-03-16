@@ -16,7 +16,7 @@ function Hall() {
   const [previousReservations, setPreviousReservations] = useState([])
 
   const disabledIds = previousReservations.map(item => item.seat_id)
-  console.log(disabledIds)
+  // console.log(disabledIds)
 
   const [movieInfo, setMovieInfo] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
@@ -41,7 +41,7 @@ function Hall() {
     setHallAllSeats(seats)
     setPreviousReservations(reservations)
 
-    console.log(reservations)
+    // console.log(reservations)
     const lastRow = seats.slice(-1)[0].row
     const lastColumn = seats.slice(-1)[0].column
     const result = []
@@ -52,7 +52,7 @@ function Hall() {
     // check if can put seat component w attribute row and column
     seats.reverse().forEach((seat, index) => {
       // console.log(seat)
-      console.log(disabledIds)
+      // console.log(disabledIds)
 
       // console.log(seat.row, i)
       if (seat.row === i+""){
@@ -133,10 +133,20 @@ function Hall() {
   })
 }, [])
 
+const [selectedSeatPrices, setSelectedSeatPrices] = useState([]);
+const [selectedSeatPrice, setSelectedSeatPrice] = useState();
+const handlePriceSelection = (e) => {
+  // setSelectedSeatPrice(event.target.value)
+  setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
+}
+console.log(selectedSeatPrice)
+
+
 const handleSeatClick = (e) => {
   const row = e.target.dataset.row
   const column = e.target.dataset.column
-  console.log(row, column)
+console.log(selectedSeatPrice)
+  // console.log(row, column)
   const selectedSeatsContainer = document.getElementById('selected-seats-container')
   const selectedSeats = selectedSeatsContainer.childNodes
   if (selectedSeats.length === 0){
@@ -148,16 +158,15 @@ const handleSeatClick = (e) => {
           <p className='mx-2'>-</p>
           <p>Asiento {column}</p>
         </div>
-        {/* <p>Precio: {props.price}€</p> */}
-        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
-        <select id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <option selected>Elige forma de pago</option>
-          <option value="entrada-sencilla-normal">Entrada sencilla</option>
-          <option value="abono-anual">Abono anual</option>
-          <option value="abono10">Abono 10</option>
-          <option value="descuento-sencilla">Entrada sencilla descuento</option>
-          <option value="descuento-anual">Abono anual descuento</option>
-          <option value="descuento-10">Abono 10 descuento</option>
+        <label htmlFor="price" className="block mb-2 font-medium">Precio</label>
+        <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
+          <option defaultValue>Elige forma de pago</option>
+          <option value="3">Entrada sencilla - 3€</option>
+          <option value="0">Abono anual</option>
+          <option value="0">Abono 10</option>
+          <option value="2">Entrada sencilla descuento - 2€</option>
+          <option value="0">Abono anual descuento</option>
+          <option value="0">Abono 10 descuento</option>
         </select>
       </div>
     ])
@@ -177,16 +186,15 @@ const handleSeatClick = (e) => {
                   <p className='mx-2'>-</p>
                   <p>Asiento {selectedSeats[j].dataset.column}</p>
                 </div>
-                {/* <p>Precio: {props.price}€</p> */}
-                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
-                <select id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  <option selected>Elige forma de pago</option>
-                  <option value="entrada-sencilla-normal">Entrada sencilla</option>
-                  <option value="abono-anual">Abono anual</option>
-                  <option value="abono10">Abono 10</option>
-                  <option value="descuento-sencilla">Entrada sencilla descuento</option>
-                  <option value="descuento-anual">Abono anual descuento</option>
-                  <option value="descuento-10">Abono 10 descuento</option>
+                        <label htmlFor="price" className="block mb-2 font-medium ">Precio</label>
+                <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
+                  <option defaultValue>Elige forma de pago</option>
+                  <option value="3">Entrada sencilla - 3€</option>
+                  <option value="0">Abono anual</option>
+                  <option value="0">Abono 10</option>
+                  <option value="2">Entrada sencilla descuento - 2€</option>
+                  <option value="0">Abono anual descuento</option>
+                  <option value="0">Abono 10 descuento</option>
                 </select>
               </div>
             ])
@@ -204,23 +212,22 @@ const handleSeatClick = (e) => {
           <p className='mx-2'>-</p>
           <p>Asiento {column}</p>
         </div>
-        {/* <p>Precio: {props.price}€</p> */}
-        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
-        <select id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <option selected>Elige forma de pago</option>
-          <option value="entrada-sencilla-normal">Entrada sencilla</option>
-          <option value="abono-anual">Abono anual</option>
-          <option value="abono10">Abono 10</option>
-          <option value="descuento-sencilla">Entrada sencilla descuento</option>
-          <option value="descuento-anual">Abono anual descuento</option>
-          <option value="descuento-10">Abono 10 descuento</option>
+        <label htmlFor="price" className="block mb-2 font-medium">Precio</label>
+        <select id="price" value={selectedSeatPrice} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
+          <option defaultValue>Elige forma de pago</option>
+          <option value="3">Entrada sencilla - 3€</option>
+          <option value="0">Abono anual</option>
+          <option value="0">Abono 10</option>
+          <option value="2">Entrada sencilla descuento - 2€</option>
+          <option value="0">Abono anual descuento</option>
+          <option value="0">Abono 10 descuento</option>
         </select>
       </div>
       ])
     }
   }
 }
-
+console.log(pickedSeats)
 const handleCreate = () => {
   // retrieve parent w id get its children map push into newSeats array and extract all datatags which has seat
   // reservations array of multiple seats id or rows and columns
@@ -289,7 +296,8 @@ const handleCreate = () => {
             {(Object.keys(pickedSeats).length === 0 ) ? '' :
               <div className='bg-slate-300'>
                 <p>Total entradas: {pickedSeats.length}</p>
-                <p>Total precio: €</p>
+                {console.log(selectedSeatPrices)}
+                <p>Total precio: {selectedSeatPrices.reduce((acc, number) => acc + number, 0)}€</p>
                 <SubmitButton label="Comprar" onClick={handleCreate}/>
               </div>
             }
