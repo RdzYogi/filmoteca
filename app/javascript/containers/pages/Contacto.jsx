@@ -27,8 +27,6 @@ function Contacto() {
     prompt.style.top = 20 + "%"
     prompt.style.left = 50 + "%"
     prompt.style.transform = "translateX(-50%)"
-    console.log(prompt.offsetWidth)
-
   }
   const handleChange = (e) => {
     // console.log(e.target.id)
