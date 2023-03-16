@@ -23,8 +23,11 @@ function Contacto() {
     prompt.classList.add('hidden')
     const promptParent = prompt.parentElement
     prompt.style.top = "0px"
-    prompt.style.top = Number(prompt.style.top.split("px")[0]) + window.scrollY +"px"
-    prompt.style.left = (promptParent.offsetWidth - prompt.offsetWidth)/2 + "px"
+    prompt.style.left = "0px"
+    prompt.style.top = 20 + "%"
+    prompt.style.left = 50 + "%"
+    prompt.style.transform = "translateX(-50%)"
+    console.log(prompt.offsetWidth)
 
   }
   const handleChange = (e) => {
@@ -92,9 +95,8 @@ function Contacto() {
 
   const popUp = (status) => {
     const prompt = document.getElementById('prompt')
-    centerPrompt()
     const promptMessage = document.getElementById('prompt-message')
-    prompt.classList.remove('hidden')
+
 
     switch (status[0]) {
       case 'name':
@@ -126,6 +128,9 @@ function Contacto() {
         break;
     }
 
+    centerPrompt()
+    prompt.classList.remove('hidden')
+
   }
 
   const handlePopupClick = (e) => {
@@ -136,7 +141,7 @@ function Contacto() {
     <Layout>
       <div className='pt-40 p-4 max-w-7xl mx-auto pb-1 my-6 md:px-12 text-justify'>
         <section className="bg-white relative">
-          <div id="prompt" className='h-20 w-fit max-w-1/2 bg-gray-500 absolute flex flex-col justify-around'>
+          <div id="prompt" className='h-20 w-fit max-w-1/2 bg-gray-500 flex flex-col justify-around fixed'>
             <p id="prompt-message" className='text-white text-center mx-5'></p>
             <button onClick={handlePopupClick} className='w-fit self-center px-2 bg-button-submit'>Ok</button>
           </div>
