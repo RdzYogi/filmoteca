@@ -48,6 +48,15 @@ function AdminMsg() {
     const msgContainer = document.getElementById("message-container")
     const msg = document.getElementById(msgId)
     msgContainer.removeChild(msg)
+    fetch(`/api/v1/messages/${msgId}`, {
+      method: "DELETE",
+      headers: {headers: { "Content-Type": "application/json",}},
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+      }
+    );
   }
 
   return (

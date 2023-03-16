@@ -14,6 +14,16 @@ class Api::V1::MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    m = Message.find(params[:id])
+    m.deleted = true
+    if m.save
+      render json: { message: 'Message deleted successfully' }, status: 200
+    else
+      render json: { message: 'Message not deleted' }, status: 200
+    end
+  end
+
 
   private
 
