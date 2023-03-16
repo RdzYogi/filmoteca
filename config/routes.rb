@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :projections, only: %w[index show create], param: :id
       resources :messages, only: %w[index show create destroy update], param: :id
       get '/user_details', to: 'user_details#index'
+      post '/user_details', to: 'user_details#create'
       post 'mails', to: 'mails#mail'
     end
   end

@@ -5,7 +5,6 @@ import ReservationCard from '../../components/shared/ReservationCard'
 import Layout from '../../hocs/layouts/Layout'
 
 function UserDetails() {
-  const currentUserStore = useSelector(state => state.userManager.currentUser)
   const authToken = useSelector(state => state.userManager.userAuth)
   const [subscriptions, setSubscriptions] = useState([])
   const [reservations, setReservations] = useState([])
