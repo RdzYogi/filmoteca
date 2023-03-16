@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
-import Footer from "../../components/navigation/Footer";
-import Navbar from "../../components/navigation/Navbar";
 import Layout from "../../hocs/layouts/Layout";
 import DownloadButton from "../../components/shared/DownloadButton";
 import getDateObject from "../../components/helpers/getDateObject";
@@ -92,7 +90,6 @@ function Movie() {
 
   return (
     <Layout>
-      <Navbar />
       <div className="pt-40">
         {loaded &&
         <div className="w-full mx-auto md:max-w-7xl">
@@ -138,7 +135,6 @@ function Movie() {
         </div>
         }
       </div>
-      <Footer />
     </Layout>
   );
 }
