@@ -1,7 +1,7 @@
 class Api::V1::MessagesController < ApplicationController
   protect_from_forgery with: :null_session
   def index
-    @messages = Message.order(created_at: :desc).where(deleted: false)
+    @messages = Message.order(read: :asc,created_at: :desc).where(deleted: false)
     render json: @messages
   end
 
@@ -21,6 +21,16 @@ class Api::V1::MessagesController < ApplicationController
       render json: { message: 'Message deleted successfully' }, status: 200
     else
       render json: { message: 'Message not deleted' }, status: 200
+    end
+  end
+
+  def update
+    m = Message.find(params[:id])
+    m.read = true
+    if m.save
+      render json: { message: 'Message updated successfully' }, status: 200
+    else
+      render json: { message: 'Message not updated' }, status: 200
     end
   end
 

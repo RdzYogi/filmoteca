@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resources :news, only: %w[index show], param: :slug
       resources :reservations, only: %w[index show create], param: :id
       resources :projections, only: %w[index show create], param: :id
-      resources :messages, only: %w[index show create destroy], param: :id
+      resources :messages, only: %w[index show create destroy update], param: :id
       get '/user_details', to: 'user_details#index'
       post 'mails', to: 'mails#mail'
     end
