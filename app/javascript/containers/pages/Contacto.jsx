@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../hocs/layouts/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import PopUp from '../../components/shared/PopUp';
 
 
 function Contacto() {
@@ -15,18 +16,8 @@ function Contacto() {
     subject: '',
     message: '',
   })
-  useEffect(() => {
-    centerPrompt()
-  }, [])
-  const centerPrompt = () => {
-    const prompt = document.getElementById('prompt')
-    prompt.classList.add('hidden')
-    prompt.style.top = "0px"
-    prompt.style.left = "0px"
-    prompt.style.top = 20 + "%"
-    prompt.style.left = 50 + "%"
-    prompt.style.transform = "translateX(-50%)"
-  }
+  const [status, setStatus] = useState([])
+
   const handleChange = (e) => {
     // console.log(e.target.id)
     switch (e.target.id) {
@@ -73,9 +64,9 @@ function Contacto() {
       element.classList.add('border-red-500')
       error.push('notSameEmails')
     }
-    centerPrompt()
+    // centerPrompt()
     if(error.length > 0){
-      popUp(error)
+      setStatus(error)
       return
     }
     const messageToSend = {message: formInfo}
@@ -91,7 +82,7 @@ function Contacto() {
       throw new Error("Network response was not ok.")
     })
     .then((response) => {
-      popUp([response.message])
+      setStatus([response.message])
       if(response.message === 'Message sent successfully') document.getElementById('form').reset()
       setFormInfo({
         name: '',
@@ -103,60 +94,11 @@ function Contacto() {
     })
   }
 
-  const popUp = (status) => {
-    const prompt = document.getElementById('prompt')
-    const promptMessage = document.getElementById('prompt-message')
-    switch (status[0]) {
-      case 'name':
-        promptMessage.innerText = 'El nombre no puede estar vacío'
-        break;
-      case 'email':
-        promptMessage.innerText = 'El email no puede estar vacío'
-        break;
-      case 'emailNotValid':
-        promptMessage.innerText = 'El email no es válido'
-        break;
-      case 'emailConfirmation':
-        promptMessage.innerText = 'La confirmación del email no puede estar vacía'
-        break;
-      case 'subject':
-        promptMessage.innerText = 'Tienes que elegir un asunto'
-        break;
-      case 'message':
-        promptMessage.innerText = 'El mensaje no puede estar vacío'
-        break;
-      case 'notSameEmails':
-        promptMessage.innerText = 'Los emails no coinciden'
-        break;
-      case 'Message sent successfully':
-        promptMessage.innerText = 'Mensaje enviado'
-      break;
-      case 'Message not sent':
-        promptMessage.innerText = 'Ha surgido un error, por favor inténtelo de nuevo'
-      break;
-
-      default:
-        break;
-    }
-    centerPrompt()
-    prompt.classList.remove('hidden')
-    setTimeout(() => {
-      prompt.classList.add("hidden")
-    }, 3000);
-  }
-
-  const handlePopupClick = (e) => {
-    e.preventDefault()
-    document.getElementById('prompt').classList.add('hidden')
-  }
   return (
     <Layout>
       <div className='pt-40 p-4 max-w-7xl mx-auto pb-1 my-6 md:px-12 text-justify'>
         <section className="bg-white relative">
-          <div id="prompt" className='h-20 w-fit max-w-1/2 bg-black flex flex-col justify-around fixed transition-all duration-300'>
-            <p id="prompt-message" className='text-white text-center mx-5'></p>
-            <button onClick={handlePopupClick} className='w-fit self-center px-2 border border-white text-white'>Ok</button>
-          </div>
+          <PopUp status={status} />
           <h2 className="text-center text-2xl font-bold">CONTACTO</h2>
           <p className="my-8 font-light text-gray-cycle lg:text-center">Estamos encantados de ayudarle. Por favor envíenos cualquier pregunta, comentario o incidencia.</p>
           <p className="mb-4 font-light text-left text-gray-cycle">Todos los campos son obligatorios.</p>
