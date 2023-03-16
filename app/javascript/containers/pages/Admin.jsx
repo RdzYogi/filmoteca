@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../../components/navigation/Footer'
-import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import docx4js from "docx4js"
 import { Buffer } from "buffer";
@@ -130,7 +128,6 @@ function Admin() {
 	// };
   return (
     <Layout>
-      <Navbar/>
       <div className="pt-40 pb-20">
         <div className='flex justify-center'>
           <input type="file" name="file" onChange={changeHandler} />
@@ -140,7 +137,6 @@ function Admin() {
         </div> */}
         {output}
       </div>
-      <Footer/>
     </Layout>
   )
 }

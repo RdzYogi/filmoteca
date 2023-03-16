@@ -98,7 +98,7 @@ function Paginate({movies}) {
   }
   return (
     <>
-      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-y-4">
+      <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-y-4">
         {movies.slice((currentPage-1)*moviesPerPage, currentPage*moviesPerPage)}
       </div>
 

@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector } from 'react-redux'
-import Footer from '../../components/navigation/Footer'
-import Navbar from '../../components/navigation/Navbar'
 import Layout from '../../hocs/layouts/Layout'
 import { useParams } from "react-router-dom";
 import Seat from "../../components/Halls/Seat"
@@ -263,7 +261,6 @@ const handleCreate = () => {
 
   return (
     <Layout>
-      <Navbar/>
       <div className="pt-40 max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
@@ -307,7 +304,6 @@ const handleCreate = () => {
             <p className='ml-2'>No se permitirá la entrada una vez iniciada la función.</p>
           </div>
         </div>
-        <Footer/>
     </Layout>
   )
 }

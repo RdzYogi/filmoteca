@@ -1,11 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Footer from '../../components/navigation/Footer'
-import Navbar from '../../components/navigation/Navbar'
 import DownloadButton from '../../components/shared/DownloadButton'
 import Layout from '../../hocs/layouts/Layout'
 import MovieCard from '../../components/shared/MovieCard'
 import { useSelector } from 'react-redux'
 import Paginate from '../../components/cartelera/Paginate'
+import normalizeText from '../../components/helpers/normalizeText'
 
 
 function Cartelera() {
@@ -35,13 +34,15 @@ function Cartelera() {
     e.preventDefault()
     const query = document.getElementById('movie-search').value
     setSearchQuery(query)
+    const queryNormalized = normalizeText(query)
     const selectValue = document.getElementById('select-cycle').value
     setSelectCycleValue(selectValue)
     let newMovies = []
     movies.map((movie) => {
       // console.log(movie.props)
-
-      if(movie.props.movie.movie.title.toLowerCase().includes(query.toLowerCase()) || movie.props.movie.movie.director.toLowerCase().includes(query.toLowerCase())) {
+      const normalizedTitle = normalizeText(movie.props.movie.movie.title)
+      const normalizedDirector = normalizeText(movie.props.movie.movie.director)
+      if(normalizedTitle.toLowerCase().includes(queryNormalized.toLowerCase()) || normalizedDirector.toLowerCase().includes(queryNormalized.toLowerCase())) {
         if (selectValue === "") {
           // console.log("empty select",movie)
           newMovies = [...newMovies, movie]
@@ -55,8 +56,7 @@ function Cartelera() {
 
   return (
     <Layout>
-      <Navbar/>
-      <div className="pt-40 max-w-7xl mx-auto pb-1 my-6">
+      <div className="pt-40 w-full 2xl:w-3/4 mx-auto pb-1 my-6">
         <div className="flex justify-center">
           <div>
             <h1 className="text-center font-bold text-xl">CARTELERA</h1>
@@ -80,7 +80,6 @@ function Cartelera() {
           : <h1>Loading...</h1>}
 
       </div>
-      <Footer/>
     </Layout>
   )
 }
