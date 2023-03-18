@@ -8,7 +8,7 @@ class Api::V1::MessagesController < ApplicationController
   def create
     m = Message.new(message_params)
     if m.save
-      render json: { message: 'Message sent successfully' }, status: 200
+      render json: { message: 'Message sent successfully' }, status: :created
     else
       render json: { message: 'Message not sent' }, status: 200
     end
