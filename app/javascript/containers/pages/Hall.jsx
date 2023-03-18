@@ -7,14 +7,20 @@ import SubmitButton from '../../components/shared/SubmitButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import getDateObject from '../../components/helpers/getDateObject';
+import PopUp from '../../components/shared/PopUp';
+import { useNavigate } from 'react-router-dom'
 
 function Hall() {
   let params = useParams()
   const id = params.id;
   const csrfToken = document.querySelector("[name='csrf-token']").content
   const authToken = useSelector(state => state.userManager.userAuth)
-  const [previousReservations, setPreviousReservations] = useState([])
+  const navigate = useNavigate()
 
+  const [status, setStatus] = useState([])
+  const [responseStatus, setResponseStatus] = useState('')
+
+  const [previousReservations, setPreviousReservations] = useState([])
   const [movieInfo, setMovieInfo] = useState({})
   const [formatedHall, setFormatedHall] = useState([])
   const [pickedSeats, setPickedSeats] = useState([])
@@ -45,12 +51,12 @@ function Hall() {
       let row = []
 
     seats.reverse().forEach((seat, index) => {
-      console.log(seat.column)
+      // console.log(seat.column)
       if (seat.row === i+""){
         // console.log(seat.row, seat.column)
         // create row
         row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
-        console.log(row)
+        // console.log(row)
         const firstHalfRow = row.reverse().slice(0, row.length/2)
         const secondHalfRow = row.slice(-row.length/2)
         // pushing last row
@@ -246,8 +252,12 @@ const handleSeatClick = (e) => {
   }
 }
 const handleCreate = () => {
-  // retrieve parent w id get its children map push into newSeats array and extract all datatags which has seat
-  // reservations array of multiple seats id or rows and columns
+  // const error = []
+  // if(error.length > 0){
+  //   setStatus(error)
+  //   return
+  // }
+
   let newSeats = []
   const parent = document.getElementById('selected-seats-container')
   parent.childNodes.forEach(child => {
@@ -269,13 +279,24 @@ const handleCreate = () => {
       },
       body: JSON.stringify({reservationinfo: {seats: newSeats, projection_id: id}})
     })
-    .then((response) => response.json())
-    .then((data) => {
+    .then((response) => {
+      if (response.ok) {
+        return response.json()
+      }
+      throw new Error("Network response was not ok.")
+    })
+    .then((response) => {
       // console.log(data)
-      // add next redirect home or payment or where? add popup
+      console.log(response)
+      // <PopUp status={[response.message]} responseStatus='Created' />
+      // setStatus([response.message])
+      // setResponseStatus('Created')
       alert("You purchase was successful")
+      navigate('/')
     })
     .catch((err) => {
+      // setStatus([err])
+      // setResponseStatus('Error')
       // console.log(err.message)
       alert("We are sorry, someone else has bought your chosen seat(s)")
     })
