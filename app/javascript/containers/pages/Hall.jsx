@@ -45,15 +45,14 @@ function Hall() {
       let row = []
 
     seats.reverse().forEach((seat, index) => {
-
+      console.log(seat.column)
       if (seat.row === i+""){
-        console.log(seat.row)
+        // console.log(seat.row, seat.column)
         // create row
         row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
-
+        console.log(row)
         const firstHalfRow = row.reverse().slice(0, row.length/2)
         const secondHalfRow = row.slice(-row.length/2)
-        console.log(row)
         // pushing last row
         if (seat.row === '0' && seat.column === '0'){
           result.push(
@@ -83,6 +82,7 @@ function Hall() {
           const firstHalfRow = row.reverse().slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
 
+          // console.log(firstHalfRow,secondHalfRow)
           result.push(
             <div key={i +row+ "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
               <div className='self-center'>
@@ -147,7 +147,6 @@ function Hall() {
 
 const [selectedSeatPrices, setSelectedSeatPrices] = useState([]);
 const [selectedSeatPrice, setSelectedSeatPrice] = useState('');
-// console.log(selectedSeatPrice)
 
 const handlePriceSelection = (e) => {
   setSelectedSeatPrice(event.target.value)
@@ -155,10 +154,9 @@ const handlePriceSelection = (e) => {
 }
 
 const handleSeatClick = (e) => {
+  // console.log(e)
   const row = e.target.dataset.row
   const column = e.target.dataset.column
-// console.log(selectedSeatPrice)
-  // console.log(row, column)
   const selectedSeatsContainer = document.getElementById('selected-seats-container')
   const selectedSeats = selectedSeatsContainer.childNodes
   if (selectedSeats.length === 0){
@@ -250,10 +248,8 @@ const handleSeatClick = (e) => {
 const handleCreate = () => {
   // retrieve parent w id get its children map push into newSeats array and extract all datatags which has seat
   // reservations array of multiple seats id or rows and columns
-  // console.log(newReservation)
   let newSeats = []
   const parent = document.getElementById('selected-seats-container')
-  // console.log(parent)
   parent.childNodes.forEach(child => {
     const newSeatRow = child.getAttribute('data-row')
     const newSeatColumn = child.getAttribute('data-column')
