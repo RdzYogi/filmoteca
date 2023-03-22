@@ -71,10 +71,10 @@ function Hall() {
                 hall.name === "Sala 1" ?
                 <div className='flex'>
                 <div className='mr-4'>
-                  {firstHalfRow}
+                  {secondHalfRow.reverse()}
                 </div>
                 <div className='flex justify-end ml-4'>
-                  {secondHalfRow}
+                  {firstHalfRow.reverse()}
                 </div>
               </div>
               :
@@ -99,10 +99,10 @@ function Hall() {
                 hall.name === "Sala 1" ?
                 <div className='flex'>
                 <div className='mr-4'>
-                  {firstHalfRow}
+                  {secondHalfRow.reverse()}
                 </div>
                 <div className='flex justify-end ml-4'>
-                  {secondHalfRow}
+                  {firstHalfRow.reverse()}
                 </div>
               </div>
               :
