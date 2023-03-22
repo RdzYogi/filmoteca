@@ -13,7 +13,7 @@ function Ticket(props) {
       <p className='w-1/4 text-center'>{props.price}</p>
       { props.name !== "ENTRADA SENCILLA" &&
         <Link to={`/compra_abono/${type}/${discount}`}
-         className='bg-white text-black p-1 w-1/4'>Comprar
+         className='bg-white text-black p-1 w-1/4 text-center'>Comprar
         </Link>
       }
     </div>

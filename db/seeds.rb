@@ -1424,6 +1424,7 @@ User.create(email: "admin@gmail.com",
 puts "Laura created"
 
 # Creating subscriptions for users
-
-
+Subscription.create(remaining_uses: 5, tipo: 'abono10', remaining_uses: 10, user_id: User.first.id)
+Subscription.create(user_id: User.first.id, tipo: 'abono',start_date: Date.today, end_date: Date.today + 1.year)
+puts "Fran Subscriptions created"
 # Creating reservations
