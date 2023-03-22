@@ -26,6 +26,7 @@ function Hall() {
   const [formatedHall, setFormatedHall] = useState([])
   const [pickedSeats, setPickedSeats] = useState([])
   const [hallAllSeats, setHallAllSeats] = useState([])
+  const [loaded, setLoaded] = useState(false)
 
 
   useEffect(() => {
@@ -55,6 +56,7 @@ function Hall() {
         }
       }
       setMovieInfo({movie: movie, hall: hall, session: session})
+      setLoaded(true)
       setHallAllSeats(seats)
       setPreviousReservations(reservations)
 
@@ -77,7 +79,7 @@ function Hall() {
         // pushing last row
         if (seat.row === '0' && seat.column === '0'){
           result.push(
-            <div key={i + 1 + "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
+            <div key={i + 1 + "column"} className={hall.name === "Sala 1" ? 'flex justify-center items-center' : 'flex' }>
             <div className='self-center'>
               {Number(seat.row) < 9 ? "0" + (Number(seat.row) + 1) : Number(seat.row) + 1}
             </div>
@@ -105,7 +107,7 @@ function Hall() {
 
           // console.log(firstHalfRow,secondHalfRow)
           result.push(
-            <div key={i +row+ "column"} className={hall.name === "Sala 1" ? 'flex justify-center' : 'flex' }>
+            <div key={i +row+ "column"} className={hall.name === "Sala 1" ? 'flex justify-center items-center' : 'flex' }>
               <div className='self-center'>
                 {Number(seat.row) < 8 ? "0" + (Number(seat.row) + 2) : Number(seat.row) + 2}
               </div>
@@ -115,7 +117,7 @@ function Hall() {
                 <div className='mr-4'>
                   {secondHalfRow.reverse()}
                 </div>
-                <div className='flex justify-end ml-4'>
+                <div className='flex justify-end items-center ml-4'>
                   {firstHalfRow.reverse()}
                 </div>
               </div>
@@ -133,7 +135,7 @@ function Hall() {
 
         } else if (seat.row === 14) {
           result.push(
-            <div key={i + "column"} className='flex justify-center'>
+            <div key={i + "column"} className='flex justify-center items-center'>
               <div className='pt-1 self-start'>
                 {Number(seat.row) + 2}
               </div>
@@ -147,7 +149,7 @@ function Hall() {
           i -= 1
         } else {
           result.push(
-            <div key={i + "column"} className='flex justify-center'>
+            <div key={i + "column"} className='flex justify-center items-center'>
               <div className='self-center'>
                 {Number(seat.row) + 2}
               </div>
@@ -235,18 +237,18 @@ const handleSeatClick = (e) => {
     if (!exists){
       setPickedSeats(prevPickedSeats => [...prevPickedSeats,
         <div key={row+column} data-price={selectedSeatPrice} data-row={row} data-column={column} className='bg-black text-white p-2'>
-        <p>Asiento elegido:</p>
-        <div className='flex'>
-          <p>Fila {row}</p>
-          <p className='mx-2'>-</p>
-          <p>Asiento {column}</p>
+          <p>Asiento elegido:</p>
+          <div className='flex'>
+            <p>Fila {row}</p>
+            <p className='mx-2'>-</p>
+            <p>Asiento {column}</p>
+          </div>
+          <label htmlFor={'price'+row+column} className="block mb-2 font-medium">Precio</label>
+          <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+            <option defaultValue>Elige forma de pago</option>
+            {buyOptions}
+          </select>
         </div>
-        <label htmlFor={'price'+row+column} className="block mb-2 font-medium">Precio</label>
-        <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
-          <option defaultValue>Elige forma de pago</option>
-          {buyOptions}
-        </select>
-      </div>
       ])
     }
   }
@@ -307,13 +309,13 @@ const handleCreate = () => {
       <div className="pt-40 w-full max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
-        <div className='flex w-full justify-between'>
-          <div className='my-10 flex-1 max-w-fit'>
+        <div className='flex flex-col md:flex-row md:justify-around'>
+          <div className='my-10 flex-1 max-w-fit self-center'>
             {formatedHall}
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
           <div>
-            {(Object.keys(pickedSeats).length === 0 ) ? '' :
+            {loaded &&
               <div className='mt-10 bg-slate-300 p-5'>
                 <p className='text-center underline text-lg'>En tu carrito</p>
                 <div className='flex'>
