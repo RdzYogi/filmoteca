@@ -16,7 +16,7 @@ function Seat({row, column, selectedSeatPrice, handleSeatClick, id, reservations
   // console.log(id, reservations)
 
   return (
-    <button data-row={Number(row)+1} data-column={Number(column)} data-price={selectedSeatPrice} onMouseDown={handleSelected} onClick={handleSeatClick} className={isSelected ? 'bg-red-600 w-4 h-4 m-2 rounded' : 'w-4 h-4  m-2 rounded ' + (isDisabled ? 'bg-gray-400' : 'bg-black')} disabled={isDisabled}>
+    <button data-row={Number(row)+1} data-column={Number(column)+1} data-price={selectedSeatPrice} onMouseDown={handleSelected} onClick={handleSeatClick} className={isSelected ? 'bg-red-600 w-4 h-4 m-2 rounded' : 'w-4 h-4  m-2 rounded ' + (isDisabled ? 'bg-gray-400' : 'bg-black')} disabled={isDisabled}>
     </button>
   )
 }

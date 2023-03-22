@@ -52,12 +52,13 @@ function Hall() {
 
     seats.reverse().forEach((seat, index) => {
       // console.log(seat.column)
+      // debugger
       if (seat.row === i+""){
         // console.log(seat.row, seat.column)
         // create row
-        row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
+        row.push(<Seat id={seat.id} reservations={reservations} key={seat.row+"row"+seat.column+"column"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
         // console.log(row)
-        const firstHalfRow = row.reverse().slice(0, row.length/2)
+        const firstHalfRow = row.slice(0, row.length/2)
         const secondHalfRow = row.slice(-row.length/2)
         // pushing last row
         if (seat.row === '0' && seat.column === '0'){
@@ -85,7 +86,7 @@ function Hall() {
         }
       } else {
         if (seat.row < 14) {
-          const firstHalfRow = row.reverse().slice(0, row.length/2)
+          const firstHalfRow = row.slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
 
           // console.log(firstHalfRow,secondHalfRow)
