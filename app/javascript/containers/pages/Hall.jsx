@@ -10,6 +10,7 @@ import getDateObject from '../../components/helpers/getDateObject';
 import PopUp from '../../components/shared/PopUp';
 import { useNavigate } from 'react-router-dom'
 
+const buyOptions = [<option key={"Normal"} value="3">Entrada sencilla - 3€</option>,<option key={"Discount"} value="2">Entrada sencilla descuento - 2€</option>]
 function Hall() {
   let params = useParams()
   const id = params.id;
@@ -26,6 +27,7 @@ function Hall() {
   const [pickedSeats, setPickedSeats] = useState([])
   const [hallAllSeats, setHallAllSeats] = useState([])
 
+
   useEffect(() => {
     fetch(`/api/v1/projections/${id}`, {
       method: 'GET',
@@ -35,11 +37,23 @@ function Hall() {
       return response.json()
     })
     .then((data) => {
+      // console.log(data)
       const movie = data.include.movie
       const session = data.include.session
       const hall = data.include.include.hall
       const seats = data.include.include.include.seats
       const reservations = data.include.include.reservations
+      if (data.subscription !== null && buyOptions.length === 2){
+        const abonoType = data.subscription.tipo
+        switch (abonoType) {
+          case 'abono10':
+            buyOptions.push(<option key={"abono"} value="0">Abono</option>)
+            break;
+          case 'abono':
+            buyOptions.push(<option key={"abono"} value="0">Abono</option>)
+            break;
+        }
+      }
       setMovieInfo({movie: movie, hall: hall, session: session})
       setHallAllSeats(seats)
       setPreviousReservations(reservations)
@@ -178,12 +192,7 @@ const handleSeatClick = (e) => {
         <label htmlFor={'price'+row+column} className="block mb-2 font-medium">Precio</label>
         <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
           <option defaultValue>Elige forma de pago</option>
-          <option value="3">Entrada sencilla - 3€</option>
-          <option value="0">Abono anual</option>
-          <option value="0">Abono 10</option>
-          <option value="2">Entrada sencilla descuento - 2€</option>
-          <option value="0">Abono anual descuento</option>
-          <option value="0">Abono 10 descuento</option>
+          {buyOptions}
         </select>
       </div>
     ])
@@ -207,12 +216,7 @@ const handleSeatClick = (e) => {
                 <label htmlFor={'price'+row+column} className="block mb-2 font-medium ">Precio</label>
                 <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
                   <option defaultValue>Elige forma de pago</option>
-                  <option value="3">Entrada sencilla - 3€</option>
-                  <option value="0">Abono anual</option>
-                  <option value="0">Abono 10</option>
-                  <option value="2">Entrada sencilla descuento - 2€</option>
-                  <option value="0">Abono anual descuento</option>
-                  <option value="0">Abono 10 descuento</option>
+                  {buyOptions}
                 </select>
               </div>
             ])
@@ -240,12 +244,7 @@ const handleSeatClick = (e) => {
         <label htmlFor={'price'+row+column} className="block mb-2 font-medium">Precio</label>
         <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
           <option defaultValue>Elige forma de pago</option>
-          <option value="3">Entrada sencilla - 3€</option>
-          <option value="0">Abono anual</option>
-          <option value="0">Abono 10</option>
-          <option value="2">Entrada sencilla descuento - 2€</option>
-          <option value="0">Abono anual descuento</option>
-          <option value="0">Abono 10 descuento</option>
+          {buyOptions}
         </select>
       </div>
       ])
@@ -305,11 +304,11 @@ const handleCreate = () => {
 
   return (
     <Layout>
-      <div className="pt-40 max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
+      <div className="pt-40 w-full max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
-        <div className='flex'>
-          <div className='my-10 flex-1'>
+        <div className='flex w-full justify-between'>
+          <div className='my-10 flex-1 max-w-fit'>
             {formatedHall}
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
@@ -327,6 +326,8 @@ const handleCreate = () => {
                 <p className='font-bold'>{movieInfo.movie.title}</p>
               </div>
             }
+
+
             <div id='selected-seats-container'>
               {pickedSeats}
             </div>
