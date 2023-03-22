@@ -62,9 +62,9 @@ function App() {
 
         {/* Protected routes, You need to be signed in to view these  */}
         <Route exact path="/projections/:id" element={
-          <Protected>
+          // <Protected>
             <Hall />
-          </Protected>
+          // </Protected>
         } />
         <Route exact path="/user_details" element={
           <Protected>

@@ -21,16 +21,23 @@ class Api::V1::ReservationsController < ApplicationController
   def create
     projection = Projection.find(reservation_params[:projection_id].to_i)
     session = projection.session
-    reservation_params[:seats].forEach do |seat|
-      reservation = Reservation.new(seat_id: seat.id, session_id: session.id, user_id: current_user.id)
-      reservation.save
+    seats = reservation_params[:seats]
+    puts seats
+    puts reservation_params[:projection_id]
+    puts 'answer should be here'
+    result = []
+    seats.each do |seat|
+      reservation = Reservation.new(seat_id: seat["id"], session_id: session.id, user_id: current_user.id)
+      if reservation.save
+        result << reservation
+      end
     end
-    render json: reservation
+    render json: result
   end
 
   private
 
   def reservation_params
-    params.require(:reservationinfo).permit(:seats, :projection_id)
+    params.require(:reservationinfo).permit(:projection_id, seats: [[:id, :row, :column, :hall_id]])
   end
 end
