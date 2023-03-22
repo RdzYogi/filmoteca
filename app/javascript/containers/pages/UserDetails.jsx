@@ -21,7 +21,7 @@ function UserDetails() {
     })
     .then((data) => {
       //console.log(data)
-      if (data.subscriptions.length >= 0) {
+      if (data.subscriptions.length > 0) {
         data.subscriptions.map((subscription, index) => {
           setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
        })
@@ -52,6 +52,9 @@ function UserDetails() {
       </div>
       {/* <div className="pt-20">{currentUserStore.email}</div> */}
       <div className="mt-10 p-10 bg-black text-gray-50">
+        {subscriptions.length === 0 ?
+        <div className="text-center">No tienes suscripciones
+        </div> : null}
         {loaded ? subscriptions : <div className="text-center">Cargando...</div>}
       </div>
       {/* <div className="pt-40">{authToken}</div> */}
