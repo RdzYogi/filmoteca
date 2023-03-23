@@ -22,17 +22,12 @@ function UserDetails() {
     .then((data) => {
       //console.log(data)
       if (data.subscriptions.length > 0) {
+        //  console.log(subscriptions)
         data.subscriptions.map((subscription, index) => {
           setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
        })
-       console.log(subscriptions)
       }
-      //  else {
-      //   console.log(subscriptions)}
-      //   data.subscriptions.map((subscription, index) => {
-      //     setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
-      //   })
-      // }
+      console.log(data.subscriptions)
       // if (data.reservations === undefined) {
       //   setReservations(<div className="text-center">No tienes reservas</div>)
       // } else {
