@@ -27,14 +27,13 @@ function UserDetails() {
           setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
        })
       }
-      console.log(data.subscriptions)
-      // if (data.reservations === undefined) {
-      //   setReservations(<div className="text-center">No tienes reservas</div>)
-      // } else {
-      //   data.reservations.map((reservation, index) => {
-      //     setReservations(reservations => [...reservations, <ReservationCard key={index} reservation={reservation}/>])
-      //   })
-      // }
+      //console.log(data.reservations)
+      if (data.reservations.length > 0) {
+        console.log(data.reservations)
+          data.reservations.map((reservation, index) => {
+          setReservations(reservations => [...reservations, <ReservationCard key={index} reservation={reservation}/>])
+        })
+      }
       setLoaded(true)
     });
   }, [])
@@ -57,6 +56,9 @@ function UserDetails() {
               <h1 className="text-xl font-bold text-center">RESERVAS</h1>
       </div>
       <div className="pt-10">
+        {subscriptions.length === 0 ?
+        <div className="text-center">No tienes reservas
+        </div> : null}
         {loaded ? reservations : <div className="text-center">Cargando...</div>}
       </div>
     </div>
