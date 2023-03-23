@@ -10,7 +10,7 @@ import getDateObject from '../../components/helpers/getDateObject';
 import PopUp from '../../components/shared/PopUp';
 import { useNavigate } from 'react-router-dom'
 
-const buyOptions = [<option key={"Normal"} value="3">Entrada sencilla - 3€</option>,<option key={"Discount"} value="2">Entrada sencilla descuento - 2€</option>]
+const buyOptions = [<option className='pt-0' key={"Normal"} value="3">Entrada sencilla - 3€</option>,<option key={"Discount"} value="2">Entrada sencilla descuento - 2€</option>]
 function Hall() {
   let params = useParams()
   const id = params.id;
@@ -185,15 +185,13 @@ const handleSeatClick = (e) => {
   const selectedSeats = selectedSeatsContainer.childNodes
   if (selectedSeats.length === 0){
     setPickedSeats(prevPickedSeats => [...prevPickedSeats,
-      <div key={row+column} data-price={selectedSeatPrice} data-row={row} data-column={column} className='bg-black text-white p-2'>
-        <p>Asiento elegido:</p>
-        <div className='flex'>
+      <div key={row+column} data-price={selectedSeatPrice} data-row={row} data-column={column} className='bg-black text-white my-2'>
+        <div className='flex justify-center'>
           <p>Fila {row}</p>
           <p className='mx-2'>-</p>
           <p>Asiento {column}</p>
         </div>
-        <label htmlFor={'price'+row+column} className="block mb-2 font-medium">Precio</label>
-        <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+        <select id={'price'+row+column} onChange={handlePriceSelection} className="py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
           <option defaultValue>Elige forma de pago</option>
           {buyOptions}
         </select>
@@ -209,15 +207,13 @@ const handleSeatClick = (e) => {
         for (let j = 0; j < selectedSeats.length; j++) {
           if (selectedSeats[j] !== selectedSeats[i]){
             setPickedSeats(prevPickedSeats => [...prevPickedSeats,
-              <div key={selectedSeats[j].dataset.row+selectedSeats[j].dataset.column} data-row={selectedSeats[j].dataset.row} data-column={selectedSeats[j].dataset.column} className='bg-black text-white p-2'>
-                <p>Asiento elegido:</p>
-                <div className='flex'>
+              <div key={selectedSeats[j].dataset.row+selectedSeats[j].dataset.column} data-row={selectedSeats[j].dataset.row} data-column={selectedSeats[j].dataset.column} className='bg-black text-white my-2'>
+                <div className='flex justify-center'>
                   <p>Fila {selectedSeats[j].dataset.row}</p>
                   <p className='mx-2'>-</p>
                   <p>Asiento {selectedSeats[j].dataset.column}</p>
                 </div>
-                <label htmlFor={'price'+row+column} className="block mb-2 font-medium ">Precio</label>
-                <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+                <select id={'price'+row+column} onChange={handlePriceSelection} className="py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" >
                   <option defaultValue>Elige forma de pago</option>
                   {buyOptions}
                 </select>
@@ -237,15 +233,14 @@ const handleSeatClick = (e) => {
     }
     if (!exists){
       setPickedSeats(prevPickedSeats => [...prevPickedSeats,
-        <div key={row+column} data-price={selectedSeatPrice} data-row={row} data-column={column} className='bg-black text-white p-2'>
-          <p>Asiento elegido:</p>
-          <div className='flex'>
+        <div key={row+column} data-price={selectedSeatPrice} data-row={row} data-column={column} className='bg-black text-white my-2'>
+          <div className='flex justify-center'>
             <p>Fila {row}</p>
             <p className='mx-2'>-</p>
             <p>Asiento {column}</p>
           </div>
-          <label htmlFor={'price'+row+column} className="block mb-2 font-medium">Precio</label>
-          <select id={'price'+row+column} onChange={handlePriceSelection} className="block p-3 w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+
+          <select id={'price'+row+column} onChange={handlePriceSelection} className="py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
             <option defaultValue>Elige forma de pago</option>
             {buyOptions}
           </select>
@@ -310,23 +305,23 @@ const handleCreate = () => {
       <div className="pt-40 w-full max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
-        <div className='flex flex-col md:flex-row md:justify-around'>
+        <div className='flex items-center md:items-start flex-col md:flex-row md:justify-around'>
           <div className='my-10 flex-1 max-w-fit self-center'>
             {formatedHall}
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
-          <div>
+          <div className='w-56'>
             {loaded &&
-              <div className='mt-10 bg-slate-300 p-5'>
-                <p className='text-center underline text-lg'>En tu carrito</p>
-                <div className='flex'>
+              <div className='mt-10'>
+                <p className='font-bold text-center'>{movieInfo.movie.title}</p>
+                <div className='flex justify-center'>
                   <p>{getDateObject(movieInfo.session.play_time).day}/{getDateObject(movieInfo.session.play_time).month}/{getDateObject(movieInfo.session.play_time).year}</p>
                   <p className='mx-2'>-</p>
                   <p>{getDateObject(movieInfo.session.play_time).hour}:{getDateObject(movieInfo.session.play_time).minutes}h</p>
                   <p className='mx-2'>-</p>
                   <p>{movieInfo.hall.name}</p>
                 </div>
-                <p className='font-bold'>{movieInfo.movie.title}</p>
+                <p className='text-center underline text-lg'>En tu carrito</p>
               </div>
             }
 
@@ -335,7 +330,7 @@ const handleCreate = () => {
               {pickedSeats}
             </div>
             {(Object.keys(pickedSeats).length === 0 ) ? '' :
-              <div className='bg-slate-300'>
+              <div className=''>
                 <p>Total entradas: {pickedSeats.length}</p>
                 <p>Total precio: {selectedSeatPrices.reduce((acc, number) => acc + number, 0)}€</p>
                 <SubmitButton label="Comprar" onClick={handleCreate}/>
