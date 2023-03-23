@@ -133,13 +133,14 @@ function Hall() {
           row.push(<Seat id={seat.id} reservations={reservations} key={index + "row"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick}/>)
           i -= 1
 
-        } else if (seat.row === 14) {
+        } else if (seat.row === "14") {
+          console.log("row 14")
           result.push(
-            <div key={i + "column"} className='flex justify-center items-center'>
-              <div className='pt-1 self-start'>
+            <div key={i + "column"} className='flex justify-center items-center  mb-6'>
+              <div className=' self-start'>
                 {Number(seat.row) + 2}
               </div>
-              <div className='flex mb-6'>
+              <div className='flex'>
                 {row.reverse()}
               </div>
             </div>)
@@ -177,7 +178,7 @@ const handlePriceSelection = (e) => {
 }
 
 const handleSeatClick = (e) => {
-  // console.log(e)
+  console.log(e.target)
   const row = e.target.dataset.row
   const column = e.target.dataset.column
   const selectedSeatsContainer = document.getElementById('selected-seats-container')
@@ -231,7 +232,7 @@ const handleSeatClick = (e) => {
           // console.log(selectedSeats[j])
           }
         }
-        break
+        return
       }
     }
     if (!exists){

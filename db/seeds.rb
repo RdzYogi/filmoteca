@@ -37,10 +37,6 @@ puts "Halls created"
     12.times do |column|
       Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
     end
-  elsif row == 15
-    10.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
-    end
   else
     17.times do |column|
       Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
