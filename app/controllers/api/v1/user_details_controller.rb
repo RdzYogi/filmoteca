@@ -18,8 +18,18 @@ class Api::V1::UserDetailsController < ApplicationController
         end
       end
     end
-    reservations = current_user.reservations
-    render json: { subscriptions:, reservations: }, status: :ok
+
+    reservations = Reservation.includes(seat: [:hall], session: [:projections, projections: :movie]).references(:seat, :session, :hall, :projection, :movie).where(user_id: current_user.id)
+    result = { subscriptions: [], reservations: [] }
+    result[:subscriptions] = subscriptions
+    result[:reservations] = reservations.map do |r|
+      seat = r.seat
+      hall = seat.hall
+      movie = r.session.projections.first.movie
+      session = r.session
+      { reservations:, include: { seat:, hall:, movie:, session: } }
+    end
+    render json: result, status: :ok
   end
 
   def create

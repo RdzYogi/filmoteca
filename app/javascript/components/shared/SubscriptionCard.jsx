@@ -2,7 +2,6 @@ import React from "react";
 import getDateObject from '../helpers/getDateObject'
 
 function SubscriptionCard(props) {
-
   const subscription = props.subscription
   const subscriptionType = subscription.tipo
   const remaining_uses = subscription.remaining_uses
