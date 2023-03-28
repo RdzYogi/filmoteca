@@ -25,9 +25,6 @@ class Api::V1::UserDetailsController < ApplicationController
   def create
     # create user details
     p = user_details_params["type"]
-    puts "aqui "
-    puts user_details_params["type"]
-    puts p
     case p
     when 'abono10N'
       a = Subscription.create(user_id: current_user.id, tipo: 'abono10', remaining_uses: 10)

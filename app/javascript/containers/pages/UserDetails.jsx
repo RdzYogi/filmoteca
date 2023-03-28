@@ -20,15 +20,16 @@ function UserDetails() {
       }
     })
     .then((data) => {
-      if (data.subscriptions === undefined) {
+      console.log(data)
+      if (data.subscriptions.length === 0 ) {
         setSubscriptions(<div className="text-center">No tienes suscripciones</div>)
       } else {
         data.subscriptions.map((subscription, index) => {
           setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
         })
       }
-      if (data.reservations === undefined) {
-        setReservations(<div className="text-center">No tienes reservas</div>)
+      if (data.reservations.length === 0) {
+        setReservations(<div className="text-center mb-5">No tienes reservas</div>)
       } else {
         data.reservations.map((reservation, index) => {
           setReservations(reservations => [...reservations, <ReservationCard key={index} reservation={reservation}/>])
