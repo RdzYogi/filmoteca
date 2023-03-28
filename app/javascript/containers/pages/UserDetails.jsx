@@ -20,15 +20,16 @@ function UserDetails() {
       }
     })
     .then((data) => {
-      if (data.subscriptions === undefined) {
+      // console.log(data)
+      if (data.subscriptions.length === 0 ) {
         setSubscriptions(<div className="text-center">No tienes suscripciones</div>)
       } else {
         data.subscriptions.map((subscription, index) => {
           setSubscriptions(subscriptions => [...subscriptions, <SubscriptionCard key={index} subscription={subscription}/>])
         })
       }
-      if (data.reservations === undefined) {
-        setReservations(<div className="text-center">No tienes reservas</div>)
+      if (data.reservations.length === 0) {
+        setReservations(<div className="text-center mb-5">No tienes reservas</div>)
       } else {
         data.reservations.map((reservation, index) => {
           setReservations(reservations => [...reservations, <ReservationCard key={index} reservation={reservation}/>])
@@ -40,20 +41,18 @@ function UserDetails() {
 
   return (
   <Layout>
-    <div className="pt-40 mx-auto max-w-7xl">
-      <div className="flex justify-center">
-              <h1 className="text-xl font-bold text-center">SUSCRIPCIONES</h1>
+    <div className="flex flex-col md:flex-row pt-40 mx-auto w-[80%] justify-between mb-5">
+      <div>
+        <h1 className="text-xl font-bold text-center">SUSCRIPCIONES</h1>
+        <div className="mt-10 p-10 bg-black text-gray-50">
+          {loaded ? subscriptions : <div className="text-center">Cargando...</div>}
+        </div>
       </div>
-      {/* <div className="pt-20">{currentUserStore.email}</div> */}
-      <div className="mt-10 p-10 bg-black text-gray-50">
-        {loaded ? subscriptions : <div className="text-center">Cargando...</div>}
-      </div>
-      {/* <div className="pt-40">{authToken}</div> */}
-      <div className="flex justify-center pt-10">
-              <h1 className="text-xl font-bold text-center">RESERVAS</h1>
-      </div>
-      <div className="pt-10">
-        {loaded ? reservations : <div className="text-center">Cargando...</div>}
+      <div className='mt-10 md:mt-0'>
+        <h1 className="text-xl font-bold text-center">RESERVAS</h1>
+        <div className="pt-10 flex justify-center flex-col">
+          {loaded ? reservations : <div className="text-center">Cargando...</div>}
+        </div>
       </div>
     </div>
   </Layout>
