@@ -20,7 +20,7 @@ function UserDetails() {
       }
     })
     .then((data) => {
-      console.log(data)
+      // console.log(data)
       if (data.subscriptions.length === 0 ) {
         setSubscriptions(<div className="text-center">No tienes suscripciones</div>)
       } else {
@@ -41,20 +41,18 @@ function UserDetails() {
 
   return (
   <Layout>
-    <div className="pt-40 mx-auto max-w-7xl">
-      <div className="flex justify-center">
-              <h1 className="text-xl font-bold text-center">SUSCRIPCIONES</h1>
+    <div className="flex flex-col md:flex-row pt-40 mx-auto w-[80%] justify-between mb-5">
+      <div>
+        <h1 className="text-xl font-bold text-center">SUSCRIPCIONES</h1>
+        <div className="mt-10 p-10 bg-black text-gray-50">
+          {loaded ? subscriptions : <div className="text-center">Cargando...</div>}
+        </div>
       </div>
-      {/* <div className="pt-20">{currentUserStore.email}</div> */}
-      <div className="mt-10 p-10 bg-black text-gray-50">
-        {loaded ? subscriptions : <div className="text-center">Cargando...</div>}
-      </div>
-      {/* <div className="pt-40">{authToken}</div> */}
-      <div className="flex justify-center pt-10">
-              <h1 className="text-xl font-bold text-center">RESERVAS</h1>
-      </div>
-      <div className="pt-10">
-        {loaded ? reservations : <div className="text-center">Cargando...</div>}
+      <div className='mt-10 md:mt-0'>
+        <h1 className="text-xl font-bold text-center">RESERVAS</h1>
+        <div className="pt-10 flex justify-center flex-col">
+          {loaded ? reservations : <div className="text-center">Cargando...</div>}
+        </div>
       </div>
     </div>
   </Layout>
