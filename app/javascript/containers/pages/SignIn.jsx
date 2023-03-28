@@ -34,7 +34,7 @@ function SignIn() {
     .then(
       (response) => {
         if (response.payload.isLogged) {
-          navigate(-1)
+          navigate("/")
         }
       }
     )
