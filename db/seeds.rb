@@ -1,19 +1,19 @@
-Seat.destroy_all unless Seat.all.empty?
+# Seat.destroy_all unless Seat.all.empty?
 Projection.destroy_all unless Projection.all.empty?
 Movie.destroy_all unless Movie.all.empty?
 Session.destroy_all unless Session.all.empty?
-Hall.destroy_all unless Hall.all.empty?
+# Hall.destroy_all unless Hall.all.empty?
 Cycle.destroy_all unless Cycle.all.empty?
-Subscription.destroy_all unless Subscription.all.empty?
-User.destroy_all unless User.all.empty?
-News.destroy_all
+# Subscription.destroy_all unless Subscription.all.empty?
+# User.destroy_all unless User.all.empty?
+# News.destroy_all
 
 
 # Define the halls
-Hall.create(name: "Sala 1")
-Hall.create(name: "Sala 2")
-Hall.create(name: "Sala 3")
-puts "Halls created"
+# Hall.create(name: "Sala 1")
+# Hall.create(name: "Sala 2")
+# Hall.create(name: "Sala 3")
+# puts "Halls created"
 
 
 # Define the seats for each hall
@@ -24,63 +24,63 @@ puts "Halls created"
 
 
 # Hall 1
-20.times do |row|
-  if row < 13
-    16.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[0].id, available: true)
-    end
-  elsif row == 13
-    14.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
-    end
-  elsif row == 14
-    12.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
-    end
-  else
-    17.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
-    end
-  end
-end
+# 20.times do |row|
+#   if row < 13
+#     16.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[0].id, available: true)
+#     end
+#   elsif row == 13
+#     14.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+#     end
+#   elsif row == 14
+#     12.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+#     end
+#   else
+#     17.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[0].id)
+#     end
+#   end
+# end
 
-# Hall 2
-11.times do |row|
-  if row < 1
-    8.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
-    end
-  elsif row == 1
-    9.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
-    end
-  elsif row == 2 || row == 3
-    10.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
-    end
-  elsif row == 4 || row == 5 || row == 7
-    11.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
-    end
-  elsif row == 6 || row == 8 || row == 9
-    12.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
-    end
-  else
-    13.times do |column|
-      Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
-    end
-  end
-end
+# # Hall 2
+# 11.times do |row|
+#   if row < 1
+#     8.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+#     end
+#   elsif row == 1
+#     9.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+#     end
+#   elsif row == 2 || row == 3
+#     10.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+#     end
+#   elsif row == 4 || row == 5 || row == 7
+#     11.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+#     end
+#   elsif row == 6 || row == 8 || row == 9
+#     12.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+#     end
+#   else
+#     13.times do |column|
+#       Seat.create(row: row, column: column, hall_id: Hall.all[1].id)
+#     end
+#   end
+# end
 
-# Hall 3
-10.times do |row|
-  10.times do |column|
-    Seat.create(row: row, column: column, hall_id: Hall.all[2].id)
-  end
-end
+# # Hall 3
+# 10.times do |row|
+#   10.times do |column|
+#     Seat.create(row: row, column: column, hall_id: Hall.all[2].id)
+#   end
+# end
 
-puts "Seats created"
+# puts "Seats created"
 
 # Define placeholder sessions
 require 'date'
@@ -1381,43 +1381,43 @@ puts "Projections created successfully"
 
 # Define News placeholder
 
-News.create(title: "news1",
-            description: "amazing news for everybody 1",
-            link: "https://entradasfilmoteca.gob.es/",
-            img_url: "https://unsplash.com/photos/h7rOzTmGxWE")
+# News.create(title: "news1",
+#             description: "amazing news for everybody 1",
+#             link: "https://entradasfilmoteca.gob.es/",
+#             img_url: "https://unsplash.com/photos/h7rOzTmGxWE")
 
-News.create(title: "news2",
-            description: "amazing news for everybody 2",
-            link: "https://entradasfilmoteca.gob.es/",
-            img_url: "https://unsplash.com/photos/h7rOzTmGxWE")
+# News.create(title: "news2",
+#             description: "amazing news for everybody 2",
+#             link: "https://entradasfilmoteca.gob.es/",
+#             img_url: "https://unsplash.com/photos/h7rOzTmGxWE")
 
-puts "News created"
+# puts "News created"
 
 # Creating users
 
-User.create(email: "fran@gmail.com",
-            password: "123456")
-puts "Fran created"
+# User.create(email: "fran@gmail.com",
+#             password: "123456")
+# puts "Fran created"
 
-User.create(email: "vito@gmail.com",
-            password: "123456")
-puts "Vito created"
+# User.create(email: "vito@gmail.com",
+#             password: "123456")
+# puts "Vito created"
 
-User.create(email: "silviu@gmail.com",
-            password: "123456",)
-puts "Silviu created"
+# User.create(email: "silviu@gmail.com",
+#             password: "123456",)
+# puts "Silviu created"
 
-User.create(email: "alberto@gmail.com",
-            password: "123456")
-puts "Alberto created"
+# User.create(email: "alberto@gmail.com",
+#             password: "123456")
+# puts "Alberto created"
 
-User.create(email: "laura@gmail.com",
-            password: "123456")
+# User.create(email: "laura@gmail.com",
+#             password: "123456")
 
-User.create(email: "admin@gmail.com",
-            password: "123456",
-            admin: true)
-puts "Laura created"
+# User.create(email: "admin@gmail.com",
+#             password: "123456",
+#             admin: true)
+# puts "Laura created"
 
 # Creating subscriptions for users
 
