@@ -41,7 +41,7 @@ function UserDetails() {
 
   return (
   <Layout>
-    <div className="flex flex-col md:flex-row pt-40 mx-auto w-[80%] justify-between mb-5">
+    <div className="flex flex-col md:flex-row pt-40 mx-auto w-[80%] lg:w-[60%] justify-between mb-5">
       <div>
         <h1 className="text-xl font-bold text-center">SUSCRIPCIONES</h1>
         <div className="mt-10 p-10 bg-black text-gray-50">
@@ -50,7 +50,7 @@ function UserDetails() {
       </div>
       <div className='mt-10 md:mt-0'>
         <h1 className="text-xl font-bold text-center">RESERVAS</h1>
-        <div className="pt-10 flex justify-center flex-col">
+        <div className="pt-10 md:mt-10 flex justify-center flex-col">
           {loaded ? reservations : <div className="text-center">Cargando...</div>}
         </div>
       </div>
