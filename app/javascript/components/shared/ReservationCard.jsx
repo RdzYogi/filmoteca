@@ -17,7 +17,6 @@ function ReservationCard({reservation}) {
           <li className='w-fit'><span className="font-bold">{movie}</span></li>
           <li className='w-fit'><span className="font-bold">{date}</span></li>
           <li className='w-fit'><span className="font-bold">{seatString}</span></li>
-
         </ul>
       </div>
     );

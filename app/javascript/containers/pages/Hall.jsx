@@ -11,6 +11,7 @@ import PopUp from '../../components/shared/PopUp';
 import { useNavigate } from 'react-router-dom'
 
 const buyOptions = [<option className='pt-0' key={"Normal"} value="3">Entrada sencilla - 3€</option>,<option key={"Discount"} value="2">Entrada sencilla descuento - 2€</option>]
+
 function Hall() {
   let params = useParams()
   const id = params.id;
@@ -123,7 +124,7 @@ function Hall() {
               </div>
               :
               <div className='flex'>
-                {row}
+                {row.reverse()}
               </div>
               }
             </div>
@@ -249,6 +250,7 @@ const handleSeatClick = (e) => {
     }
   }
 }
+
 const handleCreate = () => {
   // const error = []
   // if(error.length > 0){
@@ -310,8 +312,9 @@ const handleCreate = () => {
             {formatedHall}
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
-          <div className='w-56'>
-            {loaded &&
+          <div className='w-96'>
+            {console.log(pickedSeats)}
+            {loaded && pickedSeats.length !== 0 &&
               <div className='mt-10'>
                 <p className='font-bold text-center'>{movieInfo.movie.title}</p>
                 <div className='flex justify-center'>
@@ -325,12 +328,11 @@ const handleCreate = () => {
               </div>
             }
 
-
             <div id='selected-seats-container'>
               {pickedSeats}
             </div>
             {(Object.keys(pickedSeats).length === 0 ) ? '' :
-              <div className=''>
+              <div className='mb-10'>
                 <p>Total entradas: {pickedSeats.length}</p>
                 <p>Total precio: {selectedSeatPrices.reduce((acc, number) => acc + number, 0)}€</p>
                 <SubmitButton label="Comprar" onClick={handleCreate}/>
