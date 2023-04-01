@@ -308,7 +308,7 @@ const handleCreate = () => {
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
         <div className='flex items-center md:items-start flex-col md:flex-row md:justify-around'>
-          <div className='my-10 flex-1 max-w-fit self-center'>
+          <div className='mt-10 md:my-10 flex-1 max-w-fit self-center'>
             {formatedHall}
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
@@ -340,7 +340,7 @@ const handleCreate = () => {
             }
             </div>
           </div>
-          <div className='flex items-center'>
+          <div className='flex items-center mt-10 mb:mt-0'>
             <FontAwesomeIcon icon={faCircleExclamation} />
             <p className='ml-2'>La Sala 1 NO es accesible para público en silla de ruedas.</p>
           </div>
