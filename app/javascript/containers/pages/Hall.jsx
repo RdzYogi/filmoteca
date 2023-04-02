@@ -174,9 +174,12 @@ const [selectedSeatPrices, setSelectedSeatPrices] = useState([]);
 const [selectedSeatPrice, setSelectedSeatPrice] = useState('');
 
 const handlePriceSelection = (e) => {
-  setSelectedSeatPrice(event.target.value)
+  console.log(e.target.childNodes[1].value === e.target.value)
+  console.log(e.target.id)
+  setSelectedSeatPrice(e.target.value)
   setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
 }
+
 
 const handleSeatClick = (e) => {
   console.log(e.target)
