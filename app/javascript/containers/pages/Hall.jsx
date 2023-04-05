@@ -39,13 +39,12 @@ function Hall() {
       return response.json()
     })
     .then((data) => {
-      // console.log(data)
       const movie = data.include.movie
       const session = data.include.session
       const hall = data.include.include.hall
       const seats = data.include.include.include.seats
       const reservations = data.include.include.reservations
-      // console.log(reservations)
+
       if (data.subscription !== null && buyOptions.length === 2){
         const abonoType = data.subscription.tipo
         switch (abonoType) {
@@ -103,7 +102,6 @@ function Hall() {
           const firstHalfRow = row.slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
 
-          // console.log(firstHalfRow,secondHalfRow)
           result.push(
             <div key={i +row+ "column"} className={hall.name === "Sala 1" ? 'flex justify-center items-center' : 'flex' }>
               <div className='self-center'>
@@ -132,7 +130,6 @@ function Hall() {
           i -= 1
 
         } else if (seat.row === "14") {
-          // console.log("row 14")
           result.push(
             <div key={i + "column"} className='flex justify-center items-center  mb-6'>
               <div className=' self-start'>
@@ -181,8 +178,6 @@ const handlePriceSelection = (e) => {
       }
     }
   }
-  // setSelectedSeatPrice(e.target.value)
-  // setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
 }
 
 
@@ -199,8 +194,8 @@ const handleSeatClick = (e) => {
           <p className='mx-2'>-</p>
           <p>Asiento {column}</p>
         </div>
-        <select id={'price'+row+column} onChange={handlePriceSelection} className="py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
-          <option defaultValue>Elige forma de pago</option>
+        <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+          <option selected disabled>Elige forma de pago</option>
           {buyOptions}
         </select>
       </div>
@@ -221,8 +216,8 @@ const handleSeatClick = (e) => {
                   <p className='mx-2'>-</p>
                   <p>Asiento {selectedSeats[j].dataset.column}</p>
                 </div>
-                <select id={'price'+row+column} onChange={handlePriceSelection} className="py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" >
-                  <option defaultValue>Elige forma de pago</option>
+                <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+                  <option selected disabled>Elige forma de pago</option>
                   {buyOptions}
                 </select>
               </div>
@@ -247,8 +242,8 @@ const handleSeatClick = (e) => {
             <p>Asiento {column}</p>
           </div>
 
-          <select id={'price'+row+column} onChange={handlePriceSelection} className="py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
-            <option defaultValue>Elige forma de pago</option>
+          <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
+            <option selected disabled>Elige forma de pago</option>
             {buyOptions}
           </select>
         </div>
@@ -258,12 +253,6 @@ const handleSeatClick = (e) => {
 }
 
 const handleCreate = () => {
-  // const error = []
-  // if(error.length > 0){
-  //   setStatus(error)
-  //   return
-  // }
-
   let newSeats = []
   const parent = document.getElementById('selected-seats-container')
   parent.childNodes.forEach(child => {
@@ -275,33 +264,39 @@ const handleCreate = () => {
       }
     })
   })
-    // console.log(newSeats)
+
+  const selectElem = document.getElementsByClassName('selectOption')[0];
+  const selectedValue = selectElem.value;
+  console.log(selectedValue)
+  if (selectedValue === 'Elige forma de pago') {
+    // display error message or prevent submission
+    alert("Please choose a price")
+  } else {
+    // submit form
     fetch('/api/v1/reservations', {
-      method: 'POST',
-      headers: {
-        "Content-type": "application/json",
-        'X-CSRF-Token': csrfToken,
-        "Authorization": authToken
-      },
-      body: JSON.stringify({reservationinfo: {seats: newSeats, projection_id: id}})
-    })
-    .then((response) => {
-      if (response.ok) {
-        return response.json()
-      }
-      throw new Error("Network response was not ok.")
-    })
-    .then((response) => {
-      // alert("You purchase was successful")
-      // navigate('/')
-      setStatus(["compra"])
-      setResponseStatus('Created')
-    })
-    .catch((err) => {
-      // alert("We are sorry, someone else has bought your chosen seat(s)")
-      setStatus(["nocompra"])
-    })
+        method: 'POST',
+        headers: {
+          "Content-type": "application/json",
+          'X-CSRF-Token': csrfToken,
+          "Authorization": authToken
+        },
+        body: JSON.stringify({reservationinfo: {seats: newSeats, projection_id: id}})
+      })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw new Error("Network response was not ok.")
+      })
+      .then((response) => {
+        setStatus(["compra"])
+        setResponseStatus('Created')
+      })
+      .catch((err) => {
+        setStatus(["nocompra"])
+      })
   }
+}
 
   return (
     <Layout>
