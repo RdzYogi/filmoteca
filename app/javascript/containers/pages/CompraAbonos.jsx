@@ -81,7 +81,7 @@ function CompraAbonos() {
       if (response.ok) {
         // console.log(response)
         setResponseStatus(response.statusText)
-        setPopUp(["Compra realizada con éxito"])
+        setPopUp(["compra"])
         return response.json()
       }
     }
