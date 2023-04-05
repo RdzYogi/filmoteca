@@ -11,13 +11,14 @@ function Seat({row, column, selectedSeatPrice, handleSeatClick, id, reservations
   let isDisabled = false
   reservations.forEach(reservation => {
     if (reservation.seat_id === id){
+      // console.log(reservation.seat_id, id)
       isDisabled = true
     }
   });
   // console.log(id, reservations)
 
   return (
-    <button data-row={Number(row)+1} data-column={Number(column)+1} data-price={selectedSeatPrice} onMouseDown={handleSelected}  className={'w-3 h-3 m-[2px] md:m-1 rounded-full '+(isSelected ? 'bg-blue-600 ' : (isDisabled ? 'bg-gray-400' : 'bg-green-500')) } disabled={isDisabled}>
+    <button data-id={id} data-row={Number(row)+1} data-column={Number(column)+1} data-price={selectedSeatPrice} onMouseDown={handleSelected}  className={'w-3 h-3 m-[2px] md:m-1 rounded-full '+(isSelected ? 'bg-blue-600 ' : (isDisabled ? 'bg-gray-400' : 'bg-green-500')) } disabled={isDisabled}>
     </button>
   )
 }

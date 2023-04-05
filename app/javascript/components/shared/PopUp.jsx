@@ -25,6 +25,10 @@ function PopUp({status, responseStatus}) {
         promptMessage.innerText = 'El nombre no puede estar vacío'
         displayPopup()
         break;
+      case 'compra':
+        promptMessage.innerText = 'La compra se ha realizado con éxito'
+        displayPopup()
+        break;
       case 'email':
         promptMessage.innerText = 'El email no puede estar vacío'
         displayPopup()
@@ -57,8 +61,8 @@ function PopUp({status, responseStatus}) {
         promptMessage.innerText = 'Ha surgido un error, por favor inténtelo de nuevo'
         displayPopup()
       break;
-      case "Compra realizada con éxito":
-        promptMessage.innerText = "Compra realizada con éxito"
+      case "nocompra":
+        promptMessage.innerText = "La compra no se ha podido realizar. Por favor, inténtelo de nuevo."
         displayPopup()
       break;
       default:

@@ -23,7 +23,6 @@ class Api::V1::ReservationsController < ApplicationController
     session = projection.session
     seats = reservation_params[:seats]
     puts seats
-    puts reservation_params[:projection_id]
     puts 'answer should be here'
     result = []
     seats.each do |seat|
@@ -38,6 +37,6 @@ class Api::V1::ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservationinfo).permit(:projection_id, seats: [[:id, :row, :column, :hall_id]])
+    params.require(:reservationinfo).permit(:projection_id, seats: [[:id, :row, :column, :hall_id,:created_at, :updated_at, :available]])
   end
 end
