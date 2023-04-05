@@ -194,8 +194,8 @@ const handleSeatClick = (e) => {
           <p className='mx-2'>-</p>
           <p>Asiento {column}</p>
         </div>
-        <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
-          <option selected disabled>Elige forma de pago</option>
+        <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required defaultValue="Elige forma de pago">
+          <option disabled>Elige forma de pago</option>
           {buyOptions}
         </select>
       </div>
@@ -216,8 +216,8 @@ const handleSeatClick = (e) => {
                   <p className='mx-2'>-</p>
                   <p>Asiento {selectedSeats[j].dataset.column}</p>
                 </div>
-                <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
-                  <option selected disabled>Elige forma de pago</option>
+                <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required defaultValue="Elige forma de pago">
+                  <option disabled>Elige forma de pago</option>
                   {buyOptions}
                 </select>
               </div>
@@ -242,8 +242,8 @@ const handleSeatClick = (e) => {
             <p>Asiento {column}</p>
           </div>
 
-          <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required>
-            <option selected disabled>Elige forma de pago</option>
+          <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required defaultValue="Elige forma de pago">
+            <option disabled>Elige forma de pago</option>
             {buyOptions}
           </select>
         </div>
