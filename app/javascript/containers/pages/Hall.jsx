@@ -292,7 +292,7 @@ const handleCreate = () => {
       // alert("You purchase was successful")
       // navigate('/')
       setStatus(["compra"])
-      // setResponseStatus('Created')
+      setResponseStatus('Created')
     })
     .catch((err) => {
       // alert("We are sorry, someone else has bought your chosen seat(s)")
