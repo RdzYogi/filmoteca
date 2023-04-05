@@ -44,6 +44,7 @@ function Hall() {
       const hall = data.include.include.hall
       const seats = data.include.include.include.seats
       const reservations = data.include.include.reservations
+      // console.log(reservations)
       if (data.subscription !== null && buyOptions.length === 2){
         const abonoType = data.subscription.tipo
         switch (abonoType) {
@@ -67,13 +68,9 @@ function Hall() {
       let row = []
 
     seats.reverse().forEach((seat, index) => {
-      // console.log(seat.column)
-      // debugger
       if (seat.row === i+""){
-        // console.log(seat.row, seat.column)
         // create row
         row.push(<Seat id={seat.id} reservations={reservations} key={seat.row+"row"+seat.column+"column"} row={seat.row} column={seat.column} handleSeatClick={handleSeatClick} />)
-        // console.log(row)
         const firstHalfRow = row.slice(0, row.length/2)
         const secondHalfRow = row.slice(-row.length/2)
         // pushing last row
@@ -134,7 +131,7 @@ function Hall() {
           i -= 1
 
         } else if (seat.row === "14") {
-          console.log("row 14")
+          // console.log("row 14")
           result.push(
             <div key={i + "column"} className='flex justify-center items-center  mb-6'>
               <div className=' self-start'>
@@ -173,12 +170,21 @@ const [selectedSeatPrices, setSelectedSeatPrices] = useState([]);
 const [selectedSeatPrice, setSelectedSeatPrice] = useState('');
 
 const handlePriceSelection = (e) => {
-  setSelectedSeatPrice(event.target.value)
-  setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
+  const selectedSeatsContainer = document.getElementById('selected-seats-container')
+  const children = selectedSeatsContainer.childNodes
+  setSelectedSeatPrices([])
+  for (let i = 0; i < children.length; i++) {
+    for (let j = 0; j < children[i].childNodes.length; j++) {
+      if (children[i].childNodes[j].nodeName === "SELECT" && (children[i].childNodes[j].value !== 'Elige forma de pago' && children[i].childNodes[j].value !== 'Abono')) {
+        setSelectedSeatPrices(prev => [...prev, +children[i].childNodes[j].value])
+      }
+    }
+  }
+  // setSelectedSeatPrice(e.target.value)
+  // setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
 }
 
 const handleSeatClick = (e) => {
-  console.log(e.target)
   const row = e.target.dataset.row
   const column = e.target.dataset.column
   const selectedSeatsContainer = document.getElementById('selected-seats-container')
@@ -225,7 +231,6 @@ const handleSeatClick = (e) => {
               setSelectedSeatPrices(prev => [...prev, +childnodes[i].value])
             }
           }
-          // console.log(selectedSeats[j])
           }
         }
         return
@@ -259,15 +264,15 @@ const handleCreate = () => {
   let newSeats = []
   const parent = document.getElementById('selected-seats-container')
   parent.childNodes.forEach(child => {
-    const newSeatRow = child.getAttribute('data-row')
-    const newSeatColumn = child.getAttribute('data-column')
+    const newSeatRow = Number(child.getAttribute('data-row'))-1
+    const newSeatColumn = Number(child.getAttribute('data-column'))-1
     hallAllSeats.filter(seat => {
-      if (seat.row === newSeatRow && seat.column === newSeatColumn){
+      if (seat.row === newSeatRow + "" && seat.column === newSeatColumn + ""){
         newSeats.push(seat)
       }
     })
   })
-
+    // console.log(newSeats)
     fetch('/api/v1/reservations', {
       method: 'POST',
       headers: {
@@ -284,25 +289,21 @@ const handleCreate = () => {
       throw new Error("Network response was not ok.")
     })
     .then((response) => {
-      // console.log(data)
-      console.log(response)
-      // <PopUp status={[response.message]} responseStatus='Created' />
-      // setStatus([response.message])
+      // alert("You purchase was successful")
+      // navigate('/')
+      setStatus(["compra"])
       // setResponseStatus('Created')
-      alert("You purchase was successful")
-      navigate('/')
     })
     .catch((err) => {
-      // setStatus([err])
-      // setResponseStatus('Error')
-      // console.log(err.message)
-      alert("We are sorry, someone else has bought your chosen seat(s)")
+      // alert("We are sorry, someone else has bought your chosen seat(s)")
+      setStatus(["nocompra"])
     })
   }
 
   return (
     <Layout>
       <div className="pt-40 w-full max-w-7xl mt-6 mb-20 sm:mx-auto md:px-12 sm:px-6 px-4 text-justify">
+        <PopUp status={status} responseStatus={responseStatus} />
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
         <div className='flex items-center md:items-start flex-col md:flex-row md:justify-around'>
