@@ -173,12 +173,21 @@ const [selectedSeatPrices, setSelectedSeatPrices] = useState([]);
 const [selectedSeatPrice, setSelectedSeatPrice] = useState('');
 
 const handlePriceSelection = (e) => {
-  setSelectedSeatPrice(event.target.value)
-  setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
+  const selectedSeatsContainer = document.getElementById('selected-seats-container')
+  const children = selectedSeatsContainer.childNodes
+  setSelectedSeatPrices([])
+  for (let i = 0; i < children.length; i++) {
+    for (let j = 0; j < children[i].childNodes.length; j++) {
+      if (children[i].childNodes[j].nodeName === "SELECT" && (children[i].childNodes[j].value !== 'Elige forma de pago' && children[i].childNodes[j].value !== 'Abono')) {
+        setSelectedSeatPrices(prev => [...prev, +children[i].childNodes[j].value])
+      }
+    }
+  }
+  // setSelectedSeatPrice(e.target.value)
+  // setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
 }
 
 const handleSeatClick = (e) => {
-  console.log(e.target)
   const row = e.target.dataset.row
   const column = e.target.dataset.column
   const selectedSeatsContainer = document.getElementById('selected-seats-container')
@@ -225,7 +234,6 @@ const handleSeatClick = (e) => {
               setSelectedSeatPrices(prev => [...prev, +childnodes[i].value])
             }
           }
-          // console.log(selectedSeats[j])
           }
         }
         return
@@ -284,18 +292,10 @@ const handleCreate = () => {
       throw new Error("Network response was not ok.")
     })
     .then((response) => {
-      // console.log(data)
-      console.log(response)
-      // <PopUp status={[response.message]} responseStatus='Created' />
-      // setStatus([response.message])
-      // setResponseStatus('Created')
       alert("You purchase was successful")
       navigate('/')
     })
     .catch((err) => {
-      // setStatus([err])
-      // setResponseStatus('Error')
-      // console.log(err.message)
       alert("We are sorry, someone else has bought your chosen seat(s)")
     })
   }
