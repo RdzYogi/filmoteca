@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
 import Layout from "../../hocs/layouts/Layout";
 import DownloadButton from "../../components/shared/DownloadButton";
@@ -72,7 +72,9 @@ function Movie() {
               <h3 className="pt-3 mx-2">{capitalizedDay + ", " + dateObjectDay.day + " de " + dateObject.month + " " + dateObject.year}</h3>
               <h3 className="py-3 mx-2">{dateObject.hour + ":" + dateObject.minutes}</h3>
               { projectionStillToCome(dateObjectDay, todayDate) ?
-                <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100 self-center">Comprar</button> :
+                <Link to={`/projections/${projection.projection.id}`}>
+                  <button className="font-bold px-3 py-2 mx-auto bg-black text-slate-100 self-center">Comprar</button>
+                </Link> :
                 <p className="text-center">Finalizado</p>
               }
             </div>
