@@ -11,6 +11,7 @@ import PopUp from '../../components/shared/PopUp';
 import { useNavigate } from 'react-router-dom'
 
 const buyOptions = [<option className='pt-0' key={"Normal"} value="3">Entrada sencilla - 3€</option>,<option key={"Discount"} value="2">Entrada sencilla descuento - 2€</option>]
+
 function Hall() {
   let params = useParams()
   const id = params.id;
@@ -38,13 +39,12 @@ function Hall() {
       return response.json()
     })
     .then((data) => {
-      // console.log(data)
       const movie = data.include.movie
       const session = data.include.session
       const hall = data.include.include.hall
       const seats = data.include.include.include.seats
       const reservations = data.include.include.reservations
-      // console.log(reservations)
+
       if (data.subscription !== null && buyOptions.length === 2){
         const abonoType = data.subscription.tipo
         switch (abonoType) {
@@ -102,7 +102,6 @@ function Hall() {
           const firstHalfRow = row.slice(0, row.length/2)
           const secondHalfRow = row.slice(-row.length/2)
 
-          // console.log(firstHalfRow,secondHalfRow)
           result.push(
             <div key={i +row+ "column"} className={hall.name === "Sala 1" ? 'flex justify-center items-center' : 'flex' }>
               <div className='self-center'>
@@ -120,7 +119,7 @@ function Hall() {
               </div>
               :
               <div className='flex'>
-                {row}
+                {row.reverse()}
               </div>
               }
             </div>
@@ -131,7 +130,6 @@ function Hall() {
           i -= 1
 
         } else if (seat.row === "14") {
-          // console.log("row 14")
           result.push(
             <div key={i + "column"} className='flex justify-center items-center  mb-6'>
               <div className=' self-start'>
@@ -180,9 +178,8 @@ const handlePriceSelection = (e) => {
       }
     }
   }
-  // setSelectedSeatPrice(e.target.value)
-  // setSelectedSeatPrices(prevSelectedPrice => [...prevSelectedPrice, +e.target.value ]);
 }
+
 
 const handleSeatClick = (e) => {
   const row = e.target.dataset.row
@@ -197,8 +194,8 @@ const handleSeatClick = (e) => {
           <p className='mx-2'>-</p>
           <p>Asiento {column}</p>
         </div>
-        <select id={'price'+row+column} onChange={handlePriceSelection} className="py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
-          <option defaultValue>Elige forma de pago</option>
+        <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required defaultValue="Elige forma de pago">
+          <option disabled>Elige forma de pago</option>
           {buyOptions}
         </select>
       </div>
@@ -219,8 +216,8 @@ const handleSeatClick = (e) => {
                   <p className='mx-2'>-</p>
                   <p>Asiento {selectedSeats[j].dataset.column}</p>
                 </div>
-                <select id={'price'+row+column} onChange={handlePriceSelection} className="py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" >
-                  <option defaultValue>Elige forma de pago</option>
+                <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required defaultValue="Elige forma de pago">
+                  <option disabled>Elige forma de pago</option>
                   {buyOptions}
                 </select>
               </div>
@@ -245,8 +242,8 @@ const handleSeatClick = (e) => {
             <p>Asiento {column}</p>
           </div>
 
-          <select id={'price'+row+column} onChange={handlePriceSelection} className="py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black">
-            <option defaultValue>Elige forma de pago</option>
+          <select id={'price'+row+column} onChange={handlePriceSelection} className="selectOption py-0 block w-full text-black bg-form-bg rounded-sm border border-form-border shadow-sm focus:ring-black focus:border-black" required defaultValue="Elige forma de pago">
+            <option disabled>Elige forma de pago</option>
             {buyOptions}
           </select>
         </div>
@@ -254,13 +251,8 @@ const handleSeatClick = (e) => {
     }
   }
 }
-const handleCreate = () => {
-  // const error = []
-  // if(error.length > 0){
-  //   setStatus(error)
-  //   return
-  // }
 
+const handleCreate = () => {
   let newSeats = []
   const parent = document.getElementById('selected-seats-container')
   parent.childNodes.forEach(child => {
@@ -272,33 +264,48 @@ const handleCreate = () => {
       }
     })
   })
-    // console.log(newSeats)
-    fetch('/api/v1/reservations', {
-      method: 'POST',
-      headers: {
-        "Content-type": "application/json",
-        'X-CSRF-Token': csrfToken,
-        "Authorization": authToken
-      },
-      body: JSON.stringify({reservationinfo: {seats: newSeats, projection_id: id}})
-    })
-    .then((response) => {
-      if (response.ok) {
-        return response.json()
-      }
-      throw new Error("Network response was not ok.")
-    })
-    .then((response) => {
-      // alert("You purchase was successful")
-      // navigate('/')
-      setStatus(["compra"])
-      setResponseStatus('Created')
-    })
-    .catch((err) => {
-      // alert("We are sorry, someone else has bought your chosen seat(s)")
-      setStatus(["nocompra"])
-    })
+
+
+  const selectElems = document.getElementsByClassName('selectOption');
+  // const selectedValue = selectElem.value;
+  let hasDefaultValue = false;
+  console.log(selectElems)
+  for (let i = 0; i < selectElems.length; i++) {
+    if (selectElems[i].value === 'Elige forma de pago') {
+      hasDefaultValue = true;
+      break;
+    }
   }
+
+  if (hasDefaultValue) {
+    // display error message or prevent submission
+    alert("Please choose a price")
+  } else {
+    // submit form
+    fetch('/api/v1/reservations', {
+        method: 'POST',
+        headers: {
+          "Content-type": "application/json",
+          'X-CSRF-Token': csrfToken,
+          "Authorization": authToken
+        },
+        body: JSON.stringify({reservationinfo: {seats: newSeats, projection_id: id}})
+      })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw new Error("Network response was not ok.")
+      })
+      .then((response) => {
+        setStatus(["compra"])
+        setResponseStatus('Created')
+      })
+      .catch((err) => {
+        setStatus(["nocompra"])
+      })
+  }
+}
 
   return (
     <Layout>
@@ -307,12 +314,13 @@ const handleCreate = () => {
         <h1 className='text-center text-2xl font-bold'>ASIENTOS</h1>
         <p>Elija sus asientos (Los marcados en verde están disponibles.)</p>
         <div className='flex items-center md:items-start flex-col md:flex-row md:justify-around'>
-          <div className='my-10 flex-1 max-w-fit self-center'>
+          <div className='mt-10 md:my-10 flex-1 max-w-fit self-center'>
             {formatedHall}
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
-          <div className='w-56'>
-            {loaded &&
+          <div className='w-96'>
+            {console.log(pickedSeats)}
+            {loaded && pickedSeats.length !== 0 &&
               <div className='mt-10'>
                 <p className='font-bold text-center'>{movieInfo.movie.title}</p>
                 <div className='flex justify-center'>
@@ -326,12 +334,11 @@ const handleCreate = () => {
               </div>
             }
 
-
             <div id='selected-seats-container'>
               {pickedSeats}
             </div>
             {(Object.keys(pickedSeats).length === 0 ) ? '' :
-              <div className=''>
+              <div className='mb-10'>
                 <p>Total entradas: {pickedSeats.length}</p>
                 <p>Total precio: {selectedSeatPrices.reduce((acc, number) => acc + number, 0)}€</p>
                 <SubmitButton label="Comprar" onClick={handleCreate}/>
@@ -339,7 +346,7 @@ const handleCreate = () => {
             }
             </div>
           </div>
-          <div className='flex items-center'>
+          <div className='flex items-center mt-10 mb:mt-0'>
             <FontAwesomeIcon icon={faCircleExclamation} />
             <p className='ml-2'>La Sala 1 NO es accesible para público en silla de ruedas.</p>
           </div>
