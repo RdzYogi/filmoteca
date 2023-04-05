@@ -265,10 +265,19 @@ const handleCreate = () => {
     })
   })
 
-  const selectElem = document.getElementsByClassName('selectOption')[0];
-  const selectedValue = selectElem.value;
-  console.log(selectedValue)
-  if (selectedValue === 'Elige forma de pago') {
+
+  const selectElems = document.getElementsByClassName('selectOption');
+  // const selectedValue = selectElem.value;
+  let hasDefaultValue = false;
+  console.log(selectElems)
+  for (let i = 0; i < selectElems.length; i++) {
+    if (selectElems[i].value === 'Elige forma de pago') {
+      hasDefaultValue = true;
+      break;
+    }
+  }
+
+  if (hasDefaultValue) {
     // display error message or prevent submission
     alert("Please choose a price")
   } else {
