@@ -20,7 +20,7 @@ function UserDetails() {
       }
     })
     .then((data) => {
-      // console.log(data)
+      console.log(data)
       if (data.subscriptions.length === 0 ) {
         setSubscriptions(<div className="text-center">No tienes suscripciones</div>)
       } else {
@@ -38,6 +38,7 @@ function UserDetails() {
       setLoaded(true)
     });
   }, [])
+
 
   return (
   <Layout>

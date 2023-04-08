@@ -22,11 +22,12 @@ class Api::V1::ReservationsController < ApplicationController
     projection = Projection.find(reservation_params[:projection_id].to_i)
     session = projection.session
     seats = reservation_params[:seats]
+    subscriptions = current_user.subscriptions
     puts seats
     puts 'answer should be here'
     result = []
     seats.each do |seat|
-      reservation = Reservation.new(seat_id: seat["id"], session_id: session.id, user_id: current_user.id)
+      reservation = Reservation.new(seat_id: seat["id"], session_id: session.id, user_id: current_user.id, subscription_id: subscriptions[0].id)
       if reservation.save
         result << reservation
       end

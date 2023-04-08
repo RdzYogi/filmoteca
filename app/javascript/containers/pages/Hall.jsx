@@ -28,7 +28,9 @@ function Hall() {
   const [pickedSeats, setPickedSeats] = useState([])
   const [hallAllSeats, setHallAllSeats] = useState([])
   const [loaded, setLoaded] = useState(false)
-
+  const [activeSubscription, setActiveSubscription] = useState({})
+  const [abonoTickets, setAbonoTickets] = useState(0)
+  const [remainingUsesActiveSubscription, setRemainingUsesActiveSubscription] = useState(0)
 
   useEffect(() => {
     fetch(`/api/v1/projections/${id}`, {
@@ -39,11 +41,14 @@ function Hall() {
       return response.json()
     })
     .then((data) => {
+      console.log(data)
       const movie = data.include.movie
       const session = data.include.session
       const hall = data.include.include.hall
       const seats = data.include.include.include.seats
       const reservations = data.include.include.reservations
+      const subscription = data.subscription
+      setRemainingUsesActiveSubscription(subscription.remaining_uses)
 
       if (data.subscription !== null && buyOptions.length === 2){
         const abonoType = data.subscription.tipo
@@ -60,6 +65,7 @@ function Hall() {
       setLoaded(true)
       setHallAllSeats(seats)
       setPreviousReservations(reservations)
+      setActiveSubscription(subscription)
 
       const lastRow = seats.slice(-1)[0].row
       const lastColumn = seats.slice(-1)[0].column
@@ -167,6 +173,7 @@ function Hall() {
 const [selectedSeatPrices, setSelectedSeatPrices] = useState([]);
 const [selectedSeatPrice, setSelectedSeatPrice] = useState('');
 
+
 const handlePriceSelection = (e) => {
   const selectedSeatsContainer = document.getElementById('selected-seats-container')
   const children = selectedSeatsContainer.childNodes
@@ -179,7 +186,6 @@ const handlePriceSelection = (e) => {
     }
   }
 }
-
 
 const handleSeatClick = (e) => {
   const row = e.target.dataset.row
@@ -252,6 +258,7 @@ const handleSeatClick = (e) => {
   }
 }
 
+let hasDefaultValue = false;
 const handleCreate = () => {
   let newSeats = []
   const parent = document.getElementById('selected-seats-container')
@@ -265,21 +272,21 @@ const handleCreate = () => {
     })
   })
 
-
   const selectElems = document.getElementsByClassName('selectOption');
-  // const selectedValue = selectElem.value;
-  let hasDefaultValue = false;
-  console.log(selectElems)
+  let abonoTicketCount = 0;
   for (let i = 0; i < selectElems.length; i++) {
     if (selectElems[i].value === 'Elige forma de pago') {
       hasDefaultValue = true;
-      break;
+    }
+    if (selectElems[i].value === '0') {
+      abonoTicketCount += 1;
+      setAbonoTickets(prevAbonoTickets => prevAbonoTickets + 1)
     }
   }
 
   if (hasDefaultValue) {
     // display error message or prevent submission
-    alert("Please choose a price")
+    alert("Elige la forma de pago para cada asiento, por favor!")
   } else {
     // submit form
     fetch('/api/v1/reservations', {
@@ -297,15 +304,47 @@ const handleCreate = () => {
         }
         throw new Error("Network response was not ok.")
       })
-      .then((response) => {
+      .then((data) => {
         setStatus(["compra"])
         setResponseStatus('Created')
+        if (activeSubscription.tipo === 'abono10'){
+          const updatedSubscription = { ...activeSubscription, remaining_uses: remainingUsesActiveSubscription - abonoTicketCount };
+          setActiveSubscription(updatedSubscription);
+          setRemainingUsesActiveSubscription(prevUses => prevUses - abonoTicketCount)
+        }
+        // if (activeSubscription.tipo === 'abono10') {
+        //   const updatedRemainingUses = remainingUsesActiveSubscription - abonoTickets;
+        //   const updatedSubscription = { ...activeSubscription, remaining_uses: updatedRemainingUses };
+        //   setActiveSubscription(updatedSubscription);
+
+        //   // Send the updated subscription data to the server to update the database
+        //   fetch(`/api/v1/subscriptions/${activeSubscription.id}`, {
+        //     method: 'PATCH',
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //       'Authorization': authToken
+        //     },
+        //     body: JSON.stringify({ subscription: updatedSubscription })
+        //   })
+        //   .then(response => {
+        //     if (!response.ok) {
+        //       throw new Error('Failed to update subscription in the database.');
+        //     }
+        //   })
+        //   .catch(error => {
+        //     console.error(error);
+        //   });
+
+        //   setRemainingUsesActiveSubscription(prevUses => prevUses - abonoTickets)
+        // }
       })
       .catch((err) => {
         setStatus(["nocompra"])
       })
+    }
   }
-}
+  console.log(activeSubscription, abonoTickets, remainingUsesActiveSubscription)
+
 
   return (
     <Layout>
@@ -319,7 +358,7 @@ const handleCreate = () => {
             <p className='text-2xl text-center mt-5'>ESCENARIO</p>
           </div>
           <div className='w-96'>
-            {console.log(pickedSeats)}
+            {/* {console.log(pickedSeats)} */}
             {loaded && pickedSeats.length !== 0 &&
               <div className='mt-10'>
                 <p className='font-bold text-center'>{movieInfo.movie.title}</p>
