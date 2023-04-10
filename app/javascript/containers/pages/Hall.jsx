@@ -41,7 +41,7 @@ function Hall() {
       return response.json()
     })
     .then((data) => {
-      console.log(data)
+      // console.log(data)
       const movie = data.include.movie
       const session = data.include.session
       const hall = data.include.include.hall
@@ -319,7 +319,7 @@ const handleCreate = () => {
         //   setActiveSubscription(updatedSubscription);
 
         //   // Send the updated subscription data to the server to update the database
-        //   fetch(`/api/v1/subscriptions/${activeSubscription.id}`, {
+        //   fetch(`/api/v1/user_details`, {
         //     method: 'PATCH',
         //     headers: {
         //       'Content-Type': 'application/json',
