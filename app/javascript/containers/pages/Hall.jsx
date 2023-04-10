@@ -313,20 +313,6 @@ const handleCreate = () => {
           setRemainingUsesActiveSubscription(prevUses => prevUses - abonoTicketCount)
         }
 
-        if (activeSubscription.tipo === 'abono10') {
-          fetch('/api/v1/user_details', {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json', "Authorization": authToken},
-          })
-          .then((response) => {
-            if (response.ok) {
-              return response.json()
-            }
-          })
-          .then((data) => {
-            console.log(data)
-          })
-        }
         // if (activeSubscription.tipo === 'abono10') {
         //   const updatedRemainingUses = remainingUsesActiveSubscription - abonoTickets;
         //   const updatedSubscription = { ...activeSubscription, remaining_uses: updatedRemainingUses };
