@@ -23,7 +23,7 @@ class Api::V1::ReservationsController < ApplicationController
     session = projection.session
     seats = reservation_params[:seats]
     subscriptions = current_user.subscriptions
-    subscription = subscriptions.find{ |sub| sub.remaining_uses != 0 }
+    subscription = subscriptions.find{ |sub| sub.remaining_uses != 0 || Date.today < sub.end_date || null}
     index_of_sub = subscriptions.index(subscription);
     puts seats
     puts 'answer should be here'
