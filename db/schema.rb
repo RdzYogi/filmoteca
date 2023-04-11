@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_124843) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_11_121021) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,9 +101,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_124843) do
     t.bigint "session_id", null: false
     t.bigint "seat_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "subscription_id"
+    t.integer "abono_ticket_count"
     t.index ["seat_id"], name: "index_reservations_on_seat_id"
     t.index ["session_id"], name: "index_reservations_on_session_id"
     t.index ["subscription_id"], name: "index_reservations_on_subscription_id"

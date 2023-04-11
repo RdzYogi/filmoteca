@@ -26,39 +26,34 @@ class Api::V1::ReservationsController < ApplicationController
     subscriptions = current_user.subscriptions
     subscription = subscriptions.find{ |sub| sub.remaining_uses != 0 || Date.today < sub.end_date }
     index_of_sub = subscriptions.index(subscription)
-
+    abono_ticket_count = reservation_params[:abono_ticket_count].to_i
+    puts abono_ticket_count
     puts 'answer should be here'
     result = []
 
+    saved = false
     seats.each do |seat|
       reservation = Reservation.new(seat_id: seat["id"], session_id: session.id, user_id: current_user.id, subscription_id: subscriptions[index_of_sub].id)
       if reservation.save
         result << reservation
-        subscription.tipo == 'abono10' && subscription.remaining_uses -= 1
+        saved = true
       else
         render json: reservation.errors, status: :unprocessable_entity
       end
     end
-    render json: result
-    puts result
-    puts subscription.remaining_uses
-  end
 
-  # def update
-  #   # a = abono.find(), a.uses = new_number, a.update
-  #   reservation = Reservation.find(params[:id])
-  #   subscription = Subscription.find(reservation.subscription_id)
-  #   if subscription
-  #     render json: { message: "Subscription updated successfully" }, status: :ok
-  #   else
-  #     render json: { error: "Unable to update subscription" }, status: :unprocessable_entity
-  #   end
-  # end
+    if saved && subscription.tipo == 'abono10' && abono_ticket_count.positive?
+      subscription.remaining_uses -= abono_ticket_count
+      subscription.save
+    end
+
+    render json: result
+  end
 
   private
 
   def reservation_params
-    params.require(:reservationinfo).permit(:projection_id, seats: [[:id, :row, :column, :hall_id,:created_at, :updated_at, :available]])
+    params.require(:reservationinfo).permit(:projection_id, :abono_ticket_count, seats: [[:id, :row, :column, :hall_id,:created_at, :updated_at, :available]])
   end
 
 end
