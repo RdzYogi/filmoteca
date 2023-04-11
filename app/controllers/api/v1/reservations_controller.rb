@@ -24,7 +24,7 @@ class Api::V1::ReservationsController < ApplicationController
     seats = reservation_params[:seats]
     puts seats
     subscriptions = current_user.subscriptions
-    subscription = subscriptions.find{ |sub| sub.remaining_uses != 0 || Date.today < sub.end_date }
+    subscription = subscriptions.find{ |sub| sub.remaining_uses.positive? || Date.today < sub.end_date }
     index_of_sub = subscriptions.index(subscription)
     abono_ticket_count = reservation_params[:abono_ticket_count].to_i
     puts abono_ticket_count
@@ -32,13 +32,19 @@ class Api::V1::ReservationsController < ApplicationController
     result = []
 
     saved = false
+    abono_buys = 0
     seats.each do |seat|
-      reservation = Reservation.new(seat_id: seat["id"], session_id: session.id, user_id: current_user.id, subscription_id: subscriptions[index_of_sub].id)
-      if reservation.save
-        result << reservation
-        saved = true
+      if subscription.remaining_uses > 0 && abono_buys < subscription.remaining_uses
+        reservation = Reservation.new(seat_id: seat["id"], session_id: session.id, user_id: current_user.id, subscription_id: subscriptions[index_of_sub].id)
+        if reservation.save
+          result << reservation
+          saved = true
+          abono_buys += 1
+        else
+          render json: reservation.errors, status: :unprocessable_entity
+        end
       else
-        render json: reservation.errors, status: :unprocessable_entity
+        alert('not enough')
       end
     end
 

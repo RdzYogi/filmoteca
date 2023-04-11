@@ -30,7 +30,7 @@ function Hall() {
   const [loaded, setLoaded] = useState(false)
   const [activeSubscription, setActiveSubscription] = useState({})
   const [abonoTickets, setAbonoTickets] = useState(0)
-  const [remainingUsesActiveSubscription, setRemainingUsesActiveSubscription] = useState(0)
+  // const [remainingUsesActiveSubscription, setRemainingUsesActiveSubscription] = useState(0)
 
   useEffect(() => {
     fetch(`/api/v1/projections/${id}`, {
@@ -41,14 +41,13 @@ function Hall() {
       return response.json()
     })
     .then((data) => {
-      // console.log(data)
       const movie = data.include.movie
       const session = data.include.session
       const hall = data.include.include.hall
       const seats = data.include.include.include.seats
       const reservations = data.include.include.reservations
       const subscription = data.subscription
-      setRemainingUsesActiveSubscription(subscription.remaining_uses)
+      // setRemainingUsesActiveSubscription(subscription.remaining_uses)
 
       if (data.subscription !== null && buyOptions.length === 2){
         const abonoType = data.subscription.tipo
@@ -283,7 +282,7 @@ const handleCreate = () => {
       setAbonoTickets(prevAbonoTickets => prevAbonoTickets + 1)
     }
   }
-console.log(abonoTicketCount)
+
   if (hasDefaultValue) {
     // display error message or prevent submission
     alert("Elige la forma de pago para cada asiento, por favor!")
@@ -314,7 +313,6 @@ console.log(abonoTicketCount)
       })
     }
   }
-  console.log(activeSubscription, abonoTickets, remainingUsesActiveSubscription)
 
 
   return (
