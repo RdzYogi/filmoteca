@@ -51,7 +51,6 @@ class Api::V1::UserDetailsController < ApplicationController
     else
       render json: { errors: a.errors }, status: :unprocessable_entity
     end
-
   end
 
   private

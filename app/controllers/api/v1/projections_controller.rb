@@ -1,5 +1,7 @@
 class Api::V1::ProjectionsController < ApplicationController
   before_action :authenticate_user!
+  protect_from_forgery with: :null_session
+
   def index
     projections = Projection.includes(:movie, :session, session: [:reservations, :hall, hall: :seats]).references(:movie, :session, :hall, :seats)
     # add reservations
@@ -21,4 +23,5 @@ class Api::V1::ProjectionsController < ApplicationController
       render json: { error: 'projection not found' }, status: :not_found
     end
   end
+
 end

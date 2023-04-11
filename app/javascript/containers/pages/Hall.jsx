@@ -307,37 +307,40 @@ const handleCreate = () => {
       .then((data) => {
         setStatus(["compra"])
         setResponseStatus('Created')
-        if (activeSubscription.tipo === 'abono10'){
-          const updatedSubscription = { ...activeSubscription, remaining_uses: remainingUsesActiveSubscription - abonoTicketCount };
-          setActiveSubscription(updatedSubscription);
-          setRemainingUsesActiveSubscription(prevUses => prevUses - abonoTicketCount)
-        }
-
-        // if (activeSubscription.tipo === 'abono10') {
-        //   const updatedRemainingUses = remainingUsesActiveSubscription - abonoTickets;
-        //   const updatedSubscription = { ...activeSubscription, remaining_uses: updatedRemainingUses };
-        //   setActiveSubscription(updatedSubscription);
-
-        //   // Send the updated subscription data to the server to update the database
-        //   fetch(`/api/v1/user_details`, {
-        //     method: 'PATCH',
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //       'Authorization': authToken
-        //     },
-        //     body: JSON.stringify({ subscription: updatedSubscription })
-        //   })
-        //   .then(response => {
-        //     if (!response.ok) {
-        //       throw new Error('Failed to update subscription in the database.');
-        //     }
-        //   })
-        //   .catch(error => {
-        //     console.error(error);
-        //   });
-
-        //   setRemainingUsesActiveSubscription(prevUses => prevUses - abonoTickets)
+        subscription = data.find(subscription_id)
+        console.log(subscription)
+        // a = abono.find(), a.uses = new_number, a.update
+        // if (activeSubscription.tipo === 'abono10'){
+          // const updatedSubscription = { ...activeSubscription, remaining_uses: remainingUsesActiveSubscription - abonoTicketCount };
+          // setActiveSubscription(updatedSubscription);
+          // setRemainingUsesActiveSubscription(prevUses => prevUses - abonoTicketCount)
         // }
+
+    //     if (activeSubscription.tipo === 'abono10') {
+    //       const updatedRemainingUses = remainingUsesActiveSubscription - abonoTickets;
+    //       const updatedSubscription = { ...activeSubscription, remaining_uses: updatedRemainingUses };
+    //       setActiveSubscription(updatedSubscription);
+
+    //       // Send the updated subscription data to the server to update the database
+    //       fetch(`/api/v1/reservatio/${id}`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //           'Authorization': authToken
+    //         },
+    //         body: JSON.stringify({ subscription: updatedSubscription })
+    //       })
+    //       .then(response => {
+    //         if (!response.ok) {
+    //           throw new Error('Failed to update subscription in the database.');
+    //         }
+    //       })
+    //       .catch(error => {
+    //         console.error(error);
+    //       });
+
+    //       setRemainingUsesActiveSubscription(prevUses => prevUses - abonoTickets)
+    //     }
       })
       .catch((err) => {
         setStatus(["nocompra"])
