@@ -34,7 +34,7 @@ class Api::V1::ReservationsController < ApplicationController
     saved = false
     abono_buys = 0
     seats.each do |seat|
-      if subscription.remaining_uses > 0 && abono_buys < subscription.remaining_uses
+      if subscription.remaining_uses > 0 && abono_buys <= subscription.remaining_uses
         reservation = Reservation.new(seat_id: seat["id"], session_id: session.id, user_id: current_user.id, subscription_id: subscriptions[index_of_sub].id)
         if reservation.save
           result << reservation
@@ -43,8 +43,6 @@ class Api::V1::ReservationsController < ApplicationController
         else
           render json: reservation.errors, status: :unprocessable_entity
         end
-      else
-        alert('not enough')
       end
     end
 
